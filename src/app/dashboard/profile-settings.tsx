@@ -68,11 +68,12 @@ const PROVIDERS = [
 export function ProfileSettings({
   user,
   connectedProviders,
-  authMode,
+  canPersist,
 }: {
   user: SessionUser;
   connectedProviders: string[];
-  authMode: "oauth" | "mock";
+  /** True when a database is connected, so profile changes can be saved. */
+  canPersist: boolean;
 }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -99,7 +100,7 @@ export function ProfileSettings({
     bio: user.bio ?? "",
   };
   const dirty = JSON.stringify(form) !== JSON.stringify(initial);
-  const isMock = authMode === "mock";
+  const readOnly = !canPersist;
 
   const set = (k: keyof typeof form) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -176,14 +177,14 @@ export function ProfileSettings({
 
   return (
     <div className="space-y-6">
-      {isMock && (
+      {readOnly && (
         <div className="flex items-start gap-2.5 rounded-card border border-info/30 bg-info-dim p-3.5">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-info" />
           <p className="text-xs leading-relaxed text-muted">
-            <span className="font-medium text-content">Dev mode.</span> Configure
-            OAuth keys + <code className="font-mono text-2xs">DATABASE_URL</code>{" "}
-            to sign in and persist profile changes. The form below is fully
-            wired — it just won&apos;t save until then.
+            <span className="font-medium text-content">Read-only.</span> Connect a
+            database (<code className="font-mono text-2xs">DATABASE_URL</code>) to
+            persist profile changes. The form below is fully wired — it just
+            won&apos;t save until then.
           </p>
         </div>
       )}
@@ -373,7 +374,7 @@ export function ProfileSettings({
                     variant="outline"
                     size="sm"
                     onClick={() => disconnect(acc.key)}
-                    disabled={pending || isMock}
+                    disabled={pending || readOnly}
                   >
                     Disconnect
                   </Button>
@@ -382,7 +383,7 @@ export function ProfileSettings({
                     variant="secondary"
                     size="sm"
                     onClick={() => connect(acc.key)}
-                    disabled={isMock}
+                    disabled={readOnly}
                   >
                     Connect
                   </Button>
@@ -431,7 +432,7 @@ export function ProfileSettings({
               variant="danger"
               size="sm"
               onClick={removeAccount}
-              disabled={pending || isMock}
+              disabled={pending || readOnly}
             >
               <Trash2 className="h-3.5 w-3.5" />
               Delete account

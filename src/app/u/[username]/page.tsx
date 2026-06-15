@@ -13,7 +13,7 @@ import {
   isFollowing,
   type PublicProfile,
 } from "@/lib/profile";
-import { getSessionUser, AUTH_MODE } from "@/lib/session";
+import { getSessionUser } from "@/lib/session";
 import { formatCompact, formatDate } from "@/lib/utils";
 import { AppShell } from "@/components/app-shell";
 import { AgentGrid } from "@/components/agent-grid";
@@ -83,6 +83,9 @@ export default async function CreatorProfilePage({ params }: PageProps) {
     !isOwner && creator.isDbUser && creator.id
       ? await isFollowing(creator.id)
       : false;
+  // Following persists only for real DB users; viewer must be signed in.
+  const canFollow =
+    Boolean(viewer?.isAuthenticated) && !isOwner && creator.isDbUser;
 
   const agents = getAgentsByCreator(username);
   const collections = getCollectionsByCurator(username);
@@ -217,6 +220,7 @@ export default async function CreatorProfilePage({ params }: PageProps) {
           avgRating={stats.avgRating}
           isOwner={isOwner}
           following={following}
+          canFollow={canFollow}
         />
 
         {/* Tabs */}
@@ -235,6 +239,7 @@ function ProfileHeader({
   avgRating,
   isOwner,
   following,
+  canFollow,
 }: {
   creator: PublicProfile;
   statRow: { label: string; value: string; icon: React.ReactNode }[];
@@ -242,6 +247,7 @@ function ProfileHeader({
   avgRating: number;
   isOwner: boolean;
   following: boolean;
+  canFollow: boolean;
 }) {
   return (
     <header className="card relative overflow-hidden p-5 sm:p-7">
@@ -322,7 +328,7 @@ function ProfileHeader({
               username={creator.username}
               followers={creator.followers}
               initialFollowing={following}
-              canFollow={creator.isDbUser && AUTH_MODE === "oauth"}
+              canFollow={canFollow}
             />
           )}
           {creator.website && (

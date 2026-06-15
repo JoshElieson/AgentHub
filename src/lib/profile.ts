@@ -62,24 +62,52 @@ export async function getProfileByUsername(
   }
 
   const c = getCreator(username);
-  if (!c) return null;
-  return {
-    id: null,
-    username: c.username,
-    name: c.name,
-    bio: c.bio,
-    avatarColor: c.avatarColor,
-    image: null,
-    website: c.website ?? null,
-    github: c.github ?? null,
-    twitter: c.twitter ?? null,
-    location: c.location ?? null,
-    isVerified: c.isVerified,
-    followers: c.followers,
-    following: c.following,
-    joinedAt: c.joinedAt,
-    isDbUser: false,
-  };
+  if (c) {
+    return {
+      id: null,
+      username: c.username,
+      name: c.name,
+      bio: c.bio,
+      avatarColor: c.avatarColor,
+      image: null,
+      website: c.website ?? null,
+      github: c.github ?? null,
+      twitter: c.twitter ?? null,
+      location: c.location ?? null,
+      isVerified: c.isVerified,
+      followers: c.followers,
+      following: c.following,
+      joinedAt: c.joinedAt,
+      isDbUser: false,
+    };
+  }
+
+  // Final fallback: the signed-in user viewing their own profile before it has
+  // been persisted to a database (e.g. OAuth configured but DATABASE_URL is
+  // not). Render from the live session so /u/<me> works instead of 404ing.
+  const session = await getServerSession(authOptions);
+  const su = session?.user;
+  if (su?.username && su.username === username) {
+    return {
+      id: su.id ?? null,
+      username: su.username,
+      name: su.name ?? su.username,
+      bio: su.bio ?? "",
+      avatarColor: su.avatarColor ?? FALLBACK_AVATAR,
+      image: su.image ?? null,
+      website: su.website ?? null,
+      github: su.github ?? null,
+      twitter: su.twitter ?? null,
+      location: su.location ?? null,
+      isVerified: su.isVerified ?? false,
+      followers: 0,
+      following: 0,
+      joinedAt: new Date().toISOString(),
+      isDbUser: false,
+    };
+  }
+
+  return null;
 }
 
 /** Providers (e.g. ["github", "google"]) linked to the current account. */

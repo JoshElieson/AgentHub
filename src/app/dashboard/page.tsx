@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { requireSessionUser } from "@/lib/session";
 import { getConnectedProviders } from "@/lib/profile";
-import { AUTH_MODE } from "@/lib/session";
+import { isDbConfigured } from "@/lib/prisma";
 import { DashboardClient, type DashboardSection } from "./dashboard-client";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ section?: string }>;
 }) {
-  // Redirects to /login when signed out (no-op in mock dev mode).
+  // Redirects to /login when signed out.
   const user = await requireSessionUser();
   const connectedProviders = await getConnectedProviders(user);
   const { section } = await searchParams;
@@ -34,7 +34,7 @@ export default async function DashboardPage({
     <DashboardClient
       user={user}
       connectedProviders={connectedProviders}
-      authMode={AUTH_MODE}
+      canPersist={isDbConfigured}
       initialSection={initialSection}
     />
   );
