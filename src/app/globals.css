@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+@layer base {
+  * {
+    border-color: theme("colors.line");
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas text-content antialiased font-sans;
+    font-feature-settings: "cv11", "ss01", "calt";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(124, 92, 252, 0.22);
+    color: #fff;
+  }
+
+  /* Focus rings — visible only for keyboard users, tight and intentional */
+  :focus-visible {
+    outline: none;
+    @apply ring-2 ring-brand/60 ring-offset-2 ring-offset-canvas;
+  }
+
+  /* Scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2a2e35 transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #23262b;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #2f333a;
+  }
+}
+
+@layer components {
+  /* Solid chrome bar — navbar / sticky headers. No glassmorphism. */
+  .glass {
+    background-color: rgba(8, 11, 16, 0.92);
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+  }
+
+  /* Standard surface card — defined by its border, not a shadow */
+  .card {
+    @apply rounded-card border border-line bg-surface;
+  }
+
+  .card-interactive {
+    @apply card transition-colors duration-150 hover:border-line-strong hover:bg-surface-2;
+  }
+
+  /* Subtle structural grid backdrop for hero / section headers */
+  .bg-hero-grid {
+    background-image: theme("backgroundImage.grid-faint");
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 75% 70% at 50% 0%,
+      black 20%,
+      transparent 80%
+    );
+    mask-image: radial-gradient(
+      ellipse 75% 70% at 50% 0%,
+      black 20%,
+      transparent 80%
+    );
+  }
+
+  /* Restrained light gradient — used sparingly on headline accents */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(180deg, #ffffff 0%, #c5c9d1 100%);
+  }
+
+  /* Thin divider line */
+  .hairline {
+    @apply border-line;
+  }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden bg-surface-2;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.04),
+      transparent
+    );
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Tabular numbers for stats / counts */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Uppercase micro-label — GitHub-style rectangular tags */
+  .label-caps {
+    @apply text-2xs font-semibold uppercase tracking-wider;
+  }
+}

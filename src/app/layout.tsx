@@ -1,0 +1,68 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { Providers } from "@/components/providers";
+import { AUTH_MODE, getMockSessionUser } from "@/lib/session";
+
+const sans = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://agentdock.dev"),
+  title: {
+    default: "AgentDock — The package registry for AI agents",
+    template: "%s · AgentDock",
+  },
+  description:
+    "Discover, install, and share AI agents, skills, MCP servers, workflows, and prompt packs. The open registry for installable AI capabilities.",
+  keywords: [
+    "AI agents",
+    "Claude skills",
+    "MCP servers",
+    "Cursor rules",
+    "agent registry",
+    "prompt packs",
+  ],
+  openGraph: {
+    title: "AgentDock — The package registry for AI agents",
+    description:
+      "The open registry for AI agents, skills, MCP servers, workflows, and prompt packs.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#080B10",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // Computed from env only (no session read here) so static pages aren't
+  // forced into dynamic rendering. The client session is fetched lazily by
+  // <SessionProvider> inside <Providers>.
+  const mockUser = AUTH_MODE === "mock" ? getMockSessionUser() : null;
+
+  return (
+    <html lang="en" className={`dark ${sans.variable} ${mono.variable}`}>
+      <body>
+        <Providers authMode={AUTH_MODE} mockUser={mockUser}>
+          {children}
+        </Providers>
+      </body>
+    </html>
+  );
+}

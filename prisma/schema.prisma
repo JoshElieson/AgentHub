@@ -1,0 +1,429 @@
+// AgentDock — Prisma schema (PostgreSQL-ready)
+// ---------------------------------------------------------------------------
+// The running MVP uses seeded mock data (src/lib/data). This schema defines the
+// production data model so those mock queries can be swapped for real DB calls.
+//
+// Local dev with SQLite: set provider = "sqlite", DATABASE_URL = "file:./dev.db",
+// and replace the enum[] / String[] array fields with relation tables or JSON
+// (SQLite has no native enums or scalar arrays).
+// ---------------------------------------------------------------------------
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- Enums -----------------------------------------------------------------
+
+enum PackageType {
+  AGENT
+  CLAUDE_SKILL
+  CURSOR_RULE
+  MCP_SERVER
+  WORKFLOW
+  PROMPT_PACK
+  CUSTOM_MODE
+  TOOL_ADAPTER
+  AGENT_TEMPLATE
+  AUTOMATION
+}
+
+// Platforms / runtimes / clients an installable capability can target.
+// MCP represents any MCP-compatible client.
+enum PlatformKey {
+  CLAUDE_CODE
+  CLAUDE_DESKTOP
+  CURSOR
+  WINDSURF
+  OPENAI_AGENTS
+  GEMINI_CLI
+  GITHUB_COPILOT
+  REPLIT_AGENT
+  MCP
+}
+
+enum License {
+  MIT
+  APACHE_2_0
+  GPL_3_0
+  PROPRIETARY
+  UNKNOWN
+}
+
+enum Pricing {
+  FREE
+  PAID
+  OPEN_SOURCE
+}
+
+enum IssueKind {
+  BUG
+  FEATURE
+  COMPATIBILITY
+  QUESTION
+}
+
+enum IssueState {
+  OPEN
+  CLOSED
+}
+
+enum MemberRole {
+  OWNER
+  MAINTAINER
+  MEMBER
+}
+
+// --- Identity --------------------------------------------------------------
+
+model User {
+  id            String    @id @default(cuid())
+  // `username` is null immediately after an OAuth sign-in (the NextAuth adapter
+  // doesn't set it); it's generated in the `createUser` event. `name` is
+  // nullable for the same reason (some providers omit it).
+  username      String?   @unique
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  // OAuth profile picture URL. Avatars fall back to an `avatarColor` gradient.
+  image         String?
+  bio           String?
+  avatarColor   String?
+  website       String?
+  github        String?
+  twitter       String?
+  location      String?
+  isVerified    Boolean   @default(false)
+  followers     Int       @default(0)
+  following     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // NextAuth / Auth.js
+  accounts Account[]
+  sessions Session[]
+
+  // Social graph
+  followedBy Follow[] @relation("Following") // people who follow this user
+  follows    Follow[] @relation("Follower")  // people this user follows
+
+  packages     AgentPackage[]      @relation("CreatorPackages")
+  reviews      Review[]
+  issues       Issue[]
+  discussions  Discussion[]
+  collections  Collection[]
+  installs     Install[]
+  favorites    Favorite[]
+  memberships  OrganizationMember[]
+}
+
+// --- NextAuth (Auth.js) tables ---------------------------------------------
+// Standard shapes required by @next-auth/prisma-adapter. See:
+// https://authjs.dev/reference/adapter/prisma
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// --- Social graph ----------------------------------------------------------
+
+model Follow {
+  id          String   @id @default(cuid())
+  followerId  String
+  followingId String
+  createdAt   DateTime @default(now())
+
+  follower  User @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following User @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@index([followingId])
+}
+
+model Organization {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String?
+  avatarColor String?
+  website     String?
+  github      String?
+  location    String?
+  isVerified  Boolean  @default(false)
+  followers   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  packages AgentPackage[]
+  members  OrganizationMember[]
+}
+
+model OrganizationMember {
+  id     String     @id @default(cuid())
+  role   MemberRole @default(MEMBER)
+  userId String
+  orgId  String
+
+  user User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  org  Organization @relation(fields: [orgId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, orgId])
+}
+
+// --- Taxonomy --------------------------------------------------------------
+
+model Category {
+  id          String         @id @default(cuid())
+  slug        String         @unique
+  label       String
+  description String?
+  packages    AgentPackage[]
+}
+
+model Tag {
+  id       String         @id @default(cuid())
+  name     String         @unique
+  packages AgentPackage[] @relation("PackageTags")
+}
+
+// --- Packages --------------------------------------------------------------
+
+model AgentPackage {
+  id               String        @id @default(cuid())
+  slug             String        @unique
+  packageId        String        @unique
+  name             String
+  shortDescription String
+  longDescription  String
+  type             PackageType
+  platforms        PlatformKey[] // AI tools / runtimes / clients this targets
+  supportedClients String[]      // human-readable client names (mirrors platforms)
+  installCommands  Json          // per-platform install/export commands
+  permissions      Json
+  license          License       @default(UNKNOWN)
+  pricing          Pricing       @default(FREE)
+  price            String?
+
+  sourceRepo  String?
+  website     String?
+  homepage    String?
+  readme      String
+
+  // Stats
+  installCount  Int   @default(0)
+  weeklyInstalls Int  @default(0)
+  stars         Int   @default(0)
+  ratingAvg     Float @default(0)
+  ratingCount   Int   @default(0)
+
+  // Trust signals
+  isVerified         Boolean @default(false)
+  isSecurityReviewed Boolean @default(false)
+  isFeatured         Boolean @default(false)
+
+  version String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  creatorId  String
+  creator    User          @relation("CreatorPackages", fields: [creatorId], references: [id])
+  orgId      String?
+  org        Organization? @relation(fields: [orgId], references: [id])
+  categoryId String?
+  category   Category?     @relation(fields: [categoryId], references: [id])
+
+  tags        Tag[]            @relation("PackageTags")
+  versions    AgentVersion[]
+  files       AgentFile[]
+  reviews     Review[]
+  issues      Issue[]
+  discussions Discussion[]
+  installs    Install[]
+  favorites   Favorite[]
+  collectionItems CollectionItem[]
+
+  @@index([type])
+  @@index([categoryId])
+  @@index([installCount])
+}
+
+model AgentVersion {
+  id           String   @id @default(cuid())
+  version      String
+  releasedAt   DateTime @default(now())
+  isLatest     Boolean  @default(false)
+  isPrerelease Boolean  @default(false)
+  changelog    String[]
+  size         String?
+  downloads    Int      @default(0)
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@unique([packageId, version])
+}
+
+model AgentFile {
+  id       String  @id @default(cuid())
+  path     String
+  type     String  @default("file") // "file" | "dir"
+  language String?
+  size     String?
+  content  String?
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@unique([packageId, path])
+}
+
+// --- Social / activity -----------------------------------------------------
+
+model Review {
+  id              String   @id @default(cuid())
+  rating          Int
+  title           String
+  body            String
+  version         String?
+  helpful         Int      @default(0)
+  verifiedInstall Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User         @relation(fields: [authorId], references: [id])
+}
+
+model Issue {
+  id        String     @id @default(cuid())
+  number    Int
+  title     String
+  kind      IssueKind  @default(BUG)
+  state     IssueState @default(OPEN)
+  comments  Int        @default(0)
+  labels    String[]
+  createdAt DateTime   @default(now())
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User         @relation(fields: [authorId], references: [id])
+
+  @@unique([packageId, number])
+}
+
+model Discussion {
+  id         String   @id @default(cuid())
+  title      String
+  category   String   @default("general")
+  excerpt    String
+  replies    Int      @default(0)
+  upvotes    Int      @default(0)
+  isAnswered Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User         @relation(fields: [authorId], references: [id])
+}
+
+// --- Collections -----------------------------------------------------------
+
+model Collection {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  coverColor  String?
+  followers   Int      @default(0)
+  isOfficial  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  curatorId String
+  curator   User             @relation(fields: [curatorId], references: [id])
+  items     CollectionItem[]
+}
+
+model CollectionItem {
+  id       String @id @default(cuid())
+  position Int    @default(0)
+
+  collectionId String
+  collection   Collection   @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  packageId    String
+  package      AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@unique([collectionId, packageId])
+}
+
+// --- Installs & favorites --------------------------------------------------
+
+model Install {
+  id        String      @id @default(cuid())
+  target    PlatformKey
+  version   String
+  createdAt DateTime    @default(now())
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?        @relation(fields: [userId], references: [id])
+
+  @@index([packageId])
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  packageId String
+  package   AgentPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, packageId])
+}
