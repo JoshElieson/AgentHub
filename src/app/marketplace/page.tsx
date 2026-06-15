@@ -661,7 +661,7 @@ function SkillsMarketplaceView() {
                 <span className={cn(
                   "shrink-0 rounded-md px-2 py-0.5 text-3xs font-semibold uppercase tracking-wider border",
                   searchMode === "semantic"
-                    ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-400"
+                    ? "bg-brand/10 border-brand/30 text-brand"
                     : searchMode === "text"
                     ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
                     : "bg-surface-2 border-line text-muted"
@@ -915,7 +915,6 @@ function SkillsMarketplaceView() {
           </div>
           </>
         )}
-      </div>
 
       {/* Ingest Skill Dialog Modal */}
       {isIngestOpen && (

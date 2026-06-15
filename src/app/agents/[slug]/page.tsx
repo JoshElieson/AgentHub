@@ -15,8 +15,6 @@ import { Badge } from "@/components/ui/badge";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { InstallButton } from "@/components/install-modal";
 import { FavoriteButton } from "@/components/favorite-button";
-import { CommandBlock } from "@/components/ui/command-block";
-import { PermissionGrid } from "@/components/permission-grid";
 import { PackageTree } from "@/components/package-tree";
 import { VersionList } from "@/components/version-list";
 import { ReviewCard, RatingBreakdown } from "@/components/review-card";
@@ -30,7 +28,6 @@ import {
   getAgent,
   getCreator,
   getOrganization,
-  getCreatorStats,
 } from "@/lib/data";
 import { aggregateRisk, PRICING_LABELS } from "@/lib/taxonomy";
 import { formatCompact, formatNumber, timeAgo } from "@/lib/utils";
@@ -43,6 +40,7 @@ import {
   Folder,
   GitBranch,
   Globe,
+  Info,
   MessageSquare,
   MessagesSquare,
   Package,
@@ -118,7 +116,6 @@ export default async function AgentDetailPage({
   const creator = getCreator(agent.creatorUsername);
   const org = agent.orgSlug ? getOrganization(agent.orgSlug) : undefined;
   const risk = aggregateRisk(agent.permissions);
-  const stats = getCreatorStats(agent.creatorUsername);
 
   const fileCount = agent.files.filter((f) => f.type === "file").length;
   const openIssues = agent.issues.filter((i) => i.state === "open").length;
@@ -156,6 +153,84 @@ export default async function AgentDetailPage({
       count: agent.versions.length,
       content: (
         <VersionList versions={agent.versions} packageId={agent.packageId} />
+      ),
+    },
+    {
+      id: "details",
+      label: "Details",
+      icon: <Info className="h-4 w-4" />,
+      content: (
+        <div className="card max-w-xl p-4">
+          <h3 className="text-sm font-semibold text-content">Details</h3>
+          <div className="mt-1 divide-y divide-line">
+            <MetaRow
+              icon={<Tag className="h-3.5 w-3.5" />}
+              label="Latest version"
+            >
+              <span className="font-mono text-brand-muted">
+                v{latest?.version ?? agent.version}
+              </span>
+            </MetaRow>
+            <MetaRow
+              icon={<FileText className="h-3.5 w-3.5" />}
+              label="License"
+            >
+              {agent.license === "Unknown" ? "No license" : agent.license}
+            </MetaRow>
+            <MetaRow
+              icon={<Package className="h-3.5 w-3.5" />}
+              label="Package"
+            >
+              <span className="font-mono">{agent.packageId}</span>
+            </MetaRow>
+            {agent.sourceRepo && (
+              <MetaRow
+                icon={<GitBranch className="h-3.5 w-3.5" />}
+                label="Source"
+              >
+                <a
+                  href={agent.sourceRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-brand-muted hover:text-brand"
+                >
+                  Repository
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </MetaRow>
+            )}
+            {(agent.website || agent.homepage) && (
+              <MetaRow
+                icon={<Globe className="h-3.5 w-3.5" />}
+                label="Homepage"
+              >
+                <a
+                  href={agent.homepage ?? agent.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-brand-muted hover:text-brand"
+                >
+                  Website
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </MetaRow>
+            )}
+            <MetaRow
+              icon={<Download className="h-3.5 w-3.5" />}
+              label="Weekly installs"
+            >
+              <span className="tabular-nums">
+                {formatNumber(agent.weeklyInstalls)}
+              </span>
+            </MetaRow>
+            <MetaRow
+              icon={<Star className="h-3.5 w-3.5" />}
+              label="Updated"
+            >
+              {timeAgo(agent.updatedAt)}
+            </MetaRow>
+          </div>
+        </div>
       ),
     },
     {
@@ -321,148 +396,8 @@ export default async function AgentDetailPage({
       </header>
 
       {/* ---- Body ------------------------------------------------------ */}
-      <div className="grid grid-cols-1 gap-8 py-8 lg:grid-cols-[1fr_320px]">
-        {/* Left — tabs */}
-        <div className="min-w-0">
-          <Tabs tabs={tabs} />
-        </div>
-
-        {/* Right — sticky metadata sidebar */}
-        <aside className="lg:sticky lg:top-20 lg:self-start">
-          <div className="space-y-3">
-            {/* Install command */}
-            <div className="card p-4">
-              <h3 className="text-sm font-semibold text-content">Install</h3>
-              <CommandBlock
-                command={
-                  agent.installCommands[0]?.command ??
-                  `npx agentdock install ${agent.slug}`
-                }
-                className="mt-3"
-              />
-              <div className="mt-3">
-                <InstallButton agent={agent} fullWidth label="Choose platform" />
-              </div>
-            </div>
-
-            {/* Package metadata */}
-            <div className="card p-4">
-              <h3 className="text-sm font-semibold text-content">Details</h3>
-              <div className="mt-1 divide-y divide-line">
-                <MetaRow
-                  icon={<Tag className="h-3.5 w-3.5" />}
-                  label="Latest version"
-                >
-                  <span className="font-mono text-brand-muted">
-                    v{latest?.version ?? agent.version}
-                  </span>
-                </MetaRow>
-                <MetaRow
-                  icon={<FileText className="h-3.5 w-3.5" />}
-                  label="License"
-                >
-                  {agent.license === "Unknown" ? "No license" : agent.license}
-                </MetaRow>
-                <MetaRow
-                  icon={<Package className="h-3.5 w-3.5" />}
-                  label="Package"
-                >
-                  <span className="font-mono">{agent.packageId}</span>
-                </MetaRow>
-                {agent.sourceRepo && (
-                  <MetaRow
-                    icon={<GitBranch className="h-3.5 w-3.5" />}
-                    label="Source"
-                  >
-                    <a
-                      href={agent.sourceRepo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-brand-muted hover:text-brand"
-                    >
-                      Repository
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </MetaRow>
-                )}
-                {(agent.website || agent.homepage) && (
-                  <MetaRow
-                    icon={<Globe className="h-3.5 w-3.5" />}
-                    label="Homepage"
-                  >
-                    <a
-                      href={agent.homepage ?? agent.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-brand-muted hover:text-brand"
-                    >
-                      Website
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </MetaRow>
-                )}
-                <MetaRow
-                  icon={<Download className="h-3.5 w-3.5" />}
-                  label="Weekly installs"
-                >
-                  <span className="tabular-nums">
-                    {formatNumber(agent.weeklyInstalls)}
-                  </span>
-                </MetaRow>
-                <MetaRow
-                  icon={<Star className="h-3.5 w-3.5" />}
-                  label="Updated"
-                >
-                  {timeAgo(agent.updatedAt)}
-                </MetaRow>
-              </div>
-            </div>
-
-            {/* Permissions */}
-            <PermissionGrid permissions={agent.permissions} />
-
-            {/* About the creator */}
-            {creator && (
-              <Link
-                href={`/u/${agent.creatorUsername}`}
-                className="card-interactive block p-4"
-              >
-                <div className="text-xs font-medium text-subtle">
-                  About the creator
-                </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <Avatar
-                    name={creator.name}
-                    color={creator.avatarColor}
-                    size="md"
-                  />
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="truncate text-sm font-semibold text-content">
-                        {creator.name}
-                      </span>
-                      {creator.isVerified && <VerifiedBadge />}
-                    </div>
-                    <div className="truncate text-xs text-subtle">
-                      @{creator.username}
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3 flex items-center gap-3 text-xs text-subtle">
-                  <span className="tabular-nums">
-                    {stats.totalAgents} packages
-                  </span>
-                  <span className="tabular-nums">
-                    {formatCompact(stats.totalInstalls)} installs
-                  </span>
-                  <span className="tabular-nums">
-                    {formatCompact(creator.followers)} followers
-                  </span>
-                </div>
-              </Link>
-            )}
-          </div>
-        </aside>
+      <div className="min-w-0 py-8">
+        <Tabs tabs={tabs} />
       </div>
     </AppShell>
   );

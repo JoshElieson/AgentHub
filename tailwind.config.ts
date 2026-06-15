@@ -27,13 +27,13 @@ const config: Config = {
         subtle: "#70757F",
         faint: "#565B64",
 
-        // Brand — restrained violet, used for actions only
-        brand: "#7C5CFC",
-        "brand-fg": "#FFFFFF",
-        "brand-hover": "#6E4FF0",
-        "brand-muted": "#A593F7",
-        "brand-dim": "#17142099",
-        "brand-line": "#2C2747",
+        // Brand — warm light brown, used for actions only
+        brand: "#C49B6C",
+        "brand-fg": "#211910",
+        "brand-hover": "#D2AE82",
+        "brand-muted": "#D8B894",
+        "brand-dim": "#1C140B99",
+        "brand-line": "#3A2E1F",
 
         // Semantic — status & actions, never large fills
         success: "#22C55E",
@@ -109,6 +109,9 @@ const config: Config = {
       backgroundImage: {
         "grid-faint":
           "linear-gradient(to right, rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.022) 1px, transparent 1px)",
+        // Subtle warm-brown accent glow — used sparingly behind CTAs
+        "brand-glow":
+          "radial-gradient(ellipse 60% 80% at 50% 0%, rgba(196,155,108,0.10), transparent 70%)",
       },
       backgroundSize: {
         grid: "48px 48px",

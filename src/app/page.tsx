@@ -1,11 +1,8 @@
 import { AppShell, SectionHeader } from "@/components/app-shell";
 import { AgentGrid } from "@/components/agent-grid";
-import { SearchBar } from "@/components/search-bar";
-import { InlineStat } from "@/components/ui/stat-card";
 import { ButtonLink } from "@/components/ui/button";
 import { CollectionCard } from "@/components/cards";
 import {
-  SITE_STATS,
   getTrending,
   getPopularForPlatform,
   getMcpServers,
@@ -14,15 +11,9 @@ import {
   getCategoryCounts,
   collections,
 } from "@/lib/data";
-import { formatCompact, formatNumber } from "@/lib/utils";
-import { PLATFORMS } from "@/lib/taxonomy";
 import Link from "next/link";
 import {
   ArrowRight,
-  ShieldCheck,
-  Boxes,
-  GitBranch,
-  TerminalSquare,
   Code2,
   Shield,
   Server,
@@ -51,29 +42,6 @@ const CATEGORY_ICON: Record<Category, React.ReactNode> = {
   integrations: <Plug className="h-4 w-4" />,
 };
 
-const WHY = [
-  {
-    icon: <ShieldCheck className="h-5 w-5" />,
-    title: "Trust by default",
-    body: "Every package shows its permission scope, risk level, license, and source. Security-reviewed and verified badges tell you what's safe to run.",
-  },
-  {
-    icon: <Boxes className="h-5 w-5" />,
-    title: "Every platform, one registry",
-    body: "Claude Code, Claude Desktop, Cursor, Windsurf, OpenAI Agents, Gemini CLI, GitHub Copilot, Replit, and any MCP client. Publish once, install anywhere.",
-  },
-  {
-    icon: <GitBranch className="h-5 w-5" />,
-    title: "Versioned & reproducible",
-    body: "Semver, changelogs, and pinned installs. Roll forward or back with a single command — no more copy-pasting prompts.",
-  },
-  {
-    icon: <TerminalSquare className="h-5 w-5" />,
-    title: "One command to install",
-    body: "npx agentdock install <package> — to Claude, Cursor, Gemini, or an MCP client, or exported for Copilot and OpenAI Agents.",
-  },
-];
-
 export default function HomePage() {
   const trending = getTrending(6);
   const popularClaudeCode = getPopularForPlatform("claude-code", 4);
@@ -86,71 +54,36 @@ export default function HomePage() {
 
   return (
     <AppShell fullWidth>
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-line">
-        <div className="pointer-events-none absolute inset-0 bg-brand-glow" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-hero-grid" />
-        <div className="relative mx-auto max-w-site px-4 pb-14 pt-16 sm:px-6 sm:pt-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-content sm:text-5xl md:text-6xl">
-              Discover, install, and share{" "}
-              <span className="text-gradient">AI agents.</span>
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-balance text-base text-muted sm:text-lg">
-              The open package registry for AI agents, skills, MCP servers,
-              workflows, rules, and prompt packs.
-            </p>
-
-            <div className="mx-auto mt-8 max-w-xl">
-              <SearchBar
-                variant="hero"
-                placeholder="Search agents, skills, MCP servers, rules…"
-              />
-            </div>
-
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-              <ButtonLink href="/explore" variant="primary" size="lg">
-                Explore packages
-                <ArrowRight className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink href="/publish" variant="secondary" size="lg">
-                Publish a package
-              </ButtonLink>
-            </div>
-
-            {/* Platform strip */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-subtle">
-              <span className="text-faint">Works with</span>
-              {PLATFORMS.map((p) => (
-                <span key={p.value} className="font-medium text-muted">
-                  {p.label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4 border-t border-line pt-8">
-            <InlineStat
-              value={formatNumber(SITE_STATS.agents)}
-              label="Packages"
-              className="items-center text-center"
-            />
-            <InlineStat
-              value={formatNumber(SITE_STATS.creators)}
-              label="Creators"
-              className="items-center text-center"
-            />
-            <InlineStat
-              value={formatCompact(SITE_STATS.installs)}
-              label="Installs"
-              className="items-center text-center"
-            />
-          </div>
-        </div>
-      </section>
-
       <div className="mx-auto max-w-site px-4 sm:px-6">
+        {/* Popular categories */}
+        <section className="py-6">
+          <SectionHeader
+            title="Popular categories"
+            description="Browse by what you're trying to build."
+          />
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {categories.map((c) => (
+              <Link
+                key={c.category}
+                href={`/explore?category=${c.category}`}
+                className="card-interactive flex items-center gap-3 p-4"
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line bg-surface-2 text-brand-muted">
+                  {CATEGORY_ICON[c.category]}
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-medium text-content">
+                    {c.label}
+                  </span>
+                  <span className="block text-xs text-subtle">
+                    {c.count} {c.count === 1 ? "package" : "packages"}
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* Trending across all platforms */}
         <section className="py-12">
           <SectionHeader
@@ -213,35 +146,6 @@ export default function HomePage() {
           agents={designFrontend}
         />
 
-        {/* Popular categories */}
-        <section className="py-6">
-          <SectionHeader
-            title="Popular categories"
-            description="Browse by what you're trying to build."
-          />
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-            {categories.map((c) => (
-              <Link
-                key={c.category}
-                href={`/explore?category=${c.category}`}
-                className="card-interactive flex items-center gap-3 p-4"
-              >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line bg-surface-2 text-brand-muted">
-                  {CATEGORY_ICON[c.category]}
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate text-sm font-medium text-content">
-                    {c.label}
-                  </span>
-                  <span className="block text-xs text-subtle">
-                    {c.count} {c.count === 1 ? "package" : "packages"}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         {/* Featured collections */}
         <section className="py-12">
           <SectionHeader
@@ -259,25 +163,6 @@ export default function HomePage() {
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {featuredCollections.map((c) => (
               <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        </section>
-
-        {/* Why AgentDock */}
-        <section className="py-6">
-          <SectionHeader
-            title="Why AgentDock exists"
-            description="Installable AI capabilities deserve real infrastructure — not a pile of gists."
-          />
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY.map((w) => (
-              <div key={w.title} className="card p-5">
-                <div className="grid h-10 w-10 place-items-center rounded-xl border border-brand-line bg-brand-dim text-brand-muted">
-                  {w.icon}
-                </div>
-                <h3 className="mt-4 text-sm font-semibold text-content">{w.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{w.body}</p>
-              </div>
             ))}
           </div>
         </section>

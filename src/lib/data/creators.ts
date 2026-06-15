@@ -2,17 +2,19 @@ import type { Creator } from "../types";
 
 // Avatar gradients (used as inline `background` by the Avatar component).
 export const GRADIENTS = {
-  violet: "linear-gradient(135deg,#7C5CFF,#4F46E5)",
+  // `violet`/`indigo`/`fuchsia` keys retained for stable references; their hues
+  // are now brown/neutral so no purple appears in avatars or collection covers.
+  violet: "linear-gradient(135deg,#C49B6C,#7A5230)",
   emerald: "linear-gradient(135deg,#34D399,#059669)",
   amber: "linear-gradient(135deg,#FBBF24,#D97706)",
   rose: "linear-gradient(135deg,#FB7185,#E11D48)",
   cyan: "linear-gradient(135deg,#22D3EE,#0891B2)",
   blue: "linear-gradient(135deg,#60A5FA,#2563EB)",
-  fuchsia: "linear-gradient(135deg,#E879F9,#C026D3)",
+  fuchsia: "linear-gradient(135deg,#D8A98A,#9C5A3C)",
   lime: "linear-gradient(135deg,#A3E635,#65A30D)",
   orange: "linear-gradient(135deg,#FB923C,#EA580C)",
   teal: "linear-gradient(135deg,#2DD4BF,#0D9488)",
-  indigo: "linear-gradient(135deg,#818CF8,#4338CA)",
+  indigo: "linear-gradient(135deg,#A8AEB8,#4B5159)",
   slate: "linear-gradient(135deg,#94A3B8,#475569)",
 } as const;
 
