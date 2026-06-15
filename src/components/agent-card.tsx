@@ -1,20 +1,15 @@
 import type { AgentPackage } from "@/lib/types";
 import { getCreator } from "@/lib/data";
-import { aggregateRisk } from "@/lib/taxonomy";
 import { cn, formatCompact, timeAgo } from "@/lib/utils";
 import Link from "next/link";
 import { Avatar } from "./ui/avatar";
 import {
-  LicenseBadge,
-  PlatformBadgeRow,
-  RiskBadge,
-  SecurityReviewedBadge,
   TypeBadge,
   VerifiedBadge,
 } from "./ui/badge";
 import { RatingStars } from "./ui/rating-stars";
 import { InstallButton } from "./install-modal";
-import { Download, GitFork, Star } from "lucide-react";
+import { Download, Star } from "lucide-react";
 
 export function AgentCard({
   agent,
@@ -26,7 +21,6 @@ export function AgentCard({
   compact?: boolean;
 }) {
   const creator = getCreator(agent.creatorUsername);
-  const risk = aggregateRisk(agent.permissions);
 
   return (
     <div
@@ -62,20 +56,6 @@ export function AgentCard({
           {agent.shortDescription}
         </p>
       </Link>
-
-      {/* Platforms + risk */}
-      {!compact && (
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <PlatformBadgeRow platforms={agent.platforms} max={5} />
-        </div>
-      )}
-
-      {/* Trust row */}
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        <RiskBadge risk={risk} />
-        <LicenseBadge license={agent.license} />
-        {agent.isSecurityReviewed && <SecurityReviewedBadge />}
-      </div>
 
       {/* Tags */}
       {!compact && (

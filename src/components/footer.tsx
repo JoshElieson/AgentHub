@@ -31,16 +31,6 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
       { label: "Compatibility", href: "/docs/platform-compatibility" },
     ],
   },
-  {
-    title: "Platforms",
-    links: [
-      { label: "Claude Code", href: "/explore?platform=claude-code" },
-      { label: "Cursor", href: "/explore?platform=cursor" },
-      { label: "Gemini CLI", href: "/explore?platform=gemini-cli" },
-      { label: "GitHub Copilot", href: "/explore?platform=github-copilot" },
-      { label: "MCP-compatible", href: "/explore?platform=mcp" },
-    ],
-  },
 ];
 
 export function Footer() {
