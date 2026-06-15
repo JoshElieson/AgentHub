@@ -553,7 +553,7 @@ function SkillsMarketplaceView() {
 
   // Get all unique tags from currently loaded skills
   const allTags = Array.from(
-    new Set(skills.flatMap((s) => s.tags || []))
+    new Set([...skills.flatMap((s) => s.tags || []), ...selectedTags])
   ).sort();
 
   // Filter skills — server handles search, client handles tag filtering
@@ -698,6 +698,7 @@ function SkillsMarketplaceView() {
                       setSelectedTags((prev) =>
                         isSelected ? prev.filter((t) => t !== tag) : [...prev, tag]
                       );
+                      if (typeof window !== "undefined") window.history.replaceState({}, '', window.location.pathname);
                     }}
                     className={cn(
                       "rounded-lg px-2.5 py-1 text-xs font-medium transition-all border",
@@ -737,6 +738,9 @@ function SkillsMarketplaceView() {
               onClick={() => {
                 setSearchQuery("");
                 setSelectedTags([]);
+                if (typeof window !== "undefined") {
+                  window.history.replaceState({}, '', window.location.pathname);
+                }
               }}
               className="mt-4 text-xs font-semibold text-brand-muted hover:text-brand underline"
             >
@@ -783,7 +787,7 @@ function SkillsMarketplaceView() {
                 >
                   {/* Clickable area — navigates to detail page */}
                   <a
-                    href={`/skills/${skill.id}`}
+                    href={`/marketplace/${skill.id}`}
                     className="flex flex-col flex-1 p-5 cursor-pointer group"
                   >
                     {/* Name + Similarity */}
@@ -1164,7 +1168,7 @@ export default function MarketplacesPage() {
             Discover, configure, and install Skills and MCP servers for your AI agents.
           </p>
         </div>
-        <Tabs tabs={tabs} defaultTab="mcp" />
+        <Tabs tabs={tabs} defaultTab="skills" />
       </div>
     </AppShell>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { supabase, MOCK_MCP_SERVERS, type McpServerRow } from "@/lib/supabase";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { Button } from "@/components/ui/button";
@@ -92,6 +93,7 @@ export function McpMarketplaceView() {
       setSearchMode("client");
     } finally {
       setSearching(false);
+      setLoading(false);
     }
   }, []);
 
@@ -125,7 +127,7 @@ export function McpMarketplaceView() {
     }, 2000);
   };
 
-  const allTags = Array.from(new Set(servers.flatMap((s) => s.tags || []))).sort();
+  const allTags = Array.from(new Set([...servers.flatMap((s) => s.tags || []), ...selectedTags])).sort();
 
   const filteredServers = servers.filter((server) => {
     if (searchMode === "client" && searchQuery.trim()) {
@@ -193,7 +195,10 @@ export function McpMarketplaceView() {
               return (
                 <button
                   key={tag}
-                  onClick={() => setSelectedTags((prev) => isSelected ? prev.filter((t) => t !== tag) : [...prev, tag])}
+                  onClick={() => {
+                    setSelectedTags((prev) => isSelected ? prev.filter((t) => t !== tag) : [...prev, tag]);
+                    if (typeof window !== "undefined") window.history.replaceState({}, '', window.location.pathname);
+                  }}
                   className={cn(
                     "rounded-lg px-2.5 py-1 text-xs font-medium transition-all border",
                     isSelected ? "bg-brand border-brand text-brand-fg shadow-glow/10" : "bg-surface-2 border-line text-muted hover:border-line-strong hover:text-content"
@@ -216,7 +221,13 @@ export function McpMarketplaceView() {
         <div className="flex flex-col items-center justify-center py-12 rounded-xl border border-line bg-surface-2/40">
           <AlertCircle className="h-8 w-8 text-subtle" />
           <p className="mt-4 text-sm text-content font-medium">No MCP servers match your filters</p>
-          <button onClick={() => { setSearchQuery(""); setSelectedTags([]); }} className="mt-4 text-xs font-semibold text-brand-muted hover:text-brand underline">
+          <button onClick={() => { 
+            setSearchQuery(""); 
+            setSelectedTags([]); 
+            if (typeof window !== "undefined") {
+              window.history.replaceState({}, '', window.location.pathname);
+            }
+          }} className="mt-4 text-xs font-semibold text-brand-muted hover:text-brand underline">
             Clear all filters
           </button>
         </div>
@@ -245,14 +256,14 @@ export function McpMarketplaceView() {
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {sortedServers.map((server) => (
-              <div key={server.id} className="flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5">
+              <Link key={server.id} href={`/marketplace/mcp/${server.id}`} className="group flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface-3 shadow-inner">
                       <Terminal className="h-5 w-5 text-brand-muted" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h3 className="truncate text-base font-semibold text-content">{server.name}</h3>
+                      <h3 className="truncate text-base font-semibold text-content group-hover:text-brand-muted transition-colors">{server.name}</h3>
                       <div className="mt-1 flex items-center gap-2 text-xs text-muted">
                         <RatingStars rating={server.avg_rating} count={server.rating_count} size="sm" />
                       </div>
@@ -296,7 +307,10 @@ export function McpMarketplaceView() {
                       "gap-1.5 transition-colors",
                       copiedStatus[server.id] && "bg-emerald-500/10 border-emerald-500/50 text-emerald-500"
                     )}
-                    onClick={() => handleCopyConfig(server)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleCopyConfig(server);
+                    }}
                   >
                     {copiedStatus[server.id] ? (
                       <>
@@ -309,7 +323,7 @@ export function McpMarketplaceView() {
                     )}
                   </Button>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </>

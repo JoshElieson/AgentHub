@@ -323,7 +323,7 @@ export default function SkillDetailPage() {
               {skill.tags && skill.tags.length > 0 && (
                 <>
                   <Link
-                    href={`/skills?tag=${encodeURIComponent(skill.tags[0])}`}
+                    href={`/marketplace?tag=${encodeURIComponent(skill.tags[0])}`}
                     className="hover:text-content transition-colors"
                   >
                     {skill.tags[0]}
