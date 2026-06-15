@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import { AUTH_MODE, getMockSessionUser } from "@/lib/session";
 
 const sans = Inter({
   subsets: ["latin"],
@@ -51,17 +50,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Computed from env only (no session read here) so static pages aren't
-  // forced into dynamic rendering. The client session is fetched lazily by
-  // <SessionProvider> inside <Providers>.
-  const mockUser = AUTH_MODE === "mock" ? getMockSessionUser() : null;
-
+  // No session is read here, so static pages aren't forced into dynamic
+  // rendering. The client session is fetched lazily by <SessionProvider>
+  // inside <Providers>; server pages read it via getSessionUser().
   return (
     <html lang="en" className={`dark ${sans.variable} ${mono.variable}`}>
       <body>
-        <Providers authMode={AUTH_MODE} mockUser={mockUser}>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

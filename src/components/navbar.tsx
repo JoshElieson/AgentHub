@@ -19,7 +19,7 @@ import {
   User as UserIcon,
   X,
 } from "lucide-react";
-import { useAuthConfig, useAuthStatus, useDisplayUser } from "./providers";
+import { useAuthStatus, useDisplayUser } from "./providers";
 
 const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
@@ -32,7 +32,6 @@ const NAV_LINKS = [
 export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { authMode } = useAuthConfig();
   const status = useAuthStatus();
   const user = useDisplayUser();
 
@@ -82,7 +81,6 @@ export function Navbar() {
               </ButtonLink>
               <UserMenu
                 user={user}
-                authMode={authMode}
                 onSignOut={() => signOut({ callbackUrl: "/" })}
               />
             </>
@@ -146,16 +144,14 @@ export function Navbar() {
                     Dashboard
                   </ButtonLink>
                 </div>
-                {authMode === "oauth" && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="mt-2 justify-start"
-                    onClick={() => signOut({ callbackUrl: "/" })}
-                  >
-                    <LogOut className="h-3.5 w-3.5" /> Sign out
-                  </Button>
-                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2 justify-start"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  <LogOut className="h-3.5 w-3.5" /> Sign out
+                </Button>
               </>
             ) : (
               <ButtonLink
@@ -181,7 +177,6 @@ export function Navbar() {
 
 function UserMenu({
   user,
-  authMode,
   onSignOut,
 }: {
   user: {
@@ -190,7 +185,6 @@ function UserMenu({
     avatarColor: string | null;
     image: string | null;
   };
-  authMode: "oauth" | "mock";
   onSignOut: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -200,7 +194,7 @@ function UserMenu({
       <button
         onClick={() => setOpen((v) => !v)}
         className="flex items-center gap-2 rounded-md border border-line bg-surface-2 py-1 pl-1 pr-2 transition-colors hover:border-line-strong"
-        title={authMode === "mock" ? "Signed in (dev mode)" : user.name}
+        title={user.name}
         aria-haspopup="menu"
         aria-expanded={open}
       >
@@ -234,9 +228,6 @@ function UserMenu({
               <div className="truncate font-mono text-xs text-subtle">
                 @{user.username}
               </div>
-              {authMode === "mock" && (
-                <div className="mt-1 text-2xs text-faint">Dev mode</div>
-              )}
             </div>
             <div className="py-1">
               <MenuLink
@@ -258,21 +249,19 @@ function UserMenu({
                 onClick={() => setOpen(false)}
               />
             </div>
-            {authMode === "oauth" && (
-              <div className="border-t border-line py-1">
-                <button
-                  role="menuitem"
-                  onClick={() => {
-                    setOpen(false);
-                    onSignOut();
-                  }}
-                  className="flex w-full items-center gap-2.5 px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-content"
-                >
-                  <LogOut className="h-4 w-4" />
-                  Sign out
-                </button>
-              </div>
-            )}
+            <div className="border-t border-line py-1">
+              <button
+                role="menuitem"
+                onClick={() => {
+                  setOpen(false);
+                  onSignOut();
+                }}
+                className="flex w-full items-center gap-2.5 px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-content"
+              >
+                <LogOut className="h-4 w-4" />
+                Sign out
+              </button>
+            </div>
           </div>
         </>
       )}

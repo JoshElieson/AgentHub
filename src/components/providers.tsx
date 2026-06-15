@@ -1,7 +1,6 @@
 "use client";
 
 import { SessionProvider, useSession } from "next-auth/react";
-import { createContext, useContext } from "react";
 
 /** Minimal user shape the chrome (navbar, publish preview) renders. */
 export interface ClientUser {
@@ -13,32 +12,12 @@ export interface ClientUser {
   isVerified: boolean;
 }
 
-type AuthConfig = {
-  /** "oauth" once provider secrets are configured; "mock" in dev. */
-  authMode: "oauth" | "mock";
-  /** The deterministic demo user shown in mock mode (null in oauth mode). */
-  mockUser: ClientUser | null;
-};
-
-const AuthConfigContext = createContext<AuthConfig>({
-  authMode: "mock",
-  mockUser: null,
-});
-
-export function useAuthConfig() {
-  return useContext(AuthConfigContext);
-}
-
 /**
- * The current display user for client components.
- * - mock mode: the seeded demo user.
- * - oauth mode: the live NextAuth session, or null when signed out / loading.
+ * The current display user for client components: the live NextAuth session,
+ * or null when signed out / still loading.
  */
 export function useDisplayUser(): ClientUser | null {
-  const { authMode, mockUser } = useAuthConfig();
   const { data } = useSession();
-
-  if (authMode === "mock") return mockUser;
   if (!data?.user) return null;
 
   const u = data.user;
@@ -53,24 +32,11 @@ export function useDisplayUser(): ClientUser | null {
   };
 }
 
-/** True while the session is still being fetched (oauth mode only). */
+/** Session fetch status: "loading" | "authenticated" | "unauthenticated". */
 export function useAuthStatus() {
-  const { authMode } = useAuthConfig();
-  const { status } = useSession();
-  if (authMode === "mock") return "authenticated" as const;
-  return status; // "loading" | "authenticated" | "unauthenticated"
+  return useSession().status;
 }
 
-export function Providers({
-  authMode,
-  mockUser,
-  children,
-}: AuthConfig & { children: React.ReactNode }) {
-  return (
-    <SessionProvider>
-      <AuthConfigContext.Provider value={{ authMode, mockUser }}>
-        {children}
-      </AuthConfigContext.Provider>
-    </SessionProvider>
-  );
+export function Providers({ children }: { children: React.ReactNode }) {
+  return <SessionProvider>{children}</SessionProvider>;
 }

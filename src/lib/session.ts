@@ -1,12 +1,10 @@
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import { authOptions, isAuthConfigured } from "./auth";
-import { getCurrentUser } from "./data";
 import { GRADIENTS } from "./data/creators";
 
-export type AuthMode = "oauth" | "mock";
-
-export const AUTH_MODE: AuthMode = isAuthConfigured ? "oauth" : "mock";
+/** Re-exported so server components can reflect whether sign-in is configured. */
+export { isAuthConfigured };
 
 const FALLBACK_AVATAR = GRADIENTS.slate;
 
@@ -23,42 +21,17 @@ export interface SessionUser {
   twitter: string | null;
   location: string | null;
   isVerified: boolean;
-  /** true = real signed-in session; false = mock demo user. */
+  /** Always true here (a SessionUser only exists for a real session); kept so
+   * call sites that branch on `viewer?.isAuthenticated` stay correct. */
   isAuthenticated: boolean;
 }
 
 /**
- * Deterministic demo user used when no OAuth provider is configured, so the
- * dashboard and authenticated surfaces stay navigable in dev. Safe to pass to
- * client components (plain serializable object).
- */
-export function getMockSessionUser(): SessionUser {
-  const u = getCurrentUser();
-  return {
-    id: u.username,
-    username: u.username,
-    name: u.name,
-    email: "marcus@agentdock.dev",
-    image: null,
-    avatarColor: u.avatarColor,
-    bio: u.bio,
-    website: u.website ?? null,
-    github: u.github ?? null,
-    twitter: u.twitter ?? null,
-    location: u.location ?? null,
-    isVerified: u.isVerified,
-    isAuthenticated: false,
-  };
-}
-
-/**
- * Resolve the current user.
- * - mock mode: the demo user (never null) so the app is fully usable.
- * - oauth mode: the live NextAuth session, or null when signed out.
+ * Resolve the signed-in user from the real NextAuth session, or null when
+ * signed out. There is no demo/mock fallback: every visitor starts signed out
+ * and authenticates through an OAuth provider (GitHub or Google).
  */
 export async function getSessionUser(): Promise<SessionUser | null> {
-  if (AUTH_MODE === "mock") return getMockSessionUser();
-
   const session = await getServerSession(authOptions);
   if (!session?.user) return null;
 
@@ -82,8 +55,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
 }
 
 /**
- * Like {@link getSessionUser} but redirects to /login when signed out. In mock
- * mode it never redirects (the demo user is always present).
+ * Like {@link getSessionUser} but redirects to /login when signed out.
  */
 export async function requireSessionUser(): Promise<SessionUser> {
   const user = await getSessionUser();

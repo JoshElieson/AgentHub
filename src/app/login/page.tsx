@@ -1,52 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Github,
-  Info,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowLeft, Info, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Logo } from "@/components/logo";
-import { ButtonLink } from "@/components/ui/button";
-import { AUTH_MODE, getSessionUser } from "@/lib/session";
+import { getSessionUser } from "@/lib/session";
+import {
+  isAuthConfigured,
+  isGithubConfigured,
+  isGoogleConfigured,
+} from "@/lib/auth";
+import { LoginButtons } from "./login-buttons";
 
 export const metadata: Metadata = {
   title: "Sign in",
   description: "Sign in to AgentDock to publish and manage your AI packages.",
 };
 
-/** Minimal multi-color Google "G" glyph. */
-function GoogleGlyph({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <path
-        fill="#4285F4"
-        d="M23.04 12.26c0-.82-.07-1.6-.21-2.36H12v4.46h6.2a5.3 5.3 0 0 1-2.3 3.48v2.9h3.72c2.18-2 3.42-4.96 3.42-8.48z"
-      />
-      <path
-        fill="#34A853"
-        d="M12 24c3.1 0 5.7-1.03 7.62-2.8l-3.72-2.9c-1.03.7-2.36 1.1-3.9 1.1-3 0-5.55-2.03-6.46-4.76H1.7v2.99A12 12 0 0 0 12 24z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M5.54 14.64a7.2 7.2 0 0 1 0-4.6V7.06H1.7a12 12 0 0 0 0 10.88l3.84-3.3z"
-      />
-      <path
-        fill="#EA4335"
-        d="M12 4.74c1.69 0 3.21.58 4.4 1.72l3.3-3.3C17.7 1.18 15.1 0 12 0A12 12 0 0 0 1.7 7.06l3.84 2.98C6.45 6.77 9 4.74 12 4.74z"
-      />
-    </svg>
-  );
-}
-
 export default async function LoginPage() {
-  // Already signed in (real session) → straight to the dashboard.
+  // Already signed in → straight to the dashboard.
   const current = await getSessionUser();
   if (current?.isAuthenticated) redirect("/dashboard");
-
-  const isMock = AUTH_MODE === "mock";
 
   return (
     <div className="relative flex min-h-screen flex-col bg-canvas">
@@ -80,36 +53,18 @@ export default async function LoginPage() {
               </p>
             </div>
 
-            {/* Providers */}
-            <div className="mt-7 space-y-3">
-              <ButtonLink
-                href="/api/auth/signin/github"
-                variant="primary"
-                size="lg"
-                className="relative w-full"
-              >
-                <Github className="h-4 w-4" />
-                Continue with GitHub
-                <span className="absolute right-2.5 inline-flex items-center rounded-sm bg-brand-fg/15 px-2 py-0.5 text-2xs font-semibold tracking-wide text-brand-fg ring-1 ring-inset ring-brand-fg/20">
-                  Recommended
-                </span>
-              </ButtonLink>
+            {/* Providers (real OAuth — GitHub / Google) */}
+            <LoginButtons
+              github={isGithubConfigured}
+              google={isGoogleConfigured}
+            />
 
-              <ButtonLink
-                href="/api/auth/signin/google"
-                variant="secondary"
-                size="lg"
-                className="w-full"
-              >
-                <GoogleGlyph className="h-4 w-4" />
-                Continue with Google
-              </ButtonLink>
-            </div>
-
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-2xs text-subtle">
-              <ShieldCheck className="h-3 w-3 text-success" />
-              GitHub is recommended for developers.
-            </p>
+            {isGithubConfigured && (
+              <p className="mt-3 flex items-center justify-center gap-1.5 text-2xs text-subtle">
+                <ShieldCheck className="h-3 w-3 text-success" />
+                GitHub is recommended for developers.
+              </p>
+            )}
 
             {/* Divider */}
             <div className="my-6 flex items-center gap-3" aria-hidden>
@@ -120,30 +75,26 @@ export default async function LoginPage() {
               <span className="h-px flex-1 bg-line" />
             </div>
 
-            {/* Dev / mock mode banner */}
-            {isMock ? (
-              <div className="rounded-card border border-info/30 bg-info-dim p-4">
+            {/* Configuration / sign-up note */}
+            {!isAuthConfigured ? (
+              <div className="rounded-card border border-warning/30 bg-warning-dim p-4">
                 <div className="flex items-start gap-2.5">
-                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-info" />
+                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
                   <div className="min-w-0">
                     <p className="text-sm font-medium text-content">
-                      Running in dev mode
+                      Sign-in isn&apos;t configured yet
                     </p>
                     <p className="mt-0.5 text-xs leading-relaxed text-muted">
-                      No OAuth secrets are configured — you&apos;re signed in as a
-                      demo user.
+                      Add{" "}
+                      <code className="font-mono text-2xs">GITHUB_ID</code> /{" "}
+                      <code className="font-mono text-2xs">GITHUB_SECRET</code>{" "}
+                      (and/or the Google equivalents) to{" "}
+                      <code className="font-mono text-2xs">.env.local</code>,
+                      then restart the dev server to enable GitHub &amp; Google
+                      sign-in.
                     </p>
                   </div>
                 </div>
-                <ButtonLink
-                  href="/dashboard"
-                  variant="outline"
-                  size="md"
-                  className="mt-3 w-full"
-                >
-                  Continue to dashboard
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </ButtonLink>
               </div>
             ) : (
               <div className="rounded-card border border-line bg-surface-2 p-4">

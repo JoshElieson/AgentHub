@@ -26,9 +26,9 @@ import {
   VerifiedBadge,
 } from "@/components/ui/badge";
 import {
-  getCurrentUser,
+  getCreator,
   getCreatorStats,
-  getMyAgents,
+  getAgentsByCreator,
   getInstalledAgents,
   getFavoriteAgents,
   getCollectionsByCurator,
@@ -116,16 +116,25 @@ const ACTIVITY_TONE: Record<ActivityItem["kind"], string> = {
 export function DashboardClient({
   user,
   connectedProviders,
-  authMode,
+  canPersist,
   initialSection = "overview",
 }: {
   user: SessionUser;
   connectedProviders: string[];
-  authMode: "oauth" | "mock";
+  canPersist: boolean;
   initialSection?: DashboardSection;
 }) {
   const [active, setActive] = useState<DashboardSection>(initialSection);
   const meta = SECTION_META[active];
+
+  // Dashboard content is scoped to the signed-in user. Published agents and
+  // curated collections come from the seeded marketplace data only when the
+  // user is the demo "seed" creator; a brand-new account simply has none yet
+  // (the sections render their empty states). Installed / favorites / activity
+  // aren't creator-keyed in the mock data, so they show for the seed user only.
+  const username = user.username;
+  const isSeedCreator = username === CURRENT_USERNAME;
+  const creatorColor = getCreator(username)?.avatarColor ?? user.avatarColor;
 
   return (
     <AppShell>
@@ -214,16 +223,39 @@ export function DashboardClient({
             </div>
 
             <div key={active} className="animate-fade-in">
-              {active === "overview" && <OverviewSection />}
-              {active === "my-agents" && <MyAgentsSection />}
-              {active === "installed" && <InstalledSection />}
-              {active === "favorites" && <FavoritesSection />}
-              {active === "collections" && <CollectionsSection />}
+              {active === "overview" && (
+                <OverviewSection
+                  username={username}
+                  isSeedCreator={isSeedCreator}
+                  creatorColor={creatorColor}
+                />
+              )}
+              {active === "my-agents" && (
+                <MyAgentsSection
+                  username={username}
+                  creatorColor={creatorColor}
+                />
+              )}
+              {active === "installed" && (
+                <InstalledSection
+                  isSeedCreator={isSeedCreator}
+                  creatorColor={creatorColor}
+                />
+              )}
+              {active === "favorites" && (
+                <FavoritesSection isSeedCreator={isSeedCreator} />
+              )}
+              {active === "collections" && (
+                <CollectionsSection
+                  username={username}
+                  isSeedCreator={isSeedCreator}
+                />
+              )}
               {active === "settings" && (
                 <ProfileSettings
                   user={user}
                   connectedProviders={connectedProviders}
-                  authMode={authMode}
+                  canPersist={canPersist}
                 />
               )}
             </div>
@@ -238,10 +270,19 @@ export function DashboardClient({
 // Overview
 // ---------------------------------------------------------------------------
 
-function OverviewSection() {
-  const stats = getCreatorStats(CURRENT_USERNAME);
-  const installed = getInstalledAgents();
-  const published = getMyAgents();
+function OverviewSection({
+  username,
+  isSeedCreator,
+  creatorColor,
+}: {
+  username: string;
+  isSeedCreator: boolean;
+  creatorColor: string;
+}) {
+  const stats = getCreatorStats(username);
+  const installed = isSeedCreator ? getInstalledAgents() : [];
+  const published = getAgentsByCreator(username);
+  const activity = isSeedCreator ? activityFeed : [];
 
   return (
     <div className="space-y-8">
@@ -284,7 +325,12 @@ function OverviewSection() {
           <h3 className="text-sm font-semibold text-content">Recent activity</h3>
         </div>
         <div className="card divide-y divide-line">
-          {activityFeed.map((item) => {
+          {activity.length === 0 ? (
+            <div className="px-4 py-6 text-center text-sm text-subtle">
+              No recent activity yet.
+            </div>
+          ) : (
+            activity.map((item) => {
             const inner = (
               <>
                 <span
@@ -319,7 +365,8 @@ function OverviewSection() {
                 {inner}
               </div>
             );
-          })}
+          })
+          )}
         </div>
       </section>
 
@@ -330,6 +377,7 @@ function OverviewSection() {
         href="installed"
         empty="You haven't installed any agents yet."
         agents={installed.map((x) => x.agent)}
+        color={creatorColor}
       />
 
       {/* Published preview */}
@@ -339,6 +387,7 @@ function OverviewSection() {
         href="published"
         empty="You haven't published any agents yet."
         agents={published}
+        color={creatorColor}
       />
     </div>
   );
@@ -349,12 +398,14 @@ function PreviewSection({
   icon,
   empty,
   agents,
+  color,
 }: {
   title: string;
   icon: React.ReactNode;
   href: string;
   empty: string;
   agents: AgentPackage[];
+  color: string;
 }) {
   return (
     <section>
@@ -370,7 +421,7 @@ function PreviewSection({
       ) : (
         <div className="card divide-y divide-line">
           {agents.slice(0, 4).map((a) => (
-            <AgentRow key={a.slug} agent={a} />
+            <AgentRow key={a.slug} agent={a} color={color} />
           ))}
         </div>
       )}
@@ -378,14 +429,13 @@ function PreviewSection({
   );
 }
 
-function AgentRow({ agent }: { agent: AgentPackage }) {
-  const creator = getCurrentUser();
+function AgentRow({ agent, color }: { agent: AgentPackage; color: string }) {
   return (
     <Link
       href={`/agents/${agent.slug}`}
       className="flex items-center gap-3 p-3 transition-colors hover:bg-surface-2"
     >
-      <Avatar name={agent.name} color={creator.avatarColor} size="md" />
+      <Avatar name={agent.name} color={color} size="md" />
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-1.5">
           <span className="truncate text-sm font-medium text-content">
@@ -408,8 +458,14 @@ function AgentRow({ agent }: { agent: AgentPackage }) {
 // My Agents
 // ---------------------------------------------------------------------------
 
-function MyAgentsSection() {
-  const agents = getMyAgents();
+function MyAgentsSection({
+  username,
+  creatorColor,
+}: {
+  username: string;
+  creatorColor: string;
+}) {
+  const agents = getAgentsByCreator(username);
 
   if (agents.length === 0) {
     return (
@@ -446,7 +502,7 @@ function MyAgentsSection() {
           >
             {/* Package */}
             <div className="flex min-w-0 items-center gap-3">
-              <Avatar name={a.name} color={getCurrentUser().avatarColor} size="md" />
+              <Avatar name={a.name} color={creatorColor} size="md" />
               <div className="min-w-0">
                 <Link
                   href={`/agents/${a.slug}`}
@@ -530,8 +586,14 @@ function MyAgentsSection() {
 // Installed
 // ---------------------------------------------------------------------------
 
-function InstalledSection() {
-  const installed = getInstalledAgents();
+function InstalledSection({
+  isSeedCreator,
+  creatorColor,
+}: {
+  isSeedCreator: boolean;
+  creatorColor: string;
+}) {
+  const installed = isSeedCreator ? getInstalledAgents() : [];
 
   if (installed.length === 0) {
     return (
@@ -563,7 +625,7 @@ function InstalledSection() {
               >
                 <Avatar
                   name={agent.name}
-                  color={getCurrentUser().avatarColor}
+                  color={creatorColor}
                   size="lg"
                 />
                 <div className="min-w-0">
@@ -658,8 +720,8 @@ function InstalledSection() {
 // Favorites
 // ---------------------------------------------------------------------------
 
-function FavoritesSection() {
-  const favorites = getFavoriteAgents();
+function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
+  const favorites = isSeedCreator ? getFavoriteAgents() : [];
 
   if (favorites.length === 0) {
     return (
@@ -683,12 +745,18 @@ function FavoritesSection() {
 // Collections
 // ---------------------------------------------------------------------------
 
-function CollectionsSection() {
-  const curated = getCollectionsByCurator(CURRENT_USERNAME);
-  // Followed collections: a couple curated by others (mock).
-  const followed = collections
-    .filter((c) => c.curatorUsername !== CURRENT_USERNAME)
-    .slice(0, 3);
+function CollectionsSection({
+  username,
+  isSeedCreator,
+}: {
+  username: string;
+  isSeedCreator: boolean;
+}) {
+  const curated = getCollectionsByCurator(username);
+  // Followed collections: a couple curated by others (seed demo only).
+  const followed = isSeedCreator
+    ? collections.filter((c) => c.curatorUsername !== username).slice(0, 3)
+    : [];
 
   const hasAny = curated.length > 0 || followed.length > 0;
 

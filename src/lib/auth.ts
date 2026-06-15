@@ -6,24 +6,32 @@ import { prisma, isDbConfigured } from "./prisma";
 import { GRADIENTS } from "./data/creators";
 import { hashIndex, slugify } from "./utils";
 
-// Providers are only activated when their credentials are present, so the app
-// runs with zero secrets in mock/dev mode.
+// Each provider only activates when both of its credentials are present, so the
+// app builds and runs with zero secrets — sign-in is simply unavailable until
+// a provider is configured (there is no demo/mock sign-in).
+export const isGithubConfigured = Boolean(
+  process.env.GITHUB_ID && process.env.GITHUB_SECRET
+);
+export const isGoogleConfigured = Boolean(
+  process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+);
+
 const providers: NextAuthOptions["providers"] = [];
 
-if (process.env.GITHUB_ID && process.env.GITHUB_SECRET) {
+if (isGithubConfigured) {
   providers.push(
     GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!,
     })
   );
 }
 
-if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+if (isGoogleConfigured) {
   providers.push(
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     })
   );
 }
