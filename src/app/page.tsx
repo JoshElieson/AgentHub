@@ -32,7 +32,6 @@ import {
   BarChart3,
   Zap,
   GraduationCap,
-  Sparkles,
   MousePointerClick,
   Plug,
 } from "lucide-react";
@@ -93,17 +92,6 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-hero-grid" />
         <div className="relative mx-auto max-w-site px-4 pb-14 pt-16 sm:px-6 sm:pt-24">
           <div className="mx-auto max-w-3xl text-center">
-            <Link
-              href="/docs/what-is-agentdock"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-surface-2/60 py-1 pl-1.5 pr-3 text-xs text-muted backdrop-blur transition-colors hover:border-line-strong hover:text-content"
-            >
-              <span className="inline-flex items-center gap-1 rounded-full bg-brand-dim px-2 py-0.5 text-2xs font-semibold text-brand-muted">
-                <Sparkles className="h-3 w-3" /> New
-              </span>
-              The package registry for AI agents and installable AI capabilities
-              <ArrowRight className="h-3 w-3" />
-            </Link>
-
             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-content sm:text-5xl md:text-6xl">
               Discover, install, and share{" "}
               <span className="text-gradient">AI agents.</span>
