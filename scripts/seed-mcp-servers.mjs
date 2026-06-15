@@ -605,6 +605,24 @@ const MCP_SERVERS = [
     args: ["-y", "mcp-server-aws-lambda"],
     env_vars: { AWS_ACCESS_KEY_ID: "<KEY>", AWS_SECRET_ACCESS_KEY: "<SECRET>", AWS_REGION: "us-east-1" },
     tags: ["aws", "lambda", "serverless", "cloud"]
+  },
+  {
+    name: "git",
+    description: "Read, search, and manipulate local Git repositories.",
+    github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+    command: "npx",
+    args: ["-y", "@modelcontextprotocol/server-git"],
+    env_vars: {},
+    tags: ["git", "source-control", "official", "local"]
+  },
+  {
+    name: "everything",
+    description: "A comprehensive reference server demonstrating all MCP features (prompts, resources, tools).",
+    github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/everything",
+    command: "npx",
+    args: ["-y", "@modelcontextprotocol/server-everything"],
+    env_vars: {},
+    tags: ["reference", "example", "official"]
   }
 ];
 
