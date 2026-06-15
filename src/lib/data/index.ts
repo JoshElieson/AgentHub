@@ -96,12 +96,12 @@ export function getOrgStats(slug: string): CreatorStats {
   return { totalAgents: list.length, totalInstalls, totalStars, avgRating };
 }
 
-// --- Homepage stat row (mock headline numbers) ------------------------------
+// --- Homepage stat row (derived from real data) -----------------------------
 
 export const SITE_STATS = {
-  agents: 17842,
-  creators: 4913,
-  installs: 132000,
+  agents: agents.length,
+  creators: creators.length + organizations.length,
+  installs: agents.reduce((sum, a) => sum + a.installCount, 0),
 };
 
 // --- Curated homepage sections ---------------------------------------------
