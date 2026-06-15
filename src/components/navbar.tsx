@@ -10,7 +10,7 @@ import { SearchBar } from "./search-bar";
 import { Button, ButtonLink } from "./ui/button";
 import { Avatar } from "./ui/avatar";
 import {
-  ChevronDown,
+  Flag,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -79,6 +79,15 @@ export function Navbar() {
               >
                 <Upload className="h-3.5 w-3.5" />
                 Publish
+              </ButtonLink>
+              <ButtonLink
+                href="/saved"
+                variant="secondary"
+                size="sm"
+                className="hidden sm:inline-flex"
+              >
+                <Flag className="h-3.5 w-3.5" />
+                Saved Packages
               </ButtonLink>
               <UserMenu
                 user={user}
@@ -199,7 +208,7 @@ function UserMenu({
     <div className="relative hidden sm:block">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 rounded-md border border-line bg-surface-2 py-1 pl-1 pr-2 transition-colors hover:border-line-strong"
+        className="flex items-center rounded-full transition-opacity hover:opacity-80"
         title={authMode === "mock" ? "Signed in (dev mode)" : user.name}
         aria-haspopup="menu"
         aria-expanded={open}
@@ -210,8 +219,6 @@ function UserMenu({
           image={user.image}
           size="sm"
         />
-        <span className="text-xs font-medium text-content">{user.username}</span>
-        <ChevronDown className="h-3.5 w-3.5 text-subtle" />
       </button>
 
       {open && (
