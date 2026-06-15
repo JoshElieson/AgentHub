@@ -17,6 +17,11 @@ export interface SkillRow {
   tags: string[];
   source_url: string | null;
   created_at: string;
+  // Engagement counters
+  star_count: number;
+  export_count: number;
+  avg_rating: number;
+  rating_count: number;
 }
 
 export const MOCK_SKILLS: SkillRow[] = [
@@ -44,6 +49,10 @@ If the user mentions "LoL" or "League of Legends" in any context (including disc
     tags: ["gaming", "fun", "utility"],
     source_url: null,
     created_at: new Date("2026-06-14T00:00:00Z").toISOString(),
+    star_count: 42,
+    export_count: 128,
+    avg_rating: 4.7,
+    rating_count: 19,
   },
   {
     id: "f4b4a22f-8b2b-4221-aef4-4f27fce1c02f",
@@ -63,6 +72,10 @@ When the user asks to commit changes:
     tags: ["git", "automation", "development"],
     source_url: null,
     created_at: new Date("2026-06-13T00:00:00Z").toISOString(),
+    star_count: 87,
+    export_count: 312,
+    avg_rating: 4.3,
+    rating_count: 45,
   },
   {
     id: "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
@@ -82,6 +95,10 @@ When analyzing React / JSX components:
     tags: ["react", "accessibility", "lint"],
     source_url: null,
     created_at: new Date("2026-06-12T00:00:00Z").toISOString(),
+    star_count: 34,
+    export_count: 95,
+    avg_rating: 3.8,
+    rating_count: 12,
   },
 
   // ── Real skills sourced from the internet ──────────────────────────────
@@ -137,6 +154,10 @@ Review the service's API documentation to identify key endpoints, authentication
     tags: ["mcp", "protocol", "integration", "api", "development"],
     source_url: "https://github.com/anthropics/skills/tree/main/skills/mcp-builder",
     created_at: new Date("2026-06-10T00:00:00Z").toISOString(),
+    star_count: 215,
+    export_count: 890,
+    avg_rating: 4.9,
+    rating_count: 124,
   },
   {
     id: "b1a2c3d4-e5f6-7890-abcd-222222222222",
@@ -175,6 +196,10 @@ All three are legitimate for *some* briefs — but reach for them only if they g
     tags: ["design", "ui", "typography", "frontend", "aesthetics"],
     source_url: "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
     created_at: new Date("2026-06-09T00:00:00Z").toISOString(),
+    star_count: 156,
+    export_count: 540,
+    avg_rating: 4.6,
+    rating_count: 78,
   },
   {
     id: "b1a2c3d4-e5f6-7890-abcd-333333333333",
@@ -210,6 +235,10 @@ Before writing any payment or billing code, call the \`stripe_implementation_pla
     tags: ["stripe", "payments", "api", "fintech", "integration"],
     source_url: "https://github.com/stripe/agent-toolkit/tree/main/skills/stripe-best-practices",
     created_at: new Date("2026-06-08T00:00:00Z").toISOString(),
+    star_count: 198,
+    export_count: 720,
+    avg_rating: 4.8,
+    rating_count: 95,
   },
   {
     id: "b1a2c3d4-e5f6-7890-abcd-444444444444",
@@ -247,6 +276,10 @@ Your knowledge of Cloudflare Workers APIs, types, and configuration may be outda
     tags: ["cloudflare", "workers", "edge", "serverless", "devops"],
     source_url: "https://github.com/cloudflare/skills/tree/main/skills/workers-best-practices",
     created_at: new Date("2026-06-07T00:00:00Z").toISOString(),
+    star_count: 112,
+    export_count: 430,
+    avg_rating: 4.4,
+    rating_count: 56,
   },
   {
     id: "b1a2c3d4-e5f6-7890-abcd-555555555555",
@@ -296,6 +329,10 @@ python scripts/with_server.py --server "npm run dev" --server "python api.py" --
     tags: ["testing", "playwright", "e2e", "browser", "automation"],
     source_url: "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
     created_at: new Date("2026-06-06T00:00:00Z").toISOString(),
+    star_count: 89,
+    export_count: 340,
+    avg_rating: 4.2,
+    rating_count: 38,
   },
   {
     id: "b1a2c3d4-e5f6-7890-abcd-666666666666",
@@ -339,5 +376,45 @@ Create an ALGORITHMIC PHILOSOPHY (not static images) interpreted through:
     tags: ["art", "generative", "creative-coding", "p5js", "design"],
     source_url: "https://github.com/anthropics/skills/tree/main/skills/algorithmic-art",
     created_at: new Date("2026-06-05T00:00:00Z").toISOString(),
+    star_count: 267,
+    export_count: 650,
+    avg_rating: 4.9,
+    rating_count: 103,
   },
+];
+
+export interface McpServerRow {
+  id: string;
+  name: string;
+  description: string;
+  github_url: string | null;
+  command: string;
+  args: string[];
+  env_vars: Record<string, string>;
+  tags: string[];
+  created_at: string;
+  star_count: number;
+  export_count: number;
+  avg_rating: number;
+  rating_count: number;
+}
+
+export const MOCK_MCP_SERVERS: McpServerRow[] = [
+  {
+    id: "m1a2c3d4-e5f6-7890-abcd-111111111111",
+    name: "github-mcp",
+    description: "A Model Context Protocol server that integrates with GitHub, allowing LLMs to read repositories, create issues, review PRs, and manage project boards.",
+    github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/github",
+    command: "npx",
+    args: ["-y", "@modelcontextprotocol/server-github"],
+    env_vars: {
+      GITHUB_PERSONAL_ACCESS_TOKEN: "Your GitHub Personal Access Token"
+    },
+    tags: ["github", "git", "vcs", "mcp"],
+    created_at: new Date("2026-06-15T00:00:00Z").toISOString(),
+    star_count: 512,
+    export_count: 1024,
+    avg_rating: 4.8,
+    rating_count: 312,
+  }
 ];

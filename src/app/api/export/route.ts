@@ -42,7 +42,12 @@ export async function POST(req: Request) {
       markdown_instructions: markdownInstructions,
       script_urls: [],
       tags: [],
-      created_at: new Date().toISOString()
+      source_url: null,
+      created_at: new Date().toISOString(),
+      star_count: 0,
+      export_count: 0,
+      avg_rating: 0,
+      rating_count: 0,
     };
 
     // Use unified compiler
