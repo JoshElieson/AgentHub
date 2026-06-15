@@ -146,19 +146,36 @@ export const authOptions: NextAuthOptions = {
         console.error("[auth] createUser enrichment failed:", err);
       }
     },
-    // Enrich a brand-new GitHub user's profile from their GitHub data.
+    // Sync the OAuth profile photo on every sign-in, and import a brand-new
+    // GitHub user's bio/links the first time they connect.
     async signIn({ user, account, profile, isNewUser }) {
-      if (!isDbConfigured || !isNewUser || !account || !profile) return;
+      if (!isDbConfigured || !account || !profile) return;
       try {
         const data: Record<string, string> = {};
-        if (account.provider === "github") {
-          const p = profile as {
-            login?: string;
-            bio?: string;
-            blog?: string;
-            location?: string;
-            twitter_username?: string;
-          };
+        const p = profile as {
+          login?: string;
+          bio?: string;
+          blog?: string;
+          location?: string;
+          twitter_username?: string;
+          // GitHub exposes the avatar as `avatar_url`; Google as `picture`.
+          avatar_url?: string;
+          picture?: string;
+        };
+
+        // Always pull the latest profile picture from the provider so a changed
+        // GitHub/Google avatar propagates on the next sign-in. (`image` is only
+        // ever sourced from OAuth — no in-app upload path overwrites it.)
+        const image =
+          account.provider === "github"
+            ? p.avatar_url
+            : account.provider === "google"
+              ? p.picture
+              : undefined;
+        if (image) data.image = image;
+
+        // First-time GitHub users: seed bio / links from their GitHub profile.
+        if (isNewUser && account.provider === "github") {
           if (p.login) data.github = p.login;
           if (p.bio) data.bio = p.bio;
           if (p.blog)
@@ -168,6 +185,7 @@ export const authOptions: NextAuthOptions = {
           if (p.location) data.location = p.location;
           if (p.twitter_username) data.twitter = p.twitter_username;
         }
+
         if (Object.keys(data).length > 0) {
           await prisma.user.update({ where: { id: user.id }, data });
         }

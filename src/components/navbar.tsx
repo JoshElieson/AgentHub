@@ -10,7 +10,7 @@ import { SearchBar } from "./search-bar";
 import { Button, ButtonLink } from "./ui/button";
 import { Avatar } from "./ui/avatar";
 import {
-  Flag,
+  Bookmark,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -40,7 +40,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line glass">
-      <div className="mx-auto flex h-14 max-w-site items-center gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-site items-center gap-3 px-2 sm:px-3">
         <Logo />
 
         {/* Desktop nav */}
@@ -83,10 +83,11 @@ export function Navbar() {
                 href="/saved"
                 variant="secondary"
                 size="sm"
-                className="hidden sm:inline-flex"
+                className="hidden w-8 px-0 sm:inline-flex"
+                aria-label="Saved Packages"
+                title="Saved Packages"
               >
-                <Flag className="h-3.5 w-3.5" />
-                Saved Packages
+                <Bookmark className="h-4 w-4" />
               </ButtonLink>
               <UserMenu
                 user={user}

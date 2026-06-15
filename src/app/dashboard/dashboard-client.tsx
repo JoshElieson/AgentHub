@@ -209,6 +209,7 @@ export function DashboardClient({
                   name: user.name,
                   username: user.username,
                   avatarColor: user.avatarColor,
+                  image: user.image,
                 }}
               />
             </div>

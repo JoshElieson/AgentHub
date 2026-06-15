@@ -39,12 +39,22 @@ export function DashboardSidebar({
 }: {
   active: DashboardSection;
   onSelect: (s: DashboardSection) => void;
-  user: { name: string; username: string; avatarColor: string };
+  user: {
+    name: string;
+    username: string;
+    avatarColor: string;
+    image?: string | null;
+  };
 }) {
   return (
     <div className="space-y-4">
       <div className="card flex items-center gap-3 p-3">
-        <Avatar name={user.name} color={user.avatarColor} size="lg" />
+        <Avatar
+          name={user.name}
+          color={user.avatarColor}
+          image={user.image}
+          size="lg"
+        />
         <div className="min-w-0">
           <div className="truncate text-sm font-semibold text-content">{user.name}</div>
           <div className="truncate text-xs text-subtle">@{user.username}</div>
