@@ -23,6 +23,7 @@ import { useAuthConfig, useAuthStatus, useDisplayUser } from "./providers";
 
 const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
+  { href: "/skills", label: "Skills" },
   { href: "/collections", label: "Collections" },
   { href: "/organizations", label: "Organizations" },
   { href: "/docs", label: "Docs" },

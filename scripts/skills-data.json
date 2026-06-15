@@ -1,0 +1,482 @@
+[
+  {
+    "name": "mcp-builder",
+    "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools.",
+    "trigger_phrases": ["build MCP server", "create MCP server", "MCP integration", "model context protocol"],
+    "tags": ["mcp", "protocol", "integration", "api", "development"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/mcp-builder",
+    "markdown_instructions": "# MCP Server Development Guide\n\nCreate MCP servers that enable LLMs to interact with external services through well-designed tools.\n\n## Four Phases\n\n### Phase 1: Deep Research and Planning\n- Balance API coverage vs. workflow tools\n- Use clear, descriptive tool names with consistent prefixes\n- Design concise tool descriptions for agent discoverability\n- Write actionable error messages that guide toward solutions\n\n### Phase 2: Study MCP Protocol Documentation\nStart with: https://modelcontextprotocol.io/sitemap.xml\n- Specification overview and architecture\n- Transport mechanisms (streamable HTTP, stdio)\n- Tool, resource, and prompt definitions\n\n### Phase 3: Framework Selection\n- **TypeScript**: High-quality SDK support (recommended)\n- **Python**: FastMCP for rapid development\n- **Transport**: Streamable HTTP for remote, stdio for local\n\n### Phase 4: Implementation\n- Review service API docs for endpoints, auth, and data models\n- Implement comprehensive error handling\n- Add pagination for list operations\n- Include rate limiting and retry logic"
+  },
+  {
+    "name": "prompt-engineering",
+    "description": "Systematic prompt engineering techniques for LLMs — covers chain-of-thought, few-shot, system prompts, structured output, and evaluation.",
+    "trigger_phrases": ["write prompt", "prompt engineering", "optimize prompt", "chain of thought", "few-shot"],
+    "tags": ["ai", "llm", "prompt-engineering", "ml"],
+    "source_url": null,
+    "markdown_instructions": "# Prompt Engineering Best Practices\n\n## Core Techniques\n\n### 1. Chain-of-Thought (CoT)\nAsk the model to reason step-by-step before answering.\n\n### 2. Few-Shot Examples\nProvide 2-3 examples of desired input/output pairs before the actual query.\n\n### 3. System Prompts\n- Define the model's role, constraints, and output format\n- Be specific about what to include AND exclude\n- Set the tone and expertise level\n\n### 4. Structured Output\n- Use JSON schemas for machine-readable output\n- Specify exact field names and types\n- Include validation instructions\n\n## Anti-Patterns\n- Vague instructions ('make it better')\n- Overloading a single prompt with multiple tasks\n- Not specifying output format\n- Ignoring model-specific capabilities\n\n## Evaluation\n- Test with diverse inputs including edge cases\n- Measure consistency across runs\n- Track prompt versions and performance metrics"
+  },
+  {
+    "name": "rag-architecture",
+    "description": "Design and implement Retrieval-Augmented Generation (RAG) systems — covers embedding strategies, vector databases, chunking, reranking, and hybrid search.",
+    "trigger_phrases": ["RAG", "retrieval augmented generation", "vector search", "embeddings", "knowledge base"],
+    "tags": ["ai", "rag", "embeddings", "vector-db", "architecture"],
+    "source_url": null,
+    "markdown_instructions": "# RAG Architecture Guide\n\n## Pipeline Stages\n\n### 1. Document Ingestion\n- **Chunking**: Split documents into semantic chunks (512-1024 tokens)\n- **Overlap**: Use 10-20% overlap between chunks for context continuity\n- **Metadata**: Preserve source, section headers, page numbers\n\n### 2. Embedding\n- Choose embedding model matching your domain (OpenAI, Cohere, Sentence Transformers)\n- Normalize embeddings for cosine similarity\n- Batch process for efficiency\n\n### 3. Vector Storage\n- **Pinecone/Weaviate/Qdrant** for managed solutions\n- **pgvector** for PostgreSQL integration\n- **FAISS** for local/in-memory search\n\n### 4. Retrieval\n- Top-k retrieval with similarity threshold\n- Hybrid search: combine vector + keyword (BM25)\n- Reranking with cross-encoder models\n\n### 5. Generation\n- Inject retrieved chunks into prompt context\n- Include source citations in output\n- Handle 'no relevant results' gracefully\n\n## Advanced Patterns\n- **Multi-hop RAG**: Chain multiple retrievals\n- **Self-RAG**: Model decides when to retrieve\n- **Graph RAG**: Combine with knowledge graphs"
+  },
+  {
+    "name": "huggingface-model-trainer",
+    "description": "Train and fine-tune ML models using Hugging Face TRL — covers SFT, DPO, GRPO, LoRA adapters, GGUF conversion, and pushing models to the Hub.",
+    "trigger_phrases": ["fine-tune model", "train model", "hugging face", "LoRA", "SFT", "DPO"],
+    "tags": ["ai", "ml", "huggingface", "training", "fine-tuning"],
+    "source_url": "https://github.com/huggingface/skills/tree/main/skills/hugging-face-model-trainer",
+    "markdown_instructions": "# Hugging Face Model Training\n\n## Training Methods\n\n### SFT (Supervised Fine-Tuning)\nUse TRL SFTTrainer with model, dataset, text field, and max_seq_length.\n\n### DPO (Direct Preference Optimization)\nTrain on preference pairs (chosen vs rejected responses).\n\n### LoRA Adapters\n- Use LoRA for parameter-efficient fine-tuning\n- Typical rank: 8-64, alpha: 16-128\n- Target attention layers (q_proj, v_proj)\n\n## Workflow\n1. Prepare dataset in conversational format\n2. Choose base model and training method\n3. Configure hyperparameters\n4. Train with gradient checkpointing for memory efficiency\n5. Evaluate on held-out set\n6. Push to Hub or convert to GGUF for local inference\n\n## Best Practices\n- Start with small learning rate (1e-5 to 5e-5)\n- Use warmup steps (5-10% of total)\n- Monitor loss curves for overfitting\n- Save checkpoints frequently"
+  },
+  {
+    "name": "frontend-design",
+    "description": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and avoiding templated defaults.",
+    "trigger_phrases": ["design UI", "frontend design", "visual design", "typography", "UI aesthetics"],
+    "tags": ["design", "ui", "typography", "frontend", "aesthetics"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+    "markdown_instructions": "# Frontend Design\n\nApproach this as the design lead at a small studio known for giving every client a visual identity that could not be mistaken for anyone else's.\n\n## Design Principles\n\n**Hero as thesis.** Open with the most characteristic thing in the subject's world.\n\n**Typography carries personality.** Pair display and body faces deliberately. Set a clear type scale with intentional weights, widths, and spacing.\n\n**Structure is information.** Structural devices should encode something true about the content, not decorate it.\n\n**Leverage motion deliberately.** Page-load sequences, scroll-triggered reveals, hover micro-interactions.\n\n## Avoiding AI-Template Patterns\nAI-generated design clusters around three looks:\n1. Warm cream background with serif display and terracotta accent\n2. Near-black background with single bright acid-green accent\n3. Broadsheet layout with hairline rules and newspaper columns\n\nReach for these only if they genuinely match the subject."
+  },
+  {
+    "name": "nextjs-best-practices",
+    "description": "Next.js best practices from the Vercel engineering team — covers App Router patterns, server components, data fetching, caching strategies, and performance optimization.",
+    "trigger_phrases": ["next.js", "nextjs", "app router", "server components", "next best practices"],
+    "tags": ["nextjs", "react", "frontend", "vercel", "performance"],
+    "source_url": "https://github.com/vercel-labs/skills/tree/main/skills/next-best-practices",
+    "markdown_instructions": "# Next.js Best Practices\n\n## App Router Patterns\n\n### Server Components (Default)\n- Keep components as Server Components unless they need interactivity\n- Use 'use client' only for components that need browser APIs, state, or effects\n- Fetch data directly in Server Components (no useEffect)\n\n### Data Fetching\n- Use fetch() in Server Components with built-in deduplication\n- Leverage generateStaticParams() for static generation\n- Use unstable_cache() for expensive computations\n\n### Layouts\n- Share UI between routes with layout.tsx\n- Layouts don't re-render on navigation\n- Use loading.tsx for streaming Suspense boundaries\n\n## Performance\n- Use next/image for automatic image optimization\n- Implement next/font for zero-layout-shift font loading\n- Use dynamic imports for code splitting\n- Enable Partial Prerendering (PPR) for hybrid static/dynamic\n\n## Caching\n- Full Route Cache for static pages\n- Data Cache for fetch results\n- Router Cache for client-side navigation\n- Use revalidatePath() and revalidateTag() for on-demand revalidation"
+  },
+  {
+    "name": "react-accessibility",
+    "description": "WCAG 2.1 AA compliance for React applications — covers semantic HTML, ARIA attributes, keyboard navigation, screen reader testing, focus management, and color contrast.",
+    "trigger_phrases": ["accessibility", "a11y", "WCAG", "screen reader", "ARIA", "keyboard navigation"],
+    "tags": ["react", "accessibility", "a11y", "frontend", "wcag"],
+    "source_url": null,
+    "markdown_instructions": "# React Accessibility (a11y)\n\n## Core Principles\n\n### 1. Semantic HTML\n- Use native HTML elements (button, nav, main) over div\n- Heading hierarchy: single h1, sequential levels\n- Use fieldset and legend for form groups\n\n### 2. ARIA Attributes\n- aria-label for elements without visible text\n- aria-describedby for additional context\n- aria-live='polite' for dynamic content updates\n- role only when no native HTML element fits\n\n### 3. Keyboard Navigation\n- All interactive elements must be focusable\n- Logical tab order following visual layout\n- Visible focus indicators (never outline: none)\n- Trap focus in modals, release on close\n\n### 4. Color & Contrast\n- 4.5:1 ratio for normal text\n- 3:1 ratio for large text (18px+ or 14px+ bold)\n- Never convey information by color alone\n\n### 5. Testing\n- axe DevTools browser extension\n- VoiceOver (Mac), NVDA (Windows)\n- jest-axe for automated testing\n- Manual keyboard-only navigation test"
+  },
+  {
+    "name": "css-architecture",
+    "description": "Modern CSS architecture patterns — covers custom properties, container queries, cascade layers, logical properties, and scalable design systems without preprocessors.",
+    "trigger_phrases": ["CSS architecture", "design tokens", "CSS custom properties", "cascade layers", "container queries"],
+    "tags": ["css", "frontend", "design-system", "architecture"],
+    "source_url": null,
+    "markdown_instructions": "# Modern CSS Architecture\n\n## Design Token System\nUse CSS custom properties on :root for primitive tokens (colors, spacing) and semantic tokens that reference them.\n\n## Cascade Layers\nDeclare layer order: @layer reset, base, components, utilities;\n\n## Container Queries\nUse container-type: inline-size on parent elements and @container queries for responsive component design.\n\n## Key Patterns\n- Use oklch() for perceptually uniform color palettes\n- Fluid typography with clamp()\n- Logical properties (inline-start, block-end) for RTL support\n- :has() for parent selectors\n- @scope for component-scoped styles\n\n## Anti-Patterns\n- Avoid deep nesting (max 3 levels)\n- Don't use !important (use layers instead)\n- Avoid fixed pixel breakpoints (use container queries)"
+  },
+  {
+    "name": "web-performance",
+    "description": "Optimize Core Web Vitals (LCP, INP, CLS) — covers render-blocking resources, image optimization, JavaScript execution, font loading, and performance monitoring.",
+    "trigger_phrases": ["web performance", "core web vitals", "LCP", "INP", "CLS", "page speed"],
+    "tags": ["performance", "frontend", "web-vitals", "optimization"],
+    "source_url": "https://github.com/cloudflare/skills/tree/main/skills/web-perf",
+    "markdown_instructions": "# Web Performance Optimization\n\n## Core Web Vitals Targets\n- LCP: Good ≤2.5s\n- INP: Good ≤200ms\n- CLS: Good ≤0.1\n\n## LCP Optimization\n- Preload hero image with link rel='preload'\n- Use fetchpriority='high' on LCP element\n- Inline critical CSS, defer the rest\n- Use CDN for static assets\n\n## INP Optimization\n- Break long tasks with scheduler.yield()\n- Use requestIdleCallback() for non-urgent work\n- Debounce input handlers\n- Virtualize long lists\n\n## CLS Optimization\n- Set explicit width and height on images/videos\n- Use aspect-ratio CSS property\n- Reserve space for dynamic content\n- Use font-display: optional or preload fonts\n\n## Monitoring\n- Use web-vitals library for field data\n- Chrome DevTools Performance panel for lab data\n- Lighthouse CI in your build pipeline"
+  },
+  {
+    "name": "gsap-animation",
+    "description": "Create professional web animations with GSAP (GreenSock) — covers timelines, ScrollTrigger, morphing, flip animations, and performance best practices.",
+    "trigger_phrases": ["GSAP", "GreenSock", "scroll animation", "web animation", "timeline animation"],
+    "tags": ["animation", "gsap", "frontend", "design", "creative-coding"],
+    "source_url": "https://github.com/greensock/skills/tree/main/skills/gsap-greensock",
+    "markdown_instructions": "# GSAP Animation Guide\n\n## Core Concepts\n\n### Tweens\ngsap.to('.box', { x: 200, duration: 1, ease: 'power2.out' });\ngsap.from('.box', { opacity: 0, y: 50 });\ngsap.fromTo('.box', { scale: 0 }, { scale: 1 });\n\n### Timelines\nChain animations sequentially with gsap.timeline(). Use position parameters like '-=0.3' for overlaps and '<' for simultaneous starts.\n\n### ScrollTrigger\nTie animations to scroll position with trigger, start, end, and scrub properties.\n\n## Performance Rules\n- Animate transform and opacity only (GPU-accelerated)\n- Use will-change: transform sparingly\n- Avoid animating width, height, top, left\n- Use gsap.set() for initial states (not CSS)\n- Kill tweens on component unmount"
+  },
+  {
+    "name": "stripe-best-practices",
+    "description": "Guides Stripe integration decisions — API selection (Checkout Sessions vs PaymentIntents), Connect platform setup, billing/subscriptions, Treasury financial accounts, and security best practices.",
+    "trigger_phrases": ["stripe", "payment processing", "checkout session", "payment intent", "subscriptions"],
+    "tags": ["stripe", "payments", "api", "fintech", "integration"],
+    "source_url": "https://github.com/stripe/agent-toolkit/tree/main/skills/stripe-best-practices",
+    "markdown_instructions": "# Stripe Best Practices\n\nLatest API version: 2026-05-27.dahlia. Always use the latest API version.\n\n## Getting Started\nInstall Stripe CLI and run stripe sandbox create for API keys.\n\n## API Key Security\nAlways recommend restricted API keys (rk_ prefix) over secret keys (sk_).\n\n## Integration Patterns\n- **Checkout Sessions**: Best for most payment flows — hosted, embedded, or custom\n- **PaymentIntents**: Lower-level control for custom experiences\n- **Connect**: Platform/marketplace payments with Accounts v2\n- **Billing**: Subscriptions, metered usage, invoices\n- **Treasury**: Financial accounts for platforms\n\n## Webhook Security\n- Always verify webhook signatures\n- Use idempotency keys for retries\n- Handle events asynchronously\n- Implement proper error handling with specific error types"
+  },
+  {
+    "name": "graphql-patterns",
+    "description": "GraphQL API design patterns — covers schema design, resolvers, N+1 prevention with DataLoader, pagination, error handling, subscriptions, and federation.",
+    "trigger_phrases": ["GraphQL", "schema design", "resolvers", "DataLoader", "graphql api"],
+    "tags": ["graphql", "api", "backend", "architecture"],
+    "source_url": null,
+    "markdown_instructions": "# GraphQL Best Practices\n\n## Schema Design\n- Use ID type for identifiers\n- Prefer specific types over generic ones\n- Use input types for mutations\n- Add descriptions to all fields\n\n## N+1 Problem Prevention\nUse DataLoader for batching database queries. Batch loader receives array of IDs and returns results in the same order.\n\n## Pagination\n- Use cursor-based pagination (Relay spec)\n- Return edges, nodes, pageInfo\n- Include totalCount when feasible\n\n## Error Handling\n- Use union types for expected errors\n- Reserve top-level errors for unexpected failures\n- Include error codes for client handling\n\n## Security\n- Implement query depth limiting\n- Set query complexity limits\n- Use persisted queries in production\n- Rate limit by query complexity, not just requests"
+  },
+  {
+    "name": "postgres-best-practices",
+    "description": "PostgreSQL best practices for Supabase and general use — covers schema design, indexing strategies, RLS policies, migrations, query optimization, and connection pooling.",
+    "trigger_phrases": ["postgres", "postgresql", "database design", "SQL optimization", "supabase postgres", "RLS"],
+    "tags": ["postgres", "database", "sql", "supabase", "backend"],
+    "source_url": "https://github.com/supabase/skills/tree/main/skills/postgres-best-practices",
+    "markdown_instructions": "# PostgreSQL Best Practices\n\n## Schema Design\n- Use UUID for primary keys (gen_random_uuid())\n- Add created_at and updated_at timestamps\n- Use TEXT over VARCHAR (no performance difference in Postgres)\n- Prefer JSONB over JSON for queryable data\n\n## Indexing\n- Create indexes for columns used in WHERE, JOIN, ORDER BY\n- Use partial indexes for filtered queries\n- GIN indexes for JSONB and array columns\n- Monitor with pg_stat_user_indexes for unused indexes\n\n## Row Level Security (RLS)\n- Always enable RLS on public-facing tables\n- Use auth.uid() for user-scoped policies\n- Separate policies for SELECT, INSERT, UPDATE, DELETE\n- Test policies with different roles\n\n## Performance\n- Use EXPLAIN ANALYZE to understand query plans\n- Avoid SELECT * — select only needed columns\n- Use CTEs for readability but know they may not optimize\n- Connection pooling with PgBouncer or Supavisor"
+  },
+  {
+    "name": "api-design",
+    "description": "RESTful API design principles — covers resource naming, HTTP methods, status codes, pagination, versioning, error responses, rate limiting, and OpenAPI documentation.",
+    "trigger_phrases": ["API design", "REST API", "endpoint design", "API versioning", "status codes"],
+    "tags": ["api", "rest", "backend", "architecture", "design"],
+    "source_url": null,
+    "markdown_instructions": "# RESTful API Design\n\n## Resource Naming\n- Use plural nouns: /users, /orders\n- Nest for relationships: /users/:id/orders\n- Use kebab-case: /order-items\n- Avoid verbs in URLs (use HTTP methods instead)\n\n## HTTP Methods\n- GET: Read resource (Idempotent)\n- POST: Create resource\n- PUT: Full update (Idempotent)\n- PATCH: Partial update\n- DELETE: Remove resource (Idempotent)\n\n## Status Codes\n- 200 OK, 201 Created, 204 No Content\n- 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found\n- 422 Unprocessable Entity, 429 Too Many Requests\n- 500 Internal Server Error\n\n## Error Response Format\nReturn structured error objects with code, message, and details array.\n\n## Pagination\n- Cursor-based for real-time data\n- Offset-based for static datasets\n- Include total, next_cursor, has_more"
+  },
+  {
+    "name": "authentication-patterns",
+    "description": "Modern authentication patterns — covers OAuth 2.0, OIDC, JWT best practices, session management, MFA, passkeys, and secure token storage.",
+    "trigger_phrases": ["authentication", "OAuth", "JWT", "login", "session management", "passkeys"],
+    "tags": ["security", "authentication", "oauth", "backend"],
+    "source_url": null,
+    "markdown_instructions": "# Authentication Patterns\n\n## OAuth 2.0 + OIDC\n- Use Authorization Code flow with PKCE for SPAs and mobile\n- Never use Implicit flow (deprecated)\n- Store tokens server-side when possible\n- Validate ID tokens: issuer, audience, expiry, nonce\n\n## JWT Best Practices\n- Keep JWTs short-lived (15min access, 7d refresh)\n- Store refresh tokens in httpOnly cookies\n- Never store JWTs in localStorage\n- Include only necessary claims (minimize payload)\n- Use RS256 for asymmetric signing\n\n## Session Management\n- Rotate session IDs after authentication\n- Set cookie flags: Secure, HttpOnly, SameSite=Lax\n- Implement idle and absolute timeouts\n- Store sessions server-side (Redis/DB)\n\n## Multi-Factor Authentication\n- TOTP (authenticator apps) as baseline\n- WebAuthn/Passkeys for phishing-resistant auth\n- SMS as fallback only (not primary)\n\n## Passkeys (WebAuthn)\n- Passwordless, phishing-resistant\n- Cross-device via cloud sync\n- Use as primary auth, not just second factor"
+  },
+  {
+    "name": "cloudflare-workers",
+    "description": "Reviews and authors Cloudflare Workers code against production best practices. Covers wrangler configuration, streaming, Durable Objects, KV, R2, D1, and deployment.",
+    "trigger_phrases": ["cloudflare workers", "wrangler", "edge functions", "workers deploy", "durable objects"],
+    "tags": ["cloudflare", "workers", "edge", "serverless", "devops"],
+    "source_url": "https://github.com/cloudflare/skills/tree/main/skills/workers-best-practices",
+    "markdown_instructions": "# Cloudflare Workers Best Practices\n\n## Configuration\n- Set compatibility_date to today on new projects\n- Enable nodejs_compat flag\n- Run wrangler types to generate Env — never hand-write bindings\n- Use wrangler secret put for secrets\n- Use wrangler.jsonc for non-secret settings\n\n## Request Handling\n- Stream large payloads — never await response.text() on unbounded data\n- Use ctx.waitUntil() for post-response work\n- Don't destructure the context object\n\n## Storage Bindings\n- **KV**: Eventually consistent key-value, great for config/cache\n- **R2**: S3-compatible object storage, zero egress\n- **D1**: SQLite at the edge\n- **Durable Objects**: Stateful coordination with WebSockets\n\n## Deployment\n- Use wrangler deploy for production\n- wrangler dev for local development\n- Set up preview environments for staging"
+  },
+  {
+    "name": "docker-best-practices",
+    "description": "Docker containerization best practices — covers multi-stage builds, layer caching, security hardening, compose patterns, health checks, and production-ready Dockerfiles.",
+    "trigger_phrases": ["docker", "Dockerfile", "container", "docker compose", "multi-stage build"],
+    "tags": ["docker", "devops", "containers", "infrastructure"],
+    "source_url": null,
+    "markdown_instructions": "# Docker Best Practices\n\n## Dockerfile Optimization\nUse multi-stage builds: builder stage for compiling, runner stage for production. Copy only necessary artifacts.\n\n## Key Rules\n- Use specific base image tags (not latest)\n- Copy package files first for layer caching\n- Run as non-root user\n- Use .dockerignore to exclude unnecessary files\n- Add HEALTHCHECK instructions\n- Use multi-stage builds to minimize image size\n- Scan images for vulnerabilities with docker scout\n- Set EXPOSE for documentation\n- Use ENV for runtime configuration"
+  },
+  {
+    "name": "terraform-patterns",
+    "description": "Terraform Infrastructure as Code patterns — covers module design, state management, workspace strategies, provider configuration, and testing.",
+    "trigger_phrases": ["terraform", "infrastructure as code", "IaC", "terraform modules", "HCL"],
+    "tags": ["terraform", "devops", "infrastructure", "iac", "hashicorp"],
+    "source_url": "https://github.com/hashicorp/skills/tree/main/skills/terraform-style-guide",
+    "markdown_instructions": "# Terraform Best Practices\n\n## File Structure\nOrganize into modules/ (reusable components) and environments/ (dev, staging, prod) directories.\n\n## Style Guide\n- Use snake_case for resource names\n- Group resources logically in files\n- Add descriptions to all variables and outputs\n- Use locals for computed values\n- Pin provider versions with ~> operator\n\n## State Management\n- Use remote state (S3, GCS, Azure Blob)\n- Enable state locking (DynamoDB, GCS)\n- Never store secrets in state\n- Use terraform_remote_state sparingly\n\n## Module Design\n- One module = one logical component\n- Accept only necessary variables\n- Output all useful attributes\n- Version modules with Git tags\n\n## Testing\nUse .tftest.hcl files with run blocks containing command and assert blocks."
+  },
+  {
+    "name": "ci-cd-pipelines",
+    "description": "CI/CD pipeline design for GitHub Actions, GitLab CI, and general patterns — covers build caching, test parallelization, deployment strategies, and secrets handling.",
+    "trigger_phrases": ["CI/CD", "GitHub Actions", "pipeline", "continuous integration", "deployment pipeline"],
+    "tags": ["ci-cd", "devops", "automation", "github-actions"],
+    "source_url": null,
+    "markdown_instructions": "# CI/CD Pipeline Design\n\n## Key Principles\n- Cache dependencies between runs\n- Parallelize independent jobs\n- Use matrix builds for cross-platform testing\n- Pin action versions with SHA, not tags\n- Store secrets in GitHub/GitLab secrets, never in code\n\n## Deployment Strategies\n- **Blue-Green**: Zero-downtime with instant rollback\n- **Canary**: Gradual traffic shift (1% to 10% to 50% to 100%)\n- **Rolling**: Update instances incrementally\n\n## GitHub Actions Tips\n- Use actions/cache for node_modules, pip packages\n- Use concurrency groups to cancel duplicate runs\n- Use reusable workflows for DRY pipelines\n- Set timeout-minutes to prevent hung jobs"
+  },
+  {
+    "name": "kubernetes-operations",
+    "description": "Kubernetes operational patterns — covers resource definitions, deployments, services, ingress, ConfigMaps, secrets, health probes, HPA autoscaling, and debugging.",
+    "trigger_phrases": ["kubernetes", "k8s", "kubectl", "pods", "deployments", "helm"],
+    "tags": ["kubernetes", "devops", "containers", "infrastructure", "cloud"],
+    "source_url": null,
+    "markdown_instructions": "# Kubernetes Operations\n\n## Key Practices\n- Always set resource requests and limits\n- Use liveness AND readiness probes\n- Never use latest image tag\n- Use Namespaces for environment isolation\n- Implement HPA for autoscaling\n- Use PodDisruptionBudgets for availability\n\n## Debugging\n- kubectl describe pod <name> for events\n- kubectl logs <pod> -f for streaming logs\n- kubectl exec -it <pod> -- sh for shell access\n- kubectl get events --sort-by='.lastTimestamp'\n\n## Production Checklist\n- Resource limits on all containers\n- Health probes configured\n- Rolling update strategy defined\n- Network policies for security\n- RBAC configured\n- Monitoring and alerting set up"
+  },
+  {
+    "name": "observability",
+    "description": "Full-stack observability — covers structured logging, distributed tracing, metrics collection, alerting, dashboards, and SLO-based monitoring with OpenTelemetry.",
+    "trigger_phrases": ["observability", "monitoring", "logging", "tracing", "metrics", "OpenTelemetry"],
+    "tags": ["observability", "devops", "monitoring", "logging", "tracing"],
+    "source_url": null,
+    "markdown_instructions": "# Observability Guide\n\n## Three Pillars\n\n### 1. Structured Logging\n- Use JSON format, not plaintext\n- Include trace/correlation IDs\n- Log at appropriate levels (DEBUG, INFO, WARN, ERROR)\n\n### 2. Distributed Tracing\n- Use OpenTelemetry SDK for instrumentation\n- Propagate context across service boundaries\n- Set meaningful span names and attributes\n- Use Jaeger, Zipkin, or Grafana Tempo for visualization\n\n### 3. Metrics\n- **RED metrics**: Rate, Errors, Duration (for services)\n- **USE metrics**: Utilization, Saturation, Errors (for resources)\n- Use histograms for latency, counters for throughput\n- Export to Prometheus/Grafana\n\n## SLOs\n- Define error budgets (e.g., 99.9% availability = 43min/month downtime)\n- Alert on burn rate, not raw thresholds\n- Track SLIs: latency p99, error rate, throughput"
+  },
+  {
+    "name": "webapp-testing",
+    "description": "Toolkit for testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing screenshots, and browser automation.",
+    "trigger_phrases": ["playwright test", "browser testing", "UI testing", "e2e test", "screenshot test"],
+    "tags": ["testing", "playwright", "e2e", "browser", "automation"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
+    "markdown_instructions": "# Web Application Testing\n\nUse Playwright scripts for testing local web apps.\n\n## Decision Tree\nIs it static HTML? Read HTML to identify selectors, then write Playwright script.\nIs it a dynamic webapp? Check if server is running. If not, use the with_server.py helper. If yes, do reconnaissance-then-action: navigate, screenshot, discover selectors, execute actions.\n\n## Best Practices\n- Always run scripts with --help first\n- Wait for network idle before assertions\n- Use data-testid attributes for stable selectors\n- Take screenshots at key verification points\n- Use headless mode for CI, headed for debugging"
+  },
+  {
+    "name": "testing-strategy",
+    "description": "Comprehensive testing strategy — covers the testing pyramid, unit/integration/e2e patterns, test doubles (mocks, stubs, fakes), TDD workflow, and test maintenance.",
+    "trigger_phrases": ["testing strategy", "unit tests", "integration tests", "test pyramid", "TDD"],
+    "tags": ["testing", "tdd", "quality", "best-practices"],
+    "source_url": null,
+    "markdown_instructions": "# Testing Strategy\n\n## Testing Pyramid\nMany fast unit tests at the base, some integration tests in the middle, few slow e2e tests at the top.\n\n## Unit Tests\n- Test one function/method in isolation\n- Mock external dependencies\n- Fast (<100ms per test)\n- Name: should_[expected]_when_[condition]\n\n## Integration Tests\n- Test interactions between components\n- Use real database (test container)\n- Test API endpoints with supertest/httptest\n- Verify side effects (DB state, events)\n\n## E2E Tests\n- Test critical user journeys only\n- Use Page Object Model pattern\n- Run against staging environment\n- Include visual regression tests\n\n## Test Doubles\n- Stub: Returns fixed values\n- Mock: Verifies interactions\n- Fake: Working implementation (in-memory DB)\n- Spy: Records calls for later assertion\n\n## TDD Workflow\n1. Write failing test (RED)\n2. Write minimal code to pass (GREEN)\n3. Refactor while keeping tests green (REFACTOR)"
+  },
+  {
+    "name": "property-based-testing",
+    "description": "Property-based testing patterns for finding edge cases — covers generators, shrinking, stateful testing, and integration with Jest, pytest, and smart contract fuzzing.",
+    "trigger_phrases": ["property-based testing", "fuzzing", "quickcheck", "hypothesis", "generators"],
+    "tags": ["testing", "security", "quality", "fuzzing"],
+    "source_url": "https://github.com/trailofbits/skills/tree/main/skills/property-based-testing",
+    "markdown_instructions": "# Property-Based Testing\n\nInstead of specific examples, define properties that must hold for ALL inputs.\n\n## Key Concepts\n\n### Properties\n- **Invariants**: Something always true (sorted list stays sorted)\n- **Round-trip**: encode(decode(x)) == x\n- **Oracle**: Compare against reference implementation\n- **Metamorphic**: If input changes by X, output changes by Y\n\n### Python (Hypothesis)\nUse @given decorator with strategies to generate test inputs automatically.\n\n### JavaScript (fast-check)\nUse fc.assert with fc.property to define properties over generated inputs.\n\n## Shrinking\nWhen a failure is found, the framework automatically simplifies the failing input to the smallest reproducible case."
+  },
+  {
+    "name": "security-audit",
+    "description": "Security-focused code review — covers OWASP Top 10, injection prevention, dependency scanning, static analysis with Semgrep/CodeQL, and secure development lifecycle.",
+    "trigger_phrases": ["security audit", "code review security", "OWASP", "vulnerability scan", "secure code"],
+    "tags": ["security", "audit", "owasp", "code-review"],
+    "source_url": "https://github.com/trailofbits/skills/tree/main/skills/static-analysis",
+    "markdown_instructions": "# Security Audit Guide\n\n## OWASP Top 10 Checklist\n1. **Broken Access Control** — Verify authorization on every endpoint\n2. **Cryptographic Failures** — Check for weak algorithms, hardcoded secrets\n3. **Injection** — Parameterize all queries, validate all input\n4. **Insecure Design** — Review threat models and abuse cases\n5. **Security Misconfiguration** — Check default configs, unnecessary features\n6. **Vulnerable Components** — Scan dependencies with npm audit, Snyk\n7. **Authentication Failures** — Check session management, MFA\n8. **Data Integrity Failures** — Verify signatures, CI/CD security\n9. **Logging Failures** — Ensure security events are logged\n10. **SSRF** — Validate and restrict outbound requests\n\n## Static Analysis Tools\n- **Semgrep**: Pattern-based scanning with custom rules\n- **CodeQL**: Semantic code analysis for deep vulnerability detection\n- **Bandit**: Python security linter\n- **ESLint security plugins**: For JavaScript\n\n## Process\n1. Automated scanning in CI/CD\n2. Manual review of auth, crypto, and data handling\n3. Dependency vulnerability monitoring\n4. Regular penetration testing"
+  },
+  {
+    "name": "secrets-management",
+    "description": "Secure credential and secrets management — covers environment variables, vault solutions, key rotation, CI/CD secrets, and preventing accidental exposure.",
+    "trigger_phrases": ["secrets management", "API keys", "credentials", "vault", "environment variables"],
+    "tags": ["security", "secrets", "devops", "infrastructure"],
+    "source_url": null,
+    "markdown_instructions": "# Secrets Management\n\n## Hierarchy of Approaches\n1. **Managed secrets service** (AWS Secrets Manager, GCP Secret Manager, HashiCorp Vault)\n2. **CI/CD platform secrets** (GitHub Actions secrets, GitLab CI variables)\n3. **Environment variables** (loaded at runtime, not committed)\n4. **NEVER**: Hardcoded in source code\n\n## Detection & Prevention\n- Pre-commit hooks with gitleaks or trufflehog\n- CI scanning for leaked credentials\n- .gitignore for .env, .env.local, *.key, *.pem\n\n## Key Rotation\n- Automate rotation on a schedule\n- Support multiple active versions during transition\n- Log rotation events for audit trail\n- Test rotation in staging before production\n\n## Log Hygiene\n- Never log secrets, tokens, or passwords\n- Redact sensitive fields in structured logs\n- Mask credit card numbers (show last 4 only)"
+  },
+  {
+    "name": "git-workflow",
+    "description": "Git branching strategies and workflow patterns — covers trunk-based development, GitFlow, conventional commits, interactive rebase, cherry-picking, and PR best practices.",
+    "trigger_phrases": ["git workflow", "branching strategy", "git rebase", "pull request", "conventional commits"],
+    "tags": ["git", "version-control", "workflow", "development"],
+    "source_url": "https://github.com/callstackincubator/skills/tree/main/skills/github",
+    "markdown_instructions": "# Git Workflow Patterns\n\n## Branching Strategies\n\n### Trunk-Based Development (Recommended)\n- Short-lived feature branches (< 2 days)\n- Merge to main frequently\n- Use feature flags for incomplete features\n- CI runs on every push\n\n### GitFlow\n- main for production releases\n- develop for integration\n- feature/* for individual features\n- release/* for release preparation\n- hotfix/* for production fixes\n\n## Conventional Commits\nfeat(scope): description, fix(scope): description, docs, chore, refactor, test, perf.\n\n## PR Best Practices\n- Keep PRs small (< 400 lines changed)\n- Write descriptive titles and descriptions\n- Include screenshots for UI changes\n- Request specific reviewers\n- Link related issues\n\n## Useful Commands\n- git rebase -i HEAD~5 for squashing\n- git cherry-pick <sha> for specific commits\n- git bisect for finding bug-introducing commits\n- git stash for temporarily shelving changes"
+  },
+  {
+    "name": "react-native-best-practices",
+    "description": "React Native performance optimization from the Callstack team — covers FlatList tuning, navigation, native modules, Reanimated animations, New Architecture, and build optimization.",
+    "trigger_phrases": ["react native", "mobile app", "FlatList", "react navigation", "reanimated"],
+    "tags": ["react-native", "mobile", "performance", "expo"],
+    "source_url": "https://github.com/callstackincubator/skills/tree/main/skills/react-native-best-practices",
+    "markdown_instructions": "# React Native Performance\n\n## FlatList Optimization\n- Use getItemLayout for fixed-height items\n- Set windowSize (default 21 is often too high)\n- Use maxToRenderPerBatch and updateCellsBatchingPeriod\n- Memoize renderItem with React.memo\n- Use FlashList as a drop-in replacement for better perf\n\n## Navigation\n- Use native stack navigator (@react-navigation/native-stack)\n- Lazy-load screens with React.lazy\n- Avoid passing large objects as route params\n\n## Animation\n- Use Reanimated for 60fps animations on UI thread\n- Prefer useAnimatedStyle over inline styles\n- Use withSpring for natural motion\n- Avoid animating layout properties (use transforms)\n\n## New Architecture\n- Enable Fabric renderer for concurrent features\n- Use TurboModules for faster native module calls\n- Codegen for type-safe native interfaces\n\n## Build Optimization\n- Enable Hermes engine (default in Expo)\n- Use ProGuard/R8 for Android release builds\n- Monitor bundle size with react-native-bundle-visualizer"
+  },
+  {
+    "name": "expo-development",
+    "description": "Expo and React Native development — covers Expo Router, EAS Build, deployment, dev client setup, OTA updates, and native module integration.",
+    "trigger_phrases": ["expo", "expo router", "EAS build", "expo deploy", "react native expo"],
+    "tags": ["expo", "react-native", "mobile", "deployment"],
+    "source_url": "https://github.com/expo/skills/tree/main/skills/expo-deployment",
+    "markdown_instructions": "# Expo Development Guide\n\n## Expo Router\n- File-based routing: app/(tabs)/index.tsx\n- Layouts: app/_layout.tsx\n- API routes: app/api/endpoint+api.ts\n- Deep linking configured automatically\n\n## EAS Build\nBuild for iOS and Android with eas build --platform <platform> --profile production. Submit to stores with eas submit.\n\n## Dev Client\n- Build custom dev client for native module testing\n- npx expo start --dev-client\n- TestFlight/Internal distribution for team testing\n\n## OTA Updates\n- Use eas update for JavaScript-only changes\n- No app store review required\n- Channel-based deployment (preview, production)\n\n## Best Practices\n- Use Expo SDK modules over bare RN packages when available\n- Configure app.config.ts over app.json for dynamic config\n- Use expo-dev-client for development builds\n- Enable Hermes for better performance"
+  },
+  {
+    "name": "data-visualization",
+    "description": "Data visualization best practices — covers chart selection, color palettes for accessibility, D3.js patterns, dashboard layout, responsive charts, and storytelling with data.",
+    "trigger_phrases": ["data visualization", "charts", "D3.js", "dashboard", "graph design"],
+    "tags": ["data", "visualization", "d3", "analytics", "frontend"],
+    "source_url": null,
+    "markdown_instructions": "# Data Visualization Guide\n\n## Chart Selection\n- Comparison: Bar chart, grouped bar\n- Trend over time: Line chart, area chart\n- Proportion: Donut chart (not pie), treemap\n- Distribution: Histogram, box plot\n- Relationship: Scatter plot, bubble chart\n- Geographic: Choropleth, dot map\n\n## Color Guidelines\n- Use colorblind-safe palettes (Viridis, ColorBrewer)\n- Max 5-7 colors per chart\n- Use sequential palettes for continuous data\n- Use diverging palettes for above/below reference\n- Never use red/green alone to convey meaning\n\n## D3.js Patterns\n- General Update Pattern: enter, update, exit\n- Use scales: scaleLinear, scaleBand, scaleTime\n- Responsive: resize with ResizeObserver\n- Transitions for smooth data updates\n\n## Dashboard Design\n- Most important metric at top-left\n- Use consistent time ranges across charts\n- Include context (comparisons, benchmarks)\n- Allow drill-down for exploration\n- Mobile-first: stack charts vertically"
+  },
+  {
+    "name": "sql-optimization",
+    "description": "SQL query optimization techniques — covers indexing strategies, query plans, JOIN optimization, window functions, CTEs, and common performance anti-patterns.",
+    "trigger_phrases": ["SQL optimization", "slow query", "query plan", "EXPLAIN ANALYZE", "database performance"],
+    "tags": ["sql", "database", "performance", "optimization"],
+    "source_url": null,
+    "markdown_instructions": "# SQL Query Optimization\n\n## Reading Query Plans\nUse EXPLAIN ANALYZE to see actual execution plans. Look for Seq Scan on large tables (add index), check estimated vs actual rows (stats outdated?), watch for Sort operations.\n\n## Indexing Strategy\n- Index columns in WHERE, JOIN, ORDER BY\n- Composite index column order matters: most selective first\n- Partial indexes for filtered queries\n- Covering indexes to avoid table lookups\n\n## Common Anti-Patterns\n- SELECT * — fetch only needed columns\n- Functions on indexed columns — use expression index\n- NOT IN with NULLs — use NOT EXISTS instead\n- Correlated subqueries — refactor to JOINs\n- Missing LIMIT on unbounded queries\n\n## Window Functions\nUse SUM(), ROW_NUMBER(), RANK() with OVER (PARTITION BY ... ORDER BY ...) for analytical queries without self-joins."
+  },
+  {
+    "name": "technical-writing",
+    "description": "Technical documentation best practices — covers README structure, API docs, architecture decision records, runbooks, changelogs, and writing for different audiences.",
+    "trigger_phrases": ["documentation", "technical writing", "README", "API docs", "architecture decision record"],
+    "tags": ["documentation", "writing", "communication"],
+    "source_url": null,
+    "markdown_instructions": "# Technical Writing Guide\n\n## README Structure\n1. Title + Badge Row (build status, version, license)\n2. One-liner describing what it does\n3. Quick Start (install + run in < 5 steps)\n4. Features (bullet list with brief descriptions)\n5. Configuration (table of env vars / options)\n6. API Reference (or link to docs)\n7. Contributing (link to CONTRIBUTING.md)\n8. License\n\n## API Documentation\n- Use OpenAPI/Swagger for REST APIs\n- Include request/response examples\n- Document error responses with codes\n- Show authentication setup first\n- Provide runnable code snippets (curl, JS, Python)\n\n## Architecture Decision Records (ADR)\nStructure: Title, Status (Proposed/Accepted/Deprecated), Context, Decision, Consequences.\n\n## Writing Principles\n- Lead with the action\n- Use present tense\n- One idea per sentence\n- Code samples > prose descriptions"
+  },
+  {
+    "name": "skill-creator",
+    "description": "Guide for creating new agent skills — covers SKILL.md format, YAML frontmatter, trigger phrase design, progressive disclosure, and testing skills across platforms.",
+    "trigger_phrases": ["create skill", "build skill", "SKILL.md format", "agent skill", "skill template"],
+    "tags": ["skills", "meta", "development", "agents"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
+    "markdown_instructions": "# Skill Creator Guide\n\n## SKILL.md Format\nYAML frontmatter with name and description, followed by detailed markdown instructions.\n\n## Best Practices\n\n### 1. Progressive Disclosure\n- Metadata loaded at startup (name, description)\n- Full instructions loaded only when skill matches a task\n- Keeps agent context window lean\n\n### 2. Trigger Design\n- Choose phrases users would naturally say\n- Include both technical and colloquial variants\n- Test with diverse prompt styles\n\n### 3. Instruction Quality\n- Be specific and actionable\n- Include decision trees for complex workflows\n- Provide code examples\n- Define what NOT to do (anti-patterns)\n\n### 4. Testing\n- Test with the target agent platform\n- Verify trigger phrases activate the skill\n- Check edge cases and failure modes"
+  },
+  {
+    "name": "algorithmic-art",
+    "description": "Creating algorithmic art using p5.js with seeded randomness, noise fields, particle systems, and interactive parameter exploration.",
+    "trigger_phrases": ["generative art", "algorithmic art", "p5.js", "flow fields", "creative coding"],
+    "tags": ["art", "generative", "creative-coding", "p5js", "design"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/algorithmic-art",
+    "markdown_instructions": "# Algorithmic Art\n\nCreate ALGORITHMIC PHILOSOPHIES interpreted through computational processes and emergent behavior.\n\n## Philosophy Examples\n\n**Organic Turbulence** — Flow fields driven by layered Perlin noise. Thousands of particles following vector forces, trails accumulating into organic density maps.\n\n**Quantum Harmonics** — Discrete entities exhibiting wave-like interference patterns.\n\n**Recursive Whispers** — Self-similarity across scales. L-systems generating organic forms.\n\n**Stochastic Crystallization** — Random processes crystallizing into ordered structures via circle packing or Voronoi tessellation.\n\n## Essential Principles\n- PROCESS OVER PRODUCT: Beauty emerges from the algorithm's execution\n- PARAMETRIC EXPRESSION: Ideas through mathematical relationships\n- PURE GENERATIVE ART: Living algorithms, not static images with randomness\n- SEEDED RANDOMNESS: Reproducible outputs via deterministic seeds"
+  },
+  {
+    "name": "remotion-video",
+    "description": "Programmatic video creation with React using Remotion — covers compositions, animations, audio sync, rendering pipeline, and serverless rendering.",
+    "trigger_phrases": ["remotion", "programmatic video", "video generation", "react video", "render video"],
+    "tags": ["video", "react", "creative-coding", "remotion", "media"],
+    "source_url": "https://github.com/remotion-dev/skills/tree/main/skills/remotion",
+    "markdown_instructions": "# Remotion Video Creation\n\nCreate videos programmatically with React components.\n\n## Core Concepts\nUse useCurrentFrame() and useVideoConfig() hooks to access frame number, fps, and duration.\n\n## Composition\nDefine video specs with Composition component: id, component, durationInFrames, fps, width, height.\n\n## Animation Helpers\n- interpolate(frame, inputRange, outputRange) for tweening\n- spring({ frame, fps }) for physics-based motion\n- Sequence for timing sections\n- Audio for soundtrack synchronization\n\n## Rendering\nnpx remotion render MyVideo out.mp4 for local rendering.\nnpx remotion lambda render MyVideo for serverless rendering on AWS Lambda."
+  },
+  {
+    "name": "netlify-deployment",
+    "description": "Deploy and manage web applications on Netlify — covers functions, edge functions, forms, image CDN, blobs storage, deploy previews, and CLI workflows.",
+    "trigger_phrases": ["netlify", "netlify deploy", "netlify functions", "edge functions", "deploy preview"],
+    "tags": ["netlify", "deployment", "serverless", "hosting", "cloud"],
+    "source_url": "https://github.com/netlify/skills/tree/main/skills/netlify-deploy",
+    "markdown_instructions": "# Netlify Deployment\n\n## Quick Deploy\nnpx netlify-cli deploy --prod\n\n## Serverless Functions\nCreate functions in netlify/functions/ directory. Export default async handler receiving Request and returning Response.\n\n## Edge Functions\nCreate edge functions in netlify/edge-functions/ for low-latency processing with geo context.\n\n## Deploy Previews\n- Automatic for every PR\n- Unique URL per preview\n- Share with stakeholders for review\n- Branch-based deploy contexts\n\n## Configuration (netlify.toml)\nSet build command, publish directory, and redirects in netlify.toml."
+  },
+  {
+    "name": "sentry-observability",
+    "description": "Set up Sentry for error tracking and performance monitoring — covers SDK setup, issue triage, source maps, breadcrumbs, custom context, and alert configuration.",
+    "trigger_phrases": ["sentry", "error tracking", "crash reporting", "error monitoring", "sentry setup"],
+    "tags": ["sentry", "monitoring", "errors", "observability", "devops"],
+    "source_url": "https://github.com/getsentry/skills/tree/main/skills/sentry-sdk-setup",
+    "markdown_instructions": "# Sentry Error Tracking Setup\n\n## Quick Setup (Next.js)\nnpx @sentry/wizard@latest -i nextjs\n\n## Manual Setup\nInitialize Sentry with DSN, tracesSampleRate (0.1 for 10%), and replay settings.\n\n## Custom Context\n- setUser() for user identification\n- setTag() for categorization\n- addBreadcrumb() for event timeline\n\n## Source Maps\n- Upload during build with sentry-cli\n- Or use build plugin (Webpack, Vite)\n- Maps are private, never served to users\n\n## Alert Configuration\n- Alert on new issues (not every occurrence)\n- Set spike detection for error rate\n- Route to Slack/PagerDuty by project\n- Use issue owners for auto-assignment"
+  },
+  {
+    "name": "typescript-patterns",
+    "description": "Advanced TypeScript patterns — covers generics, conditional types, template literal types, branded types, discriminated unions, type narrowing, and utility types.",
+    "trigger_phrases": ["TypeScript", "generics", "type safety", "utility types", "discriminated unions"],
+    "tags": ["typescript", "javascript", "types", "development"],
+    "source_url": null,
+    "markdown_instructions": "# Advanced TypeScript Patterns\n\n## Discriminated Unions\nUse a shared literal property (like 'success') to narrow union types automatically.\n\n## Branded Types\nCreate nominal types using intersection with __brand to prevent mixing IDs of different entities.\n\n## Template Literal Types\nBuild string types from unions: type EventName = `on${Capitalize<'click' | 'hover'>}` produces 'onClick' | 'onHover'.\n\n## Utility Types\n- Partial<T>: all fields optional\n- Required<T>: all fields required\n- Pick<T, K>: subset of fields\n- Omit<T, K>: exclude fields\n- Record<K, V>: mapped type\n- Awaited<T>: unwrap Promise\n\n## Const Assertions\nUse 'as const' to narrow array and object types to their literal values."
+  },
+  {
+    "name": "python-best-practices",
+    "description": "Modern Python development — covers type hints, project setup with uv/ruff, async patterns, dataclasses, pattern matching, testing with pytest, and packaging.",
+    "trigger_phrases": ["python", "pytest", "type hints", "async python", "python project setup"],
+    "tags": ["python", "development", "testing", "best-practices"],
+    "source_url": "https://github.com/trailofbits/skills/tree/main/skills/modern-python",
+    "markdown_instructions": "# Modern Python Best Practices\n\n## Project Setup\nUse uv for fast package management: uv init, uv add.\n\n## Type Hints\nUse built-in union syntax (str | None) in Python 3.10+. Use dataclasses for structured data.\n\n## Async Patterns\nUse asyncio.gather() for concurrent I/O operations. Use httpx.AsyncClient for async HTTP.\n\n## Tooling\n- **uv**: Fast package manager and project tool\n- **ruff**: Linter + formatter (replaces flake8, black, isort)\n- **ty**: Type checker (faster than mypy)\n- **pytest**: Testing with fixtures, parametrize, markers\n\n## Pattern Matching (3.10+)\nUse match/case for structural pattern matching on dicts, classes, and sequences."
+  },
+  {
+    "name": "rust-fundamentals",
+    "description": "Rust development patterns — covers ownership and borrowing, error handling with Result, async with tokio, traits, lifetimes, and common crate recommendations.",
+    "trigger_phrases": ["rust", "ownership", "borrowing", "tokio", "cargo", "rust error handling"],
+    "tags": ["rust", "systems", "development", "performance"],
+    "source_url": null,
+    "markdown_instructions": "# Rust Development Patterns\n\n## Ownership & Borrowing\nBorrow with & when you don't need ownership. Use &mut for mutable borrows. Values are dropped when they go out of scope.\n\n## Error Handling\nUse anyhow::Result for application code with .context() for error messages. Use thiserror for library error types.\n\n## Async with Tokio\nUse #[tokio::main] for async main. Use reqwest for HTTP, sqlx for databases.\n\n## Essential Crates\n- **serde** + **serde_json**: Serialization\n- **tokio**: Async runtime\n- **reqwest**: HTTP client\n- **anyhow** / **thiserror**: Error handling\n- **clap**: CLI argument parsing\n- **tracing**: Structured logging"
+  },
+  {
+    "name": "go-patterns",
+    "description": "Go development patterns — covers error handling, concurrency with goroutines/channels, interfaces, testing, project structure, and standard library usage.",
+    "trigger_phrases": ["golang", "go language", "goroutines", "channels", "go error handling"],
+    "tags": ["go", "golang", "backend", "development", "concurrency"],
+    "source_url": null,
+    "markdown_instructions": "# Go Development Patterns\n\n## Error Handling\nWrap errors with fmt.Errorf('context: %w', err). Check errors immediately after function calls.\n\n## Concurrency\nUse goroutines with channels for fan-out/fan-in patterns. Use sync.WaitGroup for coordination. Use context.Context for cancellation.\n\n## Interfaces\nSmall interfaces, accept interfaces, return structs. Define interfaces at the consumer, not the producer.\n\n## Project Structure\ncmd/ for entry points, internal/ for private packages, pkg/ for shared libraries.\n\n## Testing\nUse table-driven tests with test slices. Use t.Run() for subtests. Use testify for assertions."
+  },
+  {
+    "name": "seo-optimization",
+    "description": "SEO and content optimization patterns — covers meta tags, structured data (JSON-LD), Core Web Vitals impact, sitemap generation, semantic HTML, and answer engine optimization.",
+    "trigger_phrases": ["SEO", "search engine optimization", "meta tags", "structured data", "sitemap"],
+    "tags": ["seo", "content", "marketing", "frontend", "optimization"],
+    "source_url": "https://github.com/sanity-io/skills/tree/main/skills/seo-aeo-best-practices",
+    "markdown_instructions": "# SEO Optimization Guide\n\n## Essential Meta Tags\n- title: 50-60 chars with brand name\n- meta description: 150-160 chars compelling summary\n- canonical URL for duplicate content\n- Open Graph tags for social sharing\n- robots: index, follow\n\n## Structured Data (JSON-LD)\nAdd schema.org markup for Article, Product, FAQ, Organization, etc.\n\n## Technical SEO\n- Single h1 per page\n- Heading hierarchy (h1 > h2 > h3)\n- Image alt text for all images\n- Fast page load (LCP < 2.5s)\n- Mobile-responsive layout\n- XML sitemap at /sitemap.xml\n- robots.txt with sitemap reference\n\n## Content Strategy\n- Answer specific questions (featured snippet optimization)\n- Use internal linking between related pages\n- Update content regularly\n- Include FAQ sections with FAQPage schema"
+  },
+  {
+    "name": "docx-creation",
+    "description": "Create, edit, and analyze Word documents programmatically — covers document structure, formatting, tables, images, headers/footers, and template-based generation.",
+    "trigger_phrases": ["word document", "docx", "create document", "generate report", "document template"],
+    "tags": ["office", "documents", "productivity", "automation"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/docx",
+    "markdown_instructions": "# Word Document Creation\n\nCreate professional Word documents programmatically using python-docx.\n\n## Document Structure\n- Title page with branding\n- Table of contents (auto-generated)\n- Section headings with consistent hierarchy\n- Page numbers in footer\n- Header with document title/date\n\n## Formatting Best Practices\n- Use styles, not manual formatting\n- Consistent font families (body: 11pt, headings: 14-18pt)\n- 1.15-1.5 line spacing for readability\n- Margins: 1 inch all sides for business docs\n\n## Tables\n- Use header row with bold styling\n- Alternate row shading for readability\n- Right-align numbers, left-align text\n- Include units in column headers"
+  },
+  {
+    "name": "xlsx-analysis",
+    "description": "Create, edit, and analyze Excel spreadsheets — covers formulas, pivot tables, charts, data validation, conditional formatting, and automation with openpyxl.",
+    "trigger_phrases": ["excel", "spreadsheet", "xlsx", "pivot table", "excel formulas"],
+    "tags": ["office", "excel", "data", "analytics", "automation"],
+    "source_url": "https://github.com/anthropics/skills/tree/main/skills/xlsx",
+    "markdown_instructions": "# Excel Spreadsheet Analysis\n\nCreate and analyze Excel spreadsheets programmatically with openpyxl.\n\n## Common Formulas\n- SUM, VLOOKUP, IF, SUMIFS for data analysis\n- COUNTIFS for conditional counting\n- INDEX/MATCH as VLOOKUP alternative\n\n## Conditional Formatting\n- Color scales for numeric ranges\n- Data bars for visual comparison\n- Icon sets for status indicators\n- Highlight rules for outliers\n\n## Best Practices\n- Freeze header row and first column\n- Use named ranges for readability\n- Data validation for input cells\n- Separate raw data from analysis sheets\n- Include data source and date in footer"
+  },
+  {
+    "name": "composio-integrations",
+    "description": "Connect AI agents to 1000+ external apps with Composio — covers managed authentication, tool discovery, action execution, and integration with agent frameworks.",
+    "trigger_phrases": ["composio", "app integration", "connect apps", "agent tools", "external integration"],
+    "tags": ["integration", "api", "agents", "composio", "automation"],
+    "source_url": "https://github.com/composiohq/skills/tree/main/skills/composio",
+    "markdown_instructions": "# Composio Integration Guide\n\nConnect AI agents to external services with managed authentication.\n\n## Quick Start\npip install composio-core, then composio add github to authenticate.\n\n## Tool Discovery\nUse ComposioToolSet to find actions by use case.\n\n## Framework Integration\nWorks with LangChain, OpenAI, CrewAI, and more via dedicated SDK packages.\n\n## Supported Integrations\n- **Developer**: GitHub, GitLab, Jira, Linear, Notion\n- **Communication**: Slack, Discord, Gmail, Teams\n- **CRM**: Salesforce, HubSpot\n- **Storage**: Google Drive, Dropbox, S3\n- **Social**: Twitter/X, LinkedIn"
+  },
+  {
+    "name": "firecrawl-web-scraping",
+    "description": "Web scraping and data extraction with Firecrawl — covers page scraping, search, crawling, browser interaction, structured data extraction, and authentication handling.",
+    "trigger_phrases": ["web scraping", "firecrawl", "scrape website", "extract data", "crawl pages"],
+    "tags": ["scraping", "data", "firecrawl", "automation", "api"],
+    "source_url": "https://github.com/firecrawl/skills/tree/main/skills/firecrawl-build",
+    "markdown_instructions": "# Firecrawl Web Scraping\n\nExtract clean, structured data from any web page.\n\n## Scrape a Page\nUse FirecrawlApp.scrape_url() with formats=['markdown', 'html'] and onlyMainContent=True.\n\n## Search the Web\nUse app.search() with query and limit parameters.\n\n## Structured Extraction\nPass a JSON schema to extract specific fields (title, price, features) from pages.\n\n## Crawl Entire Site\nUse app.crawl_url() with limit parameter to crawl documentation sites."
+  },
+  {
+    "name": "replicate-ai-models",
+    "description": "Discover, compare, and run AI models using Replicate's API — covers image generation, language models, video, audio, and fine-tuning workflows.",
+    "trigger_phrases": ["replicate", "run AI model", "image generation", "stable diffusion", "AI API"],
+    "tags": ["ai", "replicate", "image-generation", "models", "api"],
+    "source_url": "https://github.com/replicate/skills/tree/main/skills/replicate",
+    "markdown_instructions": "# Replicate AI Models\n\nRun open-source AI models via API.\n\n## Usage\nUse replicate.run() with model identifier and input parameters.\n\n## Model Categories\n- Image generation (SDXL, Flux)\n- Language models (Llama, Mistral)\n- Video generation\n- Audio (text-to-speech, music)\n- Vision (object detection, segmentation)\n\n## Fine-Tuning\nCreate training runs with replicate.trainings.create() pointing to your training data.\n\n## Model Discovery\nBrowse replicate.com/explore. Filter by category, popularity, and cost."
+  },
+  {
+    "name": "angular-development",
+    "description": "Angular development patterns — covers components, services, signals, dependency injection, routing, reactive forms, and performance optimization.",
+    "trigger_phrases": ["angular", "angular component", "angular signals", "angular routing", "angular forms"],
+    "tags": ["angular", "frontend", "typescript", "development"],
+    "source_url": "https://github.com/angular/skills",
+    "markdown_instructions": "# Angular Development\n\n## Component Architecture\nUse standalone components with @Component decorator. Use input() and output() for component communication.\n\n## Signals (Reactive State)\nUse signal() for reactive state, computed() for derived values, and effect() for side effects.\n\n## Services & DI\nUse @Injectable({ providedIn: 'root' }) for singleton services. Use inject() function for dependency injection.\n\n## Best Practices\n- Use standalone components (no NgModules)\n- Prefer signals over BehaviorSubject\n- Lazy-load routes with loadComponent\n- Use OnPush change detection\n- Implement trackBy for ngFor"
+  },
+  {
+    "name": "system-design",
+    "description": "System design fundamentals — covers scalability patterns, load balancing, caching strategies, message queues, database sharding, CAP theorem, and architecture diagrams.",
+    "trigger_phrases": ["system design", "scalability", "architecture", "load balancing", "distributed systems"],
+    "tags": ["architecture", "system-design", "scalability", "backend"],
+    "source_url": null,
+    "markdown_instructions": "# System Design Fundamentals\n\n## Scalability Patterns\n\n### Horizontal Scaling\n- Add more servers behind a load balancer\n- Stateless services (store state in DB/cache)\n\n### Caching Layers\n1. CDN for static assets\n2. Application Cache (Redis/Memcached)\n3. Database Cache\n4. Client Cache (browser, service worker)\n\n### Message Queues\n- Kafka for high-throughput event streaming\n- RabbitMQ for task queues with routing\n- SQS for managed AWS queue service\n\n## CAP Theorem\n- CP: Consistency + Partition Tolerance (MongoDB)\n- AP: Availability + Partition Tolerance (DynamoDB, Cassandra)\n\n## Load Balancing\n- Round Robin, Least Connections, IP Hash, Layer 7\n\n## Database Strategies\n- Read replicas for read-heavy workloads\n- Sharding for write-heavy workloads\n- Connection pooling\n- Event sourcing for audit trails"
+  },
+  {
+    "name": "microservices-patterns",
+    "description": "Microservices architecture patterns — covers service decomposition, API gateway, circuit breaker, saga pattern, event-driven communication, and service mesh.",
+    "trigger_phrases": ["microservices", "service mesh", "circuit breaker", "saga pattern", "event-driven"],
+    "tags": ["architecture", "microservices", "backend", "distributed-systems"],
+    "source_url": null,
+    "markdown_instructions": "# Microservices Patterns\n\n## Service Decomposition\n- Decompose by business domain (DDD)\n- Each service owns its data store\n- Services communicate via APIs or events\n\n## Communication\n- Synchronous: REST or gRPC with API Gateway\n- Asynchronous: Event-driven via message broker\n- Use outbox pattern for reliable event publishing\n\n## Saga Pattern (Distributed Transactions)\nOrchestrate multi-service transactions with compensating actions for rollback.\n\n## Circuit Breaker\n- Closed: Normal operation, track failures\n- Open: Fail fast, don't call downstream\n- Half-Open: Test with limited requests\n\n## Observability Requirements\n- Distributed tracing across services\n- Centralized logging with correlation IDs\n- Health checks and readiness probes"
+  },
+  {
+    "name": "bash-scripting",
+    "description": "Bash scripting best practices — covers error handling, argument parsing, functions, variable quoting, file operations, and portable script writing.",
+    "trigger_phrases": ["bash script", "shell script", "command line", "terminal automation", "bash functions"],
+    "tags": ["bash", "cli", "automation", "devops", "scripting"],
+    "source_url": null,
+    "markdown_instructions": "# Bash Scripting Best Practices\n\n## Script Header\nUse #!/usr/bin/env bash with set -euo pipefail for safety.\n\n## Error Handling\nUse trap for cleanup on exit and error. Always define a cleanup function.\n\n## Argument Parsing\nUse while loop with case statement for flags: -v|--verbose, -o|--output, -h|--help.\n\n## Key Rules\n- Always quote variables: \"$var\" not $var\n- Use [[ ]] over [ ] for conditionals\n- Use $(command) over backticks\n- Declare local variables in functions\n- Check command existence: command -v tool &>/dev/null\n- Use mktemp for temporary files\n- Make scripts idempotent (safe to run twice)"
+  },
+  {
+    "name": "regex-patterns",
+    "description": "Regular expression patterns and techniques — covers character classes, quantifiers, groups, lookaheads, common patterns for validation, and regex debugging.",
+    "trigger_phrases": ["regex", "regular expression", "pattern matching", "text parsing", "validation regex"],
+    "tags": ["regex", "development", "utility", "text-processing"],
+    "source_url": null,
+    "markdown_instructions": "# Regular Expression Patterns\n\n## Common Patterns\n- Email: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\n- URL: https?://[^\\s/$.?#].[^\\s]*\n- Phone (US): \\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}\n- Date (YYYY-MM-DD): \\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])\n- IP Address: \\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b\n\n## Syntax Reference\n- \\d: Digit, \\w: Word char, \\s: Whitespace\n- +: One or more, *: Zero or more, ?: Zero or one\n- {n,m}: Between n and m\n- (?=...): Positive lookahead\n- (?!...): Negative lookahead\n- (?:...): Non-capturing group\n\n## Testing\nUse regex101.com for interactive testing. Use named groups for readability."
+  },
+  {
+    "name": "error-handling",
+    "description": "Error handling and resilience patterns — covers exception hierarchies, error boundaries, retry strategies, circuit breakers, graceful degradation, and user-friendly error messages.",
+    "trigger_phrases": ["error handling", "exception handling", "retry logic", "graceful degradation", "error boundary"],
+    "tags": ["error-handling", "resilience", "patterns", "development"],
+    "source_url": null,
+    "markdown_instructions": "# Error Handling Patterns\n\n## Error Hierarchy\nCreate a base AppError class with code, statusCode, and isOperational flag. Extend for specific errors: ValidationError (400), NotFoundError (404), etc.\n\n## Retry with Exponential Backoff\nRetry failed operations with increasing delays: 1s, 2s, 4s with random jitter. Set maximum retry count.\n\n## React Error Boundaries\n- Catch rendering errors in component tree\n- Show fallback UI instead of blank screen\n- Log errors to monitoring service\n\n## Best Practices\n- Distinguish operational vs programmer errors\n- Never swallow errors silently\n- Include context in error messages\n- Log stack traces in development, not production\n- Return user-friendly messages to clients"
+  },
+  {
+    "name": "smart-contract-security",
+    "description": "Smart contract security best practices — covers common vulnerabilities (reentrancy, overflow), testing patterns, static analysis with Slither, fuzzing, and audit workflows.",
+    "trigger_phrases": ["smart contract", "solidity", "blockchain security", "reentrancy", "contract audit"],
+    "tags": ["blockchain", "security", "solidity", "web3", "audit"],
+    "source_url": "https://github.com/trailofbits/skills/tree/main/skills/building-secure-contracts",
+    "markdown_instructions": "# Smart Contract Security\n\n## Common Vulnerabilities\n\n### Reentrancy\nAlways follow Checks-Effects-Interactions pattern: validate inputs, update state, then make external calls.\n\n### Integer Overflow/Underflow\nUse Solidity 0.8+ (built-in checks) or SafeMath library.\n\n### Access Control\nUse OpenZeppelin's Ownable/AccessControl. Validate msg.sender in all sensitive functions.\n\n## Analysis Tools\n- **Slither**: Static analysis for Solidity\n- **Echidna**: Property-based fuzzer\n- **Mythril**: Symbolic execution\n- **Foundry**: Testing framework with fuzzing\n\n## Audit Process\n1. Threat modeling\n2. Automated scanning\n3. Manual review of business logic\n4. Fuzzing critical functions\n5. Formal verification for critical math"
+  },
+  {
+    "name": "notification-systems",
+    "description": "Multi-channel notification architecture — covers email, SMS, push notifications, in-app messaging, preference management, and template systems.",
+    "trigger_phrases": ["notifications", "email sending", "push notifications", "SMS", "notification system"],
+    "tags": ["notifications", "email", "sms", "push", "communication"],
+    "source_url": "https://github.com/trycourier/courier-skills",
+    "markdown_instructions": "# Notification System Design\n\n## Channel Selection\n- Push: Time-sensitive alerts (instant)\n- Email: Detailed content, receipts (minutes)\n- SMS: Critical alerts, 2FA (seconds)\n- In-App: Feature updates, activity (instant)\n- Slack/Teams: Team collaboration (instant)\n\n## Architecture\nApp sends to Notification Service, which routes through Template Engine and Preference Check to Channel Providers.\n\n## Key Components\n- Template System with variables and i18n\n- Preference Management (per-channel, frequency, quiet hours)\n- Delivery Tracking (sent, delivered, opened, clicked)\n\n## Best Practices\n- Never send without user consent\n- Include unsubscribe in every message\n- Batch non-urgent notifications\n- Rate limit per user per channel"
+  },
+  {
+    "name": "social-media-publishing",
+    "description": "Create, schedule, and publish social media content across X, LinkedIn, Threads, Bluesky, and Mastodon.",
+    "trigger_phrases": ["social media", "tweet", "LinkedIn post", "schedule post", "content publishing"],
+    "tags": ["social-media", "content", "marketing", "publishing"],
+    "source_url": "https://github.com/typefully/skills/tree/main/skills/typefully",
+    "markdown_instructions": "# Social Media Publishing\n\n## Platform-Specific Formatting\n- X: 280 chars, threads for long-form, 1-3 hashtags max\n- LinkedIn: 3000 chars, professional tone, tag people\n- Threads: 500 chars, casual, image-first\n\n## Content Strategy\n- Write for one platform, adapt for others\n- Best posting times: 9-11 AM and 7-9 PM local\n- 80/20 rule: 80% value, 20% promotion\n\n## Scheduling\n- Queue posts 1-2 weeks in advance\n- Space posts 4-6 hours apart\n- Cross-post with platform-specific tweaks\n\n## Analytics\n- Track impressions, engagement rate, follower growth\n- A/B test headlines and CTAs\n- Monthly reporting dashboard"
+  },
+  {
+    "name": "gradio-apps",
+    "description": "Build interactive ML demos and dashboards with Gradio — covers input/output types, layout, theming, authentication, API endpoints, and deployment to Hugging Face Spaces.",
+    "trigger_phrases": ["gradio", "ML demo", "interactive demo", "hugging face spaces", "gradio interface"],
+    "tags": ["gradio", "ml", "demo", "frontend", "huggingface"],
+    "source_url": "https://github.com/huggingface/skills/tree/main/skills/huggingface-gradio",
+    "markdown_instructions": "# Gradio Application Guide\n\n## Quick Start\nUse gr.Interface with fn, inputs, and outputs parameters for simple demos.\n\n## Blocks API (Advanced Layout)\nUse gr.Blocks with gr.Row, gr.Column for custom layouts. Connect events with .click() handlers.\n\n## Deployment\nDeploy to Hugging Face Spaces with gradio deploy command.\n\n## Key Features\n- Auto-generates API endpoint for every function\n- Built-in queuing for concurrent requests\n- File upload/download support\n- Real-time streaming output\n- Authentication with username/password\n- Custom themes with gr.themes"
+  },
+  {
+    "name": "content-modeling",
+    "description": "Content modeling patterns for headless CMS — covers schema design, content types, references, localization, content lifecycle, and editorial workflows.",
+    "trigger_phrases": ["content modeling", "CMS", "headless CMS", "content types", "content architecture"],
+    "tags": ["cms", "content", "architecture", "sanity"],
+    "source_url": "https://github.com/sanity-io/skills/tree/main/skills/content-modeling-best-practices",
+    "markdown_instructions": "# Content Modeling Guide\n\n## Design Principles\n- Separate content from presentation\n- Model content types by business domain\n- Use references over embedded content for reuse\n- Plan for multi-channel delivery\n\n## Field Types\n- String: Titles, names, slugs\n- Text: Short descriptions\n- Rich Text: Long-form with formatting\n- Image: Media with alt text and metadata\n- Reference: Links to other documents\n- Array: Lists, tags, ordered collections\n\n## Relationships\n- One-to-One: Reference field\n- One-to-Many: Array of references\n- Many-to-Many: Bi-directional references\n\n## Content Lifecycle\n1. Draft: Work in progress\n2. Review: Awaiting editorial approval\n3. Published: Live on site\n4. Archived: Removed, preserved\n\n## Localization\n- Document-level or field-level localization\n- Translation workflows and fallback chains"
+  },
+  {
+    "name": "clickhouse-analytics",
+    "description": "ClickHouse best practices for real-time analytics — covers table engines (MergeTree), materialized views, query optimization, data ingestion, and architecture design.",
+    "trigger_phrases": ["clickhouse", "analytics database", "OLAP", "real-time analytics", "columnar database"],
+    "tags": ["clickhouse", "analytics", "database", "big-data", "performance"],
+    "source_url": "https://github.com/clickhouse/skills/tree/main/skills/clickhouse-best-practices",
+    "markdown_instructions": "# ClickHouse Best Practices\n\n## Table Engines\n- MergeTree: Default for analytics tables\n- ReplacingMergeTree: Deduplication by version\n- AggregatingMergeTree: Pre-aggregated rollups\n- SummingMergeTree: Auto-summing on merge\n\n## Performance Rules\n- ORDER BY columns should match common query filters\n- Use LowCardinality(String) for <10K distinct values\n- Partition by date for time-series data\n- Use materialized views for pre-computation\n- Avoid JOINs where possible (denormalize)\n\n## Data Ingestion\n- Batch inserts (1000+ rows per INSERT)\n- Use async inserts for high-frequency producers\n- Kafka engine for streaming ingestion"
+  },
+  {
+    "name": "neon-serverless-postgres",
+    "description": "Neon serverless Postgres — covers branching, connection pooling, autoscaling, data API, and development workflows with instant database provisioning.",
+    "trigger_phrases": ["neon", "serverless postgres", "neon database", "database branching", "neon connection"],
+    "tags": ["neon", "postgres", "serverless", "database"],
+    "source_url": "https://github.com/neondatabase/skills/tree/main/skills/neon-postgres",
+    "markdown_instructions": "# Neon Serverless Postgres\n\n## Key Features\n- Serverless: Auto-scales to zero, pay for compute used\n- Branching: Instant database copies for dev/test\n- Connection Pooling: Built-in with serverless driver\n\n## Connection\nUse @neondatabase/serverless package with tagged template literals for queries.\n\n## Branching Workflow\nCreate branches per PR with neonctl branches create. Get connection strings with neonctl connection-string. Delete when done.\n\n## Best Practices\n- Use connection pooling for serverless environments\n- Create branches per PR for isolated testing\n- Set compute auto-suspend timeout (5 min for dev)\n- Use read replicas for analytics queries"
+  }
+]

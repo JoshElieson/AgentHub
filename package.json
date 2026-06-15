@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
+    "@supabase/supabase-js": "^2.108.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
     "next": "^15.5.19",
