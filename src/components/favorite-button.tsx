@@ -7,11 +7,13 @@ import { useState, useCallback, useEffect } from "react";
 import { getAnonId } from "@/lib/anon-id";
 
 /**
- * Star / favorite toggle button wired to the `/api/skills/star` endpoint.
- * Pass `skillId` to enable API persistence; omit for local-only mode.
+ * Star / favorite toggle button wired to the `/api/skills/star` or
+ * `/api/mcp/star` endpoint depending on which ID prop is provided.
+ * Pass `skillId` or `mcpServerId` to enable API persistence; omit both for local-only mode.
  */
 export function FavoriteButton({
   skillId,
+  mcpServerId,
   count: initialCount,
   initial = false,
   size = "md",
@@ -20,6 +22,7 @@ export function FavoriteButton({
   onToggle,
 }: {
   skillId?: string;
+  mcpServerId?: string;
   count?: number;
   initial?: boolean;
   size?: "sm" | "md";
@@ -30,20 +33,25 @@ export function FavoriteButton({
   const [active, setActive] = useState(initial);
   const [count, setCount] = useState(initialCount ?? 0);
   const [loading, setLoading] = useState(false);
-  const [initialized, setInitialized] = useState(!skillId); // skip init for non-API mode
+  const itemId = skillId ?? mcpServerId;
+  const isMcp = !!mcpServerId;
+  const [initialized, setInitialized] = useState(!itemId); // skip init for non-API mode
 
   // Check initial starred state from API
   useEffect(() => {
-    if (!skillId || initialized) return;
+    if (!itemId || initialized) return;
     const anonId = getAnonId();
-    fetch(`/api/skills/star?skillId=${skillId}&anonId=${anonId}`)
+    const url = isMcp
+      ? `/api/mcp/star?serverId=${itemId}&anonId=${anonId}`
+      : `/api/skills/star?skillId=${itemId}&anonId=${anonId}`;
+    fetch(url)
       .then((r) => r.json())
       .then((data) => {
         setActive(data.starred);
         setInitialized(true);
       })
       .catch(() => setInitialized(true));
-  }, [skillId, initialized]);
+  }, [itemId, isMcp, initialized]);
 
   // Sync external count changes
   useEffect(() => {
@@ -59,14 +67,18 @@ export function FavoriteButton({
     setActive(newActive);
     setCount(newCount);
 
-    if (skillId) {
+    if (itemId) {
       setLoading(true);
       try {
         const anonId = getAnonId();
-        const res = await fetch("/api/skills/star", {
+        const endpoint = isMcp ? "/api/mcp/star" : "/api/skills/star";
+        const payload = isMcp
+          ? { serverId: itemId, anonId }
+          : { skillId: itemId, anonId };
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ skillId, anonId }),
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
         if (res.ok) {
@@ -88,7 +100,7 @@ export function FavoriteButton({
     } else {
       onToggle?.(newActive, newCount);
     }
-  }, [active, count, loading, skillId, onToggle]);
+  }, [active, count, loading, itemId, isMcp, onToggle]);
 
   return (
     <button

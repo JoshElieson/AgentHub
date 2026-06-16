@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { RatingStars } from "@/components/ui/rating-stars";
+import { FavoriteButton } from "@/components/favorite-button";
 import { supabase, type McpServerRow } from "@/lib/supabase";
 import { getAnonId } from "@/lib/anon-id";
 import { Button } from "@/components/ui/button";
@@ -186,6 +187,17 @@ export default function McpDetailPage() {
                     {server.description}
                   </p>
                 </div>
+
+                {/* Star (favorite) button */}
+                <FavoriteButton
+                  mcpServerId={server.id}
+                  count={server.star_count}
+                  size="md"
+                  showCount
+                  onToggle={(starred, newCount) => {
+                    setServer({ ...server, star_count: newCount });
+                  }}
+                />
               </div>
 
               {/* ── Stats Row ──────────────────────────────────────── */}

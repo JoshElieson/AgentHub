@@ -207,5 +207,22 @@ ALTER TABLE public.mcp_servers ADD COLUMN IF NOT EXISTS embedding vector(768);
 CREATE INDEX IF NOT EXISTS idx_mcp_servers_embedding
 ON public.mcp_servers USING hnsw (embedding vector_cosine_ops);
 
+-- Stars / favorites for MCP servers (toggle per anonymous user per server)
+CREATE TABLE IF NOT EXISTS public.mcp_stars (
+  server_id UUID NOT NULL REFERENCES public.mcp_servers(id) ON DELETE CASCADE,
+  anon_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  PRIMARY KEY (server_id, anon_id)
+);
+
+ALTER TABLE public.mcp_stars ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read on mcp_stars"
+  ON public.mcp_stars FOR SELECT TO public USING (true);
+CREATE POLICY "Allow public insert on mcp_stars"
+  ON public.mcp_stars FOR INSERT TO public WITH CHECK (true);
+CREATE POLICY "Allow public delete on mcp_stars"
+  ON public.mcp_stars FOR DELETE TO public USING (true);
+
  
  

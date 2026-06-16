@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   DashboardSidebar,
@@ -12,7 +12,6 @@ import { ProfileSettings } from "./profile-settings";
 import type { SessionUser } from "@/lib/session";
 
 export type { DashboardSection };
-import { AgentGrid } from "@/components/agent-grid";
 import { CollectionCard } from "@/components/cards";
 import { StatCard } from "@/components/ui/stat-card";
 import { Button, ButtonLink } from "@/components/ui/button";
@@ -30,7 +29,6 @@ import {
   getCreatorStats,
   getAgentsByCreator,
   getInstalledAgents,
-  getFavoriteAgents,
   getCollectionsByCurator,
   collections,
   activityFeed,
@@ -722,16 +720,115 @@ function InstalledSection({
 // ---------------------------------------------------------------------------
 
 function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
-  const favorites = isSeedCreator ? getFavoriteAgents() : [];
+  const [skills, setSkills] = useState<
+    {
+      id: string;
+      name: string;
+      description: string;
+      tags: string[];
+      star_count: number;
+      export_count: number;
+      avg_rating: number;
+      rating_count: number;
+    }[]
+  >([]);
+  const [mcpServers, setMcpServers] = useState<
+    {
+      id: string;
+      name: string;
+      description: string;
+      tags: string[];
+      star_count: number;
+      export_count: number;
+    }[]
+  >([]);
+  const [loading, setLoading] = useState(true);
 
-  if (favorites.length === 0) {
+  // Fetch starred items from API
+  useEffect(() => {
+    async function load() {
+      try {
+        const { getAnonId } = await import("@/lib/anon-id");
+        const anonId = getAnonId();
+        const res = await fetch(`/api/skills/starred?anonId=${anonId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setSkills(data.skills ?? []);
+          setMcpServers(data.mcpServers ?? []);
+        }
+      } catch {
+        // Fail silently — show empty state
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  // Unstar handlers
+  const handleUnstarSkill = async (skillId: string) => {
+    const { getAnonId } = await import("@/lib/anon-id");
+    const anonId = getAnonId();
+    // Optimistic remove
+    setSkills((prev) => prev.filter((s) => s.id !== skillId));
+    try {
+      await fetch("/api/skills/star", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ skillId, anonId }),
+      });
+    } catch {
+      // Fail silently
+    }
+  };
+
+  const handleUnstarMcp = async (serverId: string) => {
+    const { getAnonId } = await import("@/lib/anon-id");
+    const anonId = getAnonId();
+    // Optimistic remove
+    setMcpServers((prev) => prev.filter((s) => s.id !== serverId));
+    try {
+      await fetch("/api/mcp/star", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ serverId, anonId }),
+      });
+    } catch {
+      // Fail silently
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="space-y-3">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="card animate-pulse p-4"
+          >
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-surface-3" />
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-1/3 rounded bg-surface-3" />
+                <div className="h-3 w-2/3 rounded bg-surface-3" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  const totalCount = skills.length + mcpServers.length;
+
+  if (totalCount === 0) {
     return (
       <EmptyState
         icon={<Star className="h-5 w-5" />}
         title="No favorites yet"
         description="Star packages from the marketplace to keep them here."
         action={
-          <ButtonLink href="/explore" variant="primary" size="md">
+          <ButtonLink href="/marketplace" variant="primary" size="md">
             Explore marketplace
           </ButtonLink>
         }
@@ -739,7 +836,121 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     );
   }
 
-  return <AgentGrid agents={favorites} columns={3} />;
+  return (
+    <div className="space-y-8">
+      {/* Starred Skills */}
+      {skills.length > 0 && (
+        <section>
+          <div className="mb-3 flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-warning" />
+            <h3 className="text-sm font-semibold text-content">
+              Starred Skills
+            </h3>
+            <span className="text-xs text-subtle">({skills.length})</span>
+          </div>
+          <div className="card divide-y divide-line">
+            {skills.map((skill) => (
+              <div
+                key={skill.id}
+                className="flex items-center gap-3 p-3 transition-colors hover:bg-surface-2"
+              >
+                <Link
+                  href={`/marketplace/${skill.id}`}
+                  className="group flex min-w-0 flex-1 items-center gap-3"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-brand-line bg-brand-dim text-brand-muted">
+                    <Sparkles className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium text-content group-hover:text-white">
+                      {skill.name}
+                    </span>
+                    <span className="block truncate text-xs text-subtle">
+                      {skill.description}
+                    </span>
+                  </div>
+                </Link>
+                <div className="hidden items-center gap-3 sm:flex">
+                  <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
+                    <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+                    {formatCompact(skill.star_count)}
+                  </span>
+                  <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
+                    <Download className="h-3.5 w-3.5" />
+                    {formatCompact(skill.export_count)}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleUnstarSkill(skill.id)}
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
+                  title="Remove from favorites"
+                >
+                  <Star className="h-4 w-4 fill-current" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Starred MCP Servers */}
+      {mcpServers.length > 0 && (
+        <section>
+          <div className="mb-3 flex items-center gap-2">
+            <Package className="h-4 w-4 text-info" />
+            <h3 className="text-sm font-semibold text-content">
+              Starred MCP Servers
+            </h3>
+            <span className="text-xs text-subtle">({mcpServers.length})</span>
+          </div>
+          <div className="card divide-y divide-line">
+            {mcpServers.map((server) => (
+              <div
+                key={server.id}
+                className="flex items-center gap-3 p-3 transition-colors hover:bg-surface-2"
+              >
+                <Link
+                  href={`/marketplace/mcp/${server.id}`}
+                  className="group flex min-w-0 flex-1 items-center gap-3"
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-info/30 bg-info-dim text-info">
+                    <Package className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium text-content group-hover:text-white">
+                      {server.name}
+                    </span>
+                    <span className="block truncate text-xs text-subtle">
+                      {server.description}
+                    </span>
+                  </div>
+                </Link>
+                <div className="hidden items-center gap-3 sm:flex">
+                  <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
+                    <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+                    {formatCompact(server.star_count)}
+                  </span>
+                  <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
+                    <Download className="h-3.5 w-3.5" />
+                    {formatCompact(server.export_count)}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleUnstarMcp(server.id)}
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
+                  title="Remove from favorites"
+                >
+                  <Star className="h-4 w-4 fill-current" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
 }
 
 // ---------------------------------------------------------------------------
