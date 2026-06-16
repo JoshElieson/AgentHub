@@ -3,8 +3,7 @@ import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
 import { isOfficial, type SkillRow, type McpServerRow } from "@/lib/marketplace-data";
 import { CardInstalledBadge } from "@/components/card-installed-badge";
-import { CATEGORY_LABELS, MODEL_LABELS } from "@/lib/taxonomy";
-import type { Category, SkillModel } from "@/lib/types";
+import { ClassificationBadges } from "@/components/classification-badges";
 import { BadgeCheck, FolderGit, Download, Star, Terminal } from "lucide-react";
 
 /** Blue verified checkmark shown on first-party / official packages. */
@@ -16,41 +15,6 @@ export function OfficialBadge({ className }: { className?: string }) {
         aria-label="Official package"
       />
     </span>
-  );
-}
-
-/**
- * Category + model classification chips. The category pill uses the brand
- * accent; each model gets a neutral pill (Universal is hidden to reduce noise
- * since it just means "model-agnostic").
- */
-export function ClassificationBadges({
-  category,
-  model,
-  className,
-}: {
-  category?: Category;
-  model?: SkillModel[];
-  className?: string;
-}) {
-  const models = (model ?? []).filter((m) => m !== "universal");
-  if (!category && models.length === 0) return null;
-  return (
-    <div className={cn("flex flex-wrap items-center gap-1.5", className)}>
-      {category && (
-        <span className="rounded-md border border-brand-line bg-brand-dim px-2 py-0.5 text-2xs font-medium text-brand-muted">
-          {CATEGORY_LABELS[category]}
-        </span>
-      )}
-      {models.map((m) => (
-        <span
-          key={m}
-          className="rounded-md border border-line bg-surface-2 px-2 py-0.5 text-2xs font-medium text-subtle"
-        >
-          {MODEL_LABELS[m]}
-        </span>
-      ))}
-    </div>
   );
 }
 

@@ -228,6 +228,22 @@ export const MODEL_LABELS: Record<SkillModel, string> = Object.fromEntries(
   MODELS.map((m) => [m.value, m.label])
 ) as Record<SkillModel, string>;
 
+/** Concrete providers (every model except the agnostic "universal" marker). */
+export const PROVIDER_MODELS: SkillModel[] = MODELS.map((m) => m.value).filter(
+  (m) => m !== "universal"
+);
+
+/**
+ * Resolve the concrete providers a package is compatible with. A `universal`
+ * package is model-agnostic, so it expands to every known provider. The result
+ * keeps the canonical `MODELS` order so logos render consistently.
+ */
+export function compatibleModels(model: SkillModel[] | null | undefined): SkillModel[] {
+  const list = model ?? [];
+  if (list.includes("universal")) return PROVIDER_MODELS;
+  return PROVIDER_MODELS.filter((p) => list.includes(p));
+}
+
 // ---------------------------------------------------------------------------
 // Licenses & pricing
 // ---------------------------------------------------------------------------

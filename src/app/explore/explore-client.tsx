@@ -13,7 +13,7 @@ import {
   McpServerCard,
   MarketplaceCardSkeleton,
 } from "@/components/marketplace-cards";
-import { CATEGORIES, MODELS } from "@/lib/taxonomy";
+import { CATEGORIES, MODELS, compatibleModels } from "@/lib/taxonomy";
 import type { Category, SkillModel } from "@/lib/types";
 import { cn, formatNumber, pluralize } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -236,8 +236,15 @@ export function ExploreClient() {
         if (!cat || !state.categories.includes(cat)) return false;
       }
       if (state.models.length) {
-        const models = item.data.model ?? [];
-        if (!models.some((m) => state.models.includes(m))) return false;
+        const raw = item.data.model ?? [];
+        const compat = compatibleModels(raw);
+        // Provider filters match a package that lists that provider OR is
+        // model-agnostic (universal expands to all providers, matching its
+        // logos); the "Universal" filter matches only agnostic packages.
+        const ok = state.models.some((sel) =>
+          sel === "universal" ? raw.includes("universal") : compat.includes(sel)
+        );
+        if (!ok) return false;
       }
       if (!matchesQuery(item, state.query)) return false;
       return true;
