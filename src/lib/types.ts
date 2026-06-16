@@ -40,7 +40,8 @@ export type Category =
   | "productivity"
   | "education"
   | "browser-automation"
-  | "integrations";
+  | "integrations"
+  | "marketing";
 
 export type License =
   | "MIT"

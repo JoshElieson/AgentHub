@@ -7,7 +7,6 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Explore", href: "/explore" },
       { label: "Collections", href: "/collections" },
-      { label: "Organizations", href: "/organizations" },
       { label: "Publish", href: "/publish" },
       { label: "Dashboard", href: "/dashboard" },
     ],
@@ -35,7 +34,7 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-line bg-surface/40">
-      <div className="mx-auto max-w-site px-4 py-12 sm:px-6">
+      <div className="mx-auto max-w-[1792px] px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xs">
             <Logo />

@@ -1,17 +1,22 @@
 "use client";
 
-import { searchAgents } from "@/lib/data";
-import { getCreator } from "@/lib/data";
+import { fetchSkills, type SkillRow } from "@/lib/marketplace-data";
 import { cn, formatCompact } from "@/lib/utils";
-import { Search, CornerDownLeft, Download } from "lucide-react";
+import { Search, CornerDownLeft, Download, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Avatar } from "./ui/avatar";
-import { TypeBadge } from "./ui/badge";
+
+// Load the skill catalogue once per page session and share it across every
+// SearchBar instance / keystroke.
+let skillsPromise: Promise<SkillRow[]> | null = null;
+function loadSkills(): Promise<SkillRow[]> {
+  if (!skillsPromise) skillsPromise = fetchSkills();
+  return skillsPromise;
+}
 
 export function SearchBar({
   variant = "nav",
-  placeholder = "Search agents, skills, MCP servers…",
+  placeholder = "Search skills, MCP servers…",
   autoFocus,
   className,
   defaultValue = "",
@@ -26,9 +31,32 @@ export function SearchBar({
   const [query, setQuery] = useState(defaultValue);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  const [skills, setSkills] = useState<SkillRow[]>([]);
   const ref = useRef<HTMLDivElement>(null);
 
-  const results = useMemo(() => searchAgents(query, 6), [query]);
+  // Lazy-load the catalogue the first time the bar mounts.
+  useEffect(() => {
+    let cancelled = false;
+    loadSkills().then((s) => {
+      if (!cancelled) setSkills(s);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return skills
+      .filter((s) => {
+        const haystack = [s.name, s.description, ...(s.tags ?? [])]
+          .join(" ")
+          .toLowerCase();
+        return q.split(/\s+/).every((term) => haystack.includes(term));
+      })
+      .slice(0, 6);
+  }, [query, skills]);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -40,9 +68,9 @@ export function SearchBar({
 
   useEffect(() => setActive(0), [query]);
 
-  const go = (slug: string) => {
+  const go = (id: string) => {
     setOpen(false);
-    router.push(`/agents/${slug}`);
+    router.push(`/marketplace/${id}`);
   };
   const submit = () => {
     setOpen(false);
@@ -70,7 +98,7 @@ export function SearchBar({
           onFocus={() => query && setOpen(true)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              if (open && results[active]) go(results[active].slug);
+              if (open && results[active]) go(results[active].id);
               else submit();
             } else if (e.key === "ArrowDown") {
               e.preventDefault();
@@ -104,49 +132,45 @@ export function SearchBar({
         <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-md border border-line bg-overlay shadow-overlay animate-scale-in">
           {results.length > 0 ? (
             <ul className="max-h-[60vh] overflow-y-auto p-1.5">
-              {results.map((a, i) => {
-                const creator = getCreator(a.creatorUsername);
-                return (
-                  <li key={a.slug}>
-                    <button
-                      onMouseEnter={() => setActive(i)}
-                      onClick={() => go(a.slug)}
-                      className={cn(
-                        "flex w-full items-center gap-3 rounded px-2.5 py-2 text-left transition-colors",
-                        i === active ? "bg-surface-2" : "hover:bg-surface-2"
-                      )}
-                    >
-                      <Avatar name={a.name} color={creator?.avatarColor} size="sm" />
-                      <span className="min-w-0 flex-1">
-                        <span className="flex items-center gap-1.5">
-                          <span className="truncate text-sm font-medium text-content">
-                            {a.name}
-                          </span>
-                          <TypeBadge type={a.type} />
-                        </span>
-                        <span className="block truncate text-xs text-subtle">
-                          {a.shortDescription}
-                        </span>
+              {results.map((s, i) => (
+                <li key={s.id}>
+                  <button
+                    onMouseEnter={() => setActive(i)}
+                    onClick={() => go(s.id)}
+                    className={cn(
+                      "flex w-full items-center gap-3 rounded px-2.5 py-2 text-left transition-colors",
+                      i === active ? "bg-surface-2" : "hover:bg-surface-2"
+                    )}
+                  >
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-line bg-surface-2 text-brand-muted">
+                      <Sparkles className="h-4 w-4" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate font-mono text-sm font-medium text-content">
+                        {s.name}
                       </span>
-                      <span className="flex shrink-0 items-center gap-1 text-2xs tabular-nums text-subtle">
-                        <Download className="h-3 w-3" />
-                        {formatCompact(a.installCount)}
+                      <span className="block truncate text-xs text-subtle">
+                        {s.description}
                       </span>
-                    </button>
-                  </li>
-                );
-              })}
+                    </span>
+                    <span className="flex shrink-0 items-center gap-1 text-2xs tabular-nums text-subtle">
+                      <Download className="h-3 w-3" />
+                      {formatCompact(s.export_count)}
+                    </span>
+                  </button>
+                </li>
+              ))}
             </ul>
           ) : (
             <div className="px-4 py-6 text-center text-sm text-subtle">
-              No packages match “{query}”.
+              No skills match “{query}”.
             </div>
           )}
           <button
             onClick={submit}
             className="flex w-full items-center justify-between border-t border-line px-4 py-2.5 text-xs font-medium text-muted hover:bg-surface-2 hover:text-content"
           >
-            <span>Search all packages for “{query}”</span>
+            <span>Search the marketplace for “{query}”</span>
             <CornerDownLeft className="h-3.5 w-3.5" />
           </button>
         </div>

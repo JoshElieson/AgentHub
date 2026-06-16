@@ -1687,6 +1687,106 @@ npx agentdock install test-generator-agent --target claude-code
     createdAt: "2025-10-28T00:00:00.000Z",
     updatedAt: "2026-05-30T00:00:00.000Z",
   },
+  // Marketing ----------------------------------------------------------------
+  {
+    slug: "copy-sharpener",
+    name: "Copy Sharpener",
+    packageId: "copy-sharpener",
+    shortDescription:
+      "Rewrites marketing copy to be clearer, punchier, and conversion-ready.",
+    longDescription:
+      "Copy Sharpener reviews your headlines, landing page sections, email subject lines, and ad copy against proven conversion principles. It flags weak verbs, buried benefits, and vague CTAs — and rewrites each with a concrete alternative. Works across B2B and B2C tones.",
+    type: "agent",
+    category: "marketing",
+    platforms: ["claude-code", "claude-desktop", "cursor"],
+    permissions: { ...NO_PERMS, readFiles: true },
+    license: "MIT",
+    pricing: "open-source",
+    creatorUsername: "lina-code",
+    tags: ["marketing", "copywriting", "conversion", "landing-page", "email", "ads"],
+    sourceRepo: "https://github.com/lina-vogel/copy-sharpener",
+    installCount: 28400,
+    weeklyInstalls: 2100,
+    stars: 1340,
+    ratingAvg: 4.7,
+    ratingCount: 98,
+    isVerified: true,
+    isSecurityReviewed: false,
+    isFeatured: false,
+    exampleUsage:
+      "# Sharpen your landing page headline\n\n```bash\nnpx agentdock install copy-sharpener --target claude-code\n```\n\nThen:\n\n> Rewrite this headline for higher clarity and conversion:\n> \"We help teams do more with less.\"\n\nCopy Sharpener returns the original annotated with weaknesses plus three alternatives ranked by expected clarity.",
+    readme: `# Copy Sharpener
+
+**Read-only** marketing copy reviewer and rewriter. Paste in any copy — headline, email, ad, landing section — and get specific, conversion-focused rewrites.
+
+## What it improves
+
+- **Headlines** — buries the benefit? too clever? it rewrites for immediate clarity
+- **CTAs** — vague "Learn more" buttons become action-specific
+- **Email subjects** — flags curiosity gaps, length issues, and spam-trigger words
+- **Feature lists** — translates features into buyer outcomes
+
+## Install
+
+\`\`\`bash
+npx agentdock install copy-sharpener --target claude-code
+\`\`\`
+`,
+    versions: [
+      {
+        version: "1.2.0",
+        releasedAt: "2026-05-10T00:00:00.000Z",
+        downloads: 12800,
+        size: "28 KB",
+        changelog: [
+          "Add B2B tone profile",
+          "Email subject line scoring",
+          "Claude Desktop support",
+        ],
+      },
+      {
+        version: "1.0.0",
+        releasedAt: "2026-02-14T00:00:00.000Z",
+        downloads: 15600,
+        size: "24 KB",
+        changelog: ["Initial release — headline and landing copy rewrites"],
+      },
+    ],
+    reviews: [
+      {
+        author: "growth_hacker",
+        rating: 5,
+        title: "Cut my rewrite cycles in half",
+        body: "Used to go back and forth with a copywriter for days. Now I paste in a draft and get three strong alternatives in seconds. Conversion rate on our hero section went up 18%.",
+        createdAt: "2026-05-22T00:00:00.000Z",
+        helpful: 34,
+        version: "1.2.0",
+      },
+      {
+        author: "startup_founder",
+        rating: 4,
+        title: "Great for first drafts",
+        body: "Excellent at stripping filler words and finding the buried lede. Occasionally over-punchy for enterprise audiences but easy to dial back.",
+        createdAt: "2026-04-15T00:00:00.000Z",
+        helpful: 21,
+        version: "1.0.0",
+      },
+    ],
+    issues: [],
+    discussions: [
+      {
+        title: "B2C vs B2B tone guide",
+        category: "q-and-a",
+        author: "growth_hacker",
+        createdAt: "2026-05-18T00:00:00.000Z",
+        replies: 7,
+        upvotes: 19,
+        excerpt: "There's a tone_profile option in the config — set it to 'b2b' for more formal rewrites. Details in the thread.",
+      },
+    ],
+    createdAt: "2026-02-14T00:00:00.000Z",
+    updatedAt: "2026-05-10T00:00:00.000Z",
+  },
 ];
 
 export const agents: AgentPackage[] = seeds.map(materialize);

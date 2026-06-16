@@ -199,6 +199,7 @@ export const CATEGORIES: {
   { value: "education", label: "Education", description: "Tutoring, explanations, and learning." },
   { value: "browser-automation", label: "Browser Automation", description: "Driving browsers, scraping, and end-to-end flows." },
   { value: "integrations", label: "Integrations", description: "Connectors for APIs, databases, and external services." },
+  { value: "marketing", label: "Marketing", description: "Copywriting, campaigns, SEO, and growth tools." },
 ];
 
 export const CATEGORY_LABELS: Record<Category, string> = Object.fromEntries(

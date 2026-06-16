@@ -4,7 +4,7 @@ import { getAgentsByCreator } from "@/lib/data";
 import { cn, formatCompact } from "@/lib/utils";
 import Link from "next/link";
 import { Avatar } from "./ui/avatar";
-import { Badge, VerifiedBadge } from "./ui/badge";
+import { VerifiedBadge } from "./ui/badge";
 import { Download, Package, Users } from "lucide-react";
 
 // --- Collection -------------------------------------------------------------
@@ -23,10 +23,8 @@ export function CollectionCard({ collection }: { collection: Collection }) {
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/75 to-surface/35" />
         <div className="absolute inset-0 bg-grid-faint bg-grid opacity-50" />
         {collection.isOfficial && (
-          <span className="absolute right-3 top-3">
-            <Badge variant="default" className="border-line bg-canvas/80 text-content">
-              Official
-            </Badge>
+          <span className="absolute right-3 top-3" title="Official collection">
+            <VerifiedBadge label="Official collection" />
           </span>
         )}
       </div>

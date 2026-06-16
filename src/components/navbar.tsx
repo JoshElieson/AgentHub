@@ -25,7 +25,6 @@ const NAV_LINKS = [
   { href: "/explore", label: "Explore" },
   { href: "/marketplace", label: "Marketplace" },
   { href: "/collections", label: "Collections" },
-  { href: "/organizations", label: "Organizations" },
   { href: "/docs", label: "Docs" },
 ];
 
@@ -40,7 +39,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line glass">
-      <div className="mx-auto flex h-14 max-w-site items-center gap-3 px-2 sm:px-3">
+      <div className="mx-auto flex h-14 w-full max-w-[1792px] items-center gap-3 px-4 sm:px-6">
         <Logo />
 
         {/* Desktop nav */}

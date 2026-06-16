@@ -6,7 +6,7 @@ import { ExploreClient } from "./explore-client";
 export const metadata: Metadata = {
   title: "Explore",
   description:
-    "Browse the AgentDock marketplace — agents, skills, MCP servers, workflows, and prompt packs. Filter by type, platform, category, license, and pricing.",
+    "Browse the AgentDock marketplace — Skills and MCP servers. Search and filter by type and tags.",
 };
 
 export default function ExplorePage() {

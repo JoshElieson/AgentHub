@@ -4,8 +4,7 @@ import { AppShell, SectionHeader } from "@/components/app-shell";
 import { CollectionCard } from "@/components/cards";
 import { Badge } from "@/components/ui/badge";
 import { collections } from "@/lib/data";
-import { formatCompact, pluralize } from "@/lib/utils";
-import { ArrowRight, Layers, Users } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Collections — AgentDock",
@@ -16,12 +15,11 @@ export const metadata: Metadata = {
 export default function CollectionsPage() {
   const official = collections.filter((c) => c.isOfficial);
   const community = collections.filter((c) => !c.isOfficial);
-  const totalFollowers = collections.reduce((s, c) => s + c.followers, 0);
 
   return (
     <AppShell>
       {/* Page header */}
-      <section className="border-b border-line py-10 sm:py-12">
+      <section className="border-b border-line pt-10 pb-7 sm:pt-12 sm:pb-8">
         <div className="flex items-center gap-2 text-2xs font-medium uppercase tracking-wide text-brand-muted">
           <Layers className="h-3.5 w-3.5" />
           Curated
@@ -31,16 +29,6 @@ export default function CollectionsPage() {
             title="Collections"
             description="Curated stacks of agents that work well together."
           />
-        </div>
-        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-subtle">
-          <span className="flex items-center gap-1.5">
-            <Layers className="h-3.5 w-3.5" />
-            {collections.length} {pluralize(collections.length, "collection")}
-          </span>
-          <span className="flex items-center gap-1.5 tabular-nums">
-            <Users className="h-3.5 w-3.5" />
-            {formatCompact(totalFollowers)} followers
-          </span>
         </div>
       </section>
 

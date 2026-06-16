@@ -136,12 +136,18 @@ const config: Config = {
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
+        // Terminal-style caret blink — steady on/off, no fade in between.
+        "caret-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.15s ease-out both",
         "fade-in-up": "fade-in-up 0.2s ease-out both",
         "scale-in": "scale-in 0.12s ease-out both",
         "slide-up": "slide-up 0.2s cubic-bezier(0.16,1,0.3,1) both",
+        "caret-blink": "caret-blink 1.05s step-end infinite",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",

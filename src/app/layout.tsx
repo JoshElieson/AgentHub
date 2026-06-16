@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Raleway } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 
@@ -13,6 +13,15 @@ const mono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
+});
+
+// Thin geometric display face for the Impeccable UI spotlight — the closest
+// web-hosted match to Avenir Next / SF Pro Display Ultralight.
+const display = Raleway({
+  subsets: ["latin"],
+  weight: ["200", "300"],
+  display: "swap",
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -54,7 +63,10 @@ export default function RootLayout({
   // rendering. The client session is fetched lazily by <SessionProvider>
   // inside <Providers>; server pages read it via getSessionUser().
   return (
-    <html lang="en" className={`dark ${sans.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`dark ${sans.variable} ${mono.variable} ${display.variable}`}
+    >
       <body>
         <Providers>{children}</Providers>
       </body>
