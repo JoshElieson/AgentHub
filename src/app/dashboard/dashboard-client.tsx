@@ -20,7 +20,6 @@ import { RatingStars } from "@/components/ui/rating-stars";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
   Badge,
-  RiskBadge,
   TypeBadge,
   VerifiedBadge,
 } from "@/components/ui/badge";
@@ -28,14 +27,12 @@ import {
   getCreator,
   getCreatorStats,
   getAgentsByCreator,
-  getInstalledAgents,
   getCollectionsByCurator,
   collections,
   activityFeed,
   CURRENT_USERNAME,
   type ActivityItem,
 } from "@/lib/data";
-import { aggregateRisk, PLATFORM_META, RISK_LABELS } from "@/lib/taxonomy";
 import type { AgentPackage } from "@/lib/types";
 import { cn, formatCompact, formatNumber, timeAgo } from "@/lib/utils";
 import {
@@ -48,10 +45,10 @@ import {
   FolderHeart,
   GitBranch,
   Github,
+  Bot,
+  LayoutList,
   Package,
   RotateCw,
-  Settings2,
-  Sparkles,
   Star,
   Trash2,
   UserPlus,
@@ -235,12 +232,7 @@ export function DashboardClient({
                   creatorColor={creatorColor}
                 />
               )}
-              {active === "installed" && (
-                <InstalledSection
-                  isSeedCreator={isSeedCreator}
-                  creatorColor={creatorColor}
-                />
-              )}
+              {active === "installed" && <InstalledSection />}
               {active === "favorites" && (
                 <FavoritesSection isSeedCreator={isSeedCreator} />
               )}
@@ -279,7 +271,9 @@ function OverviewSection({
   creatorColor: string;
 }) {
   const stats = getCreatorStats(username);
-  const installed = isSeedCreator ? getInstalledAgents() : [];
+  const { skills: installedSkills, mcpServers: installedMcps } =
+    useInstalledItems();
+  const installedCount = installedSkills.length + installedMcps.length;
   const published = getAgentsByCreator(username);
   const activity = isSeedCreator ? activityFeed : [];
 
@@ -289,9 +283,9 @@ function OverviewSection({
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard
           label="Installed"
-          value={installed.length}
+          value={installedCount}
           icon={<Download className="h-4 w-4" />}
-          hint="Across your AI tools"
+          hint="Skills & MCP servers"
         />
         <StatCard
           label="Published"
@@ -369,15 +363,8 @@ function OverviewSection({
         </div>
       </section>
 
-      {/* Installed preview */}
-      <PreviewSection
-        title="Installed"
-        icon={<Download className="h-4 w-4 text-info" />}
-        href="installed"
-        empty="You haven't installed any agents yet."
-        agents={installed.map((x) => x.agent)}
-        color={creatorColor}
-      />
+      {/* Installed preview (real per-user installs) */}
+      <InstalledPreview skills={installedSkills} mcpServers={installedMcps} />
 
       {/* Published preview */}
       <PreviewSection
@@ -450,6 +437,86 @@ function AgentRow({ agent, color }: { agent: AgentPackage; color: string }) {
       </span>
       <ArrowRight className="h-4 w-4 shrink-0 text-faint" />
     </Link>
+  );
+}
+
+/** Overview glance at the user's most-recent real installs (skills + MCP). */
+function InstalledPreview({
+  skills,
+  mcpServers,
+}: {
+  skills: InstalledSkill[];
+  mcpServers: InstalledMcp[];
+}) {
+  const items = [
+    ...skills.map((s) => ({
+      kind: "skill" as const,
+      id: s.id,
+      name: s.name,
+      description: s.description,
+      installedAt: s.installed_at,
+      href: `/marketplace/${s.id}`,
+    })),
+    ...mcpServers.map((s) => ({
+      kind: "mcp" as const,
+      id: s.id,
+      name: s.name,
+      description: s.description,
+      installedAt: s.installed_at,
+      href: `/marketplace/mcp/${s.id}`,
+    })),
+  ]
+    .sort(
+      (a, b) =>
+        new Date(b.installedAt ?? 0).getTime() -
+        new Date(a.installedAt ?? 0).getTime()
+    )
+    .slice(0, 4);
+
+  return (
+    <section>
+      <div className="mb-3 flex items-center gap-2">
+        <Download className="h-4 w-4 text-success" />
+        <h3 className="text-sm font-semibold text-content">Installed</h3>
+        <span className="text-xs text-subtle">
+          ({skills.length + mcpServers.length})
+        </span>
+      </div>
+      {items.length === 0 ? (
+        <div className="card px-4 py-6 text-center text-sm text-subtle">
+          You haven&apos;t installed any skills or MCP servers yet.
+        </div>
+      ) : (
+        <div className="card divide-y divide-line">
+          {items.map((item) => (
+            <Link
+              key={`${item.kind}-${item.id}`}
+              href={item.href}
+              className="flex items-center gap-3 p-3 transition-colors hover:bg-surface-2"
+            >
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-success/30 bg-success-dim text-success">
+                {item.kind === "skill" ? (
+                  <Bot className="h-4 w-4" />
+                ) : (
+                  <Package className="h-4 w-4" />
+                )}
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="block truncate text-sm font-medium text-content">
+                  {item.name}
+                </span>
+                <span className="block truncate text-xs text-subtle">
+                  {item.installedAt
+                    ? `Installed ${timeAgo(item.installedAt)}`
+                    : item.description}
+                </span>
+              </div>
+              <ArrowRight className="h-4 w-4 shrink-0 text-faint" />
+            </Link>
+          ))}
+        </div>
+      )}
+    </section>
   );
 }
 
@@ -582,24 +649,130 @@ function MyAgentsSection({
 }
 
 // ---------------------------------------------------------------------------
-// Installed
+// Installed (real per-user data from /api/skills/installed)
 // ---------------------------------------------------------------------------
 
-function InstalledSection({
-  isSeedCreator,
-  creatorColor,
-}: {
-  isSeedCreator: boolean;
-  creatorColor: string;
-}) {
-  const installed = isSeedCreator ? getInstalledAgents() : [];
+interface InstalledSkill {
+  id: string;
+  name: string;
+  description: string;
+  star_count: number;
+  export_count: number;
+  install_target: string | null;
+  installed_at: string | null;
+}
+interface InstalledMcp {
+  id: string;
+  name: string;
+  description: string;
+  star_count: number;
+  export_count: number;
+  install_target: string | null;
+  installed_at: string | null;
+}
 
-  if (installed.length === 0) {
+const TARGET_LABEL: Record<string, string> = {
+  claude: "Claude Code",
+  antigravity: "Antigravity",
+  config: "Config copied",
+  unknown: "Workspace",
+};
+
+/**
+ * Loads the skills + MCP servers the current anonymous user has installed.
+ * Shared by the Installed tab and the Overview glance.
+ */
+function useInstalledItems() {
+  const [skills, setSkills] = useState<InstalledSkill[]>([]);
+  const [mcpServers, setMcpServers] = useState<InstalledMcp[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { getAnonId } = await import("@/lib/anon-id");
+        const anonId = getAnonId();
+        const res = await fetch(`/api/skills/installed?anonId=${anonId}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (cancelled) return;
+          setSkills(data.skills ?? []);
+          setMcpServers(data.mcpServers ?? []);
+        }
+      } catch {
+        // Fail silently — show empty state.
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const removeSkill = (id: string) =>
+    setSkills((prev) => prev.filter((s) => s.id !== id));
+  const removeMcp = (id: string) =>
+    setMcpServers((prev) => prev.filter((s) => s.id !== id));
+
+  return { skills, mcpServers, loading, removeSkill, removeMcp };
+}
+
+function InstalledSection() {
+  const { skills, mcpServers, loading, removeSkill, removeMcp } =
+    useInstalledItems();
+
+  const handleUninstallSkill = async (id: string) => {
+    removeSkill(id); // optimistic
+    try {
+      const { getAnonId } = await import("@/lib/anon-id");
+      const anonId = getAnonId();
+      await fetch(`/api/skills/install?skillId=${id}&anonId=${anonId}`, {
+        method: "DELETE",
+      });
+    } catch {
+      // Fail silently
+    }
+  };
+
+  const handleUninstallMcp = async (id: string) => {
+    removeMcp(id); // optimistic
+    try {
+      const { getAnonId } = await import("@/lib/anon-id");
+      const anonId = getAnonId();
+      await fetch(`/api/mcp/install?serverId=${id}&anonId=${anonId}`, {
+        method: "DELETE",
+      });
+    } catch {
+      // Fail silently
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        {[1, 2].map((i) => (
+          <div key={i} className="card animate-pulse p-4">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-surface-3" />
+              <div className="flex-1 space-y-2">
+                <div className="h-4 w-1/3 rounded bg-surface-3" />
+                <div className="h-3 w-2/3 rounded bg-surface-3" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (skills.length + mcpServers.length === 0) {
     return (
       <EmptyState
         icon={<Download className="h-5 w-5" />}
         title="Nothing installed yet"
-        description="Browse the marketplace and install your first agent."
+        description="Install a skill or MCP server from the marketplace and it'll show up here."
         action={
           <ButtonLink href="/explore" variant="primary" size="md">
             Explore marketplace
@@ -610,107 +783,128 @@ function InstalledSection({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-      {installed.map(({ install, agent }) => {
-        const risk = aggregateRisk(agent.permissions);
-        const platform = PLATFORM_META[install.target];
-        return (
-          <div key={install.slug} className="card flex flex-col p-4">
-            {/* Header */}
-            <div className="flex items-start justify-between gap-3">
-              <Link
-                href={`/agents/${agent.slug}`}
-                className="group flex min-w-0 items-start gap-3"
-              >
-                <Avatar
-                  name={agent.name}
-                  color={creatorColor}
-                  size="lg"
-                />
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <h3 className="truncate text-sm font-semibold text-content group-hover:text-white">
-                      {agent.name}
-                    </h3>
-                    {agent.isVerified && <VerifiedBadge />}
-                  </div>
-                  <span className="truncate font-mono text-xs text-subtle">
-                    {agent.packageId}
-                  </span>
-                </div>
-              </Link>
-              <TypeBadge type={agent.type} className="shrink-0" />
-            </div>
-
-            {/* Install meta */}
-            <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg border border-line bg-surface-2/50 p-3 text-xs">
-              <div>
-                <span className="block text-faint">Version</span>
-                <span className="mt-0.5 flex items-center gap-1.5 font-mono text-content">
-                  v{install.installedVersion}
-                  {install.hasUpdate ? (
-                    <Badge variant="warning">
-                      v{agent.version} available
-                    </Badge>
-                  ) : (
-                    <Badge variant="success">Latest</Badge>
-                  )}
-                </span>
-              </div>
-              <div>
-                <span className="block text-faint">Target</span>
-                <span className="mt-0.5 flex items-center gap-1.5 text-content">
-                  <span className="grid h-4 w-4 place-items-center rounded bg-overlay font-mono text-[9px] font-semibold text-content/80">
-                    {platform.glyph}
-                  </span>
-                  {platform.label}
-                </span>
-              </div>
-              <div>
-                <span className="block text-faint">Permissions</span>
-                <span className="mt-1 block">
-                  <RiskBadge risk={risk} />
-                </span>
-              </div>
-              <div>
-                <span className="block text-faint">Installed</span>
-                <span className="mt-0.5 block text-content">
-                  {timeAgo(install.installedAt)}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex-1" />
-
-            {/* Actions */}
-            <div className="mt-3 flex items-center gap-2">
-              {install.hasUpdate ? (
-                <Button variant="primary" size="sm" className="flex-1">
-                  <ArrowUpCircle className="h-3.5 w-3.5" />
-                  Update
-                </Button>
-              ) : (
-                <Button
-                  variant="subtle"
-                  size="sm"
-                  className="flex-1 cursor-default"
-                  disabled
-                >
-                  <CheckCircle2 className="h-3.5 w-3.5" />
-                  Up to date
-                </Button>
-              )}
-              <Button variant="outline" size="sm">
-                <Settings2 className="h-3.5 w-3.5" />
-                Configure
-              </Button>
-              <Button variant="danger" size="icon" title="Uninstall">
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </div>
+    <div className="space-y-8">
+      {skills.length > 0 && (
+        <section>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {skills.map((skill) => (
+              <InstalledCard
+                key={skill.id}
+                href={`/marketplace/${skill.id}`}
+                icon={<Bot className="h-4 w-4" />}
+                iconClass="border-success/30 bg-success-dim text-success"
+                name={skill.name}
+                description={skill.description}
+                target={skill.install_target}
+                installedAt={skill.installed_at}
+                onUninstall={() => handleUninstallSkill(skill.id)}
+              />
+            ))}
           </div>
-        );
-      })}
+        </section>
+      )}
+
+      {mcpServers.length > 0 && (
+        <section>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {mcpServers.map((server) => (
+              <InstalledCard
+                key={server.id}
+                href={`/marketplace/mcp/${server.id}`}
+                icon={<Package className="h-4 w-4" />}
+                iconClass="border-info/30 bg-info-dim text-info"
+                name={server.name}
+                description={server.description}
+                target={server.install_target}
+                installedAt={server.installed_at}
+                onUninstall={() => handleUninstallMcp(server.id)}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}
+
+function InstalledCard({
+  href,
+  icon,
+  iconClass,
+  name,
+  description,
+  target,
+  installedAt,
+  onUninstall,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  iconClass: string;
+  name: string;
+  description: string;
+  target: string | null;
+  installedAt: string | null;
+  onUninstall: () => void;
+}) {
+  return (
+    <div className="card flex flex-col p-4">
+      <div className="flex items-start gap-3">
+        <Link href={href} className="group flex min-w-0 flex-1 items-start gap-3">
+          <span
+            className={cn(
+              "grid h-10 w-10 shrink-0 place-items-center rounded-lg border",
+              iconClass
+            )}
+          >
+            {icon}
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5">
+              <h3 className="truncate text-sm font-semibold text-content group-hover:text-white">
+                {name}
+              </h3>
+              <Badge variant="success" className="shrink-0">
+                Installed
+              </Badge>
+            </div>
+            <span className="mt-0.5 block truncate text-xs text-subtle">
+              {description}
+            </span>
+          </div>
+        </Link>
+      </div>
+
+      <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg border border-line bg-surface-2/50 p-3 text-xs">
+        <div>
+          <span className="block text-faint">Target</span>
+          <span className="mt-0.5 block text-content">
+            {TARGET_LABEL[target ?? "unknown"] ?? "Workspace"}
+          </span>
+        </div>
+        <div>
+          <span className="block text-faint">Installed</span>
+          <span className="mt-0.5 block text-content">
+            {installedAt ? timeAgo(installedAt) : "—"}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex-1" />
+
+      <div className="mt-3 flex items-center gap-2">
+        <ButtonLink href={href} variant="outline" size="sm" className="flex-1">
+          <CheckCircle2 className="h-3.5 w-3.5" />
+          Re-install / view
+        </ButtonLink>
+        <Button
+          variant="danger"
+          size="icon"
+          title="Remove from installed"
+          onClick={onUninstall}
+        >
+          <Trash2 className="h-4 w-4" />
+        </Button>
+      </div>
     </div>
   );
 }
@@ -828,7 +1022,7 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
         title="No favorites yet"
         description="Star packages from the marketplace to keep them here."
         action={
-          <ButtonLink href="/marketplace" variant="primary" size="md">
+          <ButtonLink href="/explore" variant="primary" size="md">
             Explore marketplace
           </ButtonLink>
         }
@@ -838,16 +1032,8 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
 
   return (
     <div className="space-y-8">
-      {/* Starred Skills */}
       {skills.length > 0 && (
         <section>
-          <div className="mb-3 flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-warning" />
-            <h3 className="text-sm font-semibold text-content">
-              Starred Skills
-            </h3>
-            <span className="text-xs text-subtle">({skills.length})</span>
-          </div>
           <div className="card divide-y divide-line">
             {skills.map((skill) => (
               <div
@@ -859,7 +1045,7 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                   className="group flex min-w-0 flex-1 items-center gap-3"
                 >
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-brand-line bg-brand-dim text-brand-muted">
-                    <Sparkles className="h-4 w-4" />
+                    <Bot className="h-4 w-4" />
                   </span>
                   <div className="min-w-0 flex-1">
                     <span className="block truncate text-sm font-medium text-content group-hover:text-white">
@@ -897,13 +1083,6 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
       {/* Starred MCP Servers */}
       {mcpServers.length > 0 && (
         <section>
-          <div className="mb-3 flex items-center gap-2">
-            <Package className="h-4 w-4 text-info" />
-            <h3 className="text-sm font-semibold text-content">
-              Starred MCP Servers
-            </h3>
-            <span className="text-xs text-subtle">({mcpServers.length})</span>
-          </div>
           <div className="card divide-y divide-line">
             {mcpServers.map((server) => (
               <div
@@ -992,7 +1171,7 @@ function CollectionsSection({
       <section>
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-brand-muted" />
+            <LayoutList className="h-4 w-4 text-brand-muted" />
             <h3 className="text-sm font-semibold text-content">Curated by you</h3>
             <span className="text-xs text-subtle">({curated.length})</span>
           </div>

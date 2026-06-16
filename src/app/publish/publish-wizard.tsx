@@ -49,7 +49,9 @@ import {
   FileText,
   ShieldCheck,
   Tag as TagIcon,
-  Sparkles,
+  Eye,
+  Rocket,
+  CheckCircle2,
   PartyPopper,
   ExternalLink,
   Download,
@@ -124,7 +126,7 @@ const STEPS: {
   { n: 2, label: "Source", hint: "Upload or import", icon: <UploadCloud className="h-4 w-4" /> },
   { n: 3, label: "Metadata", hint: "Name, tags, platforms", icon: <FileText className="h-4 w-4" /> },
   { n: 4, label: "Permissions", hint: "Declare access scope", icon: <Shield className="h-4 w-4" /> },
-  { n: 5, label: "Preview", hint: "Review & publish", icon: <Sparkles className="h-4 w-4" /> },
+  { n: 5, label: "Preview", hint: "Review & publish", icon: <Eye className="h-4 w-4" /> },
 ];
 
 const SOURCE_OPTIONS: {
@@ -354,7 +356,7 @@ export function PublishWizard() {
                     size="lg"
                     onClick={() => setPublished(true)}
                   >
-                    <Sparkles className="h-4 w-4" />
+                    <Rocket className="h-4 w-4" />
                     Publish package
                   </Button>
                 )}
@@ -1312,7 +1314,7 @@ function SuccessPanel({
             body: "Rich docs and examples convert browsers into installs.",
           },
           {
-            icon: <Sparkles className="h-4 w-4" />,
+            icon: <CheckCircle2 className="h-4 w-4" />,
             title: "Cut a stable release",
             body: "Tag v1.0.0 once your package is production-ready.",
           },

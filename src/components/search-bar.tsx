@@ -2,7 +2,7 @@
 
 import { fetchSkills, type SkillRow } from "@/lib/marketplace-data";
 import { cn, formatCompact } from "@/lib/utils";
-import { Search, CornerDownLeft, Download, Sparkles } from "lucide-react";
+import { Search, CornerDownLeft, Download, Bot } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -143,7 +143,7 @@ export function SearchBar({
                     )}
                   >
                     <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md border border-line bg-surface-2 text-brand-muted">
-                      <Sparkles className="h-4 w-4" />
+                      <Bot className="h-4 w-4" />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block truncate font-mono text-sm font-medium text-content">

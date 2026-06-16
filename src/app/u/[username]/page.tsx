@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import { FollowButton } from "./follow-button";
 import { ActivityTimeline } from "./activity-timeline";
+import { InstalledCountValue } from "./installed-count";
 
 interface PageProps {
   params: Promise<{ username: string }>;
@@ -107,11 +108,21 @@ export default async function CreatorProfilePage({ params }: PageProps) {
     );
 
   const statRow = [
-    {
-      label: "Installs",
-      value: formatCompact(stats.totalInstalls),
-      icon: <Download className="h-4 w-4" />,
-    },
+    // On your own profile, "Installed" reflects the packages you've actually
+    // installed (real per-user tracking). For visitors we keep the creator's
+    // published-install popularity, which is the meaningful public number.
+    isOwner
+      ? {
+          label: "Installed",
+          value: "—",
+          icon: <Download className="h-4 w-4" />,
+          ownerInstalled: true,
+        }
+      : {
+          label: "Installs",
+          value: formatCompact(stats.totalInstalls),
+          icon: <Download className="h-4 w-4" />,
+        },
     {
       label: "Packages",
       value: formatCompact(stats.totalAgents),
@@ -242,7 +253,12 @@ function ProfileHeader({
   canFollow,
 }: {
   creator: PublicProfile;
-  statRow: { label: string; value: string; icon: React.ReactNode }[];
+  statRow: {
+    label: string;
+    value: string;
+    icon: React.ReactNode;
+    ownerInstalled?: boolean;
+  }[];
   totalStars: number;
   avgRating: number;
   isOwner: boolean;
@@ -309,6 +325,28 @@ function ProfileHeader({
               Joined {formatDate(creator.joinedAt)}
             </span>
           </div>
+
+          {/* Follower / following counts — click through to the lists. */}
+          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm">
+            <Link
+              href={`/u/${creator.username}/followers`}
+              className="group inline-flex items-baseline gap-1.5 text-subtle transition-colors hover:text-content"
+            >
+              <span className="font-semibold tabular-nums text-content">
+                {formatCompact(creator.followers)}
+              </span>
+              <span className="group-hover:underline">Followers</span>
+            </Link>
+            <Link
+              href={`/u/${creator.username}/following`}
+              className="group inline-flex items-baseline gap-1.5 text-subtle transition-colors hover:text-content"
+            >
+              <span className="font-semibold tabular-nums text-content">
+                {formatCompact(creator.following)}
+              </span>
+              <span className="group-hover:underline">Following</span>
+            </Link>
+          </div>
         </div>
 
         {/* Actions */}
@@ -326,7 +364,6 @@ function ProfileHeader({
           ) : (
             <FollowButton
               username={creator.username}
-              followers={creator.followers}
               initialFollowing={following}
               canFollow={canFollow}
             />
@@ -355,7 +392,7 @@ function ProfileHeader({
             </div>
             <div className="mt-2 flex items-baseline gap-2">
               <span className="text-2xl font-semibold tracking-tight text-content tabular-nums">
-                {s.value}
+                {s.ownerInstalled ? <InstalledCountValue /> : s.value}
               </span>
               {s.label === "Avg rating" && avgRating > 0 && (
                 <RatingStars rating={avgRating} size="sm" />
@@ -364,6 +401,9 @@ function ProfileHeader({
                 <span className="text-2xs text-faint tabular-nums">
                   {formatCompact(totalStars)} stars
                 </span>
+              )}
+              {s.ownerInstalled && (
+                <span className="text-2xs text-faint">skills & servers</span>
               )}
             </div>
           </div>

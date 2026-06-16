@@ -67,6 +67,13 @@ const config: Config = {
           "Liberation Mono",
           "monospace",
         ],
+        // Hero wordmark — Alumni Sans, matching the "Impeccable" logo typeface.
+        wordmark: [
+          "var(--font-wordmark)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       fontSize: {
         "2xs": ["0.6875rem", { lineHeight: "1rem" }],

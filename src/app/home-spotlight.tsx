@@ -8,6 +8,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
@@ -21,7 +22,7 @@ import {
   FolderTree,
   Play,
   ShieldCheck,
-  Sparkles,
+  Palette,
   Star,
   type LucideIcon,
 } from "lucide-react";
@@ -103,7 +104,7 @@ const SPOTLIGHTS: Spotlight[] = [
     tagline: "Pixel-perfect components, on demand.",
     description:
       "Generates production-grade, accessible interface components with deliberate typography, spacing, and motion — never templated defaults.",
-    icon: Sparkles,
+    icon: Palette,
     accent: "brand",
     chips: ["design UI", "components", "accessibility", "motion"],
     preview: [
@@ -192,6 +193,10 @@ const IMPECCABLE_FONT: CSSProperties = {
 };
 
 const AUTOPLAY_MS = 6500;
+
+// Light-brown gradient for the dot indicators: darkest on the left, the brand
+// base in the middle, lightest on the right.
+const DOT_SHADES = ["#9c7a4e", "#b48c5d", "#c49b6c", "#d3b287", "#e1c9a3"];
 
 // Physical track layout. The real slides are framed by a clone of the last
 // slide at the start and a clone of the first at the end, so wrapping in either
@@ -351,10 +356,17 @@ export function HomeSpotlight() {
               aria-current={isActive}
               className={cn(
                 "h-1.5 rounded-full transition-all duration-300",
-                isActive
-                  ? cn("w-7", ACCENTS[item.accent].dot)
-                  : "w-1.5 bg-line-strong hover:bg-subtle"
+                isActive ? "w-7 opacity-100" : "w-1.5 opacity-50 hover:opacity-100"
               )}
+              style={{
+                // Spread the shades across the dots: darkest → base → lightest.
+                backgroundColor:
+                  DOT_SHADES[
+                    SPOTLIGHTS.length === 1
+                      ? 0
+                      : Math.round((i * (DOT_SHADES.length - 1)) / (SPOTLIGHTS.length - 1))
+                  ],
+              }}
             />
           );
         })}
@@ -386,11 +398,18 @@ function SpotlightPanel({
   if (!isImpeccable) {
     return (
       <div
-        className="grid min-h-[34rem] w-full shrink-0 place-items-center px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem]"
+        className="relative grid min-h-[34rem] w-full shrink-0 place-items-center px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem]"
         aria-hidden={!active}
         aria-roledescription="slide"
         aria-label={`${position} of ${total}`}
       >
+        {/* Whole-panel click target. Sits below the carousel arrows/dots (z-20). */}
+        <Link
+          href={item.href}
+          aria-label={item.name}
+          tabIndex={active ? 0 : -1}
+          className="absolute inset-0 z-10 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-line"
+        />
         <h2 className="font-semibold tracking-tighter-lg text-4xl text-content sm:text-5xl">
           {item.name}
         </h2>
@@ -400,11 +419,19 @@ function SpotlightPanel({
 
   return (
     <div
-      className="grid min-h-[34rem] w-full shrink-0 grid-cols-1 gap-8 px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-14"
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 gap-8 px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-14"
       aria-hidden={!active}
       aria-roledescription="slide"
       aria-label={`${position} of ${total}`}
     >
+      {/* Whole-panel click target. Sits below the explicit CTAs and the
+          carousel arrows/dots (z-20) so those stay independently clickable. */}
+      <Link
+        href={item.href}
+        aria-label={item.name}
+        tabIndex={active ? 0 : -1}
+        className="absolute inset-0 z-10 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-line"
+      />
       {/* Content */}
       <div className="min-w-0">
         {!isImpeccable && (
@@ -503,7 +530,7 @@ function SpotlightPanel({
           </span>
         </div>
 
-        <div className="mt-7 flex flex-wrap items-center gap-3">
+        <div className="relative z-20 mt-7 flex flex-wrap items-center gap-3">
           <ButtonLink
             href={item.href}
             variant="primary"

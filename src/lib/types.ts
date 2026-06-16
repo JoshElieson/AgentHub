@@ -43,6 +43,16 @@ export type Category =
   | "integrations"
   | "marketing";
 
+// AI provider / model ecosystem a package is built for or compatible with.
+// `universal` means model-agnostic (works with any assistant).
+export type SkillModel =
+  | "anthropic"
+  | "openai"
+  | "google"
+  | "meta"
+  | "mistral"
+  | "universal";
+
 export type License =
   | "MIT"
   | "Apache-2.0"

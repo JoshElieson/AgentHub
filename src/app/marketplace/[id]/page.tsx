@@ -7,11 +7,13 @@ import { AppShell } from "@/components/app-shell";
 import { MarkdownPanel } from "@/components/markdown-panel";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { FavoriteButton } from "@/components/favorite-button";
+import { InstalledBadge } from "@/components/installed-badge";
 import { supabase, type SkillRow } from "@/lib/supabase";
 import { compileSkill } from "@/lib/skills-compiler";
 import { getAnonId } from "@/lib/anon-id";
+import { useInstalled } from "@/lib/installed-context";
 import { Button } from "@/components/ui/button";
-import { cn, formatCompact } from "@/lib/utils";
+import { cn, formatCompact, timeAgo } from "@/lib/utils";
 import {
   FolderGit,
   Globe,
@@ -45,6 +47,14 @@ export default function SkillDetailPage() {
   // Rating state
   const [userRating, setUserRating] = useState<number | null>(null);
   const [ratingLoading, setRatingLoading] = useState(false);
+
+  // Install state — whether this anon user has installed the skill before.
+  const { markInstalled } = useInstalled();
+  const [installInfo, setInstallInfo] = useState<{
+    installed: boolean;
+    installedAt: string | null;
+    target: string | null;
+  }>({ installed: false, installedAt: null, target: null });
 
   // Export states
   const [exportStatuses, setExportStatuses] = useState<
@@ -128,6 +138,24 @@ export default function SkillDetailPage() {
       .catch(() => {});
   }, [skillId]);
 
+  // Fetch this user's prior-install state for the skill.
+  useEffect(() => {
+    if (!skillId) return;
+    const anonId = getAnonId();
+    fetch(`/api/skills/install?skillId=${skillId}&anonId=${anonId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.installed) {
+          setInstallInfo({
+            installed: true,
+            installedAt: data.installed_at ?? null,
+            target: data.target ?? null,
+          });
+        }
+      })
+      .catch(() => {});
+  }, [skillId]);
+
   const copyToClipboard = useCallback(async (text: string, field: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -187,6 +215,29 @@ export default function SkillDetailPage() {
       // Fire and forget
     }
   }, [skillId, skill]);
+
+  // Record a durable per-user install (separate from the global export count)
+  // so we can show "you've installed this before" everywhere.
+  const recordInstall = useCallback(
+    async (target: "antigravity" | "claude") => {
+      if (!skillId) return;
+      const installedAt = new Date().toISOString();
+      // Optimistic — update local + shared state immediately.
+      setInstallInfo({ installed: true, installedAt, target });
+      markInstalled("skill", skillId);
+      try {
+        const anonId = getAnonId();
+        await fetch("/api/skills/install", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ skillId, anonId, target }),
+        });
+      } catch {
+        // Fire and forget — optimistic state stands.
+      }
+    },
+    [skillId, markInstalled]
+  );
 
   /**
    * File System Access API export — no alert() dialogs
@@ -264,8 +315,9 @@ export default function SkillDetailPage() {
       await writable.write(compiledContent);
       await writable.close();
 
-      // Track the export
+      // Track the export (global counter) + record the per-user install.
       trackExport();
+      recordInstall(target);
 
       setExportStatuses((prev) => ({
         ...prev,
@@ -312,7 +364,7 @@ export default function SkillDetailPage() {
         {/* ── Breadcrumb ──────────────────────────────────────────── */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-faint animate-fade-in">
           <Link
-            href="/marketplace"
+            href="/explore?type=skill"
             className="hover:text-content transition-colors"
           >
             Skills
@@ -323,7 +375,7 @@ export default function SkillDetailPage() {
               {skill.tags && skill.tags.length > 0 && (
                 <>
                   <Link
-                    href={`/marketplace?tag=${encodeURIComponent(skill.tags[0])}`}
+                    href={`/explore?q=${encodeURIComponent(skill.tags[0])}`}
                     className="hover:text-content transition-colors"
                   >
                     {skill.tags[0]}
@@ -351,7 +403,7 @@ export default function SkillDetailPage() {
           <div className="flex flex-col items-center justify-center py-24 rounded-2xl border border-line bg-surface-2/40 animate-fade-in-up">
             <p className="text-sm text-danger-muted font-medium">{error}</p>
             <button
-              onClick={() => router.push("/marketplace")}
+              onClick={() => router.push("/explore")}
               className="mt-4 text-xs text-brand-muted hover:text-brand underline"
             >
               Return to marketplace
@@ -367,13 +419,14 @@ export default function SkillDetailPage() {
               {/* Title Row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-3">
                     <h1 className="text-2xl font-bold tracking-tight text-content sm:text-3xl">
                       {skill.name}
                     </h1>
                     <span className="inline-flex items-center gap-1 rounded bg-surface-3 px-2 py-0.5 text-2xs font-mono text-brand-muted border border-line shrink-0">
                       <Terminal className="h-3 w-3" /> skill
                     </span>
+                    {installInfo.installed && <InstalledBadge size="md" />}
                   </div>
                   <p className="mt-4 text-base text-muted leading-relaxed max-w-2xl">
                     {skill.description}
@@ -472,10 +525,20 @@ export default function SkillDetailPage() {
 
               {/* ── Export Actions ──────────────────────────────────── */}
               <div className="mt-6 pt-5 border-t border-line">
-                <h2 className="text-2xs font-bold uppercase tracking-wider text-faint mb-3 flex items-center gap-1.5">
-                  <Download className="h-3 w-3" />
-                  Export to Workspace
-                </h2>
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                  <h2 className="text-2xs font-bold uppercase tracking-wider text-faint flex items-center gap-1.5">
+                    <Download className="h-3 w-3" />
+                    Export to Workspace
+                  </h2>
+                  {installInfo.installed && (
+                    <span className="flex items-center gap-1.5 text-2xs font-medium text-success">
+                      <Check className="h-3.5 w-3.5" />
+                      {installInfo.installedAt
+                        ? `Installed ${timeAgo(installInfo.installedAt)}`
+                        : "Installed before"}
+                    </span>
+                  )}
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {/* Antigravity */}
                   <div className="flex flex-col gap-1.5">
@@ -491,7 +554,9 @@ export default function SkillDetailPage() {
                       ) : (
                         <Download className="h-4 w-4" />
                       )}
-                      Export for Antigravity
+                      {installInfo.installed && installInfo.target === "antigravity"
+                        ? "Re-export for Antigravity"
+                        : "Export for Antigravity"}
                     </Button>
                     {antiStatus && (
                       <span
@@ -519,7 +584,9 @@ export default function SkillDetailPage() {
                       ) : (
                         <Download className="h-4 w-4" />
                       )}
-                      Export for Claude Code
+                      {installInfo.installed && installInfo.target === "claude"
+                        ? "Re-export for Claude Code"
+                        : "Export for Claude Code"}
                     </Button>
                     {claudeStatus && (
                       <span

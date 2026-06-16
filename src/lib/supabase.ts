@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import type { Category, SkillModel } from "./types";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -22,6 +23,10 @@ export interface SkillRow {
   export_count: number;
   avg_rating: number;
   rating_count: number;
+  // Classification — one of the 12 landing-page categories + target model(s).
+  // Populated by the normalizer (explicit column → curated map → heuristic).
+  category?: Category;
+  model?: SkillModel[];
 }
 
 export const MOCK_SKILLS: SkillRow[] = [
@@ -397,6 +402,9 @@ export interface McpServerRow {
   export_count: number;
   avg_rating: number;
   rating_count: number;
+  // Classification — see SkillRow.
+  category?: Category;
+  model?: SkillModel[];
 }
 
 export const MOCK_MCP_SERVERS: McpServerRow[] = [

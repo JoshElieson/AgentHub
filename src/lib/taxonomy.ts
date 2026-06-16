@@ -6,6 +6,7 @@ import type {
   Platform,
   Pricing,
   RiskLevel,
+  SkillModel,
 } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -205,6 +206,27 @@ export const CATEGORIES: {
 export const CATEGORY_LABELS: Record<Category, string> = Object.fromEntries(
   CATEGORIES.map((c) => [c.value, c.label])
 ) as Record<Category, string>;
+
+// ---------------------------------------------------------------------------
+// Models / providers — the AI ecosystem a package targets or is compatible with
+// ---------------------------------------------------------------------------
+
+export const MODELS: {
+  value: SkillModel;
+  label: string;
+  description: string;
+}[] = [
+  { value: "anthropic", label: "Anthropic", description: "Claude, Claude Code, and MCP-native packages." },
+  { value: "openai", label: "OpenAI", description: "GPT models, Assistants, and OpenAI Agents." },
+  { value: "google", label: "Google", description: "Gemini and Vertex AI." },
+  { value: "meta", label: "Meta", description: "Llama open models." },
+  { value: "mistral", label: "Mistral", description: "Mistral open models." },
+  { value: "universal", label: "Universal", description: "Model-agnostic — works with any assistant." },
+];
+
+export const MODEL_LABELS: Record<SkillModel, string> = Object.fromEntries(
+  MODELS.map((m) => [m.value, m.label])
+) as Record<SkillModel, string>;
 
 // ---------------------------------------------------------------------------
 // Licenses & pricing

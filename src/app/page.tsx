@@ -1,6 +1,6 @@
 import { AppShell } from "@/components/app-shell";
-import { getCategoryCounts } from "@/lib/data";
 import { CATEGORIES } from "@/lib/taxonomy";
+import { catalogCategoryCounts } from "@/lib/skill-classification";
 import { HomeSpotlight } from "./home-spotlight";
 import { TrendingNow, NewlyUploaded } from "./home-rows";
 import { ButtonLink } from "@/components/ui/button";
@@ -42,12 +42,13 @@ const CATEGORY_ICON: Record<Category, ReactNode> = {
 };
 
 export default function HomePage() {
-  const counts = getCategoryCounts();
-  const countMap = new Map(counts.map((c) => [c.category, c.count]));
+  // Counts reflect the real classified marketplace catalogue (skills + MCP
+  // servers), so the tiles match what /explore?category=… actually shows.
+  const countMap = catalogCategoryCounts();
   const categories = CATEGORIES.map((c) => ({
     category: c.value,
     label: c.label,
-    count: countMap.get(c.value) ?? 0,
+    count: countMap[c.value] ?? 0,
   }));
 
   return (

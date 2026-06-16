@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Raleway } from "next/font/google";
+import { Inter, JetBrains_Mono, Raleway, Alumni_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 
@@ -22,6 +22,14 @@ const display = Raleway({
   weight: ["200", "300"],
   display: "swap",
   variable: "--font-display",
+});
+
+// Wordmark face for the hero headline — the same typeface the "Impeccable"
+// logo uses on impeccable.style (Alumni Sans, a tall geometric display sans).
+const wordmark = Alumni_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-wordmark",
 });
 
 export const metadata: Metadata = {
@@ -65,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${sans.variable} ${mono.variable} ${display.variable}`}
+      className={`dark ${sans.variable} ${mono.variable} ${display.variable} ${wordmark.variable}`}
     >
       <body>
         <Providers>{children}</Providers>

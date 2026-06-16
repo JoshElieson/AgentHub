@@ -13,6 +13,8 @@ import {
   McpServerCard,
   MarketplaceCardSkeleton,
 } from "@/components/marketplace-cards";
+import { CATEGORIES, MODELS } from "@/lib/taxonomy";
+import type { Category, SkillModel } from "@/lib/types";
 import { cn, formatNumber, pluralize } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -40,6 +42,15 @@ const TYPE_OPTIONS: { value: ItemKind; label: string }[] = [
   { value: "mcp", label: "MCP servers" },
 ];
 
+const CATEGORY_OPTIONS: { value: Category; label: string }[] = CATEGORIES.map(
+  (c) => ({ value: c.value, label: c.label })
+);
+
+const MODEL_OPTIONS: { value: SkillModel; label: string }[] = MODELS.map((m) => ({
+  value: m.value,
+  label: m.label,
+}));
+
 const SORT_OPTIONS: { value: MarketplaceSort; label: string }[] = [
   { value: "relevance", label: "Relevance" },
   { value: "newest", label: "Newest" },
@@ -55,12 +66,16 @@ const SORT_OPTIONS: { value: MarketplaceSort; label: string }[] = [
 interface FilterState {
   query: string;
   types: ItemKind[];
+  categories: Category[];
+  models: SkillModel[];
   sort: MarketplaceSort;
 }
 
 const EMPTY_FILTERS: FilterState = {
   query: "",
   types: [],
+  categories: [],
+  models: [],
   sort: "relevance",
 };
 
@@ -107,16 +122,35 @@ function sortItems(items: Item[], sort: MarketplaceSort): Item[] {
 
 // ---------------------------------------------------------------------------
 // URL seeding — translate supported query params into a FilterState.
+// Supports comma-separated lists, e.g. /explore?category=devops,security
 // ---------------------------------------------------------------------------
 
 function seedFromParams(params: URLSearchParams): FilterState {
-  const next: FilterState = { ...EMPTY_FILTERS, types: [] };
+  const next: FilterState = { ...EMPTY_FILTERS, types: [], categories: [], models: [] };
 
   const q = params.get("q");
   if (q) next.query = q;
 
   const type = params.get("type");
   if (type === "skill" || type === "mcp") next.types = [type];
+
+  const category = params.get("category");
+  if (category) {
+    const valid = new Set(CATEGORY_OPTIONS.map((o) => o.value));
+    next.categories = category
+      .split(",")
+      .map((c) => c.trim())
+      .filter((c): c is Category => valid.has(c as Category));
+  }
+
+  const model = params.get("model");
+  if (model) {
+    const valid = new Set(MODEL_OPTIONS.map((o) => o.value));
+    next.models = model
+      .split(",")
+      .map((m) => m.trim())
+      .filter((m): m is SkillModel => valid.has(m as SkillModel));
+  }
 
   const sort = params.get("sort");
   if (SORT_OPTIONS.some((o) => o.value === sort)) {
@@ -127,19 +161,35 @@ function seedFromParams(params: URLSearchParams): FilterState {
 }
 
 // ---------------------------------------------------------------------------
-// Active filter chips
+// Active filter chips — each chip knows which facet it belongs to.
 // ---------------------------------------------------------------------------
 
+type FacetKind = "type" | "category" | "model";
+
 interface Chip {
-  value: ItemKind;
+  kind: FacetKind;
+  value: string;
   label: string;
 }
 
 function buildChips(state: FilterState): Chip[] {
-  return state.types.map((t) => ({
-    value: t,
-    label: TYPE_OPTIONS.find((o) => o.value === t)?.label ?? t,
-  }));
+  return [
+    ...state.types.map((t): Chip => ({
+      kind: "type",
+      value: t,
+      label: TYPE_OPTIONS.find((o) => o.value === t)?.label ?? t,
+    })),
+    ...state.categories.map((c): Chip => ({
+      kind: "category",
+      value: c,
+      label: CATEGORY_OPTIONS.find((o) => o.value === c)?.label ?? c,
+    })),
+    ...state.models.map((m): Chip => ({
+      kind: "model",
+      value: m,
+      label: MODEL_OPTIONS.find((o) => o.value === m)?.label ?? m,
+    })),
+  ];
 }
 
 // ---------------------------------------------------------------------------
@@ -157,8 +207,8 @@ export function ExploreClient() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const seeded = useRef(false);
 
-  // Re-seed if the URL params change after mount (e.g. a type link elsewhere
-  // navigating to /explore?type=…). Runs once per distinct param string.
+  // Re-seed if the URL params change after mount (e.g. a category link elsewhere
+  // navigating to /explore?category=…). Runs once per distinct param string.
   const paramKey = searchParams?.toString() ?? "";
   useEffect(() => {
     if (!seeded.current) {
@@ -181,6 +231,14 @@ export function ExploreClient() {
   const results = useMemo(() => {
     const filtered = allItems.filter((item) => {
       if (state.types.length && !state.types.includes(item.kind)) return false;
+      if (state.categories.length) {
+        const cat = item.data.category;
+        if (!cat || !state.categories.includes(cat)) return false;
+      }
+      if (state.models.length) {
+        const models = item.data.model ?? [];
+        if (!models.some((m) => state.models.includes(m))) return false;
+      }
       if (!matchesQuery(item, state.query)) return false;
       return true;
     });
@@ -188,17 +246,36 @@ export function ExploreClient() {
   }, [allItems, state]);
 
   const chips = useMemo(() => buildChips(state), [state]);
-  const facetCount = state.types.length;
+  const facetCount =
+    state.types.length + state.categories.length + state.models.length;
   const hasAnyFilter = facetCount > 0 || state.query.trim().length > 0;
 
   const clearAll = () =>
     setState((prev) => ({ ...EMPTY_FILTERS, sort: prev.sort }));
 
   const removeChip = (chip: Chip) =>
-    setState((prev) => ({ ...prev, types: prev.types.filter((v) => v !== chip.value) }));
+    setState((prev) => {
+      switch (chip.kind) {
+        case "type":
+          return { ...prev, types: prev.types.filter((v) => v !== chip.value) };
+        case "category":
+          return {
+            ...prev,
+            categories: prev.categories.filter((v) => v !== chip.value),
+          };
+        case "model":
+          return { ...prev, models: prev.models.filter((v) => v !== chip.value) };
+        default:
+          return prev;
+      }
+    });
 
   const toggleType = (v: ItemKind) =>
     setState((prev) => ({ ...prev, types: toggle(prev.types, v) }));
+  const toggleCategory = (v: Category) =>
+    setState((prev) => ({ ...prev, categories: toggle(prev.categories, v) }));
+  const toggleModel = (v: SkillModel) =>
+    setState((prev) => ({ ...prev, models: toggle(prev.models, v) }));
 
   // Lock body scroll while the mobile drawer is open.
   useEffect(() => {
@@ -213,8 +290,13 @@ export function ExploreClient() {
   const sidebar = (
     <MarketplaceFilters
       types={state.types}
+      categories={state.categories}
+      models={state.models}
       onToggleType={toggleType}
+      onToggleCategory={toggleCategory}
+      onToggleModel={toggleModel}
       onClear={clearAll}
+      activeCount={facetCount}
     />
   );
 
@@ -308,7 +390,7 @@ export function ExploreClient() {
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
               {chips.map((chip) => (
                 <button
-                  key={chip.value}
+                  key={`${chip.kind}-${chip.value}`}
                   onClick={() => removeChip(chip)}
                   className="group inline-flex items-center gap-1 rounded-md border border-brand-line bg-brand-dim py-0.5 pl-2 pr-1 text-2xs font-medium text-brand-muted transition-colors hover:border-brand hover:text-brand"
                 >
@@ -392,20 +474,28 @@ export function ExploreClient() {
 }
 
 // ---------------------------------------------------------------------------
-// Filter sidebar — Type, styled like the original FilterSidebar.
+// Filter sidebar — Type, Category, and Model facets.
 // ---------------------------------------------------------------------------
 
 function MarketplaceFilters({
   types,
+  categories,
+  models,
   onToggleType,
+  onToggleCategory,
+  onToggleModel,
   onClear,
+  activeCount,
 }: {
   types: ItemKind[];
+  categories: Category[];
+  models: SkillModel[];
   onToggleType: (v: ItemKind) => void;
+  onToggleCategory: (v: Category) => void;
+  onToggleModel: (v: SkillModel) => void;
   onClear: () => void;
+  activeCount: number;
 }) {
-  const activeCount = types.length;
-
   return (
     <aside className="w-full">
       <div className="mb-3 flex items-center justify-between">
@@ -426,6 +516,20 @@ function MarketplaceFilters({
         options={TYPE_OPTIONS}
         selected={types}
         onToggle={(v) => onToggleType(v as ItemKind)}
+      />
+
+      <FilterGroup
+        title="Category"
+        options={CATEGORY_OPTIONS}
+        selected={categories}
+        onToggle={(v) => onToggleCategory(v as Category)}
+      />
+
+      <FilterGroup
+        title="Model"
+        options={MODEL_OPTIONS}
+        selected={models}
+        onToggle={(v) => onToggleModel(v as SkillModel)}
       />
     </aside>
   );

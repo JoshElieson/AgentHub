@@ -5,10 +5,11 @@ import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Typewriter hero — the headline types itself in from empty, with a caret that
-// trails the text as it lands and settles into a steady blink once finished.
+// trails the text as it lands, then blinks three times and disappears once the
+// whole headline has finished typing.
 // ---------------------------------------------------------------------------
 
-const LINES = ["The Home for AI Agent Tools", "AgentHub"] as const;
+const LINES = ["The Home for AI Agent Tools", "AgentDock"] as const;
 const FULL = LINES.join("\n");
 
 // Per-character cadence. The newline gets a longer beat so the caret visibly
@@ -20,7 +21,9 @@ const START_DELAY_MS = 360;
 export function TypewriterHero() {
   // Number of characters of FULL currently revealed (newline counts as one).
   const [count, setCount] = useState(0);
-  const [done, setDone] = useState(false);
+  // "typing" while characters appear → "settling" once the headline is complete
+  // (the caret stays put and blinks three more times) → "done" (caret removed).
+  const [phase, setPhase] = useState<"typing" | "settling" | "done">("typing");
   const timer = useRef<number | undefined>(undefined);
 
   useEffect(() => {
@@ -28,18 +31,18 @@ export function TypewriterHero() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
       setCount(FULL.length);
-      setDone(true);
+      setPhase("done");
       return;
     }
 
     const tick = (next: number) => {
       if (next > FULL.length) {
-        setDone(true);
+        setPhase("settling");
         return;
       }
       setCount(next);
       if (next === FULL.length) {
-        setDone(true);
+        setPhase("settling");
         return;
       }
       const delay = FULL[next] === "\n" ? NEWLINE_MS : CHAR_MS;
@@ -81,9 +84,17 @@ export function TypewriterHero() {
               className={cn(lineClass(i), i === 0 ? "text-gradient" : "text-brand")}
             >
               {text}
-              {/* Caret blinks from the start and trails the text as it types,
-                  then disappears once the whole headline has landed. */}
-              {isActive && !done && <Caret />}
+              {/* Caret blinks from the start and trails the text as it types.
+                  When typing completes it stays on the last line and blinks
+                  three more times (a fresh `key` restarts the animation), then
+                  removes itself when that bounded blink ends. */}
+              {isActive && phase !== "done" && (
+                <Caret
+                  key={phase}
+                  settling={phase === "settling"}
+                  onSettled={() => setPhase("done")}
+                />
+              )}
             </span>
           );
         })}
@@ -96,18 +107,40 @@ export function TypewriterHero() {
 // glyph tails (the "g" in "Agents") clear the line box — critical for line 0,
 // whose `text-gradient` uses background-clip:text and would otherwise paint no
 // gradient below the baseline, clipping the descender.
+// One row per headline line. Alumni Sans is narrow, so the 27-char slogan fits
+// on a single line; the size scales with the viewport and caps at 8rem — a
+// slight step down from 9rem so the slogan clears the max-w-5xl (1024px) box
+// instead of wrapping.
 const HEADING_CLS =
-  "text-balance text-5xl font-semibold leading-[1.15] tracking-tighter-lg sm:text-6xl lg:text-7xl";
+  "font-wordmark text-[clamp(1.75rem,10.5vw,8rem)] font-normal leading-[1.15] tracking-tighter-lg";
 
-const lineClass = (i: number) => cn("block pb-[0.2em]", i === 0 && "-mb-[0.12em]");
+const lineClass = (i: number) =>
+  cn("block whitespace-nowrap pb-[0.2em]", i === 0 && "-mb-[0.12em]");
 
-function Caret() {
+function Caret({
+  settling,
+  onSettled,
+}: {
+  // While typing the caret blinks forever; once `settling` it runs the bounded
+  // three-cycle blink and fires `onSettled` when that animation ends.
+  settling: boolean;
+  onSettled: () => void;
+}) {
   return (
     <span
       aria-hidden
-      // A thin upright bar sitting just after the last glyph, blinking as it
-      // trails the text. Removed from the tree entirely once typing finishes.
-      className="ml-1.5 inline-block h-[0.82em] w-[3px] translate-y-[0.08em] animate-caret-blink rounded-[1px] bg-brand align-baseline sm:w-[4px]"
+      onAnimationEnd={settling ? onSettled : undefined}
+      // Settle = three more blinks at the SAME 1.05s cadence as the typing
+      // caret (so the rhythm doesn't change), then `onAnimationEnd` removes it.
+      // Declared inline (not a Tailwind `animate-*` utility) so it works without
+      // a config rebuild — it reuses the `caret-blink` @keyframes that the
+      // typing utility below already emits.
+      style={settling ? { animation: "caret-blink 1.05s step-end 3" } : undefined}
+      // A thin upright bar sitting just after the last glyph.
+      className={cn(
+        "ml-1.5 inline-block h-[0.82em] w-[3px] translate-y-[0.08em] rounded-[1px] bg-brand align-baseline sm:w-[4px]",
+        !settling && "animate-caret-blink",
+      )}
     />
   );
 }

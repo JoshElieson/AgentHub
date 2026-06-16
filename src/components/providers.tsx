@@ -1,6 +1,7 @@
 "use client";
 
 import { SessionProvider, useSession } from "next-auth/react";
+import { InstalledProvider } from "@/lib/installed-context";
 
 /** Minimal user shape the chrome (navbar, publish preview) renders. */
 export interface ClientUser {
@@ -38,5 +39,9 @@ export function useAuthStatus() {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider>
+      <InstalledProvider>{children}</InstalledProvider>
+    </SessionProvider>
+  );
 }

@@ -129,6 +129,19 @@ ALTER TABLE public.skills
   ADD COLUMN IF NOT EXISTS avg_rating NUMERIC(3,2) NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS rating_count INT NOT NULL DEFAULT 0;
 
+-- ══════════════════════════════════════════════════════════════════════════════
+-- Classification: landing-page category + target model(s)
+-- One of the 12 categories (development, security, devops, …) and the AI model
+-- ecosystem(s) the skill targets ('universal' = model-agnostic). The app also
+-- derives these client-side from the package name (see
+-- src/lib/skill-classification.ts), so these columns are optional — they let the
+-- marks be persisted/queried directly when present.
+-- ══════════════════════════════════════════════════════════════════════════════
+
+ALTER TABLE public.skills
+  ADD COLUMN IF NOT EXISTS category TEXT DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS model TEXT[] NOT NULL DEFAULT '{}'::text[];
+
 -- Individual ratings (one per anonymous user per skill)
 CREATE TABLE IF NOT EXISTS public.skill_ratings (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -166,6 +179,35 @@ CREATE POLICY "Allow public delete on skill_stars"
   ON public.skill_stars FOR DELETE TO public USING (true);
 
 -- ══════════════════════════════════════════════════════════════════════════════
+-- Installs — durable "this user installed this skill" records
+-- Unlike export_count (a global counter), this captures per-user install state
+-- so we can show "you've installed this before" and a personal Installed list.
+-- An install is recorded the moment a skill is exported into a workspace
+-- (.claude/skills or .agents/skills). One row per anonymous user per skill;
+-- re-installing updates installed_at / target and bumps install_count.
+-- ══════════════════════════════════════════════════════════════════════════════
+CREATE TABLE IF NOT EXISTS public.skill_installs (
+  skill_id UUID NOT NULL REFERENCES public.skills(id) ON DELETE CASCADE,
+  anon_id TEXT NOT NULL,
+  target TEXT NOT NULL DEFAULT 'unknown',
+  install_count INT NOT NULL DEFAULT 1,
+  first_installed_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  installed_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  PRIMARY KEY (skill_id, anon_id)
+);
+
+ALTER TABLE public.skill_installs ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read on skill_installs"
+  ON public.skill_installs FOR SELECT TO public USING (true);
+CREATE POLICY "Allow public insert on skill_installs"
+  ON public.skill_installs FOR INSERT TO public WITH CHECK (true);
+CREATE POLICY "Allow public update on skill_installs"
+  ON public.skill_installs FOR UPDATE TO public USING (true) WITH CHECK (true);
+CREATE POLICY "Allow public delete on skill_installs"
+  ON public.skill_installs FOR DELETE TO public USING (true);
+
+-- ══════════════════════════════════════════════════════════════════════════════
 -- MCP Servers
 -- ══════════════════════════════════════════════════════════════════════════════
 
@@ -183,8 +225,15 @@ CREATE TABLE IF NOT EXISTS public.mcp_servers (
     star_count INT NOT NULL DEFAULT 0,
     export_count INT NOT NULL DEFAULT 0,
     avg_rating NUMERIC(3,2) NOT NULL DEFAULT 0,
-    rating_count INT NOT NULL DEFAULT 0
+    rating_count INT NOT NULL DEFAULT 0,
+    category TEXT DEFAULT NULL,
+    model TEXT[] NOT NULL DEFAULT '{}'::text[]
 );
+
+-- Keep classification columns present on pre-existing mcp_servers tables too.
+ALTER TABLE public.mcp_servers
+  ADD COLUMN IF NOT EXISTS category TEXT DEFAULT NULL,
+  ADD COLUMN IF NOT EXISTS model TEXT[] NOT NULL DEFAULT '{}'::text[];
 
 ALTER TABLE public.mcp_servers ENABLE ROW LEVEL SECURITY;
 
@@ -223,6 +272,29 @@ CREATE POLICY "Allow public insert on mcp_stars"
   ON public.mcp_stars FOR INSERT TO public WITH CHECK (true);
 CREATE POLICY "Allow public delete on mcp_stars"
   ON public.mcp_stars FOR DELETE TO public USING (true);
+
+-- Installs for MCP servers (see skill_installs). An MCP "install" is recorded
+-- when the user copies/exports the server's configuration snippet.
+CREATE TABLE IF NOT EXISTS public.mcp_installs (
+  server_id UUID NOT NULL REFERENCES public.mcp_servers(id) ON DELETE CASCADE,
+  anon_id TEXT NOT NULL,
+  target TEXT NOT NULL DEFAULT 'unknown',
+  install_count INT NOT NULL DEFAULT 1,
+  first_installed_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  installed_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  PRIMARY KEY (server_id, anon_id)
+);
+
+ALTER TABLE public.mcp_installs ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read on mcp_installs"
+  ON public.mcp_installs FOR SELECT TO public USING (true);
+CREATE POLICY "Allow public insert on mcp_installs"
+  ON public.mcp_installs FOR INSERT TO public WITH CHECK (true);
+CREATE POLICY "Allow public update on mcp_installs"
+  ON public.mcp_installs FOR UPDATE TO public USING (true) WITH CHECK (true);
+CREATE POLICY "Allow public delete on mcp_installs"
+  ON public.mcp_installs FOR DELETE TO public USING (true);
 
  
  

@@ -8,6 +8,7 @@ import {
   type SkillRow,
   type McpServerRow,
 } from "./supabase";
+import { classifySkill, classifyMcp } from "./skill-classification";
 
 export type { SkillRow, McpServerRow };
 
@@ -16,6 +17,14 @@ export type { SkillRow, McpServerRow };
 // ---------------------------------------------------------------------------
 
 function normalizeSkill(row: any): SkillRow {
+  const tags = Array.isArray(row.tags) ? row.tags : [];
+  const { category, model } = classifySkill({
+    name: row.name,
+    description: row.description,
+    tags,
+    category: row.category,
+    model: row.model,
+  });
   return {
     id: row.id,
     name: row.name,
@@ -23,17 +32,27 @@ function normalizeSkill(row: any): SkillRow {
     trigger_phrases: Array.isArray(row.trigger_phrases) ? row.trigger_phrases : [],
     markdown_instructions: row.markdown_instructions ?? "",
     script_urls: Array.isArray(row.script_urls) ? row.script_urls : [],
-    tags: Array.isArray(row.tags) ? row.tags : [],
+    tags,
     source_url: row.source_url ?? null,
     created_at: row.created_at,
     star_count: row.star_count ?? 0,
     export_count: row.export_count ?? 0,
     avg_rating: row.avg_rating ? Number(row.avg_rating) : 0,
     rating_count: row.rating_count ?? 0,
+    category,
+    model,
   };
 }
 
 function normalizeMcp(row: any): McpServerRow {
+  const tags = Array.isArray(row.tags) ? row.tags : [];
+  const { category, model } = classifyMcp({
+    name: row.name,
+    description: row.description,
+    tags,
+    category: row.category,
+    model: row.model,
+  });
   return {
     id: row.id,
     name: row.name,
@@ -42,12 +61,14 @@ function normalizeMcp(row: any): McpServerRow {
     command: row.command ?? "",
     args: Array.isArray(row.args) ? row.args : [],
     env_vars: row.env_vars ?? {},
-    tags: Array.isArray(row.tags) ? row.tags : [],
+    tags,
     created_at: row.created_at,
     star_count: row.star_count ?? 0,
     export_count: row.export_count ?? 0,
     avg_rating: row.avg_rating ? Number(row.avg_rating) : 0,
     rating_count: row.rating_count ?? 0,
+    category,
+    model,
   };
 }
 
@@ -86,7 +107,7 @@ export async function fetchSkills(): Promise<SkillRow[]> {
     }
   }
 
-  return MOCK_SKILLS;
+  return MOCK_SKILLS.map(normalizeSkill);
 }
 
 /**
@@ -105,7 +126,7 @@ export async function fetchMcpServers(): Promise<McpServerRow[]> {
       // ignore — fall through to mock
     }
   }
-  return MOCK_MCP_SERVERS;
+  return MOCK_MCP_SERVERS.map(normalizeMcp);
 }
 
 // ---------------------------------------------------------------------------

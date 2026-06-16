@@ -6,10 +6,12 @@ import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { FavoriteButton } from "@/components/favorite-button";
+import { InstalledBadge } from "@/components/installed-badge";
 import { supabase, type McpServerRow } from "@/lib/supabase";
 import { getAnonId } from "@/lib/anon-id";
+import { useInstalled } from "@/lib/installed-context";
 import { Button } from "@/components/ui/button";
-import { cn, formatCompact } from "@/lib/utils";
+import { cn, formatCompact, timeAgo } from "@/lib/utils";
 import {
   FolderGit,
   Terminal,
@@ -36,6 +38,13 @@ export default function McpDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Install state — whether this anon user has installed the server before.
+  const { markInstalled } = useInstalled();
+  const [installInfo, setInstallInfo] = useState<{
+    installed: boolean;
+    installedAt: string | null;
+  }>({ installed: false, installedAt: null });
 
   // Dynamic page title
   useEffect(() => {
@@ -85,6 +94,23 @@ export default function McpDetailPage() {
     fetchServer();
   }, [serverId]);
 
+  // Fetch this user's prior-install state for the server.
+  useEffect(() => {
+    if (!serverId) return;
+    const anonId = getAnonId();
+    fetch(`/api/mcp/install?serverId=${serverId}&anonId=${anonId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.installed) {
+          setInstallInfo({
+            installed: true,
+            installedAt: data.installed_at ?? null,
+          });
+        }
+      })
+      .catch(() => {});
+  }, [serverId]);
+
   const copyToClipboard = useCallback(async (text: string, field: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -94,6 +120,23 @@ export default function McpDetailPage() {
       // Silently fail
     }
   }, []);
+
+  // Copying the config is the MCP "install" moment — record it per user.
+  const recordInstall = useCallback(async () => {
+    if (!serverId) return;
+    setInstallInfo({ installed: true, installedAt: new Date().toISOString() });
+    markInstalled("mcp", serverId);
+    try {
+      const anonId = getAnonId();
+      await fetch("/api/mcp/install", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ serverId, anonId, target: "config" }),
+      });
+    } catch {
+      // Fire and forget — optimistic state stands.
+    }
+  }, [serverId, markInstalled]);
 
   const handleCopyConfig = useCallback(() => {
     if (!server) return;
@@ -105,7 +148,8 @@ export default function McpDetailPage() {
       }
     };
     copyToClipboard(JSON.stringify(config, null, 2), "config");
-  }, [server, copyToClipboard]);
+    recordInstall();
+  }, [server, copyToClipboard, recordInstall]);
 
   return (
     <AppShell>
@@ -113,14 +157,14 @@ export default function McpDetailPage() {
         {/* ── Breadcrumb ──────────────────────────────────────────── */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-faint animate-fade-in">
           <Link
-            href="/marketplace"
+            href="/explore"
             className="hover:text-content transition-colors"
           >
-            Marketplace
+            Explore
           </Link>
           <ChevronRight className="h-3 w-3" />
           <Link
-            href="/marketplace?tab=mcp"
+            href="/explore?type=mcp"
             className="hover:text-content transition-colors"
           >
             MCP Servers
@@ -131,7 +175,7 @@ export default function McpDetailPage() {
               {server.tags && server.tags.length > 0 && (
                 <>
                   <Link
-                    href={`/marketplace?tag=${encodeURIComponent(server.tags[0])}`}
+                    href={`/explore?q=${encodeURIComponent(server.tags[0])}`}
                     className="hover:text-content transition-colors"
                   >
                     {server.tags[0]}
@@ -159,7 +203,7 @@ export default function McpDetailPage() {
           <div className="flex flex-col items-center justify-center py-24 rounded-2xl border border-line bg-surface-2/40 animate-fade-in-up">
             <p className="text-sm text-danger-muted font-medium">{error}</p>
             <button
-              onClick={() => router.push("/marketplace")}
+              onClick={() => router.push("/explore")}
               className="mt-4 text-xs text-brand-muted hover:text-brand underline"
             >
               Return to marketplace
@@ -175,13 +219,14 @@ export default function McpDetailPage() {
               {/* Title Row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-3">
                     <h1 className="text-2xl font-bold tracking-tight text-content sm:text-3xl">
                       {server.name}
                     </h1>
                     <span className="inline-flex items-center gap-1 rounded bg-surface-3 px-2 py-0.5 text-2xs font-mono text-brand-muted border border-line shrink-0">
                       <Terminal className="h-3 w-3" /> mcp server
                     </span>
+                    {installInfo.installed && <InstalledBadge size="md" />}
                   </div>
                   <p className="mt-4 text-base text-muted leading-relaxed max-w-2xl">
                     {server.description}
@@ -250,7 +295,7 @@ export default function McpDetailPage() {
                   {server.tags.map((tag, idx) => (
                     <Link
                       key={idx}
-                      href={`/marketplace?tag=${encodeURIComponent(tag)}`}
+                      href={`/explore?q=${encodeURIComponent(tag)}`}
                       className="inline-flex items-center gap-1 rounded-lg bg-brand-dim border border-brand-line px-2.5 py-1 text-xs font-semibold text-brand-muted hover:bg-brand/10 hover:border-brand/40 transition-colors"
                     >
                       <Tag className="h-3 w-3" />
@@ -290,6 +335,14 @@ export default function McpDetailPage() {
                       )}
                     </Button>
                   </div>
+                  {installInfo.installed && (
+                    <div className="mb-3 flex items-center gap-1.5 text-2xs font-medium text-success">
+                      <Check className="h-3.5 w-3.5" />
+                      {installInfo.installedAt
+                        ? `You installed this ${timeAgo(installInfo.installedAt)}`
+                        : "You've installed this before"}
+                    </div>
+                  )}
                   <div className="rounded-xl bg-[#0d1117] border border-line-strong p-4 overflow-x-auto text-sm font-mono text-gray-300">
                     <pre>
                       <code>
