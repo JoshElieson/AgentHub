@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   useMarketplaceData,
@@ -33,9 +33,16 @@ import {
 
 type ItemKind = "skill" | "mcp";
 
+// Each catalogue entry carries a precomputed lowercased search string and its
+// resolved compatible-provider list, so the per-keystroke filter does only
+// cheap substring/inclusion checks instead of rebuilding strings/arrays across
+// the whole (~1.5k+) catalogue on every render.
 type Item =
-  | { kind: "skill"; data: SkillRow }
-  | { kind: "mcp"; data: McpServerRow };
+  | { kind: "skill"; data: SkillRow; haystack: string; compat: SkillModel[] }
+  | { kind: "mcp"; data: McpServerRow; haystack: string; compat: SkillModel[] };
+
+/** How many cards to render per page; more are revealed as the user scrolls. */
+const PAGE_SIZE = 48;
 
 const TYPE_OPTIONS: { value: ItemKind; label: string }[] = [
   { value: "skill", label: "Skills" },
@@ -83,19 +90,16 @@ function toggle<T>(arr: T[], v: T): T[] {
   return arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v];
 }
 
-function matchesQuery(item: Item, q: string): boolean {
-  if (!q) return true;
-  const needle = q.toLowerCase().trim();
-  const triggers = item.kind === "skill" ? item.data.trigger_phrases : [];
-  const haystack = [
-    item.data.name,
-    item.data.description,
-    ...(item.data.tags ?? []),
-    ...triggers,
-  ]
+/** Build the lowercased searchable string for an item once, at index time. */
+function buildHaystack(
+  kind: ItemKind,
+  data: SkillRow | McpServerRow
+): string {
+  const triggers =
+    kind === "skill" ? (data as SkillRow).trigger_phrases : [];
+  return [data.name, data.description, ...(data.tags ?? []), ...triggers]
     .join(" ")
     .toLowerCase();
-  return needle.split(/\s+/).every((term) => haystack.includes(term));
 }
 
 function sortItems(items: Item[], sort: MarketplaceSort): Item[] {
@@ -219,38 +223,102 @@ export function ExploreClient() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paramKey]);
 
-  // Full unified catalogue.
+  // Full unified catalogue, indexed once (haystack + compatible providers) so
+  // filtering never rebuilds per-item strings/arrays on each keystroke.
   const allItems = useMemo<Item[]>(
     () => [
-      ...skills.map((s): Item => ({ kind: "skill", data: s })),
-      ...mcpServers.map((m): Item => ({ kind: "mcp", data: m })),
+      ...skills.map((s): Item => ({
+        kind: "skill",
+        data: s,
+        haystack: buildHaystack("skill", s),
+        compat: compatibleModels(s.model),
+      })),
+      ...mcpServers.map((m): Item => ({
+        kind: "mcp",
+        data: m,
+        haystack: buildHaystack("mcp", m),
+        compat: compatibleModels(m.model),
+      })),
     ],
     [skills, mcpServers]
   );
 
+  // Defer the *filtering* query so typing stays responsive: the controlled
+  // input updates at high priority while the heavy list recompute runs at a
+  // lower priority (and is interruptible by the next keystroke).
+  const deferredQuery = useDeferredValue(state.query);
+  const { types, categories, models, sort } = state;
+
   const results = useMemo(() => {
+    const needle = deferredQuery.toLowerCase().trim();
+    const terms = needle ? needle.split(/\s+/) : [];
     const filtered = allItems.filter((item) => {
-      if (state.types.length && !state.types.includes(item.kind)) return false;
-      if (state.categories.length) {
+      if (types.length && !types.includes(item.kind)) return false;
+      if (categories.length) {
         const cat = item.data.category;
-        if (!cat || !state.categories.includes(cat)) return false;
+        if (!cat || !categories.includes(cat)) return false;
       }
-      if (state.models.length) {
+      if (models.length) {
         const raw = item.data.model ?? [];
-        const compat = compatibleModels(raw);
         // Provider filters match a package that lists that provider OR is
         // model-agnostic (universal expands to all providers, matching its
         // logos); the "Universal" filter matches only agnostic packages.
-        const ok = state.models.some((sel) =>
-          sel === "universal" ? raw.includes("universal") : compat.includes(sel)
+        const ok = models.some((sel) =>
+          sel === "universal"
+            ? raw.includes("universal")
+            : item.compat.includes(sel)
         );
         if (!ok) return false;
       }
-      if (!matchesQuery(item, state.query)) return false;
+      if (terms.length && !terms.every((t) => item.haystack.includes(t)))
+        return false;
       return true;
     });
-    return sortItems(filtered, state.sort);
-  }, [allItems, state]);
+    return sortItems(filtered, sort);
+  }, [allItems, deferredQuery, types, categories, models, sort]);
+
+  // Windowed rendering — start with a single page and reveal more on scroll so
+  // the initial mount isn't the whole ~1.5k+ catalogue (the root cause of the
+  // typing/filter jank). Cards scrolled past stay mounted but are culled from
+  // browser layout/paint via `.cv-card` (content-visibility), so a deep scroll
+  // doesn't re-accumulate cost. Reset the window synchronously (during render)
+  // whenever the result set changes so a new search starts at the top with no
+  // flash of the previous overflow.
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const filterSig = `${deferredQuery} ${sort} ${types.join(
+    ","
+  )} ${categories.join(",")} ${models.join(",")}`;
+  const [prevSig, setPrevSig] = useState(filterSig);
+  if (filterSig !== prevSig) {
+    setPrevSig(filterSig);
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  const visibleResults = useMemo(
+    () => results.slice(0, visibleCount),
+    [results, visibleCount]
+  );
+  const hasMore = visibleCount < results.length;
+
+  // Reveal the next page as a bottom sentinel scrolls into view. Re-observing
+  // on each change lets a fresh callback fire when the sentinel is still in
+  // range (e.g. a short page), so the grid fills smoothly without a button.
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!hasMore) return;
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setVisibleCount((c) => Math.min(c + PAGE_SIZE, results.length));
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasMore, visibleCount, results]);
 
   const chips = useMemo(() => buildChips(state), [state]);
   const facetCount =
@@ -417,15 +485,33 @@ export function ExploreClient() {
                 ))}
               </div>
             ) : results.length > 0 ? (
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {results.map((item) =>
-                  item.kind === "skill" ? (
-                    <SkillCard key={`skill-${item.data.id}`} skill={item.data} />
-                  ) : (
-                    <McpServerCard key={`mcp-${item.data.id}`} server={item.data} />
-                  )
+              <>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {visibleResults.map((item) =>
+                    item.kind === "skill" ? (
+                      <SkillCard
+                        key={`skill-${item.data.id}`}
+                        skill={item.data}
+                        className="cv-card"
+                      />
+                    ) : (
+                      <McpServerCard
+                        key={`mcp-${item.data.id}`}
+                        server={item.data}
+                        className="cv-card"
+                      />
+                    )
+                  )}
+                </div>
+                {hasMore && (
+                  <div
+                    ref={sentinelRef}
+                    className="h-10"
+                    aria-hidden
+                    data-testid="explore-load-more-sentinel"
+                  />
                 )}
-              </div>
+              </>
             ) : (
               <EmptyState
                 icon={<PackageOpen className="h-6 w-6" />}

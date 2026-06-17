@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
@@ -22,7 +23,7 @@ export function OfficialBadge({ className }: { className?: string }) {
  * Compact card for a real marketplace skill. Links to the canonical detail
  * page (`/marketplace/[id]`) where install/export lives.
  */
-export function SkillCard({
+export const SkillCard = memo(function SkillCard({
   skill,
   className,
 }: {
@@ -101,12 +102,12 @@ export function SkillCard({
       </div>
     </Link>
   );
-}
+});
 
 /**
  * Compact card for a real MCP server. Links to `/marketplace/mcp/[id]`.
  */
-export function McpServerCard({
+export const McpServerCard = memo(function McpServerCard({
   server,
   className,
 }: {
@@ -179,7 +180,7 @@ export function McpServerCard({
       </div>
     </Link>
   );
-}
+});
 
 /** Skeleton placeholder while marketplace data loads. */
 export function MarketplaceCardSkeleton() {

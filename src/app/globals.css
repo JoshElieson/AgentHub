@@ -138,4 +138,15 @@
   .label-caps {
     @apply text-2xs font-semibold uppercase tracking-wider;
   }
+
+  /*
+   * Off-screen culling for long card grids (Explore). The browser skips layout
+   * & paint for cards outside the viewport, so a large/accumulating grid stays
+   * cheap to scroll and reconcile. `contain-intrinsic-size: auto …` remembers
+   * each card's real height after first render to keep the scrollbar stable.
+   */
+  .cv-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 280px;
+  }
 }

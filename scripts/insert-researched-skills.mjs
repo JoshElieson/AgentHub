@@ -15,21 +15,34 @@ const supabaseUrl = envContent.match(/NEXT_PUBLIC_SUPABASE_URL=(.+)/)?.[1]?.trim
 const supabaseAnonKey = envContent.match(/NEXT_PUBLIC_SUPABASE_ANON_KEY=(.+)/)?.[1]?.trim();
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const dataPath = path.join(process.cwd(), 'scripts', 'researched-skills.json');
+// Data file is configurable: `node insert-researched-skills.mjs [path]`.
+// Defaults to the original curated set for backward compatibility.
+const dataPath = process.argv[2]
+  ? path.resolve(process.argv[2])
+  : path.join(process.cwd(), 'scripts', 'researched-skills.json');
 const { skills } = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
 async function run() {
   console.log(`\n📦 Loaded ${skills.length} researched skills.\n`);
 
-  // 1. Fetch existing names so we don't create duplicates.
+  // 1. Fetch existing names so we don't create duplicates. Supabase caps a
+  // select at 1000 rows by default, so paginate with .range() to capture the
+  // full table — otherwise rows past the first 1000 look "new" and collide.
   const existing = new Set();
   {
-    const { data, error } = await supabase.from('skills').select('name');
-    if (error) {
-      console.error('❌ Could not read existing skills:', error.message);
-      process.exit(1);
+    const PAGE = 1000;
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await supabase
+        .from('skills')
+        .select('name')
+        .range(from, from + PAGE - 1);
+      if (error) {
+        console.error('❌ Could not read existing skills:', error.message);
+        process.exit(1);
+      }
+      for (const r of data ?? []) existing.add(r.name);
+      if (!data || data.length < PAGE) break;
     }
-    for (const r of data ?? []) existing.add(r.name);
   }
   console.log(`🔍 ${existing.size} skills already in the database.`);
 

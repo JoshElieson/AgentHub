@@ -1,3 +1,4 @@
+import { createClient } from "@supabase/supabase-js";
 import { AppShell } from "@/components/app-shell";
 import { CATEGORIES } from "@/lib/taxonomy";
 import { catalogCategoryCounts } from "@/lib/skill-classification";
@@ -41,10 +42,40 @@ const CATEGORY_ICON: Record<Category, ReactNode> = {
   marketing: <Megaphone className="h-4 w-4" />,
 };
 
-export default function HomePage() {
+// Re-fetch at most hourly — category tiles don't need per-request freshness.
+export const revalidate = 3600;
+
+// Pull the real skill catalogue server-side so the category tiles reflect the
+// full DB (classified via curated map → heuristic), not just the curated map.
+// Falls back to the curated-map counts when Supabase isn't configured.
+async function getCategoryCounts() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return catalogCategoryCounts();
+
+  try {
+    const supabase = createClient(url, key);
+    const rows: { name: string; description: string | null; tags: string[] }[] = [];
+    const PAGE = 1000;
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await supabase
+        .from("skills")
+        .select("name, description, tags")
+        .range(from, from + PAGE - 1);
+      if (error) break;
+      rows.push(...(data ?? []));
+      if (!data || data.length < PAGE) break;
+    }
+    return rows.length ? catalogCategoryCounts(rows) : catalogCategoryCounts();
+  } catch {
+    return catalogCategoryCounts();
+  }
+}
+
+export default async function HomePage() {
   // Counts reflect the real classified marketplace catalogue (skills + MCP
   // servers), so the tiles match what /explore?category=… actually shows.
-  const countMap = catalogCategoryCounts();
+  const countMap = await getCategoryCounts();
   const categories = CATEGORIES.map((c) => ({
     category: c.value,
     label: c.label,

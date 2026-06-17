@@ -48,7 +48,10 @@ function generateTags(name: string, description: string, content: string): strin
   };
 
   for (const [key, tags] of Object.entries(keywordMap)) {
-    if (fullText.includes(key)) {
+    // Word-boundary match so short keys like "ui" don't match inside words such
+    // as "build" / "require" / "gui" and stamp spurious tags on everything.
+    const re = new RegExp(`\\b${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`);
+    if (re.test(fullText)) {
       tags.forEach((tag) => tagsSet.add(tag));
     }
   }

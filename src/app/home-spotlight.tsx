@@ -7,15 +7,13 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type MouseEvent as ReactMouseEvent,
 } from "react";
-import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
 import {
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   Code2,
   Download,
   FlaskConical,
@@ -241,6 +239,19 @@ export function HomeSpotlight() {
     setPos(real + 1);
   }, []);
 
+  // Click-to-scroll: a click on the left half of the panel goes back, the right
+  // half advances. Clicks that land on an interactive element (the CTAs or the
+  // dot indicators) are left alone so those keep working independently.
+  const handlePanelClick = useCallback(
+    (e: ReactMouseEvent<HTMLElement>) => {
+      if ((e.target as HTMLElement).closest("a,button")) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      if (e.clientX - rect.left < rect.width / 2) prev();
+      else next();
+    },
+    [prev, next]
+  );
+
   // When we land on a clone, jump to its real twin with animation disabled so
   // the next move continues seamlessly in the same direction.
   const normalize = useCallback(() => {
@@ -290,7 +301,8 @@ export function HomeSpotlight() {
     <section
       aria-roledescription="carousel"
       aria-label="Featured packages"
-      className="relative isolate overflow-hidden rounded-card border border-line bg-surface shadow-card"
+      className="relative isolate cursor-pointer overflow-hidden rounded-card border border-line bg-surface shadow-card"
+      onClick={handlePanelClick}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -324,24 +336,6 @@ export function HomeSpotlight() {
           />
         ))}
       </div>
-
-      {/* Prev / Next arrows */}
-      <button
-        type="button"
-        onClick={prev}
-        aria-label="Previous package"
-        className="group absolute left-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-line bg-canvas/70 text-muted backdrop-blur transition-colors hover:border-line-strong hover:bg-surface-2 hover:text-content sm:left-4"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <button
-        type="button"
-        onClick={next}
-        aria-label="Next package"
-        className="group absolute right-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-line bg-canvas/70 text-muted backdrop-blur transition-colors hover:border-line-strong hover:bg-surface-2 hover:text-content sm:right-4"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
 
       {/* Dot indicators */}
       <div className="absolute inset-x-0 bottom-4 z-20 flex items-center justify-center gap-2">
@@ -403,13 +397,6 @@ function SpotlightPanel({
         aria-roledescription="slide"
         aria-label={`${position} of ${total}`}
       >
-        {/* Whole-panel click target. Sits below the carousel arrows/dots (z-20). */}
-        <Link
-          href={item.href}
-          aria-label={item.name}
-          tabIndex={active ? 0 : -1}
-          className="absolute inset-0 z-10 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-line"
-        />
         <h2 className="font-semibold tracking-tighter-lg text-4xl text-content sm:text-5xl">
           {item.name}
         </h2>
@@ -424,14 +411,6 @@ function SpotlightPanel({
       aria-roledescription="slide"
       aria-label={`${position} of ${total}`}
     >
-      {/* Whole-panel click target. Sits below the explicit CTAs and the
-          carousel arrows/dots (z-20) so those stay independently clickable. */}
-      <Link
-        href={item.href}
-        aria-label={item.name}
-        tabIndex={active ? 0 : -1}
-        className="absolute inset-0 z-10 rounded-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-line"
-      />
       {/* Content */}
       <div className="min-w-0">
         {!isImpeccable && (

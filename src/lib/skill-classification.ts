@@ -1,4 +1,5 @@
 import type { Category, SkillModel } from "./types";
+import { HARVESTED_SKILL_CLASSIFICATIONS } from "./harvested-classifications.generated";
 
 // ---------------------------------------------------------------------------
 // Catalogue classification — every seeded skill / MCP server is "marked" with
@@ -282,8 +283,15 @@ function classify(
   };
 }
 
+// Effective skill lookup: bulk index-derived classifications, with the
+// hand-curated SKILL_CLASSIFICATIONS taking precedence on any name collision.
+const SKILL_LOOKUP: Record<string, Classification> = {
+  ...HARVESTED_SKILL_CLASSIFICATIONS,
+  ...SKILL_CLASSIFICATIONS,
+};
+
 export function classifySkill(row: ClassifiableRow): Classification {
-  return classify(row, SKILL_CLASSIFICATIONS, "development");
+  return classify(row, SKILL_LOOKUP, "development");
 }
 
 export function classifyMcp(row: ClassifiableRow): Classification {
@@ -295,10 +303,26 @@ export function classifyMcp(row: ClassifiableRow): Classification {
 // page so the category tiles reflect the real seeded catalogue.
 // ---------------------------------------------------------------------------
 
-export function catalogCategoryCounts(): Record<Category, number> {
+export function catalogCategoryCounts(rows?: ClassifiableRow[]): Record<Category, number> {
   const counts = {} as Record<Category, number>;
+
+  // When given live skill rows, classify each (curated map → heuristic) so the
+  // tiles reflect the real catalogue, then add the curated MCP servers (which
+  // aren't part of the skill rows).
+  if (rows && rows.length > 0) {
+    for (const row of rows) {
+      const { category } = classifySkill(row);
+      counts[category] = (counts[category] ?? 0) + 1;
+    }
+    for (const { category } of Object.values(MCP_CLASSIFICATIONS)) {
+      counts[category] = (counts[category] ?? 0) + 1;
+    }
+    return counts;
+  }
+
+  // Fallback (no DB / mock mode): tally the curated + harvested maps.
   for (const { category } of [
-    ...Object.values(SKILL_CLASSIFICATIONS),
+    ...Object.values(SKILL_LOOKUP),
     ...Object.values(MCP_CLASSIFICATIONS),
   ]) {
     counts[category] = (counts[category] ?? 0) + 1;
