@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import {
   creators,
   getAgentsByCreator,
-  getCollectionsByCurator,
   getCreatorStats,
 } from "@/lib/data";
 import type { Review } from "@/lib/types";
@@ -17,7 +16,7 @@ import { getSessionUser } from "@/lib/session";
 import { formatCompact, formatDate } from "@/lib/utils";
 import { AppShell } from "@/components/app-shell";
 import { AgentGrid } from "@/components/agent-grid";
-import { CollectionCard } from "@/components/cards";
+
 import { ReviewCard } from "@/components/review-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Avatar } from "@/components/ui/avatar";
@@ -89,7 +88,6 @@ export default async function CreatorProfilePage({ params }: PageProps) {
     Boolean(viewer?.isAuthenticated) && !isOwner && creator.isDbUser;
 
   const agents = getAgentsByCreator(username);
-  const collections = getCollectionsByCurator(username);
   const stats = getCreatorStats(username);
 
   // Flatten reviews received across all of this creator's packages.
@@ -157,26 +155,7 @@ export default async function CreatorProfilePage({ params }: PageProps) {
           />
         ),
     },
-    {
-      id: "collections",
-      label: "Collections",
-      count: collections.length,
-      icon: <Layers className="h-4 w-4" />,
-      content:
-        collections.length > 0 ? (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {collections.map((c) => (
-              <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            icon={<Folder className="h-5 w-5" />}
-            title="No collections yet"
-            description={`${creator.name} hasn't curated any collections yet.`}
-          />
-        ),
-    },
+
     {
       id: "activity",
       label: "Activity",

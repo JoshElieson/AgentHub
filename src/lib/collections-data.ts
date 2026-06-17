@@ -4,26 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import type { UserCollection, CollectionKind, UserCollectionItem } from "./types";
 
 // ---------------------------------------------------------------------------
-// localStorage fallback — used when Supabase is not configured.
-// ---------------------------------------------------------------------------
-
-const LS_KEY = "agentdock_collections";
-
-function readLocal(): UserCollection[] {
-  if (typeof window === "undefined") return [];
-  try {
-    return JSON.parse(localStorage.getItem(LS_KEY) ?? "[]");
-  } catch {
-    return [];
-  }
-}
-
-function writeLocal(collections: UserCollection[]) {
-  if (typeof window === "undefined") return;
-  localStorage.setItem(LS_KEY, JSON.stringify(collections));
-}
-
-// ---------------------------------------------------------------------------
 // Hook: useCollections — list all collections for the current user.
 // ---------------------------------------------------------------------------
 
@@ -43,26 +23,13 @@ export function useCollections(opts?: { mine?: boolean }) {
       const res = await fetch(`/api/collections?${params}`);
       if (res.ok) {
         const data = await res.json();
-        if (data.collections && data.collections.length > 0) {
-          setCollections(data.collections);
-          setLoading(false);
-          return;
-        }
+        setCollections(data.collections ?? []);
       }
     } catch {
-      // Fall through to localStorage
+      // API error — show empty state
+    } finally {
+      setLoading(false);
     }
-
-    // localStorage fallback
-    const local = readLocal();
-    const anonId = (await import("@/lib/anon-id")).getAnonId();
-    const filtered = opts?.mine
-      ? local.filter((c) => c.anon_id === anonId)
-      : local;
-    setCollections(
-      filtered.map((c) => ({ ...c, item_count: c.items.length }))
-    );
-    setLoading(false);
   }, [opts?.mine]);
 
   useEffect(() => {
@@ -90,21 +57,13 @@ export function useCollection(id: string | null) {
       const res = await fetch(`/api/collections/${id}`);
       if (res.ok) {
         const data = await res.json();
-        if (data.collection) {
-          setCollection(data.collection);
-          setLoading(false);
-          return;
-        }
+        setCollection(data.collection ?? null);
       }
     } catch {
-      // Fall through to localStorage
+      // API error — show not-found
+    } finally {
+      setLoading(false);
     }
-
-    // localStorage fallback
-    const local = readLocal();
-    const found = local.find((c) => c.id === id) ?? null;
-    setCollection(found);
-    setLoading(false);
   }, [id]);
 
   useEffect(() => {
@@ -159,26 +118,10 @@ export async function createCollection(data: {
       if (json.collection) return json.collection;
     }
   } catch {
-    // Fall through to localStorage
+    // API error
   }
 
-  // localStorage fallback
-  const now = new Date().toISOString();
-  const collection: UserCollection = {
-    id: crypto.randomUUID(),
-    name: data.name,
-    description: data.description ?? "",
-    kind: data.kind,
-    cover_color: randomGradient(),
-    anon_id: anonId,
-    is_public: true,
-    created_at: now,
-    updated_at: now,
-    items: [],
-  };
-  const local = readLocal();
-  writeLocal([collection, ...local]);
-  return collection;
+  return null;
 }
 
 export async function updateCollection(
@@ -196,19 +139,9 @@ export async function updateCollection(
     });
     if (res.ok) return true;
   } catch {
-    // localStorage fallback
+    // API error
   }
 
-  const local = readLocal();
-  const idx = local.findIndex((c) => c.id === id && c.anon_id === anonId);
-  if (idx >= 0) {
-    if (updates.name !== undefined) local[idx].name = updates.name;
-    if (updates.description !== undefined) local[idx].description = updates.description;
-    if (updates.cover_color !== undefined) local[idx].cover_color = updates.cover_color;
-    local[idx].updated_at = new Date().toISOString();
-    writeLocal(local);
-    return true;
-  }
   return false;
 }
 
@@ -222,15 +155,9 @@ export async function deleteCollection(id: string): Promise<boolean> {
     });
     if (res.ok) return true;
   } catch {
-    // localStorage fallback
+    // API error
   }
 
-  const local = readLocal();
-  const filtered = local.filter((c) => !(c.id === id && c.anon_id === anonId));
-  if (filtered.length < local.length) {
-    writeLocal(filtered);
-    return true;
-  }
   return false;
 }
 
@@ -250,29 +177,9 @@ export async function addCollectionItem(
     });
     if (res.ok) return true;
   } catch {
-    // localStorage fallback
+    // API error
   }
 
-  const local = readLocal();
-  const idx = local.findIndex((c) => c.id === collectionId);
-  if (idx >= 0) {
-    const already = local[idx].items.some((i) => i.item_id === itemId);
-    if (!already) {
-      const maxPos = local[idx].items.reduce(
-        (m, i) => Math.max(m, i.position),
-        -1
-      );
-      local[idx].items.push({
-        item_id: itemId,
-        item_kind: itemKind,
-        position: maxPos + 1,
-        added_at: new Date().toISOString(),
-      });
-      local[idx].updated_at = new Date().toISOString();
-      writeLocal(local);
-    }
-    return true;
-  }
   return false;
 }
 
@@ -291,16 +198,8 @@ export async function removeCollectionItem(
     });
     if (res.ok) return true;
   } catch {
-    // localStorage fallback
+    // API error
   }
 
-  const local = readLocal();
-  const idx = local.findIndex((c) => c.id === collectionId);
-  if (idx >= 0) {
-    local[idx].items = local[idx].items.filter((i) => i.item_id !== itemId);
-    local[idx].updated_at = new Date().toISOString();
-    writeLocal(local);
-    return true;
-  }
   return false;
 }

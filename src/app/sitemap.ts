@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { agents, creators, organizations, collections } from "@/lib/data";
+import { agents, creators, organizations } from "@/lib/data";
 
 const BASE = "https://agentdock.dev";
 
@@ -33,12 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  const collectionRoutes = collections.map((c) => ({
-    url: `${BASE}/collections/${c.slug}`,
-    lastModified: new Date(c.updatedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
 
-  return [...staticRoutes, ...agentRoutes, ...creatorRoutes, ...orgRoutes, ...collectionRoutes];
+  return [...staticRoutes, ...agentRoutes, ...creatorRoutes, ...orgRoutes];
 }

@@ -6,12 +6,10 @@ import {
   getOrganization,
   getAgentsByOrg,
   getOrgStats,
-  collections,
 } from "@/lib/data";
-import type { Collection } from "@/lib/types";
 import { AppShell } from "@/components/app-shell";
 import { AgentGrid } from "@/components/agent-grid";
-import { CollectionCard } from "@/components/cards";
+
 import { Avatar } from "@/components/ui/avatar";
 import { VerifiedBadge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -62,12 +60,7 @@ export default async function OrgProfilePage({
 
   const agents = getAgentsByOrg(slug);
   const stats = getOrgStats(slug);
-  const orgSlugs = new Set(agents.map((a) => a.slug));
 
-  // Collections that feature at least one agent from this org.
-  const relatedCollections: Collection[] = collections.filter((c) =>
-    (c.agentSlugs ?? []).some((s) => orgSlugs.has(s))
-  );
 
   const tabs = [
     {
@@ -86,26 +79,7 @@ export default async function OrgProfilePage({
           />
         ),
     },
-    {
-      id: "collections",
-      label: "Collections",
-      count: relatedCollections.length,
-      icon: <Layers className="h-4 w-4" />,
-      content:
-        relatedCollections.length > 0 ? (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {relatedCollections.map((c) => (
-              <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            icon={<Layers className="h-5 w-5" />}
-            title="No collections"
-            description={`No curated collections feature ${org.name}'s packages yet.`}
-          />
-        ),
-    },
+
     {
       id: "activity",
       label: "Activity",

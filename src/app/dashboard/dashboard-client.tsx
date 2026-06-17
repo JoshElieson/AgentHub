@@ -12,7 +12,6 @@ import { ProfileSettings } from "./profile-settings";
 import type { SessionUser } from "@/lib/session";
 
 export type { DashboardSection };
-import { CollectionCard } from "@/components/cards";
 import { StatCard } from "@/components/ui/stat-card";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
@@ -27,8 +26,6 @@ import {
   getCreator,
   getCreatorStats,
   getAgentsByCreator,
-  getCollectionsByCurator,
-  collections,
   activityFeed,
   CURRENT_USERNAME,
   type ActivityItem,
@@ -1143,66 +1140,16 @@ function CollectionsSection({
   username: string;
   isSeedCreator: boolean;
 }) {
-  const curated = getCollectionsByCurator(username);
-  // Followed collections: a couple curated by others (seed demo only).
-  const followed = isSeedCreator
-    ? collections.filter((c) => c.curatorUsername !== username).slice(0, 3)
-    : [];
-
-  const hasAny = curated.length > 0 || followed.length > 0;
-
-  if (!hasAny) {
-    return (
-      <EmptyState
-        icon={<FolderHeart className="h-5 w-5" />}
-        title="No collections yet"
-        description="Create a collection to group agents you love, or follow one."
-        action={
-          <ButtonLink href="/collections" variant="primary" size="md">
-            Browse collections
-          </ButtonLink>
-        }
-      />
-    );
-  }
-
   return (
-    <div className="space-y-8">
-      <section>
-        <div className="mb-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <LayoutList className="h-4 w-4 text-brand-muted" />
-            <h3 className="text-sm font-semibold text-content">Curated by you</h3>
-            <span className="text-xs text-subtle">({curated.length})</span>
-          </div>
-        </div>
-        {curated.length === 0 ? (
-          <div className="card px-4 py-6 text-center text-sm text-subtle">
-            You haven&apos;t curated any collections yet.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {curated.map((c) => (
-              <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {followed.length > 0 && (
-        <section>
-          <div className="mb-3 flex items-center gap-2">
-            <FolderHeart className="h-4 w-4 text-info" />
-            <h3 className="text-sm font-semibold text-content">Followed</h3>
-            <span className="text-xs text-subtle">({followed.length})</span>
-          </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {followed.map((c) => (
-              <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        </section>
-      )}
-    </div>
+    <EmptyState
+      icon={<FolderHeart className="h-5 w-5" />}
+      title="No collections yet"
+      description="Create a collection to group skills or MCP servers together."
+      action={
+        <ButtonLink href="/collections" variant="primary" size="md">
+          Browse collections
+        </ButtonLink>
+      }
+    />
   );
 }
