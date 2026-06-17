@@ -1,87 +1,39 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { AppShell, SectionHeader } from "@/components/app-shell";
-import { CollectionCard } from "@/components/cards";
-import { Badge } from "@/components/ui/badge";
-import { collections } from "@/lib/data";
-import { ArrowRight, Layers } from "lucide-react";
+import { AppShell } from "@/components/app-shell";
+import { CollectionsClient } from "./collections-client";
 
 export const metadata: Metadata = {
   title: "Collections — AgentDock",
   description:
-    "Curated stacks of agents that work well together. Hand-picked toolkits for security, frontend, DevOps, research, and more.",
+    "Curated groups of skills and MCP servers. Install an entire toolkit with one click.",
 };
 
 export default function CollectionsPage() {
-  const official = collections.filter((c) => c.isOfficial);
-  const community = collections.filter((c) => !c.isOfficial);
-
   return (
     <AppShell>
-      {/* Page header */}
-      <section className="border-b border-line pt-10 pb-7 sm:pt-12 sm:pb-8">
-        <div className="flex items-center gap-2 text-2xs font-medium uppercase tracking-wide text-brand-muted">
-          <Layers className="h-3.5 w-3.5" />
-          Curated
-        </div>
-        <div className="mt-3">
-          <SectionHeader
-            title="Collections"
-            description="Curated stacks of agents that work well together."
-          />
-        </div>
-      </section>
-
-      {/* Official highlight */}
-      {official.length > 0 && (
-        <section className="py-10">
-          <SectionHeader
-            title={
-              <span className="flex items-center gap-2">
-                Official collections
-                <Badge variant="brand">Curated by AgentDock</Badge>
-              </span>
-            }
-            description="Vetted, maintained, and recommended by the AgentDock team."
-          />
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {official.map((c) => (
-              <CollectionCard key={c.slug} collection={c} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* All / community collections */}
-      <section className="pb-14 pt-4">
-        <SectionHeader
-          title={official.length > 0 ? "Community collections" : "All collections"}
-          description="Stacks shared by creators across the registry."
-        />
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {(official.length > 0 ? community : collections).map((c) => (
-            <CollectionCard key={c.slug} collection={c} />
-          ))}
-        </div>
-
-        {/* Curator credit strip */}
-        <div className="mt-10 rounded-card border border-line bg-surface p-5">
-          <h3 className="text-sm font-semibold text-content">
-            Build your own stack
-          </h3>
-          <p className="mt-1 max-w-2xl text-sm text-muted">
-            Collections group packages that compose well — one install pulls the
-            whole toolkit. Explore what curators are assembling, then publish
-            your own.
-          </p>
-          <Link
-            href="/explore"
-            className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-muted hover:text-brand"
-          >
-            Browse the marketplace <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </section>
+      <Suspense fallback={<CollectionsFallback />}>
+        <CollectionsClient />
+      </Suspense>
     </AppShell>
+  );
+}
+
+function CollectionsFallback() {
+  return (
+    <div className="py-8 sm:py-10">
+      <div className="h-4 w-16 animate-pulse rounded-md bg-surface-2" />
+      <div className="mt-3 h-8 w-48 animate-pulse rounded-md bg-surface-2" />
+      <div className="mt-2 h-4 w-80 animate-pulse rounded-md bg-surface-2" />
+      <div className="mt-6 h-11 w-full animate-pulse rounded-xl bg-surface-2" />
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div
+            key={i}
+            className="h-48 animate-pulse rounded-card border border-line bg-surface"
+          />
+        ))}
+      </div>
+    </div>
   );
 }

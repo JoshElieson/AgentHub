@@ -66,7 +66,7 @@ export default async function OrgProfilePage({
 
   // Collections that feature at least one agent from this org.
   const relatedCollections: Collection[] = collections.filter((c) =>
-    c.agentSlugs.some((s) => orgSlugs.has(s))
+    (c.agentSlugs ?? []).some((s) => orgSlugs.has(s))
   );
 
   const tabs = [

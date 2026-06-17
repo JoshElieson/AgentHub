@@ -1,16 +1,24 @@
 import type { Collection, Creator, Organization } from "@/lib/types";
-import { getCollectionAgents, getCreator, getCreatorStats, getOrgStats } from "@/lib/data";
+import { getCollectionAgents, getCollectionItemCount, getCreator, getCreatorStats, getOrgStats, getOrganization } from "@/lib/data";
 import { getAgentsByCreator } from "@/lib/data";
 import { cn, formatCompact } from "@/lib/utils";
 import Link from "next/link";
 import { Avatar } from "./ui/avatar";
 import { VerifiedBadge } from "./ui/badge";
-import { Download, Package, Users } from "lucide-react";
+import { Download, Package, Plug, Users } from "lucide-react";
 
 // --- Collection -------------------------------------------------------------
 
 export function CollectionCard({ collection }: { collection: Collection }) {
-  const agents = getCollectionAgents(collection);
+  const itemCount = getCollectionItemCount(collection);
+  const org = collection.orgSlug
+    ? getOrganization(collection.orgSlug)
+    : undefined;
+  const isMcp = collection.kind === "mcps";
+
+  // For skill collections, resolve agents for the avatar stack
+  const agents = isMcp ? [] : getCollectionAgents(collection);
+
   return (
     <Link
       href={`/collections/${collection.slug}`}
@@ -29,6 +37,20 @@ export function CollectionCard({ collection }: { collection: Collection }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-4">
+        {/* Kind label */}
+        <div className="mb-2 flex items-center gap-1.5">
+          {isMcp ? (
+            <span className="inline-flex items-center gap-1 rounded-sm border border-line bg-surface-2 px-1.5 py-0.5 text-2xs font-medium text-subtle">
+              <Plug className="h-3 w-3" />
+              MCP Servers
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1 rounded-sm border border-line bg-surface-2 px-1.5 py-0.5 text-2xs font-medium text-subtle">
+              <Package className="h-3 w-3" />
+              Skills
+            </span>
+          )}
+        </div>
         <h3 className="text-sm font-semibold text-content group-hover:text-white">
           {collection.name}
         </h3>
@@ -36,33 +58,54 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           {collection.description}
         </p>
         <div className="mt-3 flex items-center justify-between">
-          <div className="flex -space-x-2">
-            {agents.slice(0, 4).map((a) => {
-              const c = getCreator(a.creatorUsername);
-              return (
-                <Avatar
-                  key={a.slug}
-                  name={a.name}
-                  color={c?.avatarColor}
-                  size="sm"
-                  className="ring-2 ring-surface"
-                />
-              );
-            })}
-            {agents.length > 4 && (
-              <span className="grid h-7 w-7 place-items-center rounded-md border border-line bg-surface-2 text-2xs font-medium text-muted ring-2 ring-surface tnum">
-                +{agents.length - 4}
+          {org ? (
+            <div className="flex items-center gap-2">
+              <Avatar
+                name={org.name}
+                color={org.avatarColor}
+                size="sm"
+                className="ring-2 ring-surface"
+              />
+              <span className="text-xs font-medium text-muted">
+                {org.name}
               </span>
-            )}
-          </div>
+            </div>
+          ) : !isMcp && agents.length > 0 ? (
+            <div className="flex -space-x-2">
+              {agents.slice(0, 4).map((a) => {
+                const c = getCreator(a.creatorUsername);
+                return (
+                  <Avatar
+                    key={a.slug}
+                    name={a.name}
+                    color={c?.avatarColor}
+                    size="sm"
+                    className="ring-2 ring-surface"
+                  />
+                );
+              })}
+              {agents.length > 4 && (
+                <span className="grid h-7 w-7 place-items-center rounded-md border border-line bg-surface-2 text-2xs font-medium text-muted ring-2 ring-surface tnum">
+                  +{agents.length - 4}
+                </span>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="grid h-7 w-7 place-items-center rounded-md border border-line bg-surface-2">
+                <Plug className="h-3.5 w-3.5 text-subtle" />
+              </div>
+              <span className="text-xs text-subtle">{itemCount} servers</span>
+            </div>
+          )}
           <div className="flex items-center gap-3 text-xs text-subtle">
-            <span className="flex items-center gap-1">
-              <Package className="h-3.5 w-3.5" />
-              {agents.length}
-            </span>
             <span className="flex items-center gap-1 tabular-nums">
-              <Users className="h-3.5 w-3.5" />
-              {formatCompact(collection.followers)}
+              {isMcp ? (
+                <Plug className="h-3.5 w-3.5" />
+              ) : (
+                <Package className="h-3.5 w-3.5" />
+              )}
+              {itemCount}
             </span>
           </div>
         </div>

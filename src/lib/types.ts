@@ -254,10 +254,50 @@ export interface Collection {
   description: string;
   coverColor: string;
   curatorUsername: string;
-  agentSlugs: string[];
+  kind: "skills" | "mcps";
+  agentSlugs?: string[];
+  mcpServerIds?: string[];
+  orgSlug?: string;
   followers: number;
   isOfficial?: boolean;
   updatedAt: string;
+}
+
+// --- User-created collections (Supabase-backed) ----------------------------
+
+export type CollectionKind = "skills" | "mcps";
+
+export interface UserCollection {
+  id: string;
+  name: string;
+  description: string;
+  kind: CollectionKind;
+  cover_color: string;
+  anon_id: string;
+  is_public: boolean;
+  created_at: string;
+  updated_at: string;
+  items: UserCollectionItem[];
+}
+
+export interface UserCollectionItem {
+  item_id: string;
+  item_kind: "skill" | "mcp";
+  position: number;
+  added_at: string;
+  // Resolved data (joined from skills/mcp_servers tables)
+  name?: string;
+  description?: string;
+  tags?: string[];
+  star_count?: number;
+  export_count?: number;
+  avg_rating?: number;
+  rating_count?: number;
+  // MCP-specific resolved data
+  command?: string;
+  args?: string[];
+  env_vars?: Record<string, string>;
+  github_url?: string | null;
 }
 
 // --- Install target metadata ------------------------------------------------

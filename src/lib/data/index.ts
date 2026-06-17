@@ -20,9 +20,11 @@ import { agents } from "./agents";
 import { collections, getCollection } from "./collections";
 import { creators, getCreator } from "./creators";
 import { getOrganization, organizations } from "./organizations";
+import { MOCK_MCP_SERVERS, type McpServerRow } from "../supabase";
 
 export { agents, creators, organizations, collections };
 export { getCreator, getOrganization, getCollection };
+export { MOCK_MCP_SERVERS, type McpServerRow };
 export { GRADIENTS } from "./creators";
 export { ORG_GRADIENTS } from "./organizations";
 
@@ -56,11 +58,22 @@ export function getCollectionsByCurator(username: string): Collection[] {
 }
 
 export function getCollectionAgents(collection: Collection): AgentPackage[] {
-  return getAgentsBySlugs(collection.agentSlugs);
+  return getAgentsBySlugs(collection.agentSlugs ?? []);
+}
+
+export function getCollectionMcpServers(collection: Collection): McpServerRow[] {
+  if (!collection.mcpServerIds) return [];
+  return MOCK_MCP_SERVERS.filter((s) => collection.mcpServerIds!.includes(s.id));
+}
+
+/** Total item count regardless of kind. */
+export function getCollectionItemCount(collection: Collection): number {
+  if (collection.kind === "mcps") return (collection.mcpServerIds ?? []).length;
+  return (collection.agentSlugs ?? []).length;
 }
 
 export function getCollectionsForAgent(slug: string): Collection[] {
-  return collections.filter((c) => c.agentSlugs.includes(slug));
+  return collections.filter((c) => (c.agentSlugs ?? []).includes(slug));
 }
 
 // --- Aggregate stats --------------------------------------------------------
