@@ -1,107 +1,161 @@
 # AgentDock
 
-**The package registry for AI agents.** Discover, install, publish, version, and review AI
-agents, Claude skills, MCP servers, Cursor rules, workflows, and prompt packs — across every
-platform (Claude Code, Claude Desktop, Cursor, Windsurf, FORGE, OpenAI Agents, MCP).
+**A cross-platform registry and marketplace for installable AI agent capabilities.**
 
-Think **GitHub + npm + VS Code Marketplace + Hugging Face**, focused on installable AI
-capabilities. Dark-first, premium, infrastructure-grade.
+AgentDock is a full-stack marketplace for discovering, publishing, versioning, reviewing, and installing:
 
-> This is an MVP foundation: a fully navigable product skeleton with a polished design system
-> and high-quality seeded mock data. It runs with **zero secrets** out of the box.
+* AI agents
+* Claude skills
+* MCP servers
+* Cursor and Windsurf rules
+* Agent workflows
+* Prompt packs
 
----
+The platform is designed as a combination of **npm, GitHub, the VS Code Marketplace, and Hugging Face**, built specifically for reusable AI-agent tooling across Claude Code, Claude Desktop, Cursor, Windsurf, OpenAI Agents, MCP, and other agent platforms.
 
-## Quick start
-
-```bash
-npm install
-npm run dev
-# open http://localhost:3000
-```
-
-Production build:
-
-```bash
-npm run build && npm start
-```
-
-No environment variables are required — the app falls back to **mock auth / dev mode** and
-seeded mock data. To enable real OAuth or a database, copy `.env.example` to `.env` and fill it in.
+> **Current status:** AgentDock is a polished MVP with a complete product architecture, responsive marketplace interface, production-ready data model, authentication infrastructure, and realistic seeded data. It runs locally without external services or credentials.
 
 ---
 
-## Tech stack
+## Project highlights
 
-- **Next.js 15** (App Router, RSC) + **React 19**
-- **TypeScript** (strict)
-- **Tailwind CSS 3** with a custom dark design system
-- **Prisma** schema (PostgreSQL-ready; SQLite-friendly) — `prisma/schema.prisma`
-- **Auth.js / NextAuth** architecture with GitHub + Google placeholders (mock-mode fallback)
-- **Zod** for validation
-- **lucide-react** icons
-- Zero runtime DB dependency — pages read from a typed mock-data layer (`src/lib/data`)
-
----
-
-## Routes
-
-| Route | Description |
-| --- | --- |
-| `/` | Homepage — hero, search, stats, trending, top security, new releases, categories, collections |
-| `/explore` | Marketplace — live client-side search, filters (type/platform/category/license/pricing), sort |
-| `/agents/[slug]` | Package detail — Overview, Files, Versions, Reviews, Issues, Discussions tabs |
-| `/u/[username]` | Creator profile — Agents, Collections, Activity, Reviews |
-| `/organizations` | Verified organizations index |
-| `/org/[slug]` | Organization profile |
-| `/collections` | Curated collections index |
-| `/collections/[slug]` | Collection detail |
-| `/dashboard` | Overview, My Agents, Installed, Favorites, Collections, Settings |
-| `/publish` | 5-step publish wizard (type → import → metadata → permissions → preview) |
-| `/docs`, `/docs/[slug]` | Docs incl. the `agent.json` package standard, permissions model, CLI reference |
-| `/login` | Sign in with GitHub / Google (mock-mode aware) |
-| `/api/auth/[...nextauth]` | NextAuth route handler |
+* Built a multi-platform package marketplace using **Next.js 15, React 19, and strict TypeScript**
+* Designed a normalized **Prisma/PostgreSQL schema** for packages, versions, files, reviews, installations, organizations, and collections
+* Created a unified `agent.json` package format for representing installable AI capabilities across different platforms
+* Implemented marketplace search, filtering, sorting, package pages, creator profiles, organizations, collections, and publishing workflows
+* Architected the frontend around a replaceable typed query layer, allowing mock data to be exchanged for Prisma queries without modifying UI components
+* Added GitHub and Google authentication infrastructure with graceful fallback to a deterministic local development session
+* Designed a permission and risk model for packages requesting filesystem, command execution, network, or environment access
+* Built a responsive, dark-first design system with reusable components and consistent marketplace interaction patterns
 
 ---
 
-## Project structure
+## Screens and functionality
 
-```
+### Marketplace discovery
+
+The marketplace supports:
+
+* Full-text package search
+* Filtering by package type, platform, category, license, and pricing
+* Sorting by popularity, rating, recency, and installation count
+* Trending packages and new releases
+* Curated collections
+* Security-focused package discovery
+* Verified organizations and creator profiles
+
+### Package pages
+
+Each package includes dedicated sections for:
+
+* Overview and documentation
+* Package files
+* Version history
+* Reviews and ratings
+* Issues
+* Community discussions
+* Supported platforms
+* Requested permissions
+* Installation commands
+
+### Publishing workflow
+
+AgentDock includes a five-step publishing flow:
+
+1. Select a package type
+2. Import files or a repository
+3. Configure metadata and supported platforms
+4. Declare permissions and security requirements
+5. Preview and publish the package
+
+### User features
+
+The application includes interfaces for:
+
+* OAuth authentication
+* User and organization profiles
+* Following creators
+* Package installation history
+* Favorites
+* Collections
+* Package management
+* Profile and account settings
+
+---
+
+## Technology stack
+
+| Area           | Technology                                          |
+| -------------- | --------------------------------------------------- |
+| Framework      | Next.js 15 App Router                               |
+| Frontend       | React 19                                            |
+| Language       | TypeScript with strict type checking                |
+| Styling        | Tailwind CSS 3                                      |
+| Database       | Prisma ORM with PostgreSQL                          |
+| Authentication | Auth.js / NextAuth                                  |
+| Validation     | Zod                                                 |
+| Icons          | Lucide React                                        |
+| Architecture   | React Server Components and typed data-access layer |
+
+---
+
+## Architecture
+
+```text
 src/
-  app/                 # routes (App Router)
-  components/          # reusable UI — AppShell, Navbar, AgentCard, InstallModal, Tabs, …
-    ui/                # primitives — Button, Badge, Avatar, RatingStars, CommandBlock, Tabs, …
-  lib/
-    types.ts           # domain types (mirror the Prisma schema)
-    taxonomy.ts        # labels, options, permission/risk metadata
-    utils.ts           # cn, formatting, time helpers
-    auth.ts / session.ts  # NextAuth options + mock-session fallback
-    data/              # seeded mock data + the query layer (getAgent, filterAgents, …)
-prisma/
-  schema.prisma        # production data model
+├── app/                    # Next.js routes and server components
+├── components/
+│   ├── ui/                 # Reusable design-system primitives
+│   └── ...                 # Marketplace and application components
+├── lib/
+│   ├── auth.ts             # Authentication configuration
+│   ├── session.ts          # Development-session fallback
+│   ├── types.ts            # Shared domain types
+│   ├── taxonomy.ts         # Package and permission metadata
+│   ├── utils.ts            # Formatting and utility functions
+│   └── data/               # Typed data-access and query layer
+└── prisma/
+    └── schema.prisma       # Production relational data model
 ```
 
-The UI talks to **one query layer** (`src/lib/data`). Swapping mock data for real Prisma
-queries means re-implementing those functions — the components don't change.
+The UI communicates with a single typed query layer located in `src/lib/data`.
+
+```text
+UI components
+      ↓
+Typed query interface
+      ↓
+Mock data or Prisma/PostgreSQL
+```
+
+This separation keeps components independent of the persistence implementation. Moving from seeded mock data to a production database requires replacing the query implementations rather than rewriting the interface.
 
 ---
 
 ## Data model
 
-`prisma/schema.prisma` defines: `User`, `Organization`, `OrganizationMember`, `AgentPackage`,
-`AgentVersion`, `AgentFile`, `Review`, `Issue`, `Discussion`, `Collection`, `CollectionItem`,
-`Install`, `Favorite`, `Category`, `Tag`. It's PostgreSQL-ready; for local SQLite, switch the
-datasource `provider` and adapt the enum/array fields (notes in the schema header).
+The Prisma schema models the primary entities required by a production package registry:
 
-```bash
-# when you wire up a database:
-npx prisma generate
-npx prisma db push
-```
+* Users and authentication accounts
+* Organizations and organization membership
+* Agent packages
+* Semantic package versions
+* Package files
+* Reviews and ratings
+* Issues and discussions
+* Collections
+* Installations
+* Favorites
+* Categories and tags
+* Creator follows
+
+The schema is designed for PostgreSQL and can be adapted for SQLite during lightweight local development.
 
 ---
 
-## The package standard (`agent.json`)
+## Cross-platform package standard
+
+AgentDock defines an `agent.json` manifest for describing reusable AI capabilities consistently across agent platforms.
 
 ```json
 {
@@ -109,7 +163,7 @@ npx prisma db push
   "displayName": "Security Review Agent",
   "version": "1.0.0",
   "type": "agent",
-  "description": "Reviews code for OWASP, auth, secrets, and AI-agent security risks.",
+  "description": "Reviews code for OWASP, authentication, secret-management, and AI-agent security risks.",
   "platforms": ["claude-code", "cursor", "forge"],
   "permissions": {
     "readFiles": true,
@@ -123,82 +177,200 @@ npx prisma db push
 }
 ```
 
-Install targets (mock CLI concept):
+The manifest records:
+
+* Package identity and semantic version
+* Capability type
+* Supported platforms
+* Entry point
+* License
+* Filesystem access
+* Command-execution access
+* Network access
+* Environment-variable access
+
+This allows the registry to display security information before installation and gives a future CLI enough metadata to install packages into platform-specific locations.
+
+---
+
+## CLI design
+
+The planned AgentDock CLI uses one installation command across supported platforms:
 
 ```bash
-npx agentdock install security-review --target claude    # -> .claude/skills/[agent]
-npx agentdock install security-review --target cursor    # -> .cursor/rules/[agent].mdc
-npx agentdock install security-review --target forge      # -> .forge/agents/[agent]
-npx agentdock install security-review                     # -> .agentdock/[agent]
+npx agentdock install security-review --target claude
+npx agentdock install security-review --target cursor
+npx agentdock install security-review --target forge
 ```
 
-See `/docs` for the full package format, permissions model, and CLI reference.
+Target-specific installations would resolve to the appropriate platform directory:
 
----
-
-## Auth & profiles
-
-Sign-in is real NextAuth (`src/lib/auth.ts`) with **GitHub + Google** providers and a Prisma
-adapter. Providers and the database **only activate when their env vars are present**; with no
-secrets the app stays in mock dev mode (a deterministic demo user keeps every surface
-navigable). Once configured you get: OAuth sign-in/out, database-backed sessions, auto-created
-profiles (unique username + avatar generated on first sign-in, GitHub bio/links imported),
-editable profiles, connected-accounts management, follow/unfollow, and account deletion.
-
-### Turn on real sign-in (local)
-
-1. **Database** — point `DATABASE_URL` at a Postgres instance, then:
-   ```bash
-   npm run db:push     # create the tables (Account, Session, User, Follow, …)
-   npm run db:seed     # optional: turn the mock creators into editable DB users
-   ```
-2. **GitHub OAuth App** — <https://github.com/settings/developers> → *New OAuth App*
-   - Homepage URL: `http://localhost:3000`
-   - Authorization callback URL: `http://localhost:3000/api/auth/callback/github`
-   - Copy the Client ID/secret into `GITHUB_ID` / `GITHUB_SECRET`.
-3. **Google OAuth client** — <https://console.cloud.google.com/apis/credentials> → *Create
-   credentials → OAuth client ID → Web application*
-   - Authorized redirect URI: `http://localhost:3000/api/auth/callback/google`
-   - Copy into `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET`.
-4. A `NEXTAUTH_SECRET` is pre-generated in `.env.local`. Restart `npm run dev`.
-
-Env vars: `NEXTAUTH_URL`, `NEXTAUTH_SECRET`, `GITHUB_ID`, `GITHUB_SECRET`, `GOOGLE_CLIENT_ID`,
-`GOOGLE_CLIENT_SECRET`, `DATABASE_URL`. A ready-to-fill `.env.local` is included.
-
-How it degrades: OAuth keys but no `DATABASE_URL` → sign-in works on stateless JWT sessions
-(profiles aren't persisted). No keys → mock dev mode.
-
----
-
-## Scripts
-
-| Script | Action |
-| --- | --- |
-| `npm run dev` | Start the dev server |
-| `npm run build` | Production build |
-| `npm start` | Serve the production build |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | Next.js lint |
-| `npm run db:push` | Push the Prisma schema (needs `DATABASE_URL`) |
-| `npm run db:seed` | Seed mock creators as editable DB users |
-| `npm run db:studio` | Open Prisma Studio |
-
----
-
-## Assumptions & notes
-
-- **Brand** `AgentDock` is a placeholder. The accent is a restrained violet; the type stack is
-  system fonts (premium and offline-safe — like GitHub).
-- **Mock data** is intentionally realistic (15 agents, 10 creators, 5 orgs, 6 collections) so
-  the product is demoable. Headline homepage stats (17,842 agents, etc.) are illustrative.
-- All "actions" (install, follow, publish, configure, uninstall) are **mock interactions** —
-  no backend writes yet. The structure is in place to wire them up.
-
-## Remaining TODOs
-
-- Replace the `src/lib/data` query layer with real Prisma queries.
-- Implement the real `agentdock` CLI and install targets.
-- Persist installs/favorites/reviews/issues/discussions.
-- Real file upload + GitHub import in the publish wizard.
-- Payments for paid packages; the "Security reviewed" review pipeline.
+```text
+Claude Code  → .claude/skills/security-review
+Cursor       → .cursor/rules/security-review.mdc
+FORGE        → .forge/agents/security-review
+Generic      → .agentdock/security-review
 ```
+
+The marketplace already presents these installation commands and models the metadata required for the CLI.
+
+---
+
+## Authentication
+
+AgentDock includes an Auth.js architecture supporting GitHub and Google OAuth.
+
+Authentication behavior degrades gracefully depending on the available configuration:
+
+| Configuration                  | Behavior                                           |
+| ------------------------------ | -------------------------------------------------- |
+| Database and OAuth credentials | Persistent users, accounts, sessions, and profiles |
+| OAuth credentials only         | Stateless JWT authentication                       |
+| No environment variables       | Deterministic mock development session             |
+
+This makes the complete interface navigable immediately while preserving a direct path to production authentication.
+
+With a configured database, the architecture supports:
+
+* OAuth sign-in and sign-out
+* Persistent sessions
+* Automatically generated usernames
+* Imported GitHub profile information
+* Editable user profiles
+* Connected-account management
+* Follow and unfollow relationships
+* Account deletion
+
+---
+
+## Routes
+
+| Route                 | Purpose                                                                        |
+| --------------------- | ------------------------------------------------------------------------------ |
+| `/`                   | Homepage, marketplace statistics, trending packages, releases, and collections |
+| `/explore`            | Searchable and filterable package marketplace                                  |
+| `/agents/[slug]`      | Package details, files, versions, reviews, issues, and discussions             |
+| `/u/[username]`       | Creator profile and published work                                             |
+| `/organizations`      | Verified organization directory                                                |
+| `/org/[slug]`         | Organization profile                                                           |
+| `/collections`        | Curated package collections                                                    |
+| `/collections/[slug]` | Collection details                                                             |
+| `/dashboard`          | User packages, installations, favorites, collections, and settings             |
+| `/publish`            | Multi-step publishing workflow                                                 |
+| `/docs`               | Package standard, permission model, and CLI documentation                      |
+| `/login`              | GitHub and Google authentication                                               |
+
+---
+
+## Local development
+
+### Requirements
+
+* Node.js 20 or newer
+* npm
+
+### Run the application
+
+```bash
+git clone https://github.com/JoshElieson/AgentDock.git
+cd AgentDock
+npm install
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+No environment variables are required. AgentDock automatically uses seeded data and mock authentication when external services are unavailable.
+
+### Production build
+
+```bash
+npm run build
+npm start
+```
+
+### Optional database setup
+
+```bash
+npx prisma generate
+npm run db:push
+npm run db:seed
+```
+
+---
+
+## Available scripts
+
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| `npm run dev`       | Start the local development server   |
+| `npm run build`     | Create an optimized production build |
+| `npm start`         | Run the production server            |
+| `npm run typecheck` | Run TypeScript validation            |
+| `npm run lint`      | Run linting                          |
+| `npm run db:push`   | Apply the Prisma schema              |
+| `npm run db:seed`   | Seed development data                |
+| `npm run db:studio` | Open Prisma Studio                   |
+
+---
+
+## Current implementation status
+
+The current MVP includes:
+
+* Complete responsive marketplace interface
+* Search, filtering, and sorting
+* Package, profile, organization, and collection pages
+* Package publishing workflow
+* Dashboard and account-management interfaces
+* Reusable component and design systems
+* Typed domain and data-access layers
+* Production-oriented Prisma schema
+* OAuth and development authentication architecture
+* Package manifest and permission standards
+* Realistic seeded marketplace content
+
+The following capabilities are represented in the architecture and UI but still require production backend integration:
+
+* Persistent installations, favorites, reviews, and discussions
+* Package file storage and GitHub repository importing
+* Production AgentDock CLI
+* Automated package security analysis
+* Paid package processing
+* Production search infrastructure
+
+---
+
+## Engineering focus
+
+AgentDock explores the infrastructure required to distribute AI-agent capabilities safely across fragmented platforms.
+
+The project focuses on three central engineering problems:
+
+1. **Portability**
+   Representing Claude skills, MCP servers, editor rules, prompts, and agents through a common package model.
+
+2. **Security**
+   Making requested filesystem, command, network, and environment permissions visible before installation.
+
+3. **Extensibility**
+   Separating UI, domain types, data access, authentication, and persistence so individual systems can evolve independently.
+
+---
+
+## Future development
+
+Planned next steps include:
+
+* Connect the typed query layer to PostgreSQL through Prisma
+* Publish the `agentdock` npm CLI
+* Add package archive storage and GitHub importing
+* Persist reviews, discussions, installations, and favorites
+* Implement automated package permission analysis
+* Add package signing and publisher verification
+* Introduce download analytics and package dependency tracking
+* Support paid packages and organization billing
