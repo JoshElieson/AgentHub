@@ -31,7 +31,7 @@ async function main() {
       create: {
         username: c.username,
         name: c.name,
-        email: `${c.username}@seed.agentdock.dev`,
+        email: `${c.username}@seed.nuclexa.dev`,
         bio: c.bio,
         avatarColor: c.avatarColor,
         website: c.website ?? null,

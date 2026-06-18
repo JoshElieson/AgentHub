@@ -1,4 +1,4 @@
-// AgentDock — Prisma schema (PostgreSQL-ready)
+// Nuclexa — Prisma schema (PostgreSQL-ready)
 // ---------------------------------------------------------------------------
 // The running MVP uses seeded mock data (src/lib/data). This schema defines the
 // production data model so those mock queries can be swapped for real DB calls.

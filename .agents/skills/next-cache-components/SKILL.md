@@ -2,7 +2,7 @@
 name: next-cache-components
 description: Caching strategies and cache-aware components in Next.js
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

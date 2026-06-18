@@ -48,7 +48,7 @@ export function VersionList({
           )}
 
           <CommandBlock
-            command={`npx agentdock install ${packageId}@${v.version}`}
+            command={`npx nuclexa install ${packageId}@${v.version}`}
             prompt
             className="mt-3 max-w-md"
           />

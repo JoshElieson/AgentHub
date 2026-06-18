@@ -39,7 +39,7 @@ export function compileSkill(skill: SkillRow, platform: "antigravity" | "claude"
 name: ${folderName}
 description: ${cleanDescription}
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

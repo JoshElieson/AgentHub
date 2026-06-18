@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useCollections } from "@/lib/collections-data";
 import { CreateCollectionModal } from "@/components/create-collection-modal";
+import { SaveButton } from "@/components/save-button";
 import { SegmentedTabs } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -221,10 +222,12 @@ function UserCollectionCard({
   const itemCount = collection.item_count ?? collection.items?.length ?? 0;
 
   return (
-    <Link
-      href={`/collections/${collection.id}`}
-      className="group card-interactive flex flex-col overflow-hidden"
-    >
+    <div className="group card-interactive relative flex flex-col overflow-hidden">
+      <Link
+        href={`/collections/${collection.id}`}
+        aria-label={collection.name}
+        className="absolute inset-0 z-[1]"
+      />
       {/* Cover gradient */}
       <div
         className="relative h-20 w-full border-b border-line"
@@ -233,10 +236,18 @@ function UserCollectionCard({
         <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/75 to-surface/35" />
         <div className="absolute inset-0 bg-grid-faint bg-grid opacity-50" />
         {isOwner && (
-          <span className="absolute right-3 top-3 rounded-md border border-line bg-canvas/80 px-1.5 py-0.5 text-2xs font-medium text-subtle">
+          <span className="absolute left-3 top-3 z-[2] rounded-md border border-line bg-canvas/80 px-1.5 py-0.5 text-2xs font-medium text-subtle">
             Yours
           </span>
         )}
+        <div className="absolute right-3 top-3 z-[2]">
+          <SaveButton
+            collectionId={collection.id}
+            size="sm"
+            showLabel={false}
+            className="bg-canvas/80 backdrop-blur"
+          />
+        </div>
       </div>
 
       <div className="flex flex-1 flex-col p-4">
@@ -281,7 +292,7 @@ function UserCollectionCard({
           </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

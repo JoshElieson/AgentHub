@@ -2,7 +2,7 @@
 name: lol-touch-grass
 description: A reality check designed for NA Master tier League of Legends players who need to touch grass.
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

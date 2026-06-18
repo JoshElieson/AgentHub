@@ -21,7 +21,6 @@ import {
   Github,
   Info,
   Loader2,
-  RotateCw,
   Settings2,
   Shuffle,
   Trash2,
@@ -80,6 +79,9 @@ export function ProfileSettings({
   const [note, setNote] = useState<Note>(null);
   const [avatarColor, setAvatarColor] = useState(user.avatarColor);
 
+  // `github` / `twitter` are no longer editable here, but they stay in the form
+  // so save() passes their existing values through unchanged (the public profile
+  // still renders them) rather than nulling them out.
   const [form, setForm] = useState({
     name: user.name,
     username: user.username,
@@ -268,24 +270,6 @@ export function ProfileSettings({
               placeholder="City, Country"
             />
           </Field>
-          <Field label="GitHub" hint="Username only, e.g. octocat.">
-            <input
-              type="text"
-              value={form.github}
-              onChange={set("github")}
-              className={inputCls}
-              placeholder="octocat"
-            />
-          </Field>
-          <Field label="X / Twitter" hint="Username only, no @.">
-            <input
-              type="text"
-              value={form.twitter}
-              onChange={set("twitter")}
-              className={inputCls}
-              placeholder="handle"
-            />
-          </Field>
           <div className="sm:col-span-2">
             <Field label="Bio" hint="A short description, max 280 characters.">
               <textarea
@@ -405,20 +389,6 @@ export function ProfileSettings({
         </p>
 
         <div className="mt-4 space-y-3">
-          <div className="flex flex-col gap-3 rounded-lg border border-line p-3.5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm font-medium text-content">
-                Transfer ownership
-              </div>
-              <span className="text-xs text-subtle">
-                Move all your packages to another account or organization.
-              </span>
-            </div>
-            <Button variant="outline" size="sm" disabled title="Coming soon">
-              <RotateCw className="h-3.5 w-3.5" />
-              Transfer
-            </Button>
-          </div>
           <div className="flex flex-col gap-3 rounded-lg border border-danger/30 bg-danger-dim/40 p-3.5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="text-sm font-medium text-content">

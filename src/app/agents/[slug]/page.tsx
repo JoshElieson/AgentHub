@@ -68,10 +68,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const agent = getAgent(slug);
   if (!agent) {
-    return { title: "Package not found · AgentDock" };
+    return { title: "Package not found · Nuclexa" };
   }
   return {
-    title: `${agent.name} · AgentDock`,
+    title: `${agent.name} · Nuclexa`,
     description: agent.shortDescription,
   };
 }

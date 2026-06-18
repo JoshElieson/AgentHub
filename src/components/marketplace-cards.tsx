@@ -5,6 +5,7 @@ import { cn, formatCompact } from "@/lib/utils";
 import { isOfficial, type SkillRow, type McpServerRow } from "@/lib/marketplace-data";
 import { CardInstalledBadge } from "@/components/card-installed-badge";
 import { ClassificationBadges } from "@/components/classification-badges";
+import { SaveButton } from "@/components/save-button";
 import { BadgeCheck, FolderGit, Download, ThumbsUp, Terminal } from "lucide-react";
 
 /** Blue verified checkmark shown on first-party / official packages. */
@@ -31,13 +32,17 @@ export const SkillCard = memo(function SkillCard({
   className?: string;
 }) {
   return (
-    <Link
-      href={`/marketplace/${skill.id}`}
+    <div
       className={cn(
-        "group flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
+        "group relative flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
         className
       )}
     >
+      <Link
+        href={`/marketplace/${skill.id}`}
+        aria-label={skill.name}
+        className="absolute inset-0 z-[1] rounded-card"
+      />
       <div className="flex min-w-0 items-center gap-1.5">
         <h3 className="truncate font-mono text-base font-semibold text-content transition-colors group-hover:text-white">
           {skill.name}
@@ -99,8 +104,11 @@ export const SkillCard = memo(function SkillCard({
           <Download className="h-3 w-3" />
           <span className="font-medium tabular-nums">{formatCompact(skill.export_count)}</span>
         </span>
+        <div className="relative z-[2] ml-auto">
+          <SaveButton skillId={skill.id} size="sm" showLabel={false} checkInitial={false} />
+        </div>
       </div>
-    </Link>
+    </div>
   );
 });
 
@@ -115,13 +123,17 @@ export const McpServerCard = memo(function McpServerCard({
   className?: string;
 }) {
   return (
-    <Link
-      href={`/marketplace/mcp/${server.id}`}
+    <div
       className={cn(
-        "group flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
+        "group relative flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
         className
       )}
     >
+      <Link
+        href={`/marketplace/mcp/${server.id}`}
+        aria-label={server.name}
+        className="absolute inset-0 z-[1] rounded-card"
+      />
       <div className="flex items-start gap-3">
         <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface-3 shadow-inner">
           <Terminal className="h-5 w-5 text-brand-muted" />
@@ -177,8 +189,11 @@ export const McpServerCard = memo(function McpServerCard({
           <ThumbsUp className="h-3.5 w-3.5" />
           {formatCompact(server.star_count)}
         </span>
+        <div className="relative z-[2] ml-auto">
+          <SaveButton mcpServerId={server.id} size="sm" showLabel={false} checkInitial={false} />
+        </div>
       </div>
-    </Link>
+    </div>
   );
 });
 

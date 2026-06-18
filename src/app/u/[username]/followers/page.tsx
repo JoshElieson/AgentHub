@@ -16,10 +16,10 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { username } = await params;
   const profile = await getProfileByUsername(username);
-  if (!profile) return { title: "Creator not found · AgentDock" };
+  if (!profile) return { title: "Creator not found · Nuclexa" };
   return {
-    title: `People following ${profile.name} (@${profile.username}) · AgentDock`,
-    description: `See who follows ${profile.name} on AgentDock.`,
+    title: `People following ${profile.name} (@${profile.username}) · Nuclexa`,
+    description: `See who follows ${profile.name} on Nuclexa.`,
   };
 }
 

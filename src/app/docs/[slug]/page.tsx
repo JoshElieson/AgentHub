@@ -21,10 +21,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const doc = getDoc(slug);
   if (!doc) {
-    return { title: "Not found — AgentDock Docs" };
+    return { title: "Not found — Nuclexa Docs" };
   }
   return {
-    title: `${doc.title} — AgentDock Docs`,
+    title: `${doc.title} — Nuclexa Docs`,
     description: doc.description,
   };
 }

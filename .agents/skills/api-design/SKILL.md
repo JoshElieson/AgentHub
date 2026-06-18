@@ -2,7 +2,7 @@
 name: api-design
 description: RESTful API design principles — covers resource naming, HTTP methods, status codes, pagination, versioning, error responses, rate limiting, and OpenAPI documentation.
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

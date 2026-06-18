@@ -21,12 +21,15 @@ CREATE TABLE IF NOT EXISTS public.mcp_servers (
 
 ALTER TABLE public.mcp_servers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read access on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public read access on mcp_servers" 
 ON public.mcp_servers FOR SELECT TO public USING (true);
 
+DROP POLICY IF EXISTS "Allow public insert on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public insert on mcp_servers" 
 ON public.mcp_servers FOR INSERT TO public WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow public update on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public update on mcp_servers" 
 ON public.mcp_servers FOR UPDATE TO public USING (true) WITH CHECK (true);
 

@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SaveButton } from "@/components/save-button";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
@@ -174,6 +175,7 @@ function UserCollectionView({ id }: { id: string }) {
             ) : (
               <InstallAllSkills items={items} />
             )}
+            <SaveButton collectionId={collection.id} size="md" />
             {isOwner && (
               <>
                 <Button

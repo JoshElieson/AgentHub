@@ -28,20 +28,22 @@ export function Logo({
   className,
   href = "/",
   showWordmark = true,
+  showMark = false,
 }: {
   className?: string;
   href?: string;
   showWordmark?: boolean;
+  showMark?: boolean;
 }) {
   return (
     <Link
       href={href}
       className={cn("group inline-flex items-center gap-2", className)}
     >
-      <LogoMark className="h-7 w-7" />
+      {showMark && <LogoMark className="h-7 w-7" />}
       {showWordmark && (
         <span className="text-[15px] font-semibold tracking-tight text-content">
-          Agent<span className="text-brand-muted">Dock</span>
+          Nucl<span className="text-brand-muted">exa</span>
         </span>
       )}
     </Link>

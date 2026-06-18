@@ -13,7 +13,7 @@ import { LoginButtons } from "./login-buttons";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Sign in to AgentDock to publish and manage your AI packages.",
+  description: "Sign in to Nuclexa to publish and manage your AI packages.",
 };
 
 export default async function LoginPage() {
@@ -44,9 +44,9 @@ export default async function LoginPage() {
           <div className="card p-7 sm:p-8">
             {/* Heading */}
             <div className="flex flex-col items-center text-center">
-              <Logo href="/" showWordmark={false} className="[&>span]:h-10 [&>span]:w-10" />
+              <Logo href="/" className="[&>span]:text-2xl" />
               <h1 className="mt-5 text-xl font-semibold tracking-tight text-content">
-                Sign in to AgentDock
+                Sign in to Nuclexa
               </h1>
               <p className="mt-1.5 text-sm text-muted">
                 Publish and manage your AI packages.
@@ -99,7 +99,7 @@ export default async function LoginPage() {
             ) : (
               <div className="rounded-card border border-line bg-surface-2 p-4">
                 <p className="text-xs leading-relaxed text-muted">
-                  New to AgentDock? Signing in with a provider creates your
+                  New to Nuclexa? Signing in with a provider creates your
                   account automatically — no separate sign-up required.
                 </p>
               </div>

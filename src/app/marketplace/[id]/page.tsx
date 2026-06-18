@@ -73,12 +73,12 @@ export default function SkillDetailPage() {
   // Dynamic page title
   useEffect(() => {
     if (skill) {
-      document.title = `${skill.name} — AgentDock Skills`;
+      document.title = `${skill.name} — Nuclexa Skills`;
     } else if (loading) {
-      document.title = "Loading… — AgentDock Skills";
+      document.title = "Loading… — Nuclexa Skills";
     }
     return () => {
-      document.title = "AgentDock — The package registry for AI agents";
+      document.title = "Nuclexa — The package registry for AI agents";
     };
   }, [skill, loading]);
 

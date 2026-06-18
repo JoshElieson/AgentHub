@@ -10,22 +10,20 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import Link from "next/link";
-import { ButtonLink } from "@/components/ui/button";
-import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
 import {
   ArrowRight,
   Check,
+  Cloud,
   Code2,
-  Download,
   FlaskConical,
-  FolderTree,
-  GitBranch,
-  Play,
-  ShieldCheck,
+  Lightbulb,
+  Lock,
+  Package,
+  Sparkles,
   Palette,
   Star,
-  ThumbsUp,
+  Terminal,
   type LucideIcon,
 } from "lucide-react";
 
@@ -35,47 +33,6 @@ import {
 // ---------------------------------------------------------------------------
 
 type AccentKey = "brand" | "green" | "blue" | "amber" | "red";
-
-const ACCENTS: Record<
-  AccentKey,
-  { text: string; dot: string; ring: string; chip: string; glow: string }
-> = {
-  brand: {
-    text: "text-brand-muted",
-    dot: "bg-brand",
-    ring: "border-brand-line",
-    chip: "border-brand-line text-brand-muted",
-    glow: "rgba(196,155,108,0.18)",
-  },
-  green: {
-    text: "text-success",
-    dot: "bg-success",
-    ring: "border-success/30",
-    chip: "border-success/25 text-success",
-    glow: "rgba(34,197,94,0.15)",
-  },
-  blue: {
-    text: "text-info",
-    dot: "bg-info",
-    ring: "border-info/30",
-    chip: "border-info/25 text-info",
-    glow: "rgba(91,155,216,0.16)",
-  },
-  amber: {
-    text: "text-warning",
-    dot: "bg-warning",
-    ring: "border-warning/30",
-    chip: "border-warning/25 text-warning",
-    glow: "rgba(224,168,46,0.15)",
-  },
-  red: {
-    text: "text-danger",
-    dot: "bg-danger",
-    ring: "border-danger/30",
-    chip: "border-danger/25 text-danger",
-    glow: "rgba(239,68,68,0.14)",
-  },
-};
 
 // ---------------------------------------------------------------------------
 // Curated spotlight catalogue — the five highlighted packages.
@@ -121,23 +78,6 @@ const SPOTLIGHTS: Spotlight[] = [
     href: "/explore?q=Impeccable+UI",
   },
   {
-    name: "Ponytail",
-    type: "Skill",
-    category: "Minimalism",
-    tagline: "He writes one line. It works.",
-    description:
-      "The agent that says nothing and changes everything it needs to — and nothing it doesn't. No essays, no scaffolding, no apology. The smallest correct diff, every time.",
-    icon: FlaskConical,
-    accent: "green",
-    chips: ["minimal diffs", "terse", "no over-engineering"],
-    preview: ["// ponytail: this exists"],
-    rating: 4.9,
-    ratingCount: 146,
-    stars: 3200,
-    exports: 11000,
-    href: "/explore?q=Ponytail",
-  },
-  {
     name: "skill-creator",
     type: "Skill",
     category: "Authoring",
@@ -159,43 +99,88 @@ const SPOTLIGHTS: Spotlight[] = [
     href: "/explore?q=skill-creator",
   },
   {
-    name: "Placeholder 3",
-    type: "Placeholder",
-    category: "Placeholder",
-    tagline: "Placeholder",
-    description: "Placeholder",
-    icon: FolderTree,
+    name: "Cloudflare Skills",
+    type: "Bundle",
+    category: "Edge Platform",
+    tagline: "Build once. Deploy to the edge, everywhere.",
+    description:
+      "Ten official Agent Skills that teach Claude to build on Cloudflare — Workers, Durable Objects, the Agents SDK, Wrangler, and the rest of the developer platform — then ship it straight to the global network.",
+    icon: Cloud,
     accent: "amber",
-    chips: ["Placeholder"],
-    preview: ["Placeholder"],
-    rating: 0,
-    ratingCount: 0,
-    stars: 0,
-    exports: 0,
-    href: "/explore",
+    chips: ["workers", "durable objects", "agents sdk", "wrangler"],
+    preview: ["→ wrangler deploy", "→ live at the edge"],
+    rating: 4.9,
+    ratingCount: 204,
+    stars: 5400,
+    exports: 16200,
+    href: "/explore?q=Cloudflare",
   },
   {
-    name: "Placeholder 4",
-    type: "Placeholder",
-    category: "Placeholder",
-    tagline: "Placeholder",
-    description: "Placeholder",
-    icon: ShieldCheck,
-    accent: "red",
-    chips: ["Placeholder"],
-    preview: ["Placeholder"],
-    rating: 0,
-    ratingCount: 0,
-    stars: 0,
-    exports: 0,
-    href: "/explore",
+    name: "brainstorming",
+    type: "Skill",
+    category: "Design",
+    tagline: "Vague idea in. Validated design out.",
+    description:
+      "A design facilitator that refuses to write a line of code until the thinking is sound. It asks one question at a time, locks a shared understanding, weighs two or three approaches, and keeps a decision log — so you start building from a spec, not a guess.",
+    icon: Lightbulb,
+    accent: "amber",
+    chips: [
+      "one question at a time",
+      "understanding lock",
+      "explore approaches",
+      "decision log",
+    ],
+    preview: [
+      "→ understand before designing",
+      "→ lock the understanding",
+      "→ explore 2–3 approaches",
+    ],
+    rating: 4.8,
+    ratingCount: 168,
+    stars: 2900,
+    exports: 9600,
+    href: "/explore?q=brainstorming",
+  },
+  {
+    name: "Ponytail",
+    type: "Skill",
+    category: "Minimalism",
+    tagline: "He writes one line. It works.",
+    description:
+      "The agent that says nothing and changes everything it needs to — and nothing it doesn't. No essays, no scaffolding, no apology. The smallest correct diff, every time.",
+    icon: FlaskConical,
+    accent: "green",
+    chips: ["minimal diffs", "terse", "no over-engineering"],
+    preview: ["// ponytail: this exists"],
+    rating: 4.9,
+    ratingCount: 146,
+    stars: 3200,
+    exports: 11000,
+    href: "/explore?q=Ponytail",
   },
 ];
 
-// Typography for the Impeccable UI spotlight — a lighter, tighter display face.
-const IMPECCABLE_FONT: CSSProperties = {
+// Impeccable UI spotlight — a warm "design studio" field. The product is a
+// design skill, so the whole panel is staged like a designer's workspace: a warm
+// espresso canvas, brand-gold accents, and a hairline display face that itself
+// looks designed. The video is the centrepiece, framed inside a polished app
+// window with a floating design-token annotation — the craft made literal.
+const IMP_CANVAS = "#15120e"; // warm espresso field
+const IMP_DEEP = "#0c0a07"; // vignette floor
+const IMP_PANEL = "#1d1812"; // window chrome / card fill
+const IMP_PANEL_2 = "#0e0c09"; // letterbox / inner screen
+const IMP_INK = "#f6f1e9"; // warm near-white ink
+const IMP_MUTE = "#b6a98f"; // warm muted text
+const IMP_FAINT = "#7e7256"; // faintest text
+const IMP_LINE = "#33291b"; // warm hairline (brand-line family)
+const IMP_GOLD = "#D8B894"; // brand-muted — primary accent
+const IMP_GOLD_DK = "#C49B6C"; // brand — gradient base
+
+// Hairline display face for the wordmark — a designed object in its own right,
+// the visual antithesis of the heavy grotesques and monospaces elsewhere.
+const IMP_DISPLAY: CSSProperties = {
   fontFamily:
-    '"Avenir Next", "SF Pro Display", var(--font-display), sans-serif',
+    '"Raleway", "Avenir Next", "SF Pro Display", var(--font-display), sans-serif',
   fontWeight: 200,
   letterSpacing: "-0.03em",
 };
@@ -415,8 +400,17 @@ function SpotlightPanel({
   total: number;
   active: boolean;
 }) {
-  const accent = ACCENTS[item.accent];
-  const isImpeccable = item.name === "Impeccable UI";
+  // Impeccable UI gets its own bespoke "design studio" treatment.
+  if (item.name === "Impeccable UI") {
+    return (
+      <ImpeccablePanel
+        item={item}
+        position={position}
+        total={total}
+        active={active}
+      />
+    );
+  }
 
   // Ponytail gets its own bespoke, monochrome terminal treatment.
   if (item.name === "Ponytail") {
@@ -442,171 +436,238 @@ function SpotlightPanel({
     );
   }
 
-  // Placeholder slides show only their name — no badge, copy, stats, buttons,
-  // or video placeholder.
-  if (!isImpeccable) {
+  // The Cloudflare Skills bundle gets its own bespoke global-edge-network treatment.
+  if (item.name === "Cloudflare Skills") {
     return (
-      <div
-        className="relative grid min-h-[34rem] w-full shrink-0 place-items-center px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem]"
-        aria-hidden={!active}
-        aria-roledescription="slide"
-        aria-label={`${position} of ${total}`}
-      >
-        <h2 className="font-semibold tracking-tighter-lg text-4xl text-content sm:text-5xl">
-          {item.name}
-        </h2>
-      </div>
+      <CloudflarePanel
+        item={item}
+        position={position}
+        total={total}
+        active={active}
+      />
     );
   }
 
+  // brainstorming gets its own bespoke ideation-canvas treatment.
+  if (item.name === "brainstorming") {
+    return (
+      <BrainstormPanel
+        item={item}
+        position={position}
+        total={total}
+        active={active}
+      />
+    );
+  }
+
+  // Fallback — name-only (every catalogued spotlight has a bespoke panel above).
   return (
     <div
-      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 gap-8 px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-14"
+      className="relative grid min-h-[34rem] w-full shrink-0 place-items-center px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem]"
       aria-hidden={!active}
       aria-roledescription="slide"
       aria-label={`${position} of ${total}`}
     >
-      {/* Content */}
-      <div className="min-w-0">
-        {!isImpeccable && (
-          <div className="flex items-center gap-3">
-            <span
-              className={cn(
-                "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 label-caps",
-                accent.ring,
-                accent.text
-              )}
-            >
-              <span className={cn("h-1.5 w-1.5 rounded-full", accent.dot)} />
-              {item.type}
-            </span>
-            <span className="text-2xs font-medium uppercase tracking-wider text-subtle">
-              {item.category}
-            </span>
-          </div>
-        )}
+      <h2 className="font-semibold tracking-tighter-lg text-4xl text-content sm:text-5xl">
+        {item.name}
+      </h2>
+    </div>
+  );
+}
 
-        <h2
-          className={cn(
-            "font-semibold tracking-tighter-lg",
-            isImpeccable
-              ? "bg-gradient-to-r from-brand-muted via-brand to-brand-hover bg-clip-text text-transparent text-5xl sm:text-6xl lg:text-7xl"
-              : "mt-4 text-4xl text-content sm:text-5xl"
-          )}
-          style={isImpeccable ? IMPECCABLE_FONT : undefined}
+// ---------------------------------------------------------------------------
+// Impeccable UI — a bespoke "design studio" spotlight. The product is a design
+// skill, so the panel is staged as a designer's workspace: a warm espresso
+// field, brand-gold accents, and a hairline display face that is itself a
+// designed object. The centrepiece is the live demo video, framed inside a
+// polished app window — three-dot chrome, a file-path tab, a "live" pip — with a
+// floating design-token annotation card overlapping one corner so the craft the
+// skill produces is made literal. Gold is the only accent; the rest is warm ink.
+// ---------------------------------------------------------------------------
+
+function ImpeccablePanel({
+  item,
+  position,
+  total,
+  active,
+}: {
+  item: Spotlight;
+  position: number;
+  total: number;
+  active: boolean;
+}) {
+  const mono = 'ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", monospace';
+
+  return (
+    <div
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 items-center gap-10 overflow-hidden px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[0.85fr_1.15fr] lg:gap-14"
+      style={{ backgroundColor: IMP_CANVAS }}
+      aria-hidden={!active}
+      aria-roledescription="slide"
+      aria-label={`${position} of ${total}`}
+    >
+      {/* Structural grid backdrop */}
+      <div className="pointer-events-none absolute inset-0 bg-hero-grid opacity-60" aria-hidden />
+      {/* Warm gold glow, gathered on the right where the window sits */}
+      <div
+        className="pointer-events-none absolute right-0 top-1/2 h-[44rem] w-[44rem] -translate-y-1/2 translate-x-1/4 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(216,184,148,0.14), transparent 62%)",
+        }}
+        aria-hidden
+      />
+      {/* Edge vignette */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(130% 100% at 50% 28%, transparent 42%, ${IMP_DEEP} 100%)`,
+        }}
+        aria-hidden
+      />
+
+      {/* Type column */}
+      <div className="relative z-10 min-w-0">
+        {/* Eyebrow */}
+        <div
+          className="flex items-center gap-2 font-mono text-2xs uppercase tracking-[0.22em]"
+          style={{ fontFamily: mono, color: IMP_MUTE }}
         >
-          {item.name}
-        </h2>
-
-        {isImpeccable && (
-          <>
-            <p
-              className="mt-4 text-4xl leading-[1.05] text-content/85 sm:text-5xl lg:text-6xl"
-              style={IMPECCABLE_FONT}
-            >
-              The missing design vocabulary for agents.
-            </p>
-            <p
-              className="mt-5 max-w-prose text-base leading-relaxed text-muted sm:text-lg"
-              style={IMPECCABLE_FONT}
-            >
-              It&apos;s why AI frontends all share one look: no words for
-              hierarchy, contrast, or restraint. Impeccable gives your agent the
-              designer&apos;s vocabulary, and gives you the same commands, so you
-              both stop guessing and start directing, live, in your production
-              codebase.
-            </p>
-          </>
-        )}
-
-        {!isImpeccable && (
-          <>
-            <p className="mt-3 text-lg text-muted sm:text-xl">{item.tagline}</p>
-            <p className="mt-4 max-w-prose text-sm leading-relaxed text-muted sm:text-base">
-              {item.description}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-1.5">
-              {item.chips.map((chip) => (
-                <span
-                  key={chip}
-                  className={cn(
-                    "rounded-md border bg-surface-2/60 px-2 py-0.5 text-2xs font-medium",
-                    accent.chip
-                  )}
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <RatingStars
-            rating={item.rating}
-            size="sm"
-            showValue
-            count={item.ratingCount}
-          />
-          <span className="h-3 w-px bg-line" />
-          <span className="flex items-center gap-1 text-xs text-subtle">
-            <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
-            <span className="font-medium tabular-nums">
-              {formatCompact(item.stars)}
-            </span>
-          </span>
-          <span className="flex items-center gap-1 text-xs text-subtle">
-            <Download className="h-3.5 w-3.5" />
-            <span className="font-medium tabular-nums">
-              {formatCompact(item.exports)}
-            </span>
-          </span>
+          <Palette className="h-3.5 w-3.5" style={{ color: IMP_GOLD }} />
+          <span style={{ color: IMP_GOLD }}>Skill</span>
+          <span className="opacity-60">— {item.category}</span>
         </div>
 
-        <div className="relative z-20 mt-7 flex flex-wrap items-center gap-3">
-          <ButtonLink
+        {/* Wordmark — hairline display, warm-gold gradient */}
+        <h2
+          className="mt-5 text-5xl leading-[0.95] sm:text-6xl lg:text-7xl"
+          style={{
+            ...IMP_DISPLAY,
+            backgroundImage: `linear-gradient(120deg, ${IMP_INK}, ${IMP_GOLD} 60%, ${IMP_GOLD_DK})`,
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          Impeccable UI
+        </h2>
+
+        {/* Tagline — large, hairline */}
+        <p
+          className="mt-5 text-3xl leading-[1.1] sm:text-4xl"
+          style={{ ...IMP_DISPLAY, color: IMP_INK, fontWeight: 300 }}
+        >
+          The missing design vocabulary for agents.
+        </p>
+
+        {/* Body */}
+        <p
+          className="mt-5 max-w-prose text-sm leading-relaxed sm:text-base"
+          style={{ color: IMP_MUTE }}
+        >
+          AI frontends all share one look because the model has no words for
+          hierarchy, contrast, or restraint. Impeccable hands your agent the
+          designer&apos;s vocabulary — and you the same commands — so you both
+          stop guessing and start directing,{" "}
+          <span style={{ color: IMP_INK }}>live, in your codebase.</span>
+        </p>
+
+        {/* Craft strip — the design primitives it reasons with */}
+        <div
+          className="mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border px-3 py-2 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, borderColor: IMP_LINE, color: IMP_MUTE }}
+        >
+          <span style={{ color: IMP_INK }}>type scale</span>
+          <span className="opacity-50">·</span>
+          <span style={{ color: IMP_INK }}>spacing</span>
+          <span className="opacity-50">·</span>
+          <span style={{ color: IMP_INK }}>contrast</span>
+          <span className="opacity-50">·</span>
+          <span style={{ color: IMP_GOLD }}>micro-states</span>
+        </div>
+
+        {/* Stats — studio annotation */}
+        <div
+          className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, color: IMP_MUTE }}
+        >
+          <span className="flex items-center gap-1.5" style={{ color: IMP_INK }}>
+            <Star className="h-3.5 w-3.5" style={{ fill: IMP_GOLD, color: IMP_GOLD }} />
+            {item.rating.toFixed(1)}
+          </span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.stars)} likes</span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.exports)} installs</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="relative z-20 mt-8 flex flex-wrap items-center gap-3">
+          <Link
             href={item.href}
-            variant="primary"
-            size="lg"
             tabIndex={active ? 0 : -1}
-            className="group/get gap-2"
+            className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold shadow-elevated transition-transform duration-200 hover:-translate-y-px"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${IMP_GOLD}, ${IMP_GOLD_DK})`,
+              color: IMP_DEEP,
+            }}
           >
             Get
             <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
-          </ButtonLink>
-          <ButtonLink
+          </Link>
+          <Link
             href="/explore"
-            variant="outline"
-            size="lg"
             tabIndex={active ? 0 : -1}
+            className="inline-flex items-center rounded-md border px-5 py-2.5 text-sm transition-colors hover:text-white"
+            style={{ borderColor: IMP_LINE, color: IMP_MUTE }}
           >
             Browse all
-          </ButtonLink>
+          </Link>
         </div>
       </div>
 
-      {/* Video placeholder */}
-      <div className="relative">
-        {/* Accent glow */}
+      {/* Centrepiece — the live demo framed inside a polished app window */}
+      <div className="relative z-10 mx-auto w-full max-w-[42rem]">
         <div
-          className="pointer-events-none absolute -inset-6 -z-10"
-          style={{
-            background: `radial-gradient(ellipse 60% 60% at 50% 45%, ${accent.glow}, transparent 70%)`,
-          }}
-          aria-hidden
-        />
-        <div
-          className={cn(
-            "group relative w-full overflow-hidden rounded-card",
-            isImpeccable
-              ? "mx-auto max-w-[64rem]"
-              : "border border-line bg-canvas shadow-elevated h-[18rem] sm:h-[26rem] lg:h-[44rem]"
-          )}
+          className="group relative overflow-hidden rounded-2xl border shadow-elevated"
+          style={{ borderColor: IMP_LINE, backgroundColor: IMP_PANEL }}
         >
-          {isImpeccable ? (
+          {/* Window chrome — three dots, a file tab, a live pip */}
+          <div
+            className="flex items-center gap-3 border-b px-4 py-2.5"
+            style={{ borderColor: IMP_LINE }}
+          >
+            <div className="flex items-center gap-1.5" aria-hidden>
+              <span className="h-3 w-3 rounded-full" style={{ backgroundColor: "#3a2f20" }} />
+              <span className="h-3 w-3 rounded-full" style={{ backgroundColor: "#4a3c28" }} />
+              <span className="h-3 w-3 rounded-full" style={{ backgroundColor: "#5a4930" }} />
+            </div>
+            <span
+              className="ml-1 inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-2xs"
+              style={{ fontFamily: mono, borderColor: IMP_LINE, color: IMP_MUTE }}
+            >
+              <Sparkles className="h-3 w-3" style={{ color: IMP_GOLD }} />
+              Button.tsx
+            </span>
+            <span
+              className="ml-auto inline-flex items-center gap-1.5 font-mono text-2xs uppercase tracking-[0.18em]"
+              style={{ fontFamily: mono, color: IMP_GOLD }}
+            >
+              <span
+                className="h-1.5 w-1.5 animate-pulse rounded-full"
+                style={{ backgroundColor: IMP_GOLD }}
+              />
+              live
+            </span>
+          </div>
+
+          {/* Screen — the demo video, letterboxed on near-black so nothing crops */}
+          <div
+            className="relative h-[16rem] w-full sm:h-[22rem] lg:h-[30rem]"
+            style={{ backgroundColor: IMP_PANEL_2 }}
+          >
             <video
-              className="block h-auto w-full object-contain"
+              className="absolute inset-0 h-full w-full object-contain"
               src="/impeccable-ui-demo.mp4"
               autoPlay
               loop
@@ -614,60 +675,48 @@ function SpotlightPanel({
               playsInline
               aria-label={`${item.name} demo`}
             />
-          ) : (
-            <>
-              {/* Structural grid + accent glow */}
-              <div className="pointer-events-none absolute inset-0 bg-hero-grid" aria-hidden />
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background: `radial-gradient(ellipse 55% 55% at 50% 45%, ${accent.glow}, transparent 70%)`,
-                }}
-                aria-hidden
-              />
+            {/* Soft top sheen for screen realism */}
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-16"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(246,241,233,0.05), transparent)",
+              }}
+              aria-hidden
+            />
+          </div>
+        </div>
 
-              {/* Faux player chrome */}
-              <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 py-3 sm:px-5 sm:py-4">
-                <span className="inline-flex items-center gap-1.5 text-2xs font-medium uppercase tracking-wider text-subtle">
-                  <span className="h-1.5 w-1.5 rounded-full bg-danger" />
-                  Demo
-                </span>
-                <span className="font-mono text-2xs tabular-nums text-faint">02:14</span>
-              </div>
-
-              {/* Play button */}
-              <div className="absolute inset-0 grid place-items-center">
-                <span className="relative grid place-items-center">
-                  <span
-                    className={cn(
-                      "absolute h-20 w-20 rounded-full opacity-25 blur-xl",
-                      accent.dot
-                    )}
-                    aria-hidden
-                  />
-                  <span
-                    className={cn(
-                      "relative grid h-16 w-16 place-items-center rounded-full border bg-surface/80 backdrop-blur transition-transform duration-200 group-hover:scale-105 sm:h-20 sm:w-20",
-                      accent.ring,
-                      accent.text
-                    )}
-                  >
-                    <Play className="h-7 w-7 translate-x-0.5 fill-current sm:h-8 sm:w-8" />
-                  </span>
-                </span>
-              </div>
-
-              {/* Caption */}
-              <div className="absolute inset-x-0 bottom-0 px-5 py-4 sm:px-6 sm:py-5">
-                <p className="text-sm font-medium text-content sm:text-base">
-                  Watch the {item.name} demo
-                </p>
-                <p className="mt-0.5 text-2xs text-subtle sm:text-xs">
-                  Video placeholder — coming soon
-                </p>
-              </div>
-            </>
-          )}
+        {/* Floating design-token annotation — the craft, made literal */}
+        <div
+          className="absolute -bottom-5 -left-4 hidden rounded-xl border px-4 py-3 shadow-elevated backdrop-blur sm:block"
+          style={{
+            borderColor: IMP_LINE,
+            backgroundColor: "rgba(29,24,18,0.92)",
+          }}
+        >
+          <div
+            className="flex items-center gap-1.5 font-mono text-2xs uppercase tracking-[0.18em]"
+            style={{ fontFamily: mono, color: IMP_FAINT }}
+          >
+            <Palette className="h-3 w-3" style={{ color: IMP_GOLD }} />
+            design tokens
+          </div>
+          <div className="mt-2 flex items-center gap-3 font-mono text-2xs" style={{ fontFamily: mono }}>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded" style={{ backgroundColor: IMP_GOLD }} />
+              <span style={{ color: IMP_MUTE }}>#C49B6C</span>
+            </span>
+            <span className="opacity-30" style={{ color: IMP_MUTE }}>|</span>
+            <span style={{ color: IMP_INK }}>1.250 scale</span>
+          </div>
+          <div
+            className="mt-1.5 flex items-center gap-1.5 font-mono text-2xs"
+            style={{ fontFamily: mono, color: IMP_GOLD }}
+          >
+            <Check className="h-3 w-3" />
+            <span>AA contrast · 4px grid</span>
+          </div>
         </div>
       </div>
     </div>
@@ -675,50 +724,21 @@ function SpotlightPanel({
 }
 
 // ---------------------------------------------------------------------------
-// Ponytail — a bespoke spotlight themed as a code editor, because the skill it
-// sells writes code. A window title bar tops it and an editor status bar floors
-// it (both full-bleed, so there is no idle vertical space). The custom canvas is
-// a *ghost file*: the sprawling, over-engineered function — line-numbered and
-// greyed almost to nothing on the left — that Ponytail collapses into the single
-// green line shown in the diff. A low green pool and a depth vignette give the
-// near-black its dimension. The hand-drawn portrait is the author, bled in from
-// the right and dissolved into the canvas via an edge mask. Everything is
-// monochrome but one terminal green — restraint, like the skill itself.
+// Ponytail — a bespoke "minimalist's profile card" spotlight. The skill sells
+// restraint, so the panel sells the author: the hand-drawn portrait is framed
+// as a collectible profile card — its own bordered object with a header pip, a
+// green-pooled portrait window, and a name plate — set against a near-black
+// field sampled from the art. The type column carries the manifesto and the one
+// proof that matters: a single-line diff where a wall of effort collapses to one
+// green line that ships. Heavy grotesque wordmark, bone-white ink, one terminal
+// green — the deliberate opposite of Impeccable's hairline gold.
 // ---------------------------------------------------------------------------
 
-const PONYTAIL_CHROME = "#12161c"; // title / status bar fill
+const PONYTAIL_CHROME = "#12161c"; // card header / plate fill
 const PONYTAIL_BORDER = "#1c2128"; // hairline rules
 const PONYTAIL_DIM = "#6b7280"; // de-emphasised code
 const PONYTAIL_RED = "#f08a8a"; // removed-line marker
-const PONYTAIL_GHOST = "#283341"; // faint background "ghost file" code
-const PONYTAIL_GUTTER = "#1b222c"; // line-number gutter ink
 const PONYTAIL_VOID = "#07090d"; // vignette floor, a hair below the canvas
-
-// The wall of abstraction the diff collapses to one line. Kept syntactically
-// plausible so it reads as a real file at a glance, then dissolves.
-const PONYTAIL_GHOST_LINES = [
-  "export function resolveCurrentUser(ctx: Context): User {",
-  "  const session = ctx.session ?? loadSession(ctx.request)",
-  "  if (!session) return buildGuest(ctx.locale, ctx.flags)",
-  "  const cached = userCache.get(session.id)",
-  "  if (cached && !cached.isStale(ctx.now)) return cached.value",
-  "  const record = reconcile(",
-  "    pipeline(session, ctx.options),",
-  "    fetchProfile(session.id),",
-  "    ctx.overrides,",
-  "  )",
-  "  if (record.kind === 'partial') {",
-  "    return hydrate(record, defaults(ctx)) ?? buildGuest(ctx)",
-  "  }",
-  "  userCache.set(session.id, new Entry(record, ctx.now))",
-  "  return normalize(record, ctx.policy)",
-  "}",
-];
-
-// The ghost file fades out to the right (before the portrait) and softly at top
-// and bottom, so it never competes with the face or the chrome bars.
-const PONYTAIL_FILE_MASK =
-  "linear-gradient(to right, #000 0%, #000 42%, transparent 60%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 82%, transparent 100%)";
 
 function PonytailPanel({
   item,
@@ -733,268 +753,262 @@ function PonytailPanel({
 }) {
   return (
     <div
-      className="relative flex min-h-[34rem] w-full shrink-0 flex-col overflow-hidden sm:min-h-[40rem] lg:min-h-[52rem]"
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 items-center gap-10 overflow-hidden px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
       style={{ backgroundColor: PONYTAIL_CANVAS }}
       aria-hidden={!active}
       aria-roledescription="slide"
       aria-label={`${position} of ${total}`}
     >
-      {/* Window title bar — a single open file, no chrome buttons */}
+      {/* Green ambient pool — gathers on the right, behind the portrait card */}
       <div
-        className="relative z-20 flex items-center justify-between gap-3 border-b px-5 py-3 sm:px-6"
-        style={{ borderColor: PONYTAIL_BORDER, backgroundColor: PONYTAIL_CHROME }}
-      >
-        <div
-          className="flex items-center gap-2 font-mono text-xs"
-          style={{ color: PONYTAIL_MUTE }}
-        >
-          <span
-            className="h-1.5 w-1.5 rounded-full"
-            style={{ backgroundColor: PONYTAIL_GREEN }}
-            title="unsaved"
-          />
-          <span style={{ color: PONYTAIL_INK }}>ponytail</span>
-          <span className="opacity-50">.skill</span>
-        </div>
-        <span
-          className="font-mono text-2xs uppercase tracking-[0.2em]"
-          style={{ color: PONYTAIL_MUTE }}
-        >
-          minimalism
-        </span>
-      </div>
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(46% 52% at 78% 50%, rgba(126,231,135,0.12), transparent 70%)",
+        }}
+        aria-hidden
+      />
+      {/* Depth vignette — keeps the flat near-black from reading as empty */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(125% 100% at 50% 26%, transparent 44%, ${PONYTAIL_VOID} 100%)`,
+        }}
+        aria-hidden
+      />
 
-      {/* Editor body */}
-      <div className="relative flex flex-1 items-center">
-        {/* Ghost file — the wall of abstraction, line-numbered and greyed almost
-            to nothing, that the diff collapses to a single line. Masked to the
-            left so it never reaches the portrait. */}
+      {/* Type column — the manifesto and the one proof that matters */}
+      <div className="relative z-10 min-w-0">
+        {/* Eyebrow */}
         <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 select-none overflow-hidden font-mono text-xs leading-[1.7] sm:text-[0.8rem]"
-          style={{
-            WebkitMaskImage: PONYTAIL_FILE_MASK,
-            WebkitMaskComposite: "source-in",
-            maskImage: PONYTAIL_FILE_MASK,
-            maskComposite: "intersect",
-          }}
+          className="flex items-center gap-2 font-mono text-2xs uppercase tracking-[0.22em]"
+          style={{ color: PONYTAIL_MUTE }}
         >
-          <div className="py-9 sm:py-12 lg:py-14">
-            {PONYTAIL_GHOST_LINES.map((code, i) => (
-              <div key={i} className="flex whitespace-pre">
-                <span
-                  className="w-14 shrink-0 pr-3 text-right tabular-nums"
-                  style={{
-                    color: PONYTAIL_GUTTER,
-                    borderRight: `1px solid ${PONYTAIL_BORDER}`,
-                  }}
-                >
-                  {i + 1}
-                </span>
-                <span className="pl-4" style={{ color: PONYTAIL_GHOST }}>
-                  {code}
-                </span>
-              </div>
-            ))}
+          <Terminal className="h-3.5 w-3.5" style={{ color: PONYTAIL_GREEN }} />
+          <span style={{ color: PONYTAIL_GREEN }}>Skill</span>
+          <span className="opacity-60">— Minimalism</span>
+        </div>
+
+        {/* Wordmark — heavy, tight, bone-white */}
+        <h2
+          className="mt-5 text-6xl leading-[0.9] sm:text-7xl lg:text-8xl"
+          style={{ ...PONYTAIL_TITLE, color: PONYTAIL_INK }}
+        >
+          Ponytail
+        </h2>
+
+        {/* Tagline — the product in its own terse voice */}
+        <p
+          className="mt-5 text-2xl leading-snug sm:text-[1.7rem]"
+          style={{ ...PONYTAIL_TAGLINE, color: PONYTAIL_MUTE }}
+        >
+          He says nothing.
+          <br />
+          He writes one line. It works.
+        </p>
+
+        {/* Body */}
+        <p
+          className="mt-5 max-w-prose text-sm leading-relaxed sm:text-base"
+          style={{ color: PONYTAIL_MUTE }}
+        >
+          The agent that changes everything it needs to — and nothing it
+          doesn&apos;t. No essays, no scaffolding, no apology.{" "}
+          <span style={{ color: PONYTAIL_INK }}>
+            The smallest correct diff, every time.
+          </span>
+        </p>
+
+        {/* Signature — the one-line diff. A wall of effort collapses to a single
+            line that ships. */}
+        <div
+          className="mt-7 max-w-[27rem] overflow-hidden rounded-lg border shadow-elevated"
+          style={{ borderColor: PONYTAIL_BORDER, backgroundColor: "#11161d" }}
+        >
+          <div
+            className="flex items-center justify-between gap-3 border-b px-3 py-1.5 font-mono text-2xs"
+            style={{ borderColor: PONYTAIL_BORDER }}
+          >
+            <span className="truncate">
+              <span style={{ color: PONYTAIL_GREEN, opacity: 0.5 }}>{"// "}</span>
+              <span style={{ color: PONYTAIL_GREEN }}>ponytail: this exists</span>
+            </span>
+            <span
+              className="flex shrink-0 items-center gap-1"
+              style={{ color: PONYTAIL_GREEN }}
+            >
+              <Check className="h-3 w-3" />
+              it works
+            </span>
+          </div>
+          <div className="overflow-hidden whitespace-nowrap px-3 py-2 font-mono text-2xs leading-relaxed sm:text-xs">
+            <div
+              className="-mx-3 px-3"
+              style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
+            >
+              <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
+              <span style={{ color: PONYTAIL_MUTE }}>
+                return reconcile(pipeline(opts), base)
+              </span>
+            </div>
+            <div
+              className="-mx-3 px-3"
+              style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
+            >
+              <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
+              <span style={{ color: PONYTAIL_DIM }}>
+                {"/* …and the 38 lines you didn’t need */"}
+              </span>
+            </div>
+            <div
+              className="-mx-3 px-3"
+              style={{ backgroundColor: "rgba(126,231,135,0.10)" }}
+            >
+              <span style={{ color: PONYTAIL_GREEN }}>{"+ "}</span>
+              <span style={{ color: PONYTAIL_INK }}>return user ?? guest</span>
+            </div>
           </div>
         </div>
 
-        {/* Green ambient pool — light gathers low-left, where the diff and the
-            one green action live. */}
+        {/* Stats — terminal output */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs"
+          style={{ color: PONYTAIL_MUTE }}
+        >
+          <span className="flex items-center gap-1.5" style={{ color: PONYTAIL_INK }}>
+            <Star
+              className="h-3.5 w-3.5"
+              style={{ fill: PONYTAIL_GREEN, color: PONYTAIL_GREEN }}
+            />
+            {item.rating.toFixed(1)}
+          </span>
+          <span className="opacity-30">·</span>
+          <span>{formatCompact(item.stars)} likes</span>
+          <span className="opacity-30">·</span>
+          <span>{formatCompact(item.exports)} installs</span>
+        </div>
+
+        {/* One bold action; everything else stays quiet */}
+        <div className="relative z-20 mt-6 flex flex-wrap items-center gap-3">
+          <Link
+            href={item.href}
+            tabIndex={active ? 0 : -1}
+            className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-mono text-sm font-semibold transition-transform duration-200 hover:-translate-y-px"
+            style={{ backgroundColor: PONYTAIL_GREEN, color: PONYTAIL_CANVAS }}
+          >
+            Get
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
+          </Link>
+          <Link
+            href="/explore"
+            tabIndex={active ? 0 : -1}
+            className="inline-flex items-center rounded-md border border-white/15 px-5 py-2.5 font-mono text-sm text-[#9ca0a6] transition-colors hover:border-white/30 hover:text-white"
+          >
+            Browse all
+          </Link>
+        </div>
+      </div>
+
+      {/* Portrait card — the author, framed as a collectible profile */}
+      <div className="relative z-10 mx-auto w-full max-w-[24rem]">
+        {/* Soft green halo behind the card */}
+        <div
+          className="pointer-events-none absolute -inset-6 rounded-[2rem] blur-2xl"
           style={{
             background:
-              "radial-gradient(58% 50% at 20% 86%, rgba(126,231,135,0.10), transparent 70%)",
+              "radial-gradient(circle, rgba(126,231,135,0.13), transparent 65%)",
           }}
           aria-hidden
         />
-
-        {/* Depth vignette — keeps the flat near-black from reading as empty. */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="relative overflow-hidden rounded-2xl border shadow-elevated"
           style={{
-            background: `radial-gradient(125% 100% at 50% 28%, transparent 46%, ${PONYTAIL_VOID} 100%)`,
+            borderColor: PONYTAIL_BORDER,
+            backgroundImage: `linear-gradient(180deg, ${PONYTAIL_CHROME}, ${PONYTAIL_CANVAS})`,
           }}
-          aria-hidden
-        />
-
-        {/* Portrait — the author, bled in from the right, edges dissolved. */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/ponytail-face.webp"
-          alt=""
-          aria-hidden
-          draggable={false}
-          className="pointer-events-none absolute right-0 top-1/2 h-[78%] max-w-none -translate-y-1/2 select-none opacity-80 sm:h-[88%] sm:opacity-90 lg:right-[-1%] lg:h-[100%] lg:opacity-100"
-          style={{
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, #000 42%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-            maskImage:
-              "linear-gradient(to right, transparent 0%, #000 42%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%)",
-            maskComposite: "intersect",
-          }}
-        />
-
-        {/* Centre scrim — the far left stays clear so the ghost file reads; a
-            band of canvas protects the type where it meets the portrait, then
-            clears again so the face shows. */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(13,17,22,0) 0%, rgba(13,17,22,0) 34%, rgba(13,17,22,0.92) 56%, rgba(13,17,22,0.5) 72%, rgba(13,17,22,0) 88%)",
-          }}
-          aria-hidden
-        />
-
-        {/* Content */}
-        <div className="relative z-10 w-full px-6 py-10 sm:px-12 sm:py-12 lg:px-16">
-          <div className="max-w-[38rem]">
-            {/* Wordmark — heavy, tight, bone-white */}
-            <h2
-              className="text-6xl leading-[0.9] sm:text-7xl lg:text-8xl"
-              style={{ ...PONYTAIL_TITLE, color: PONYTAIL_INK }}
-            >
-              Ponytail
-            </h2>
-
-            {/* Docstring — the product in its own terse voice */}
-            <p
-              className="mt-5 text-2xl leading-snug sm:text-[1.7rem]"
-              style={{ ...PONYTAIL_TAGLINE, color: PONYTAIL_MUTE }}
-            >
-              He says nothing.
-              <br />
-              He writes one line. It works.
-            </p>
-
-            {/* Signature — the one-line diff. The deadpan green comment lifted
-                from the art is the file header; the body shows a wall of effort
-                collapsing to a single line that ships. */}
-            <div
-              className="mt-7 max-w-[27rem] overflow-hidden rounded-lg border shadow-elevated"
-              style={{
-                borderColor: PONYTAIL_BORDER,
-                backgroundColor: "#11161d",
-              }}
-            >
-              <div
-                className="flex items-center justify-between gap-3 border-b px-3 py-1.5 font-mono text-2xs"
-                style={{ borderColor: PONYTAIL_BORDER }}
-              >
-                <span className="truncate">
-                  <span style={{ color: PONYTAIL_GREEN, opacity: 0.5 }}>
-                    {"// "}
-                  </span>
-                  <span style={{ color: PONYTAIL_GREEN }}>
-                    ponytail: this exists
-                  </span>
-                </span>
-                <span
-                  className="flex shrink-0 items-center gap-1"
-                  style={{ color: PONYTAIL_GREEN }}
-                >
-                  <Check className="h-3 w-3" />
-                  it works
-                </span>
-              </div>
-              <div className="overflow-hidden whitespace-nowrap px-3 py-2 font-mono text-2xs leading-relaxed sm:text-xs">
-                <div
-                  className="-mx-3 px-3"
-                  style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
-                >
-                  <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
-                  <span style={{ color: PONYTAIL_MUTE }}>
-                    return reconcile(pipeline(opts), base)
-                  </span>
-                </div>
-                <div
-                  className="-mx-3 px-3"
-                  style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
-                >
-                  <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
-                  <span style={{ color: PONYTAIL_DIM }}>
-                    {"/* …and the 38 lines you didn’t need */"}
-                  </span>
-                </div>
-                <div
-                  className="-mx-3 px-3"
-                  style={{ backgroundColor: "rgba(126,231,135,0.10)" }}
-                >
-                  <span style={{ color: PONYTAIL_GREEN }}>{"+ "}</span>
-                  <span style={{ color: PONYTAIL_INK }}>return user ?? guest</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats — terminal output */}
-            <div
-              className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs"
-              style={{ color: PONYTAIL_MUTE }}
+        >
+          {/* Card header — a single open file, status live */}
+          <div
+            className="flex items-center justify-between border-b px-4 py-2.5 font-mono text-2xs"
+            style={{ borderColor: PONYTAIL_BORDER, color: PONYTAIL_MUTE }}
+          >
+            <span className="truncate">
+              <span style={{ color: PONYTAIL_GREEN, opacity: 0.55 }}>{"// "}</span>
+              the author
+            </span>
+            <span
+              className="flex shrink-0 items-center gap-1.5"
+              style={{ color: PONYTAIL_GREEN }}
             >
               <span
-                className="flex items-center gap-1.5"
-                style={{ color: PONYTAIL_INK }}
-              >
-                <Star
-                  className="h-3.5 w-3.5"
-                  style={{ fill: PONYTAIL_GREEN, color: PONYTAIL_GREEN }}
-                />
-                {item.rating.toFixed(1)}
-              </span>
-              <span className="opacity-30">·</span>
-              <span>{formatCompact(item.stars)} likes</span>
-              <span className="opacity-30">·</span>
-              <span>{formatCompact(item.exports)} installs</span>
-            </div>
+                className="h-1.5 w-1.5 animate-pulse rounded-full"
+                style={{ backgroundColor: PONYTAIL_GREEN }}
+              />
+              active
+            </span>
+          </div>
 
-            {/* One bold action; everything else stays quiet */}
-            <div className="relative z-20 mt-5 flex flex-wrap items-center gap-3">
-              <Link
-                href={item.href}
-                tabIndex={active ? 0 : -1}
-                className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-mono text-sm font-semibold transition-transform duration-200 hover:-translate-y-px"
-                style={{ backgroundColor: PONYTAIL_GREEN, color: PONYTAIL_CANVAS }}
+          {/* Portrait window — the face, lit by a low green pool */}
+          <div
+            className="relative h-[18rem] w-full sm:h-[22rem] lg:h-[26rem]"
+            style={{ backgroundColor: PONYTAIL_VOID }}
+          >
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(62% 60% at 50% 44%, rgba(126,231,135,0.16), transparent 72%)",
+              }}
+              aria-hidden
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/ponytail-face.webp"
+              alt=""
+              aria-hidden
+              draggable={false}
+              className="absolute inset-0 h-full w-full select-none object-contain object-bottom"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 84%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 84%, transparent 100%)",
+              }}
+            />
+          </div>
+
+          {/* Name plate */}
+          <div
+            className="flex items-center gap-3 border-t px-4 py-3"
+            style={{ borderColor: PONYTAIL_BORDER }}
+          >
+            <div className="min-w-0">
+              <p
+                className="truncate text-2xl leading-none"
+                style={{ ...PONYTAIL_TITLE, color: PONYTAIL_INK }}
               >
-                Get
-                <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
-              </Link>
-              <Link
-                href="/explore"
-                tabIndex={active ? 0 : -1}
-                className="inline-flex items-center rounded-md border border-white/15 px-5 py-2.5 font-mono text-sm text-[#9ca0a6] transition-colors hover:border-white/30 hover:text-white"
+                Ponytail
+              </p>
+              <p
+                className="mt-1.5 font-mono text-2xs"
+                style={{ color: PONYTAIL_MUTE }}
               >
-                Browse all
-              </Link>
+                {formatCompact(item.stars)} likes · {formatCompact(item.exports)}{" "}
+                installs
+              </p>
             </div>
+            <span
+              className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2.5 py-1 font-mono text-2xs"
+              style={{ borderColor: PONYTAIL_GREEN, color: PONYTAIL_GREEN }}
+            >
+              <Star
+                className="h-3 w-3"
+                style={{ fill: PONYTAIL_GREEN, color: PONYTAIL_GREEN }}
+              />
+              minimalist
+            </span>
           </div>
         </div>
-      </div>
-
-      {/* Editor status bar */}
-      <div
-        className="relative z-20 flex items-center gap-4 border-t px-5 py-2 font-mono text-2xs sm:px-6"
-        style={{
-          borderColor: PONYTAIL_BORDER,
-          backgroundColor: PONYTAIL_CHROME,
-          color: PONYTAIL_MUTE,
-        }}
-      >
-        <span className="flex items-center gap-1.5">
-          <GitBranch className="h-3 w-3" />
-          main
-        </span>
-        <span
-          className="flex items-center gap-1.5"
-          style={{ color: PONYTAIL_GREEN }}
-        >
-          <Check className="h-3 w-3" />0 problems
-        </span>
-        <span className="ml-auto hidden sm:inline">markdown</span>
-        <span className="hidden opacity-60 sm:inline">UTF-8</span>
-        <span>Ln 1, Col 1</span>
       </div>
     </div>
   );
@@ -1101,8 +1115,10 @@ function SkillCreatorPanel({
         >
           skill-creator
           <span
-            className="ml-1 inline-block animate-pulse"
-            style={{ color: BP_PASS }}
+            className="ml-1 inline-block"
+            // Steady terminal blink (reuses the caret-blink keyframes), slowed
+            // to a 1.6s on/off cadence so it blinks gently.
+            style={{ color: BP_PASS, animation: "caret-blink 1.6s step-end infinite" }}
             aria-hidden
           >
             ▍
@@ -1299,6 +1315,725 @@ function SkillCreatorPanel({
             <text x="340" y="576" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="9" letterSpacing="1">iter 3</text>
           </g>
         </svg>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Cloudflare Skills — a bespoke "global edge network" spotlight. Unlike the
+// others this is a *bundle*, not one skill, so the panel sells two ideas at
+// once: the unmistakable Cloudflare orange against a deep-midnight field, and
+// the network itself. The centrepiece is a hand-built wireframe globe — one
+// bright origin node radiating routing arcs out to glowing points of presence
+// — the "deploy once, run everywhere" story Cloudflare is known for. The type
+// column carries a bundle.lock manifest listing the ten real skills and a
+// wrangler-deploy footer, so the "ten skills, one install" idea is literal.
+// Orange is the single accent; everything else is cool slate and near-white.
+// ---------------------------------------------------------------------------
+
+const CF_CANVAS = "#0a0f1c"; // deep-midnight field
+const CF_DEEP = "#05080f"; // vignette floor
+const CF_PANEL = "#0f1626"; // manifest card fill
+const CF_INK = "#f6f4ef"; // warm near-white ink
+const CF_MUTE = "#94a0b4"; // muted slate text
+const CF_LINE = "#283449"; // hairline rules / wireframe base
+const CF_ORANGE = "#f6821f"; // Cloudflare brand orange
+const CF_ORANGE_LT = "#fbad41"; // light orange — logo-gradient top stop
+const CF_ORANGE_DK = "#e2620a"; // deep orange — gradient base
+const CF_DOT = "rgba(120,140,170,0.06)"; // faint network dot-field
+
+// The bundle's actual contents (github.com/cloudflare/skills), shown as a
+// lockfile manifest so "ten skills, one install" reads at a glance.
+const CF_BUNDLE = [
+  "cloudflare",
+  "agents-sdk",
+  "durable-objects",
+  "wrangler",
+  "sandbox-sdk",
+  "web-perf",
+  "mcp-server",
+  "ai-agent",
+  "cloudflare-one",
+  "one-migrations",
+];
+
+// Globe geometry. One origin hub near the sphere's centre; arcs bow out from it
+// to a ring of points of presence scattered across the visible hemisphere.
+const CF_GLOBE_C = { x: 240, y: 240 }; // sphere centre
+const CF_HUB = { x: 240, y: 234 }; // origin node ("your deploy")
+const CF_POPS = [
+  { x: 150, y: 152 },
+  { x: 330, y: 150 },
+  { x: 374, y: 248 },
+  { x: 318, y: 346 },
+  { x: 176, y: 344 },
+  { x: 108, y: 250 },
+  { x: 250, y: 112 },
+  { x: 205, y: 288 },
+];
+
+// A routing arc from the hub to a PoP — a quadratic whose control point is the
+// midpoint pushed away from the sphere centre, so the path bows above the
+// surface like a great-circle hop.
+function cfArc(a: { x: number; y: number }, b: { x: number; y: number }) {
+  const mx = (a.x + b.x) / 2;
+  const my = (a.y + b.y) / 2;
+  const cx = mx + (mx - CF_GLOBE_C.x) * 0.55;
+  const cy = my + (my - CF_GLOBE_C.y) * 0.55;
+  return `M${a.x} ${a.y} Q${cx} ${cy} ${b.x} ${b.y}`;
+}
+
+function CloudflarePanel({
+  item,
+  position,
+  total,
+  active,
+}: {
+  item: Spotlight;
+  position: number;
+  total: number;
+  active: boolean;
+}) {
+  const mono = 'ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", monospace';
+
+  return (
+    <div
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 items-center gap-10 overflow-hidden px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
+      style={{ backgroundColor: CF_CANVAS }}
+      aria-hidden={!active}
+      aria-roledescription="slide"
+      aria-label={`${position} of ${total}`}
+    >
+      {/* Faint network dot-field */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${CF_DOT} 1px, transparent 1px)`,
+          backgroundSize: "26px 26px",
+        }}
+        aria-hidden
+      />
+      {/* Warm edge glow, gathered on the right where the globe sits */}
+      <div
+        className="pointer-events-none absolute right-0 top-1/2 h-[42rem] w-[42rem] -translate-y-1/2 translate-x-1/4 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(246,130,31,0.16), transparent 60%)",
+        }}
+        aria-hidden
+      />
+      {/* Edge vignette */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(130% 100% at 50% 30%, transparent 40%, ${CF_DEEP} 100%)`,
+        }}
+        aria-hidden
+      />
+
+      {/* Type column */}
+      <div className="relative z-10 min-w-0">
+        {/* Eyebrow — declares this is a bundle, not a single skill */}
+        <div
+          className="flex items-center gap-2 font-mono text-2xs uppercase tracking-[0.22em]"
+          style={{ fontFamily: mono, color: CF_MUTE }}
+        >
+          <Cloud className="h-4 w-4" style={{ color: CF_ORANGE }} />
+          <span style={{ color: CF_ORANGE_LT }}>Bundle</span>
+          <span className="opacity-60">— 10 skills · {item.category}</span>
+        </div>
+
+        {/* Wordmark — "Cloudflare" in the brand orange gradient, "Skills" in ink */}
+        <h2 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+          <span
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${CF_ORANGE_LT}, ${CF_ORANGE} 55%, ${CF_ORANGE_DK})`,
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            Cloudflare
+          </span>
+          <br />
+          <span style={{ color: CF_INK }}>Skills</span>
+        </h2>
+
+        {/* Tagline */}
+        <p
+          className="mt-5 text-2xl leading-snug sm:text-3xl"
+          style={{ color: CF_INK, fontWeight: 300 }}
+        >
+          Build once.{" "}
+          <span style={{ color: CF_ORANGE_LT }}>
+            Deploy to the edge, everywhere.
+          </span>
+        </p>
+
+        {/* Body */}
+        <p
+          className="mt-4 max-w-prose text-sm leading-relaxed sm:text-base"
+          style={{ color: CF_MUTE }}
+        >
+          Ten official Agent Skills that teach Claude to build on Cloudflare —
+          Workers, Durable Objects, the Agents SDK, Wrangler, and the rest of the
+          developer platform — then ship it straight to the global network.
+        </p>
+
+        {/* bundle.lock — the literal contents of the bundle */}
+        <div
+          className="mt-7 max-w-[30rem] overflow-hidden rounded-xl border shadow-elevated"
+          style={{ borderColor: CF_LINE, backgroundColor: CF_PANEL }}
+        >
+          <div
+            className="flex items-center justify-between border-b px-4 py-2.5 font-mono text-2xs uppercase tracking-[0.18em]"
+            style={{ fontFamily: mono, borderColor: CF_LINE, color: CF_MUTE }}
+          >
+            <span className="flex items-center gap-2">
+              <Package className="h-3.5 w-3.5" style={{ color: CF_ORANGE }} />
+              bundle.lock
+            </span>
+            <span style={{ color: CF_ORANGE_LT }}>10 skills</span>
+          </div>
+          <ul
+            className="grid grid-cols-2 gap-x-6 gap-y-1.5 px-4 py-3 font-mono text-xs"
+            style={{ fontFamily: mono, color: CF_INK }}
+          >
+            {CF_BUNDLE.map((skill) => (
+              <li key={skill} className="flex items-center gap-2">
+                <Check
+                  className="h-3 w-3 shrink-0"
+                  style={{ color: CF_ORANGE }}
+                />
+                <span className="truncate">{skill}</span>
+              </li>
+            ))}
+          </ul>
+          <div
+            className="flex items-center gap-2 border-t px-4 py-2 font-mono text-2xs"
+            style={{ fontFamily: mono, borderColor: CF_LINE, color: CF_MUTE }}
+          >
+            <span style={{ color: CF_ORANGE }}>$</span>
+            <span style={{ color: CF_INK }}>wrangler deploy</span>
+            <span
+              className="ml-auto flex items-center gap-1.5"
+              style={{ color: CF_ORANGE_LT }}
+            >
+              <span
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: CF_ORANGE }}
+              />
+              live · 330+ cities
+            </span>
+          </div>
+        </div>
+
+        {/* Stats — terminal annotation */}
+        <div
+          className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, color: CF_MUTE }}
+        >
+          <span className="flex items-center gap-1.5" style={{ color: CF_INK }}>
+            <Star
+              className="h-3.5 w-3.5"
+              style={{ fill: CF_ORANGE, color: CF_ORANGE }}
+            />
+            {item.rating.toFixed(1)}
+          </span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.stars)} likes</span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.exports)} installs</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="relative z-20 mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href={item.href}
+            tabIndex={active ? 0 : -1}
+            className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold text-white shadow-elevated transition-transform duration-200 hover:-translate-y-px"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${CF_ORANGE_LT}, ${CF_ORANGE})`,
+            }}
+          >
+            Get the bundle
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
+          </Link>
+          <Link
+            href="/explore"
+            tabIndex={active ? 0 : -1}
+            className="inline-flex items-center rounded-md border px-5 py-2.5 text-sm transition-colors hover:text-white"
+            style={{ borderColor: CF_LINE, color: CF_MUTE }}
+          >
+            Browse all
+          </Link>
+        </div>
+      </div>
+
+      {/* Globe — the custom centrepiece: one origin node routing out to a ring
+          of points of presence across the visible hemisphere. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[30rem] items-center justify-center">
+        <svg
+          viewBox="0 0 480 480"
+          className="h-auto w-full"
+          fill="none"
+          role="img"
+          aria-label="A wireframe globe of the Cloudflare edge network: one origin node routing connection arcs out to eight glowing points of presence"
+        >
+          <defs>
+            <radialGradient id="cf-sphere" cx="38%" cy="32%" r="78%">
+              <stop offset="0%" stopColor="#1a2742" />
+              <stop offset="55%" stopColor="#0e1830" />
+              <stop offset="100%" stopColor="#070b16" />
+            </radialGradient>
+            <radialGradient id="cf-glow">
+              <stop offset="0%" stopColor={CF_ORANGE} stopOpacity="0.85" />
+              <stop offset="100%" stopColor={CF_ORANGE} stopOpacity="0" />
+            </radialGradient>
+            <linearGradient id="cf-arc" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor={CF_ORANGE_LT} />
+              <stop offset="100%" stopColor={CF_ORANGE} />
+            </linearGradient>
+            <clipPath id="cf-clip">
+              <circle cx="240" cy="240" r="180" />
+            </clipPath>
+          </defs>
+
+          {/* Sphere body */}
+          <circle
+            cx="240"
+            cy="240"
+            r="180"
+            fill="url(#cf-sphere)"
+            stroke={CF_LINE}
+            strokeWidth="1.25"
+          />
+
+          {/* Wireframe — meridians + parallels, clipped to the sphere */}
+          <g
+            clipPath="url(#cf-clip)"
+            stroke={CF_LINE}
+            strokeWidth="1"
+            fill="none"
+            strokeOpacity="0.6"
+          >
+            {/* meridians (longitude) */}
+            <line x1="240" y1="60" x2="240" y2="420" />
+            <ellipse cx="240" cy="240" rx="90" ry="180" />
+            <ellipse cx="240" cy="240" rx="156" ry="180" />
+            {/* parallels (latitude) */}
+            <ellipse cx="240" cy="240" rx="180" ry="29" />
+            <ellipse cx="240" cy="150" rx="156" ry="25" />
+            <ellipse cx="240" cy="330" rx="156" ry="25" />
+            <ellipse cx="240" cy="84" rx="90" ry="14" />
+            <ellipse cx="240" cy="396" rx="90" ry="14" />
+          </g>
+
+          {/* Routing arcs from the origin hub to each PoP */}
+          <g
+            stroke="url(#cf-arc)"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            fill="none"
+            strokeOpacity="0.9"
+          >
+            {CF_POPS.map((p, i) => (
+              <path key={i} d={cfArc(CF_HUB, p)} />
+            ))}
+          </g>
+
+          {/* Points of presence — faint twinkling halo + crisp core */}
+          {CF_POPS.map((p, i) => (
+            <g key={i}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r="11"
+                fill="url(#cf-glow)"
+                className="animate-pulse"
+                style={{ animationDelay: `${(i % 4) * 0.45}s` }}
+              />
+              <circle cx={p.x} cy={p.y} r="3.5" fill={CF_ORANGE_LT} />
+            </g>
+          ))}
+
+          {/* Origin hub — brighter, with a pulsing ring */}
+          <circle cx={CF_HUB.x} cy={CF_HUB.y} r="24" fill="url(#cf-glow)" />
+          <circle
+            cx={CF_HUB.x}
+            cy={CF_HUB.y}
+            r="13"
+            fill="none"
+            stroke={CF_ORANGE}
+            strokeWidth="1.25"
+            strokeOpacity="0.5"
+            className="animate-pulse"
+          />
+          <circle cx={CF_HUB.x} cy={CF_HUB.y} r="5.5" fill={CF_ORANGE_LT} />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// brainstorming — a bespoke "ideation canvas" spotlight. The skill turns vague
+// ideas into validated designs by slowing the process down: one question at a
+// time, a hard "understanding lock", then two or three weighed approaches with
+// a recommendation, all captured in a decision log. The centrepiece renders
+// that exact flow as a dark studio whiteboard — a raw, vague idea up top, a
+// single focused question, the lock gate, then the branch of approaches with
+// the recommended one lit. Deep plum-indigo field, warm-white ink, and a single
+// gold "insight" accent used only where something is decided. An editorial
+// serif wordmark sets it apart from the sans/mono voices of the other slides.
+// ---------------------------------------------------------------------------
+
+const BS_CANVAS = "#171228"; // deep plum-indigo field
+const BS_DEEP = "#0f0b1d"; // vignette floor / deepest shade
+const BS_PANEL = "#221a3a"; // raised card fill
+const BS_PANEL_2 = "#1b1430"; // secondary / inset card fill
+const BS_INK = "#f4efe6"; // warm near-white ink
+const BS_MUTE = "#b4aacb"; // lavender-grey muted text
+const BS_FAINT = "#7b7099"; // faintest text / dashed strokes
+const BS_LINE = "#372d54"; // hairline rules / connectors
+const BS_GOLD = "#f2c879"; // amber "insight / decided" accent
+const BS_GOLD_SOFT = "rgba(242,200,121,0.14)";
+
+// Editorial serif wordmark — the considered, studio-journal voice. None of the
+// other slides use a serif, so it reads as its own identity at a glance.
+const BS_SERIF =
+  '"Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif';
+
+// One focused question with multiple-choice answers — the skill's signature
+// "one question at a time". Option B is the chosen answer.
+const BS_OPTIONS: { key: string; label: string; chosen: boolean }[] = [
+  { key: "A", label: "Internal team", chosen: false },
+  { key: "B", label: "End users", chosen: true },
+  { key: "C", label: "Both — phased", chosen: false },
+];
+
+// The two-or-three weighed approaches, recommendation lit.
+const BS_APPROACHES: { key: string; label: string; rec: boolean }[] = [
+  { key: "A", label: "Local-first", rec: true },
+  { key: "B", label: "Server sync", rec: false },
+  { key: "C", label: "Hybrid", rec: false },
+];
+
+function BrainstormPanel({
+  item,
+  position,
+  total,
+  active,
+}: {
+  item: Spotlight;
+  position: number;
+  total: number;
+  active: boolean;
+}) {
+  const mono = 'ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", monospace';
+
+  // A thin centred connector between board stations.
+  const connector = (
+    <div className="mx-auto h-5 w-px" style={{ backgroundColor: BS_LINE }} aria-hidden />
+  );
+
+  return (
+    <div
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 items-center gap-10 overflow-hidden px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[1fr_1fr] lg:gap-14"
+      style={{ backgroundColor: BS_CANVAS }}
+      aria-hidden={!active}
+      aria-roledescription="slide"
+      aria-label={`${position} of ${total}`}
+    >
+      {/* Dotted whiteboard canvas */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(244,239,230,0.05) 1px, transparent 1px)",
+          backgroundSize: "22px 22px",
+        }}
+        aria-hidden
+      />
+      {/* Gold ambient glow — gathers on the right, where the decision lands */}
+      <div
+        className="pointer-events-none absolute right-[6%] top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full blur-3xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(242,200,121,0.12), transparent 65%)",
+        }}
+        aria-hidden
+      />
+      {/* Edge vignette */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(125% 100% at 50% 24%, transparent 44%, ${BS_DEEP} 100%)`,
+        }}
+        aria-hidden
+      />
+
+      {/* Type column */}
+      <div className="relative z-10 min-w-0">
+        {/* Eyebrow */}
+        <div
+          className="flex items-center gap-2 font-mono text-2xs uppercase tracking-[0.22em]"
+          style={{ fontFamily: mono, color: BS_MUTE }}
+        >
+          <Lightbulb className="h-3.5 w-3.5" style={{ color: BS_GOLD }} />
+          <span style={{ color: BS_GOLD }}>Skill</span>
+          <span className="opacity-60">— {item.category}</span>
+        </div>
+
+        {/* Wordmark — editorial serif */}
+        <h2
+          className="mt-5 text-5xl leading-[0.95] sm:text-6xl lg:text-[4.25rem]"
+          style={{
+            fontFamily: BS_SERIF,
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+            color: BS_INK,
+          }}
+        >
+          brainstorming
+        </h2>
+
+        {/* Tagline */}
+        <p
+          className="mt-6 text-2xl leading-snug sm:text-3xl"
+          style={{
+            fontFamily: BS_SERIF,
+            fontStyle: "italic",
+            fontWeight: 400,
+            color: BS_INK,
+          }}
+        >
+          Vague idea in.{" "}
+          <span style={{ color: BS_GOLD }}>Validated design out.</span>
+        </p>
+
+        {/* Body */}
+        <p
+          className="mt-4 max-w-prose text-sm leading-relaxed sm:text-base"
+          style={{ color: BS_MUTE }}
+        >
+          A design facilitator that refuses to write a line of code until the
+          thinking is sound — one question at a time, a hard understanding lock,
+          then two or three weighed approaches.{" "}
+          <span style={{ color: BS_INK }}>
+            You build from a spec, not a guess.
+          </span>
+        </p>
+
+        {/* Principle strip */}
+        <div
+          className="mt-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border px-3 py-2 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, borderColor: BS_LINE, color: BS_MUTE }}
+        >
+          <span style={{ color: BS_INK }}>understand</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BS_INK }}>lock</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BS_INK }}>explore</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BS_GOLD }}>decide</span>
+        </div>
+
+        {/* Stats — studio annotation */}
+        <div
+          className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, color: BS_MUTE }}
+        >
+          <span className="flex items-center gap-1.5" style={{ color: BS_INK }}>
+            <Star
+              className="h-3.5 w-3.5"
+              style={{ fill: BS_GOLD, color: BS_GOLD }}
+            />
+            {item.rating.toFixed(1)}
+          </span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.stars)} likes</span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.exports)} installs</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="relative z-20 mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href={item.href}
+            tabIndex={active ? 0 : -1}
+            className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-mono text-sm font-semibold transition-transform duration-200 hover:-translate-y-px"
+            style={{ fontFamily: mono, backgroundColor: BS_GOLD, color: BS_DEEP }}
+          >
+            Get
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
+          </Link>
+          <Link
+            href="/explore"
+            tabIndex={active ? 0 : -1}
+            className="inline-flex items-center rounded-md border px-5 py-2.5 font-mono text-sm transition-colors hover:text-white"
+            style={{ fontFamily: mono, borderColor: BS_LINE, color: BS_MUTE }}
+          >
+            Browse all
+          </Link>
+        </div>
+      </div>
+
+      {/* Ideation board — the bespoke centrepiece: raw idea → one question →
+          understanding lock → weighed approaches with a recommendation. */}
+      <div className="relative z-10 mx-auto w-full max-w-[26rem]">
+        {/* Board caption */}
+        <div
+          className="mb-4 flex items-center justify-between font-mono text-2xs uppercase tracking-[0.2em]"
+          style={{ fontFamily: mono, color: BS_FAINT }}
+        >
+          <span>design session</span>
+          <span className="flex items-center gap-1.5">
+            <Sparkles className="h-3 w-3" style={{ color: BS_GOLD }} />
+            live
+          </span>
+        </div>
+
+        {/* 1 — Raw idea: the vague input, fragments still unanswered */}
+        <div
+          className="rounded-xl border border-dashed px-4 py-3"
+          style={{ borderColor: BS_FAINT, backgroundColor: BS_PANEL_2 }}
+        >
+          <span
+            className="font-mono text-2xs uppercase tracking-[0.18em]"
+            style={{ fontFamily: mono, color: BS_FAINT }}
+          >
+            raw idea
+          </span>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {["“some kind of sync?”", "offline?", "who’s it for?", "realtime…"].map(
+              (frag) => (
+                <span
+                  key={frag}
+                  className="rounded border border-dashed px-1.5 py-0.5 font-mono text-2xs"
+                  style={{ fontFamily: mono, borderColor: BS_LINE, color: BS_MUTE }}
+                >
+                  {frag}
+                </span>
+              )
+            )}
+          </div>
+        </div>
+
+        {connector}
+
+        {/* 2 — One question at a time, with multiple-choice answers */}
+        <div
+          className="rounded-xl border px-4 py-3 shadow-elevated"
+          style={{ borderColor: BS_LINE, backgroundColor: BS_PANEL }}
+        >
+          <div
+            className="flex items-center justify-between font-mono text-2xs"
+            style={{ fontFamily: mono }}
+          >
+            <span className="flex items-center gap-1.5" style={{ color: BS_GOLD }}>
+              <span
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: BS_GOLD }}
+              />
+              one question at a time
+            </span>
+            <span style={{ color: BS_FAINT }}>q01</span>
+          </div>
+          <p
+            className="mt-2 text-lg"
+            style={{ fontFamily: BS_SERIF, color: BS_INK }}
+          >
+            Who is this actually for?
+          </p>
+          <div className="mt-3 space-y-1.5">
+            {BS_OPTIONS.map((opt) => (
+              <div
+                key={opt.key}
+                className="flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-xs"
+                style={{
+                  borderColor: opt.chosen ? BS_GOLD : BS_LINE,
+                  backgroundColor: opt.chosen ? BS_GOLD_SOFT : "transparent",
+                  color: opt.chosen ? BS_INK : BS_MUTE,
+                }}
+              >
+                <span
+                  className="font-mono text-2xs"
+                  style={{ fontFamily: mono, color: opt.chosen ? BS_GOLD : BS_FAINT }}
+                >
+                  {opt.key}
+                </span>
+                <span>{opt.label}</span>
+                {opt.chosen && (
+                  <Check className="ml-auto h-3.5 w-3.5" style={{ color: BS_GOLD }} />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {connector}
+
+        {/* 3 — Understanding lock: the hard gate before any design */}
+        <div
+          className="flex items-center gap-2 rounded-lg border px-3.5 py-2.5"
+          style={{ borderColor: BS_GOLD, backgroundColor: BS_GOLD_SOFT }}
+        >
+          <Lock className="h-4 w-4" style={{ color: BS_GOLD }} />
+          <span className="text-sm font-medium" style={{ color: BS_INK }}>
+            Understanding locked
+          </span>
+          <span
+            className="ml-auto flex items-center gap-1 font-mono text-2xs"
+            style={{ fontFamily: mono, color: BS_GOLD }}
+          >
+            <Check className="h-3 w-3" />
+            confirmed
+          </span>
+        </div>
+
+        {connector}
+
+        {/* 4 — Weighed approaches, recommendation lit, decision logged */}
+        <div
+          className="font-mono text-2xs uppercase tracking-[0.18em]"
+          style={{ fontFamily: mono, color: BS_FAINT }}
+        >
+          explore 2–3 approaches
+        </div>
+        <div className="mt-2 grid grid-cols-3 gap-2">
+          {BS_APPROACHES.map((a) => (
+            <div
+              key={a.key}
+              className="rounded-lg border px-2.5 py-2"
+              style={{
+                borderColor: a.rec ? BS_GOLD : BS_LINE,
+                backgroundColor: a.rec ? BS_GOLD_SOFT : BS_PANEL_2,
+              }}
+            >
+              <div
+                className="flex items-center justify-between font-mono text-2xs"
+                style={{ fontFamily: mono, color: a.rec ? BS_GOLD : BS_FAINT }}
+              >
+                <span>{a.key}</span>
+                {a.rec && <span aria-hidden>★</span>}
+              </div>
+              <p
+                className="mt-1 text-xs"
+                style={{ color: a.rec ? BS_INK : BS_MUTE }}
+              >
+                {a.label}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div
+          className="mt-2 font-mono text-2xs"
+          style={{ fontFamily: mono, color: BS_FAINT }}
+        >
+          <span style={{ color: BS_GOLD }}>A</span> recommended · decision logged
+        </div>
       </div>
     </div>
   );

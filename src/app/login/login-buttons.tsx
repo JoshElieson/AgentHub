@@ -73,7 +73,7 @@ export function LoginButtons({
       >
         <Github className="h-4 w-4" />
         Continue with GitHub
-        {github ? <Tag>Recommended</Tag> : <Tag tone="muted">Not configured</Tag>}
+        {github ? null : <Tag tone="muted">Not configured</Tag>}
       </Button>
 
       <Button

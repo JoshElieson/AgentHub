@@ -3,7 +3,7 @@
  * Generates a random UUID on first visit and persists it in localStorage.
  */
 
-const STORAGE_KEY = "agentdock-anon-id";
+const STORAGE_KEY = "nuclexa-anon-id";
 
 export function getAnonId(): string {
   if (typeof window === "undefined") return "server";

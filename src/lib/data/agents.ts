@@ -35,7 +35,7 @@ const seeds: AgentSeed[] = [
     isSecurityReviewed: true,
     isFeatured: true,
     exampleUsage:
-      "# Review the current UI change\n\n```bash\nnpx agentdock install impeccable-ui-reviewer --target cursor\n```\n\nThen in Cursor:\n\n> Review this component for spacing, hierarchy, and accessibility.\n\nThe reviewer returns line-level notes grouped by severity — never a vague 'make it pop'.",
+      "# Review the current UI change\n\n```bash\nnpx nuclexa install impeccable-ui-reviewer --target cursor\n```\n\nThen in Cursor:\n\n> Review this component for spacing, hierarchy, and accessibility.\n\nThe reviewer returns line-level notes grouped by severity — never a vague 'make it pop'.",
     readme: `# Impeccable UI Reviewer
 
 A **read-only** design-engineering reviewer for frontend changes. It evaluates your UI the way a senior product designer would and returns specific, actionable fixes.
@@ -55,7 +55,7 @@ Requests only \`readFiles\`. It cannot write to your files, run commands, or rea
 ## Install
 
 \`\`\`bash
-npx agentdock install impeccable-ui-reviewer --target claude-code
+npx nuclexa install impeccable-ui-reviewer --target claude-code
 \`\`\`
 `,
     versions: [
@@ -158,7 +158,7 @@ npx agentdock install impeccable-ui-reviewer --target claude-code
       { platform: "mcp", status: "unsupported", notes: "Planned for v2.2." },
     ],
     exampleUsage:
-      "# Review the current branch\n\n```bash\nnpx agentdock install security-review --target claude-code\n```\n\nThen in Claude Code:\n\n> Run a security review on the pending changes.\n\nThe agent reads the diff, classifies findings by severity, and proposes fixes — without writing to your files.",
+      "# Review the current branch\n\n```bash\nnpx nuclexa install security-review --target claude-code\n```\n\nThen in Claude Code:\n\n> Run a security review on the pending changes.\n\nThe agent reads the diff, classifies findings by severity, and proposes fixes — without writing to your files.",
     readme: `# Security Review Agent
 
 A **read-only** security reviewer for code and AI agents. It audits diffs and full repositories against the OWASP Top 10 and a catalog of AI-agent-specific risks, then reports findings ranked by severity with concrete remediation.
@@ -178,7 +178,7 @@ This agent requests only \`readFiles\` and \`gitHistory\`. It **cannot** write t
 ## Install
 
 \`\`\`bash
-npx agentdock install security-review --target claude-code
+npx nuclexa install security-review --target claude-code
 \`\`\`
 
 ## Example output
@@ -305,7 +305,7 @@ A01 Broken Access Control · A02 Cryptographic Failures · A03 Injection · A04 
 The skill walks your repository, builds a category-by-category report, and produces a compliance-style summary you can attach to a release.
 
 \`\`\`bash
-npx agentdock install owasp-audit --target claude-code
+npx nuclexa install owasp-audit --target claude-code
 \`\`\`
 
 ## Output
@@ -412,7 +412,7 @@ A drop-in **Cursor rule pack** that makes Cursor edit React the way you'd want a
 ## Install
 
 \`\`\`bash
-npx agentdock install react-refactor-rules --target cursor
+npx nuclexa install react-refactor-rules --target cursor
 \`\`\`
 
 Installs to \`.cursor/rules/react-refactor-rules.mdc\`. Open any React file and Cursor follows the rules automatically.
@@ -531,7 +531,7 @@ A production-ready **Model Context Protocol** server that gives agents *scoped* 
 ## Install
 
 \`\`\`bash
-npx agentdock install mcp-filesystem-server --target mcp
+npx nuclexa install mcp-filesystem-server --target mcp
 \`\`\`
 
 Then add it to your MCP config and restart the client.
@@ -639,7 +639,7 @@ Requests \`browser\`, \`network\`, and \`runCommands\` to launch and drive a bro
 ## Install
 
 \`\`\`bash
-npx agentdock install browser-automation-agent --target claude-code
+npx nuclexa install browser-automation-agent --target claude-code
 \`\`\`
 `,
     versions: [
@@ -742,7 +742,7 @@ A red-team harness for agents. It runs a curated library of injection and jailbr
 ## Install
 
 \`\`\`bash
-npx agentdock install prompt-injection-tester --target claude-code
+npx nuclexa install prompt-injection-tester --target claude-code
 \`\`\`
 
 > Requests \`network\` and \`runCommands\` to exercise your agent in a sandbox. Run it against **your own** agents only.
@@ -851,7 +851,7 @@ A **prompt pack** that exports to \`.github/copilot-instructions.md\` so GitHub 
 ## Install (export)
 
 \`\`\`bash
-npx agentdock export github-copilot-review --target copilot-instructions
+npx nuclexa export github-copilot-review --target copilot-instructions
 \`\`\`
 
 Writes \`.github/copilot-instructions.md\`. Commit it and Copilot picks it up across your repo.
@@ -962,7 +962,7 @@ A markdown brief with inline citations and a "couldn't verify" section so you kn
 ## Install
 
 \`\`\`bash
-npx agentdock install gemini-research-workflow --target gemini-cli
+npx nuclexa install gemini-research-workflow --target gemini-cli
 \`\`\`
 
 > Requests \`network\` to fetch sources and \`writeFiles\` to save the brief.
@@ -1067,7 +1067,7 @@ An **agent template** for the Replit Agent runtime. Fork it and scaffold a full-
 ## Use it as a template
 
 \`\`\`bash
-npx agentdock install replit-app-builder --target replit-agent
+npx nuclexa install replit-app-builder --target replit-agent
 \`\`\`
 
 Customize the defaults in \`agent.json\`, then let the Replit Agent build and deploy.
@@ -1177,7 +1177,7 @@ Postgres · MySQL · SQLite
 ## Install
 
 \`\`\`bash
-npx agentdock install sql-optimizer-agent --target claude-code
+npx nuclexa install sql-optimizer-agent --target claude-code
 \`\`\`
 `,
     versions: [
@@ -1284,13 +1284,13 @@ Run it on a diff and it updates only the affected docs — no full rewrites, no 
 ## Install
 
 \`\`\`bash
-npx agentdock install docs-writer-pack --target claude-code
+npx nuclexa install docs-writer-pack --target claude-code
 \`\`\`
 
 Prefer Copilot? Export it:
 
 \`\`\`bash
-npx agentdock export docs-writer-pack --target copilot-instructions
+npx nuclexa export docs-writer-pack --target copilot-instructions
 \`\`\`
 `,
     versions: [
@@ -1392,7 +1392,7 @@ Turn a pile of commits into a clean release. The workflow reads git history (and
 ## Install
 
 \`\`\`bash
-npx agentdock install devops-release-planner --target claude-code
+npx nuclexa install devops-release-planner --target claude-code
 \`\`\`
 
 > Requests \`network\` to read CI status from your provider (optional — works offline from git alone).
@@ -1507,7 +1507,7 @@ A **Model Context Protocol** server that connects agents to your Supabase projec
 ## Install
 
 \`\`\`bash
-npx agentdock install supabase-integration-mcp --target mcp
+npx nuclexa install supabase-integration-mcp --target mcp
 \`\`\`
 
 ## Required environment
@@ -1623,7 +1623,7 @@ Vitest · Jest · Pytest · Go test
 ## Install
 
 \`\`\`bash
-npx agentdock install test-generator-agent --target claude-code
+npx nuclexa install test-generator-agent --target claude-code
 \`\`\`
 
 > Requests \`runCommands\` to execute the test runner. Review the command allow-list in \`agent.json\`.
@@ -1714,7 +1714,7 @@ npx agentdock install test-generator-agent --target claude-code
     isSecurityReviewed: false,
     isFeatured: false,
     exampleUsage:
-      "# Sharpen your landing page headline\n\n```bash\nnpx agentdock install copy-sharpener --target claude-code\n```\n\nThen:\n\n> Rewrite this headline for higher clarity and conversion:\n> \"We help teams do more with less.\"\n\nCopy Sharpener returns the original annotated with weaknesses plus three alternatives ranked by expected clarity.",
+      "# Sharpen your landing page headline\n\n```bash\nnpx nuclexa install copy-sharpener --target claude-code\n```\n\nThen:\n\n> Rewrite this headline for higher clarity and conversion:\n> \"We help teams do more with less.\"\n\nCopy Sharpener returns the original annotated with weaknesses plus three alternatives ranked by expected clarity.",
     readme: `# Copy Sharpener
 
 **Read-only** marketing copy reviewer and rewriter. Paste in any copy — headline, email, ad, landing section — and get specific, conversion-focused rewrites.
@@ -1729,7 +1729,7 @@ npx agentdock install test-generator-agent --target claude-code
 ## Install
 
 \`\`\`bash
-npx agentdock install copy-sharpener --target claude-code
+npx nuclexa install copy-sharpener --target claude-code
 \`\`\`
 `,
     versions: [

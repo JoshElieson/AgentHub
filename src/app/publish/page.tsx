@@ -6,7 +6,7 @@ import { PublishWizard } from "./publish-wizard";
 export const metadata: Metadata = {
   title: "Publish",
   description:
-    "Publish an agent, skill, MCP server, workflow, or prompt pack to AgentDock. Versioned, permission-scoped, and installable everywhere.",
+    "Publish an agent, skill, MCP server, workflow, or prompt pack to Nuclexa. Versioned, permission-scoped, and installable everywhere.",
 };
 
 export default async function PublishPage() {

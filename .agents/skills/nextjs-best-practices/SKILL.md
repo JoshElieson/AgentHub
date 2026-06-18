@@ -2,7 +2,7 @@
 name: nextjs-best-practices
 description: Next.js best practices from the Vercel engineering team — covers App Router patterns, server components, data fetching, caching strategies, and performance optimization.
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

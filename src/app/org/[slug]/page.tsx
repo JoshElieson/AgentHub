@@ -42,9 +42,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const org = getOrganization(slug);
-  if (!org) return { title: "Organization not found · AgentDock" };
+  if (!org) return { title: "Organization not found · Nuclexa" };
   return {
-    title: `${org.name} · AgentDock`,
+    title: `${org.name} · Nuclexa`,
     description: org.description,
   };
 }
@@ -75,7 +75,7 @@ export default async function OrgProfilePage({
           <EmptyState
             icon={<Package className="h-5 w-5" />}
             title="No packages yet"
-            description={`${org.name} hasn't published any agents to AgentDock yet.`}
+            description={`${org.name} hasn't published any agents to Nuclexa yet.`}
           />
         ),
     },

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { agents, creators, organizations } from "@/lib/data";
 
-const BASE = "https://agentdock.dev";
+const BASE = "https://nuclexa.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [

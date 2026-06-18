@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "title": "Researched skills for AgentDock",
+    "title": "Researched skills for Nuclexa",
     "description": "Real, individually-verified Agent Skills (SKILL.md packages) discovered via research, NOT yet added to the site. Each entry was confirmed by fetching the actual SKILL.md from its source repo. Deduped against the existing catalog. Labels: `author` (source/org, e.g. 'Anthropic') and `category` (one of the 12 landing-page categories, e.g. 'design'). Shape mirrors scripts/skills-data.json (name/description/trigger_phrases/tags/source_url/markdown_instructions) plus the label fields (author, category, model, displayName, verified).",
     "count": 43,
     "researched_on": "2026-06-16",

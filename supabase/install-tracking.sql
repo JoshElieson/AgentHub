@@ -1,5 +1,5 @@
 -- ════════════════════════════════════════════════════════════════════════════
--- Install tracking — apply this to your existing AgentDock Supabase project.
+-- Install tracking — apply this to your existing Nuclexa Supabase project.
 --
 -- Creates the two tables that power the "you've installed this before" badges,
 -- the Dashboard Installed tab, and the profile "Installed" count:

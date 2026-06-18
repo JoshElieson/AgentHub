@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Avatar } from "./ui/avatar";
 import {
   LayoutDashboard,
   Package,
@@ -25,7 +24,7 @@ export const DASHBOARD_SECTIONS: {
   icon: React.ReactNode;
 }[] = [
   { id: "overview", label: "Overview", icon: <LayoutDashboard className="h-4 w-4" /> },
-  { id: "my-agents", label: "My Agents", icon: <Package className="h-4 w-4" /> },
+  { id: "my-agents", label: "Published", icon: <Package className="h-4 w-4" /> },
   { id: "installed", label: "Installed", icon: <Download className="h-4 w-4" /> },
   { id: "saved", label: "Saved", icon: <Bookmark className="h-4 w-4" /> },
   { id: "collections", label: "Bundles", icon: <FolderHeart className="h-4 w-4" /> },
@@ -35,32 +34,12 @@ export const DASHBOARD_SECTIONS: {
 export function DashboardSidebar({
   active,
   onSelect,
-  user,
 }: {
   active: DashboardSection;
   onSelect: (s: DashboardSection) => void;
-  user: {
-    name: string;
-    username: string;
-    avatarColor: string;
-    image?: string | null;
-  };
 }) {
   return (
-    <div className="space-y-4">
-      <div className="card flex items-center gap-3 p-3">
-        <Avatar
-          name={user.name}
-          color={user.avatarColor}
-          image={user.image}
-          size="lg"
-        />
-        <div className="min-w-0">
-          <div className="truncate text-sm font-semibold text-content">{user.name}</div>
-          <div className="truncate text-xs text-subtle">@{user.username}</div>
-        </div>
-      </div>
-
+    <div>
       <nav className="space-y-0.5">
         {DASHBOARD_SECTIONS.map((s) => (
           <button

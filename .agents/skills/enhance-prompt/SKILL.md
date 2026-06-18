@@ -2,7 +2,7 @@
 name: enhance-prompt
 description: Improve prompts with design specs and UI/UX vocabulary
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

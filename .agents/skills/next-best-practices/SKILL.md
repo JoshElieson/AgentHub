@@ -2,7 +2,7 @@
 name: next-best-practices
 description: Next.js best practices and recommended patterns
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

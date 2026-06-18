@@ -6,7 +6,6 @@ import {
   getAgentsByCreator,
   getCreatorStats,
 } from "@/lib/data";
-import type { Review } from "@/lib/types";
 import {
   getProfileByUsername,
   isFollowing,
@@ -17,7 +16,6 @@ import { formatCompact, formatDate } from "@/lib/utils";
 import { AppShell } from "@/components/app-shell";
 import { AgentGrid } from "@/components/agent-grid";
 
-import { ReviewCard } from "@/components/review-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Avatar } from "@/components/ui/avatar";
 import { VerifiedBadge } from "@/components/ui/badge";
@@ -27,12 +25,10 @@ import { Tabs } from "@/components/ui/tabs";
 import {
   Boxes,
   Download,
-  Folder,
   Github,
   Globe,
   Layers,
   MapPin,
-  MessageSquare,
   Package,
   Pencil,
   Star,
@@ -41,6 +37,7 @@ import {
 import { FollowButton } from "./follow-button";
 import { ActivityTimeline } from "./activity-timeline";
 import { InstalledCountValue } from "./installed-count";
+import { InstalledTab } from "./profile-collections";
 
 interface PageProps {
   params: Promise<{ username: string }>;
@@ -56,20 +53,12 @@ export async function generateMetadata({
   const { username } = await params;
   const creator = await getProfileByUsername(username);
   if (!creator) {
-    return { title: "Creator not found · AgentDock" };
+    return { title: "Creator not found · Nuclexa" };
   }
   return {
-    title: `${creator.name} (@${creator.username}) · AgentDock`,
+    title: `${creator.name} (@${creator.username}) · Nuclexa`,
     description: creator.bio,
   };
-}
-
-// --- Reviews received -------------------------------------------------------
-
-interface ReceivedReview {
-  review: Review;
-  agentName: string;
-  agentSlug: string;
 }
 
 export default async function CreatorProfilePage({ params }: PageProps) {
@@ -89,21 +78,6 @@ export default async function CreatorProfilePage({ params }: PageProps) {
 
   const agents = getAgentsByCreator(username);
   const stats = getCreatorStats(username);
-
-  // Flatten reviews received across all of this creator's packages.
-  const receivedReviews: ReceivedReview[] = agents
-    .flatMap((a) =>
-      a.reviews.map((review) => ({
-        review,
-        agentName: a.name,
-        agentSlug: a.slug,
-      }))
-    )
-    .sort(
-      (a, b) =>
-        new Date(b.review.createdAt).getTime() -
-        new Date(a.review.createdAt).getTime()
-    );
 
   const statRow = [
     // On your own profile, "Installed" reflects the packages you've actually
@@ -130,6 +104,7 @@ export default async function CreatorProfilePage({ params }: PageProps) {
       label: "Followers",
       value: formatCompact(creator.followers),
       icon: <Users className="h-4 w-4" />,
+      href: `/u/${creator.username}/followers`,
     },
     {
       label: "Avg rating",
@@ -141,7 +116,7 @@ export default async function CreatorProfilePage({ params }: PageProps) {
   const tabs = [
     {
       id: "agents",
-      label: "Agents",
+      label: "Published",
       count: agents.length,
       icon: <Boxes className="h-4 w-4" />,
       content:
@@ -168,35 +143,18 @@ export default async function CreatorProfilePage({ params }: PageProps) {
         />
       ),
     },
-    {
-      id: "reviews",
-      label: "Reviews",
-      count: receivedReviews.length,
-      icon: <MessageSquare className="h-4 w-4" />,
-      content:
-        receivedReviews.length > 0 ? (
-          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-            {receivedReviews.map(({ review, agentName, agentSlug }) => (
-              <div key={review.id} className="flex flex-col gap-2">
-                <Link
-                  href={`/agents/${agentSlug}`}
-                  className="inline-flex w-fit items-center gap-1.5 text-2xs font-medium text-subtle transition-colors hover:text-content"
-                >
-                  <Package className="h-3 w-3" />
-                  on {agentName}
-                </Link>
-                <ReviewCard review={review} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <EmptyState
-            icon={<MessageSquare className="h-5 w-5" />}
-            title="No reviews yet"
-            description={`No one has reviewed ${creator.name}'s packages yet.`}
-          />
-        ),
-    },
+    // Installed reflects the viewer's own per-user data, so it's only shown on
+    // your own profile. Published and Activity stay public.
+    ...(isOwner
+      ? [
+          {
+            id: "installed",
+            label: "Installed",
+            icon: <Download className="h-4 w-4" />,
+            content: <InstalledTab />,
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -304,28 +262,6 @@ function ProfileHeader({
               Joined {formatDate(creator.joinedAt)}
             </span>
           </div>
-
-          {/* Follower / following counts — click through to the lists. */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm">
-            <Link
-              href={`/u/${creator.username}/followers`}
-              className="group inline-flex items-baseline gap-1.5 text-subtle transition-colors hover:text-content"
-            >
-              <span className="font-semibold tabular-nums text-content">
-                {formatCompact(creator.followers)}
-              </span>
-              <span className="group-hover:underline">Followers</span>
-            </Link>
-            <Link
-              href={`/u/${creator.username}/following`}
-              className="group inline-flex items-baseline gap-1.5 text-subtle transition-colors hover:text-content"
-            >
-              <span className="font-semibold tabular-nums text-content">
-                {formatCompact(creator.following)}
-              </span>
-              <span className="group-hover:underline">Following</span>
-            </Link>
-          </div>
         </div>
 
         {/* Actions */}
@@ -363,10 +299,14 @@ function ProfileHeader({
 
       {/* Stat row */}
       <div className="relative mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-4">
-        {statRow.map((s) => (
-          <div key={s.label} className="bg-surface p-4">
+        {statRow.map((s) => {
+          const href = "href" in s ? s.href : undefined;
+          const inner = (
+            <>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted">{s.label}</span>
+              <span className="text-xs font-medium text-muted group-hover:text-content">
+                {s.label}
+              </span>
               <span className="text-subtle">{s.icon}</span>
             </div>
             <div className="mt-2 flex items-baseline gap-2">
@@ -385,8 +325,22 @@ function ProfileHeader({
                 <span className="text-2xs text-faint">skills & servers</span>
               )}
             </div>
-          </div>
-        ))}
+            </>
+          );
+          return href ? (
+            <Link
+              key={s.label}
+              href={href}
+              className="group bg-surface p-4 transition-colors hover:bg-surface-2"
+            >
+              {inner}
+            </Link>
+          ) : (
+            <div key={s.label} className="bg-surface p-4">
+              {inner}
+            </div>
+          );
+        })}
       </div>
     </header>
   );

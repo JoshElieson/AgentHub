@@ -11,15 +11,15 @@ export type Doc = {
 export const DOCS: Doc[] = [
   // 1 ─────────────────────────────────────────────────────────────────────
   {
-    slug: "what-is-agentdock",
-    title: "What is AgentDock?",
+    slug: "what-is-nuclexa",
+    title: "What is Nuclexa?",
     description:
       "The package registry for AI agents and installable AI capabilities, across every major AI tool.",
-    body: `# What is AgentDock?
+    body: `# What is Nuclexa?
 
-**AgentDock is the package registry for AI agents and installable AI capabilities.** If npm is where you get JavaScript packages and the VS Code Marketplace is where you get editor extensions, AgentDock is where you get the installable building blocks that make AI assistants useful inside real projects — agents, skills, MCP servers, rules, workflows, prompt packs, and more.
+**Nuclexa is the package registry for AI agents and installable AI capabilities.** If npm is where you get JavaScript packages and the VS Code Marketplace is where you get editor extensions, Nuclexa is where you get the installable building blocks that make AI assistants useful inside real projects — agents, skills, MCP servers, rules, workflows, prompt packs, and more.
 
-Today these capabilities live scattered across gists, blog posts, private Notion pages, and copy-pasted system prompts. There is no shared format, no versioning, no permission model, and no way to know whether something you found online is safe to run against your codebase. AgentDock fixes that with a **standard package format**, a **registry to publish and discover packages**, and a **CLI to install them into any AI tool**.
+Today these capabilities live scattered across gists, blog posts, private Notion pages, and copy-pasted system prompts. There is no shared format, no versioning, no permission model, and no way to know whether something you found online is safe to run against your codebase. Nuclexa fixes that with a **standard package format**, a **registry to publish and discover packages**, and a **CLI to install them into any AI tool**.
 
 ## What you can do
 
@@ -51,7 +51,7 @@ security-review/
 Install it from the registry with the CLI:
 
 \`\`\`bash
-npx agentdock install security-review --target claude-code
+npx nuclexa install security-review --target claude-code
 \`\`\`
 
 > New here? Read [Installable AI capabilities](/docs/installable-capabilities) next, then the [agent.json manifest](/docs/agent-json) reference.`,
@@ -62,16 +62,16 @@ npx agentdock install security-review --target claude-code
     slug: "installable-capabilities",
     title: "Installable AI capabilities",
     description:
-      "What an installable AI capability is, and the package types AgentDock supports.",
+      "What an installable AI capability is, and the package types Nuclexa supports.",
     body: `# Installable AI capabilities
 
-An **installable AI capability** is any reusable unit of behavior you can add to an AI tool: an agent that reviews code, a skill that audits for vulnerabilities, an MCP server that connects to your database, a rule that shapes how your editor writes code, a workflow that ships a release. AgentDock packages every one of these in the same standard format so it can be discovered, versioned, permission-scoped, and installed anywhere.
+An **installable AI capability** is any reusable unit of behavior you can add to an AI tool: an agent that reviews code, a skill that audits for vulnerabilities, an MCP server that connects to your database, a rule that shapes how your editor writes code, a workflow that ships a release. Nuclexa packages every one of these in the same standard format so it can be discovered, versioned, permission-scoped, and installed anywhere.
 
 The unifying idea: a capability is **content plus a manifest**. The content is what the tool runs (instructions, a server, a set of rules). The manifest declares what it is, which platforms it targets, and what it is allowed to do.
 
 ## Supported package types
 
-AgentDock supports ten capability types. The \`type\` field in [agent.json](/docs/agent-json) determines how a package is categorized and installed.
+Nuclexa supports ten capability types. The \`type\` field in [agent.json](/docs/agent-json) determines how a package is categorized and installed.
 
 | Type | \`type\` value | What it is |
 | --- | --- | --- |
@@ -105,10 +105,10 @@ Pick the type that matches how the capability is *consumed*, not just what it do
     slug: "package-format",
     title: "Package format",
     description:
-      "The standard file layout every AgentDock package follows, file by file.",
+      "The standard file layout every Nuclexa package follows, file by file.",
     body: `# Package format
 
-Every AgentDock package is a directory of plain files. There is no build step, no proprietary container, and no runtime you must adopt — a package is just text on disk that any platform can read. This keeps packages portable, diffable in git, and easy to review before you run them.
+Every Nuclexa package is a directory of plain files. There is no build step, no proprietary container, and no runtime you must adopt — a package is just text on disk that any platform can read. This keeps packages portable, diffable in git, and easy to review before you run them.
 
 ## The standard layout
 
@@ -221,7 +221,7 @@ List every platform your package genuinely supports — not aspirational ones. T
 
 ### permissions
 
-The \`permissions\` object is the heart of AgentDock's trust model. Declare only what you truly need: fewer, lower-risk permissions earn a lower risk badge and more installs. Any key you omit defaults to \`false\`.
+The \`permissions\` object is the heart of Nuclexa's trust model. Declare only what you truly need: fewer, lower-risk permissions earn a lower risk badge and more installs. Any key you omit defaults to \`false\`.
 
 > Next: the [Permissions model](/docs/permissions-model) explains each permission and how risk is computed.`,
   },
@@ -231,10 +231,10 @@ The \`permissions\` object is the heart of AgentDock's trust model. Declare only
     slug: "platform-compatibility",
     title: "Platform compatibility",
     description:
-      "The platforms AgentDock supports and how each one installs or exports a package.",
+      "The platforms Nuclexa supports and how each one installs or exports a package.",
     body: `# Platform compatibility
 
-AgentDock packages target one open format, but each platform consumes them slightly differently — some **install** in place, others **export** to a tool's native file. A package declares its supported platforms in the \`platforms\` field of [agent.json](/docs/agent-json), which drives the compatibility table shown on its page.
+Nuclexa packages target one open format, but each platform consumes them slightly differently — some **install** in place, others **export** to a tool's native file. A package declares its supported platforms in the \`platforms\` field of [agent.json](/docs/agent-json), which drives the compatibility table shown on its page.
 
 ## Supported platforms
 
@@ -253,7 +253,7 @@ AgentDock packages target one open format, but each platform consumes them sligh
 ## Install vs. export
 
 - **Install** copies the package into a tool's local directory so the tool loads it directly.
-- **Export** translates the package into a tool's native format (an \`agent.json\` for OpenAI Agents, a \`copilot-instructions.md\` for GitHub Copilot). Use it when the target tool doesn't read AgentDock packages natively.
+- **Export** translates the package into a tool's native format (an \`agent.json\` for OpenAI Agents, a \`copilot-instructions.md\` for GitHub Copilot). Use it when the target tool doesn't read Nuclexa packages natively.
 
 ## Reading the compatibility table
 
@@ -270,7 +270,7 @@ On every package page, the **Compatibility** table shows a row per platform with
       "The eight permissions a package can request and how they map to a Low / Medium / High risk level.",
     body: `# Permissions model
 
-Every AgentDock package declares, up front, exactly what it is allowed to do. There are eight permissions. A package's overall **risk level** is the highest risk of any single granted permission. This lets you decide whether something is safe to run before it ever touches your machine.
+Every Nuclexa package declares, up front, exactly what it is allowed to do. There are eight permissions. A package's overall **risk level** is the highest risk of any single granted permission. This lets you decide whether something is safe to run before it ever touches your machine.
 
 ## The eight permissions
 
@@ -339,40 +339,40 @@ Installing a package is a single command. The CLI fetches the package from the r
 ## Basic install
 
 \`\`\`bash
-npx agentdock install security-review --target claude-code
+npx nuclexa install security-review --target claude-code
 \`\`\`
 
 ## Targets
 
-Pass \`--target\` to control where the package goes. Use \`install\` for tools that read AgentDock packages natively, and \`export\` for tools that need their own format.
+Pass \`--target\` to control where the package goes. Use \`install\` for tools that read Nuclexa packages natively, and \`export\` for tools that need their own format.
 
 \`\`\`bash
 # Claude Code → .claude/skills/[slug]
-npx agentdock install security-review --target claude-code
+npx nuclexa install security-review --target claude-code
 
 # Claude Desktop → per-OS path, detected by the CLI
-npx agentdock install security-review --target claude-desktop
+npx nuclexa install security-review --target claude-desktop
 
 # Cursor → .cursor/rules/[slug].mdc
-npx agentdock install security-review --target cursor
+npx nuclexa install security-review --target cursor
 
 # Windsurf
-npx agentdock install security-review --target windsurf
+npx nuclexa install security-review --target windsurf
 
 # OpenAI Agents → agent.json (export)
-npx agentdock export security-review --target openai-agents
+npx nuclexa export security-review --target openai-agents
 
 # Gemini CLI
-npx agentdock install security-review --target gemini-cli
+npx nuclexa install security-review --target gemini-cli
 
 # GitHub Copilot → .github/copilot-instructions.md (export)
-npx agentdock export security-review --target copilot-instructions
+npx nuclexa export security-review --target copilot-instructions
 
 # Replit Agent
-npx agentdock install security-review --target replit-agent
+npx nuclexa install security-review --target replit-agent
 
 # Any MCP-compatible client
-npx agentdock install security-review --target mcp
+npx nuclexa install security-review --target mcp
 \`\`\`
 
 ## Where files land
@@ -398,7 +398,7 @@ Before writing anything, the CLI prints the package's declared permissions and c
 ## Pinning a version
 
 \`\`\`bash
-npx agentdock install security-review@1.0.0 --target claude-code
+npx nuclexa install security-review@1.0.0 --target claude-code
 \`\`\`
 
 > See the full flag reference in the [CLI reference](/docs/cli-reference).`,
@@ -409,15 +409,15 @@ npx agentdock install security-review@1.0.0 --target claude-code
     slug: "publishing-guide",
     title: "Publishing guide",
     description:
-      "Step-by-step: prepare, validate, and publish your package to the AgentDock registry.",
+      "Step-by-step: prepare, validate, and publish your package to the Nuclexa registry.",
     body: `# Publishing guide
 
-Publishing to AgentDock takes minutes. You can publish from the web at [/publish](/publish) or from the CLI.
+Publishing to Nuclexa takes minutes. You can publish from the web at [/publish](/publish) or from the CLI.
 
 ## 1. Scaffold the package
 
 \`\`\`bash
-npx agentdock init my-agent
+npx nuclexa init my-agent
 \`\`\`
 
 This generates \`agent.json\`, \`README.md\`, \`instructions.md\`, and an \`examples/\` directory. See the [Package format](/docs/package-format).
@@ -449,7 +449,7 @@ Edit \`agent.json\` with your identity, type, target platforms, and permission s
 ## 4. Validate locally
 
 \`\`\`bash
-npx agentdock validate
+npx nuclexa validate
 \`\`\`
 
 This checks the manifest schema, confirms the entry file exists, and reports the computed risk level.
@@ -457,8 +457,8 @@ This checks the manifest schema, confirms the entry file exists, and reports the
 ## 5. Publish
 
 \`\`\`bash
-npx agentdock login
-npx agentdock publish
+npx nuclexa login
+npx nuclexa publish
 \`\`\`
 
 The registry rejects the publish if \`version\` is not greater than the latest published version, so bump it on every release.
@@ -479,7 +479,7 @@ The registry rejects the publish if \`version\` is not greater than the latest p
 - [x] \`version\` bumped from the last release
 - [x] License set appropriately
 
-> Ready? Head to [/publish](/publish), or run \`npx agentdock publish\`. Want the trust badge? See [Security review](/docs/security-review).`,
+> Ready? Head to [/publish](/publish), or run \`npx nuclexa publish\`. Want the trust badge? See [Security review](/docs/security-review).`,
   },
 
   // 9 ─────────────────────────────────────────────────────────────────────
@@ -490,7 +490,7 @@ The registry rejects the publish if \`version\` is not greater than the latest p
       "What the Security reviewed badge checks, and how to request a review for your package.",
     body: `# Security review
 
-The **Security reviewed** badge signals that a package has passed AgentDock's manual security review. It is one of the strongest trust signals in the marketplace.
+The **Security reviewed** badge signals that a package has passed Nuclexa's manual security review. It is one of the strongest trust signals in the marketplace.
 
 ## What the badge means
 
@@ -522,7 +522,7 @@ The badge is tied to a **specific version**. A new major or minor release re-ent
 3. Request it from the CLI:
 
 \`\`\`bash
-npx agentdock review request security-review@1.0.0
+npx nuclexa review request security-review@1.0.0
 \`\`\`
 
 4. Address any findings, publish a fixed version, and re-request if needed.
@@ -535,13 +535,13 @@ npx agentdock review request security-review@1.0.0
     slug: "cli-reference",
     title: "CLI reference",
     description:
-      "Every agentdock CLI command, its flags, and worked examples.",
+      "Every nuclexa CLI command, its flags, and worked examples.",
     body: `# CLI reference
 
-The \`agentdock\` CLI is the primary way to install, export, search, publish, and manage packages. Run it without installing anything via \`npx\`:
+The \`nuclexa\` CLI is the primary way to install, export, search, publish, and manage packages. Run it without installing anything via \`npx\`:
 
 \`\`\`bash
-npx agentdock <command> [args] [flags]
+npx nuclexa <command> [args] [flags]
 \`\`\`
 
 ## Commands
@@ -566,25 +566,25 @@ npx agentdock <command> [args] [flags]
 | \`--limit <n>\` | search | Limit the number of search results. |
 | \`--json\` | all | Print machine-readable JSON. |
 | \`--dry-run\` | install, publish, update | Show what would happen without writing anything. |
-| \`--global\`, \`-g\` | install, list | Operate on the global AgentDock directory. |
+| \`--global\`, \`-g\` | install, list | Operate on the global Nuclexa directory. |
 
 ## Examples
 
 \`\`\`bash
 # Install the latest version into Claude Code
-npx agentdock install security-review --target claude-code
+npx nuclexa install security-review --target claude-code
 
 # Install a pinned version into Cursor, skipping the prompt
-npx agentdock install react-refactor-rules@3.2.1 --target cursor --yes
+npx nuclexa install react-refactor-rules@3.2.1 --target cursor --yes
 
 # Export a package as Copilot instructions
-npx agentdock export github-copilot-review --target copilot-instructions
+npx nuclexa export github-copilot-review --target copilot-instructions
 
 # Find MCP servers
-npx agentdock search mcp --limit 5 --json
+npx nuclexa search mcp --limit 5 --json
 
 # Publish the package in the current directory
-npx agentdock publish
+npx nuclexa publish
 \`\`\`
 
 ## Exit codes

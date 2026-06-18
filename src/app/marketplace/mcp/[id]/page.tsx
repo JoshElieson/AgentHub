@@ -50,12 +50,12 @@ export default function McpDetailPage() {
   // Dynamic page title
   useEffect(() => {
     if (server) {
-      document.title = `${server.name} — AgentDock MCP Servers`;
+      document.title = `${server.name} — Nuclexa MCP Servers`;
     } else if (loading) {
-      document.title = "Loading… — AgentDock MCP Servers";
+      document.title = "Loading… — Nuclexa MCP Servers";
     }
     return () => {
-      document.title = "AgentDock — The package registry for AI agents";
+      document.title = "Nuclexa — The package registry for AI agents";
     };
   }, [server, loading]);
 

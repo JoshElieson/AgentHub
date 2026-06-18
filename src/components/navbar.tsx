@@ -39,7 +39,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line glass">
       <div className="mx-auto flex h-14 w-full max-w-[1792px] items-center gap-3 px-4 sm:px-6">
-        <Logo />
+        <Logo showMark={false} />
 
         {/* Desktop nav */}
         <nav className="ml-2 hidden items-center gap-0.5 md:flex">
@@ -78,7 +78,7 @@ export function Navbar() {
                 Publish
               </ButtonLink>
               <ButtonLink
-                href="/saved"
+                href="/dashboard?section=saved"
                 variant="secondary"
                 size="sm"
                 className="hidden w-8 px-0 sm:inline-flex"

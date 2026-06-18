@@ -91,7 +91,7 @@ export const authOptions: NextAuthOptions = {
   pages: { signIn: "/login" },
   secret:
     process.env.NEXTAUTH_SECRET ??
-    "agentdock-dev-insecure-secret-change-me-in-production",
+    "nuclexa-dev-insecure-secret-change-me-in-production",
   callbacks: {
     async session({ session, user, token }) {
       if (!session.user) return session;

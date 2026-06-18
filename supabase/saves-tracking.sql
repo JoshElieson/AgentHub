@@ -1,9 +1,9 @@
 -- ════════════════════════════════════════════════════════════════════════════
--- Saved items (bookmarks) — apply this to your existing AgentDock Supabase project.
+-- Saved items (bookmarks) — apply this to your existing Nuclexa Supabase project.
 --
--- Creates the two tables that power the bookmark "Save" action and the
+-- Creates the three tables that power the bookmark "Save" action and the
 -- Dashboard "Saved" tab:
---   • skill_saves   • mcp_saves
+--   • skill_saves   • mcp_saves   • collection_saves
 --
 -- This is the per-user bookmark store. It is separate from the public
 -- "thumbs up / like" counter (which lives in skill_stars / mcp_stars +
@@ -89,6 +89,40 @@ CREATE POLICY "Allow public insert on mcp_saves"
 DROP POLICY IF EXISTS "Allow public delete on mcp_saves" ON public.mcp_saves;
 CREATE POLICY "Allow public delete on mcp_saves"
   ON public.mcp_saves FOR DELETE TO public USING (true);
+
+-- ── Bundles (collections) ───────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS public.collection_saves (
+  collection_id UUID NOT NULL,
+  anon_id TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL,
+  PRIMARY KEY (collection_id, anon_id)
+);
+
+-- Attach the FK to collections(id) only if that table exists and we haven't already.
+DO $$
+BEGIN
+  IF to_regclass('public.collections') IS NOT NULL
+     AND NOT EXISTS (
+       SELECT 1 FROM pg_constraint WHERE conname = 'collection_saves_collection_id_fkey'
+     )
+  THEN
+    ALTER TABLE public.collection_saves
+      ADD CONSTRAINT collection_saves_collection_id_fkey
+      FOREIGN KEY (collection_id) REFERENCES public.collections(id) ON DELETE CASCADE;
+  END IF;
+END $$;
+
+ALTER TABLE public.collection_saves ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Allow public read on collection_saves" ON public.collection_saves;
+CREATE POLICY "Allow public read on collection_saves"
+  ON public.collection_saves FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on collection_saves" ON public.collection_saves;
+CREATE POLICY "Allow public insert on collection_saves"
+  ON public.collection_saves FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on collection_saves" ON public.collection_saves;
+CREATE POLICY "Allow public delete on collection_saves"
+  ON public.collection_saves FOR DELETE TO public USING (true);
 
 -- Refresh PostgREST's schema cache so the app sees the new tables immediately.
 NOTIFY pgrst, 'reload schema';

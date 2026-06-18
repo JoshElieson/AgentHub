@@ -144,13 +144,13 @@ const SOURCE_OPTIONS: {
   {
     value: "github",
     label: "Import from GitHub",
-    description: "Point AgentDock at a public repository.",
+    description: "Point Nuclexa at a public repository.",
     icon: <Github className="h-5 w-5" />,
   },
   {
     value: "manifest",
     label: "Paste manifest",
-    description: "Paste an agentdock.json manifest directly.",
+    description: "Paste an nuclexa.json manifest directly.",
     icon: <ClipboardPaste className="h-5 w-5" />,
   },
   {
@@ -283,7 +283,7 @@ export function PublishWizard() {
         </h1>
         <p className="text-sm text-muted">
           Ship an agent, skill, MCP server, workflow, or prompt pack to the
-          AgentDock registry — versioned, permission-scoped, and installable
+          Nuclexa registry — versioned, permission-scoped, and installable
           everywhere.
         </p>
       </div>
@@ -634,7 +634,7 @@ function StepSource({
                 Drag &amp; drop your package folder
               </p>
               <p className="mt-1 text-xs text-subtle">
-                or click to browse · .zip, SKILL.md, agentdock.json — up to 25 MB
+                or click to browse · .zip, SKILL.md, nuclexa.json — up to 25 MB
               </p>
               <Button variant="secondary" size="sm" className="mt-4" type="button">
                 Browse files
@@ -671,7 +671,7 @@ function StepSource({
 
           {form.source === "manifest" && (
             <div className="card p-4">
-              <Field label="agentdock.json" required>
+              <Field label="nuclexa.json" required>
                 <textarea
                   value={form.manifest}
                   onChange={(e) => update("manifest", e.target.value)}
@@ -760,7 +760,7 @@ function StepMetadata({
           <Field label="Slug" required hint="url & install id">
             <div className="flex items-center rounded-lg border border-line bg-surface-2 focus-within:border-brand-line focus-within:ring-2 focus-within:ring-brand/20">
               <span className="pl-3 font-mono text-xs text-faint">
-                agentdock/
+                nuclexa/
               </span>
               <input
                 type="text"
@@ -1098,7 +1098,7 @@ function StepPreview({
               Install command (after publish)
             </div>
             <div className="mt-2">
-              <CommandBlock command={`npx agentdock install ${packageId}`} />
+              <CommandBlock command={`npx nuclexa install ${packageId}`} />
             </div>
           </div>
         </div>
@@ -1265,13 +1265,13 @@ function SuccessPanel({
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted">
             <span className="font-medium text-content">{name}</span> is live on
-            AgentDock as <span className="font-mono text-content">v0.1.0</span>.
+            Nuclexa as <span className="font-mono text-content">v0.1.0</span>.
             It&apos;s now installable everywhere.
           </p>
 
           <div className="mx-auto mt-6 max-w-md text-left">
             <CommandBlock
-              command={`npx agentdock install ${packageId}`}
+              command={`npx nuclexa install ${packageId}`}
               label="Anyone can install it with"
             />
           </div>

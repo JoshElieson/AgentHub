@@ -9,7 +9,9 @@ import { cn } from "@/lib/utils";
 // whole headline has finished typing.
 // ---------------------------------------------------------------------------
 
-const LINES = ["The Home for AI Agent Tools", "AgentDock"] as const;
+// Pre-split into two fixed lines so each line types out exactly where it lands
+// (a single wrapping line would reflow words between rows as it types).
+const LINES = ["The Home for AI Agents,", "Tools, and MCP Servers"] as const;
 const FULL = LINES.join("\n");
 
 // Per-character cadence. The newline gets a longer beat so the caret visibly
@@ -59,7 +61,7 @@ export function TypewriterHero() {
   const activeLine = typedLines.length - 1;
 
   return (
-    <div className="relative mx-auto max-w-5xl text-center">
+    <div className="relative mx-auto max-w-7xl text-center">
       {/* Semantic, screen-reader / SEO heading. Kept in flow at zero opacity so
           it reserves the final layout box and prevents any vertical jump as the
           visible text grows in. */}
@@ -81,7 +83,7 @@ export function TypewriterHero() {
           return (
             <span
               key={i}
-              className={cn(lineClass(i), i === 0 ? "text-gradient" : "text-brand")}
+              className={cn(lineClass(i), "text-gradient")}
             >
               {text}
               {/* Caret blinks from the start and trails the text as it types.
@@ -107,12 +109,11 @@ export function TypewriterHero() {
 // glyph tails (the "g" in "Agents") clear the line box — critical for line 0,
 // whose `text-gradient` uses background-clip:text and would otherwise paint no
 // gradient below the baseline, clipping the descender.
-// One row per headline line. Alumni Sans is narrow, so the 27-char slogan fits
-// on a single line; the size scales with the viewport and caps at 8rem — a
-// slight step down from 9rem so the slogan clears the max-w-5xl (1024px) box
-// instead of wrapping.
+// Two fixed rows, each kept on its own line (whitespace-nowrap) so the
+// typewriter never reflows words between rows. The size scales with the
+// viewport and caps at 7.5rem inside the max-w-7xl (1280px) box.
 const HEADING_CLS =
-  "font-wordmark text-[clamp(1.75rem,10.5vw,8rem)] font-normal leading-[1.15] tracking-tighter-lg";
+  "font-wordmark text-[clamp(1.6rem,9.5vw,7.5rem)] font-normal leading-[1.15] tracking-tighter-lg";
 
 const lineClass = (i: number) =>
   cn("block whitespace-nowrap pb-[0.2em]", i === 0 && "-mb-[0.12em]");

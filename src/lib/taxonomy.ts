@@ -172,7 +172,7 @@ export const PLATFORM_META: Record<Platform, PlatformMeta> = Object.fromEntries(
 /** Build the install/export command for a slug on a given platform. */
 export function platformCommand(slug: string, platform: Platform): string {
   const p = PLATFORM_META[platform];
-  return `npx agentdock ${p.action} ${slug} --target ${p.target}`;
+  return `npx nuclexa ${p.action} ${slug} --target ${p.target}`;
 }
 
 /** Resolve the concrete install path for a slug on a given platform. */
@@ -346,7 +346,7 @@ export const INSTALL_PATHS: { target: string; path: string; note: string }[] = [
   { target: "Claude Desktop", path: "~/Library/Application Support/Claude/skills/[slug]", note: "Path detected per-OS by the CLI" },
   { target: "Cursor", path: ".cursor/rules/[slug].mdc", note: "Rules loaded into Cursor context" },
   { target: "MCP", path: ".mcp/[slug]", note: "Registered with any MCP-compatible client" },
-  { target: "Universal", path: ".agentdock/[slug]", note: "Portable AgentDock package directory" },
+  { target: "Universal", path: ".nuclexa/[slug]", note: "Portable Nuclexa package directory" },
 ];
 
 // ---------------------------------------------------------------------------

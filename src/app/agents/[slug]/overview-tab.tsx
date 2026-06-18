@@ -163,7 +163,7 @@ export function OverviewTab({ agent }: { agent: AgentPackage }) {
               <p className="mt-1 text-xs leading-relaxed text-muted">
                 Every install shows its full permission scope before it runs.
                 {agent.isSecurityReviewed
-                  ? " This package has been security reviewed by AgentDock."
+                  ? " This package has been security reviewed by Nuclexa."
                   : " Review the requested permissions and source repository before installing."}
               </p>
             </div>

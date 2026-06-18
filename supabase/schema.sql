@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS public.skills (
 ALTER TABLE public.skills ENABLE ROW LEVEL SECURITY;
 
 -- Create policy to allow public read access on skills
+DROP POLICY IF EXISTS "Allow public read access on skills" ON public.skills;
 CREATE POLICY "Allow public read access on skills" 
 ON public.skills 
 FOR SELECT 
@@ -26,12 +27,14 @@ TO public
 USING (true);
 
 -- Create policies to allow public insert/update access on skills (useful for client-side ingestion in sandbox)
+DROP POLICY IF EXISTS "Allow public insert on skills" ON public.skills;
 CREATE POLICY "Allow public insert on skills" 
 ON public.skills 
 FOR INSERT 
 TO public 
 WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow public update on skills" ON public.skills;
 CREATE POLICY "Allow public update on skills" 
 ON public.skills 
 FOR UPDATE 
@@ -40,6 +43,7 @@ USING (true)
 WITH CHECK (true);
 
 -- Create policy to allow admin/authenticated users service role access
+DROP POLICY IF EXISTS "Allow authenticated service role full access" ON public.skills;
 CREATE POLICY "Allow authenticated service role full access" 
 ON public.skills 
 FOR ALL 
@@ -76,6 +80,14 @@ ADD COLUMN IF NOT EXISTS embedding vector(768);
 CREATE INDEX IF NOT EXISTS idx_skills_embedding
 ON public.skills
 USING hnsw (embedding vector_cosine_ops);
+
+-- Engagement counters must exist before match_skills() references them.
+-- Denormalized aggregate counters on the skills table for fast reads
+ALTER TABLE public.skills
+  ADD COLUMN IF NOT EXISTS star_count INT NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS export_count INT NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS avg_rating NUMERIC(3,2) NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS rating_count INT NOT NULL DEFAULT 0;
 
 -- 4. RPC function: find semantically similar skills
 CREATE OR REPLACE FUNCTION match_skills(
@@ -154,10 +166,13 @@ CREATE TABLE IF NOT EXISTS public.skill_ratings (
 
 ALTER TABLE public.skill_ratings ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on skill_ratings" ON public.skill_ratings;
 CREATE POLICY "Allow public read on skill_ratings"
   ON public.skill_ratings FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on skill_ratings" ON public.skill_ratings;
 CREATE POLICY "Allow public insert on skill_ratings"
   ON public.skill_ratings FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public update on skill_ratings" ON public.skill_ratings;
 CREATE POLICY "Allow public update on skill_ratings"
   ON public.skill_ratings FOR UPDATE TO public USING (true) WITH CHECK (true);
 
@@ -171,10 +186,13 @@ CREATE TABLE IF NOT EXISTS public.skill_stars (
 
 ALTER TABLE public.skill_stars ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on skill_stars" ON public.skill_stars;
 CREATE POLICY "Allow public read on skill_stars"
   ON public.skill_stars FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on skill_stars" ON public.skill_stars;
 CREATE POLICY "Allow public insert on skill_stars"
   ON public.skill_stars FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on skill_stars" ON public.skill_stars;
 CREATE POLICY "Allow public delete on skill_stars"
   ON public.skill_stars FOR DELETE TO public USING (true);
 
@@ -198,12 +216,16 @@ CREATE TABLE IF NOT EXISTS public.skill_installs (
 
 ALTER TABLE public.skill_installs ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on skill_installs" ON public.skill_installs;
 CREATE POLICY "Allow public read on skill_installs"
   ON public.skill_installs FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on skill_installs" ON public.skill_installs;
 CREATE POLICY "Allow public insert on skill_installs"
   ON public.skill_installs FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public update on skill_installs" ON public.skill_installs;
 CREATE POLICY "Allow public update on skill_installs"
   ON public.skill_installs FOR UPDATE TO public USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on skill_installs" ON public.skill_installs;
 CREATE POLICY "Allow public delete on skill_installs"
   ON public.skill_installs FOR DELETE TO public USING (true);
 
@@ -237,12 +259,15 @@ ALTER TABLE public.mcp_servers
 
 ALTER TABLE public.mcp_servers ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read access on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public read access on mcp_servers" 
 ON public.mcp_servers FOR SELECT TO public USING (true);
 
+DROP POLICY IF EXISTS "Allow public insert on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public insert on mcp_servers" 
 ON public.mcp_servers FOR INSERT TO public WITH CHECK (true);
 
+DROP POLICY IF EXISTS "Allow public update on mcp_servers" ON public.mcp_servers;
 CREATE POLICY "Allow public update on mcp_servers" 
 ON public.mcp_servers FOR UPDATE TO public USING (true) WITH CHECK (true);
 
@@ -266,10 +291,13 @@ CREATE TABLE IF NOT EXISTS public.mcp_stars (
 
 ALTER TABLE public.mcp_stars ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on mcp_stars" ON public.mcp_stars;
 CREATE POLICY "Allow public read on mcp_stars"
   ON public.mcp_stars FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on mcp_stars" ON public.mcp_stars;
 CREATE POLICY "Allow public insert on mcp_stars"
   ON public.mcp_stars FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on mcp_stars" ON public.mcp_stars;
 CREATE POLICY "Allow public delete on mcp_stars"
   ON public.mcp_stars FOR DELETE TO public USING (true);
 
@@ -287,14 +315,15 @@ CREATE TABLE IF NOT EXISTS public.mcp_installs (
 
 ALTER TABLE public.mcp_installs ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on mcp_installs" ON public.mcp_installs;
 CREATE POLICY "Allow public read on mcp_installs"
   ON public.mcp_installs FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on mcp_installs" ON public.mcp_installs;
 CREATE POLICY "Allow public insert on mcp_installs"
   ON public.mcp_installs FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public update on mcp_installs" ON public.mcp_installs;
 CREATE POLICY "Allow public update on mcp_installs"
   ON public.mcp_installs FOR UPDATE TO public USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on mcp_installs" ON public.mcp_installs;
 CREATE POLICY "Allow public delete on mcp_installs"
   ON public.mcp_installs FOR DELETE TO public USING (true);
-
- 
- 

@@ -1,8 +1,8 @@
-# AgentDock
+# Nuclexa
 
 **A cross-platform registry and marketplace for installable AI agent capabilities.**
 
-AgentDock is a full-stack marketplace for discovering, publishing, versioning, reviewing, and installing:
+Nuclexa is a full-stack marketplace for discovering, publishing, versioning, reviewing, and installing:
 
 * AI agents
 * Claude skills
@@ -13,7 +13,7 @@ AgentDock is a full-stack marketplace for discovering, publishing, versioning, r
 
 The platform is designed as a combination of **npm, GitHub, the VS Code Marketplace, and Hugging Face**, built specifically for reusable AI-agent tooling across Claude Code, Claude Desktop, Cursor, Windsurf, OpenAI Agents, MCP, and other agent platforms.
 
-> **Current status:** AgentDock is a polished MVP with a complete product architecture, responsive marketplace interface, production-ready data model, authentication infrastructure, and realistic seeded data. It runs locally without external services or credentials.
+> **Current status:** Nuclexa is a polished MVP with a complete product architecture, responsive marketplace interface, production-ready data model, authentication infrastructure, and realistic seeded data. It runs locally without external services or credentials.
 
 ---
 
@@ -60,7 +60,7 @@ Each package includes dedicated sections for:
 
 ### Publishing workflow
 
-AgentDock includes a five-step publishing flow:
+Nuclexa includes a five-step publishing flow:
 
 1. Select a package type
 2. Import files or a repository
@@ -155,7 +155,7 @@ The schema is designed for PostgreSQL and can be adapted for SQLite during light
 
 ## Cross-platform package standard
 
-AgentDock defines an `agent.json` manifest for describing reusable AI capabilities consistently across agent platforms.
+Nuclexa defines an `agent.json` manifest for describing reusable AI capabilities consistently across agent platforms.
 
 ```json
 {
@@ -195,12 +195,12 @@ This allows the registry to display security information before installation and
 
 ## CLI design
 
-The planned AgentDock CLI uses one installation command across supported platforms:
+The planned Nuclexa CLI uses one installation command across supported platforms:
 
 ```bash
-npx agentdock install security-review --target claude
-npx agentdock install security-review --target cursor
-npx agentdock install security-review --target forge
+npx nuclexa install security-review --target claude
+npx nuclexa install security-review --target cursor
+npx nuclexa install security-review --target forge
 ```
 
 Target-specific installations would resolve to the appropriate platform directory:
@@ -209,7 +209,7 @@ Target-specific installations would resolve to the appropriate platform director
 Claude Code  → .claude/skills/security-review
 Cursor       → .cursor/rules/security-review.mdc
 FORGE        → .forge/agents/security-review
-Generic      → .agentdock/security-review
+Generic      → .nuclexa/security-review
 ```
 
 The marketplace already presents these installation commands and models the metadata required for the CLI.
@@ -218,7 +218,7 @@ The marketplace already presents these installation commands and models the meta
 
 ## Authentication
 
-AgentDock includes an Auth.js architecture supporting GitHub and Google OAuth.
+Nuclexa includes an Auth.js architecture supporting GitHub and Google OAuth.
 
 Authentication behavior degrades gracefully depending on the available configuration:
 
@@ -272,8 +272,8 @@ With a configured database, the architecture supports:
 ### Run the application
 
 ```bash
-git clone https://github.com/JoshElieson/AgentDock.git
-cd AgentDock
+git clone https://github.com/JoshElieson/Nuclexa.git
+cd Nuclexa
 npm install
 npm run dev
 ```
@@ -284,7 +284,7 @@ Open:
 http://localhost:3000
 ```
 
-No environment variables are required. AgentDock automatically uses seeded data and mock authentication when external services are unavailable.
+No environment variables are required. Nuclexa automatically uses seeded data and mock authentication when external services are unavailable.
 
 ### Production build
 
@@ -338,7 +338,7 @@ The following capabilities are represented in the architecture and UI but still 
 
 * Persistent installations, favorites, reviews, and discussions
 * Package file storage and GitHub repository importing
-* Production AgentDock CLI
+* Production Nuclexa CLI
 * Automated package security analysis
 * Paid package processing
 * Production search infrastructure
@@ -347,7 +347,7 @@ The following capabilities are represented in the architecture and UI but still 
 
 ## Engineering focus
 
-AgentDock explores the infrastructure required to distribute AI-agent capabilities safely across fragmented platforms.
+Nuclexa explores the infrastructure required to distribute AI-agent capabilities safely across fragmented platforms.
 
 The project focuses on three central engineering problems:
 
@@ -367,7 +367,7 @@ The project focuses on three central engineering problems:
 Planned next steps include:
 
 * Connect the typed query layer to PostgreSQL through Prisma
-* Publish the `agentdock` npm CLI
+* Publish the `nuclexa` npm CLI
 * Add package archive storage and GitHub importing
 * Persist reviews, discussions, installations, and favorites
 * Implement automated package permission analysis

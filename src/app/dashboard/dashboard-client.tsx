@@ -44,6 +44,7 @@ import {
   GitBranch,
   Github,
   Bot,
+  Layers,
   LayoutList,
   Package,
   RotateCw,
@@ -66,8 +67,8 @@ const SECTION_META: Record<
     description: "Your packages, installs, and recent activity at a glance.",
   },
   "my-agents": {
-    title: "My Agents",
-    description: "Packages you've published to AgentDock.",
+    title: "Published",
+    description: "Packages you've published to Nuclexa.",
   },
   installed: {
     title: "Installed",
@@ -120,6 +121,16 @@ export function DashboardClient({
 }) {
   const [active, setActive] = useState<DashboardSection>(initialSection);
   const meta = SECTION_META[active];
+
+  // Keep the active section in sync with the URL. The page is a server
+  // component that derives `initialSection` from the `?section=` query param,
+  // so client-side navigation from the navbar dropdown (-> Settings, or
+  // -> Dashboard which resets to "overview") updates this prop. useState only
+  // reads its initializer on mount, so without this the section would never
+  // change when navigating while already on the dashboard.
+  useEffect(() => {
+    setActive(initialSection);
+  }, [initialSection]);
 
   // Dashboard content is scoped to the signed-in user. Published agents and
   // curated collections come from the seeded marketplace data only when the
@@ -196,16 +207,7 @@ export function DashboardClient({
         <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[220px_1fr]">
           <aside className="hidden lg:block">
             <div className="sticky top-20">
-              <DashboardSidebar
-                active={active}
-                onSelect={setActive}
-                user={{
-                  name: user.name,
-                  username: user.username,
-                  avatarColor: user.avatarColor,
-                  image: user.image,
-                }}
-              />
+              <DashboardSidebar active={active} onSelect={setActive} />
             </div>
           </aside>
 
@@ -935,6 +937,16 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
       export_count: number;
     }[]
   >([]);
+  const [collections, setCollections] = useState<
+    {
+      id: string;
+      name: string;
+      description: string;
+      kind: "skills" | "mcps";
+      cover_color: string;
+      item_count: number;
+    }[]
+  >([]);
   const [loading, setLoading] = useState(true);
 
   // Fetch saved items from API
@@ -948,6 +960,7 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
           const data = await res.json();
           setSkills(data.skills ?? []);
           setMcpServers(data.mcpServers ?? []);
+          setCollections(data.collections ?? []);
         }
       } catch {
         // Fail silently — show empty state
@@ -991,6 +1004,22 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     }
   };
 
+  const handleUnsaveCollection = async (collectionId: string) => {
+    const { getAnonId } = await import("@/lib/anon-id");
+    const anonId = getAnonId();
+    // Optimistic remove
+    setCollections((prev) => prev.filter((c) => c.id !== collectionId));
+    try {
+      await fetch("/api/collections/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ collectionId, anonId }),
+      });
+    } catch {
+      // Fail silently
+    }
+  };
+
   if (loading) {
     return (
       <div className="space-y-3">
@@ -1012,14 +1041,14 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     );
   }
 
-  const totalCount = skills.length + mcpServers.length;
+  const totalCount = skills.length + mcpServers.length + collections.length;
 
   if (totalCount === 0) {
     return (
       <EmptyState
         icon={<Bookmark className="h-5 w-5" />}
         title="No saved items yet"
-        description="Save packages from the marketplace to keep them here."
+        description="Save skills, MCP servers, or bundles from the marketplace to keep them here."
         action={
           <ButtonLink href="/explore" variant="primary" size="md">
             Explore marketplace
@@ -1033,6 +1062,13 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     <div className="space-y-8">
       {skills.length > 0 && (
         <section>
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-content">
+            <Bot className="h-4 w-4 text-brand-muted" />
+            Skills
+            <span className="text-xs font-normal tabular-nums text-subtle">
+              {skills.length}
+            </span>
+          </h2>
           <div className="card divide-y divide-line">
             {skills.map((skill) => (
               <div
@@ -1082,6 +1118,13 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
       {/* Saved MCP Servers */}
       {mcpServers.length > 0 && (
         <section>
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-content">
+            <Package className="h-4 w-4 text-info" />
+            MCP Servers
+            <span className="text-xs font-normal tabular-nums text-subtle">
+              {mcpServers.length}
+            </span>
+          </h2>
           <div className="card divide-y divide-line">
             {mcpServers.map((server) => (
               <div
@@ -1117,6 +1160,65 @@ function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                 <button
                   type="button"
                   onClick={() => handleUnsaveMcp(server.id)}
+                  className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
+                  title="Remove from saved"
+                >
+                  <Bookmark className="h-4 w-4 fill-current" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Saved Bundles */}
+      {collections.length > 0 && (
+        <section>
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold text-content">
+            <Layers className="h-4 w-4 text-brand-muted" />
+            Bundles
+            <span className="text-xs font-normal tabular-nums text-subtle">
+              {collections.length}
+            </span>
+          </h2>
+          <div className="card divide-y divide-line">
+            {collections.map((c) => (
+              <div
+                key={c.id}
+                className="flex items-center gap-3 p-3 transition-colors hover:bg-surface-2"
+              >
+                <Link
+                  href={`/collections/${c.id}`}
+                  className="group flex min-w-0 flex-1 items-center gap-3"
+                >
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-line text-white"
+                    style={{ background: c.cover_color }}
+                  >
+                    <Layers className="h-4 w-4 drop-shadow" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium text-content group-hover:text-white">
+                      {c.name}
+                    </span>
+                    <span className="block truncate text-xs text-subtle">
+                      {c.description || `${c.kind === "mcps" ? "MCP" : "Skills"} bundle`}
+                    </span>
+                  </div>
+                </Link>
+                <div className="hidden items-center gap-3 sm:flex">
+                  <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
+                    {c.kind === "mcps" ? (
+                      <Package className="h-3.5 w-3.5" />
+                    ) : (
+                      <Bot className="h-3.5 w-3.5" />
+                    )}
+                    {c.item_count} {c.kind === "mcps" ? "servers" : "skills"}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleUnsaveCollection(c.id)}
                   className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
                   title="Remove from saved"
                 >

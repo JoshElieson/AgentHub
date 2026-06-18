@@ -8,9 +8,9 @@ import { DOCS } from "./_content";
 import { ArrowRight, BookOpen, Compass } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Documentation — AgentDock",
+  title: "Documentation — Nuclexa",
   description:
-    "Learn the AgentDock package format, manifest, permission model, publishing, installing, and CLI.",
+    "Learn the Nuclexa package format, manifest, permission model, publishing, installing, and CLI.",
 };
 
 export default function DocsIndexPage() {
@@ -36,13 +36,13 @@ export default function DocsIndexPage() {
           <div className="mt-6 max-w-xl">
             <CommandBlock
               label="Quickstart — install your first package"
-              command="npx agentdock install security-review"
+              command="npx nuclexa install security-review"
             />
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <Link
-              href="/docs/what-is-agentdock"
+              href="/docs/what-is-nuclexa"
               className="inline-flex items-center gap-1.5 rounded-lg border border-brand/40 bg-brand px-4 py-2 text-sm font-medium text-brand-fg shadow-sm shadow-brand/20 transition-colors hover:bg-brand/90"
             >
               <Compass className="h-4 w-4" />

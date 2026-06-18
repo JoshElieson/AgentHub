@@ -257,7 +257,7 @@ function buildFiles(seed: AgentSeed): AgentFile[] {
       size: "0.9 KB",
       content:
         seed.exampleUsage ??
-        `# Basic example\n\n\`\`\`bash\nnpx agentdock install ${seed.packageId}\n\`\`\`\n\nThen invoke ${seed.name} on your project and follow the prompts.`,
+        `# Basic example\n\n\`\`\`bash\nnpx nuclexa install ${seed.packageId}\n\`\`\`\n\nThen invoke ${seed.name} on your project and follow the prompts.`,
     },
     {
       path: "examples/advanced.md",

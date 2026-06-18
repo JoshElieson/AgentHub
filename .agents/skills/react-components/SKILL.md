@@ -2,7 +2,7 @@
 name: react-components
 description: Stitch to React components conversion
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

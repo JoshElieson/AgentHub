@@ -17,12 +17,16 @@ CREATE TABLE IF NOT EXISTS public.collections (
 
 ALTER TABLE public.collections ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on collections" ON public.collections;
 CREATE POLICY "Allow public read on collections"
   ON public.collections FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on collections" ON public.collections;
 CREATE POLICY "Allow public insert on collections"
   ON public.collections FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public update on collections" ON public.collections;
 CREATE POLICY "Allow public update on collections"
   ON public.collections FOR UPDATE TO public USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on collections" ON public.collections;
 CREATE POLICY "Allow public delete on collections"
   ON public.collections FOR DELETE TO public USING (true);
 
@@ -47,11 +51,15 @@ CREATE TABLE IF NOT EXISTS public.collection_items (
 
 ALTER TABLE public.collection_items ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Allow public read on collection_items" ON public.collection_items;
 CREATE POLICY "Allow public read on collection_items"
   ON public.collection_items FOR SELECT TO public USING (true);
+DROP POLICY IF EXISTS "Allow public insert on collection_items" ON public.collection_items;
 CREATE POLICY "Allow public insert on collection_items"
   ON public.collection_items FOR INSERT TO public WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public update on collection_items" ON public.collection_items;
 CREATE POLICY "Allow public update on collection_items"
   ON public.collection_items FOR UPDATE TO public USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Allow public delete on collection_items" ON public.collection_items;
 CREATE POLICY "Allow public delete on collection_items"
   ON public.collection_items FOR DELETE TO public USING (true);

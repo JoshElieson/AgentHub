@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// AgentDock domain types
+// Nuclexa domain types
 // These mirror the Prisma schema (prisma/schema.prisma) so that mock data can
 // later be swapped for real DB queries with minimal churn.
 // ---------------------------------------------------------------------------

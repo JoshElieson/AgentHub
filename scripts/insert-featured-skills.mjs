@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Insert the "featured 100" skills that were missing from AgentDock's catalog.
+// Insert the "featured 100" skills that were missing from Nuclexa's catalog.
 // These are real, individually-attributed Agent Skills (SKILL.md packages) drawn
 // from their publishers' repos (Anthropic, Microsoft Azure, Lark/Feishu, Firebase,
 // Trail of Bits, Superpowers, vendor tools, and community design/workflow skills).

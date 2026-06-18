@@ -33,10 +33,10 @@ const wordmark = Alumni_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://agentdock.dev"),
+  metadataBase: new URL("https://nuclexa.dev"),
   title: {
-    default: "AgentDock — The package registry for AI agents",
-    template: "%s · AgentDock",
+    default: "Nuclexa — The package registry for AI agents",
+    template: "%s · Nuclexa",
   },
   description:
     "Discover, install, and share AI agents, skills, MCP servers, workflows, and prompt packs. The open registry for installable AI capabilities.",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "prompt packs",
   ],
   openGraph: {
-    title: "AgentDock — The package registry for AI agents",
+    title: "Nuclexa — The package registry for AI agents",
     description:
       "The open registry for AI agents, skills, MCP servers, workflows, and prompt packs.",
     type: "website",

@@ -2,7 +2,7 @@
 name: next-upgrade
 description: Upgrade Next.js projects to newer versions
 metadata:
-  author: AgentDock
+  author: Nuclexa
   version: "1.0.0"
 ---
 

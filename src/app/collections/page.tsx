@@ -4,7 +4,7 @@ import { AppShell } from "@/components/app-shell";
 import { CollectionsClient } from "./collections-client";
 
 export const metadata: Metadata = {
-  title: "Bundles — AgentDock",
+  title: "Bundles — Nuclexa",
   description:
     "Curated groups of skills and MCP servers. Install an entire toolkit with one click.",
 };

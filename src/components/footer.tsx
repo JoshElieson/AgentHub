@@ -43,7 +43,7 @@ export function Footer() {
               agents, skills, MCP servers, and workflows.
             </p>
             <p className="mt-4 text-xs text-subtle">
-              © 2026 AgentDock. The package registry for AI agents.
+              © 2026 Nuclexa. The package registry for AI agents.
             </p>
           </div>
 

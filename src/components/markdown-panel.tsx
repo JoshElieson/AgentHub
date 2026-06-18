@@ -4,7 +4,7 @@ import { Fragment, type ReactNode } from "react";
 
 // ---------------------------------------------------------------------------
 // Minimal, dependency-free Markdown renderer covering the subset used across
-// AgentDock READMEs: headings, paragraphs, lists, fenced code, blockquotes,
+// Nuclexa READMEs: headings, paragraphs, lists, fenced code, blockquotes,
 // horizontal rules, tables, and inline code/bold/italic/links.
 // ---------------------------------------------------------------------------
 
