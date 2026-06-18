@@ -81,21 +81,31 @@ async function generateEmbedding(text) {
 async function run() {
   console.log("\n🔍 Fetching skills without embeddings...\n");
 
-  // Fetch skills that don't have embeddings yet
-  // Note: We can't filter `embedding IS NULL` via supabase-js easily for vector columns,
-  // so we fetch all and check client-side, or use a raw SQL approach.
-  const { data: allSkills, error } = await supabase
-    .from("skills")
-    .select("id, name, description, tags, trigger_phrases, embedding")
-    .order("name", { ascending: true });
+  // Fetch skills that don't have embeddings yet.
+  // Note: We can't filter `embedding IS NULL` via supabase-js easily for vector
+  // columns, so we page through every row and check client-side. We MUST
+  // paginate with .range() — supabase-js caps an unbounded select at 1000 rows,
+  // which would silently skip the rest of the catalog.
+  const PAGE = 1000;
+  const allSkills = [];
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await supabase
+      .from("skills")
+      .select("id, name, description, tags, trigger_phrases, embedding")
+      .order("name", { ascending: true })
+      .range(from, from + PAGE - 1);
 
-  if (error) {
-    console.error("❌ Failed to fetch skills:", error.message);
-    process.exit(1);
+    if (error) {
+      console.error("❌ Failed to fetch skills:", error.message);
+      process.exit(1);
+    }
+    if (!data || data.length === 0) break;
+    allSkills.push(...data);
+    if (data.length < PAGE) break;
   }
 
   // Filter to skills without embeddings
-  const skills = (allSkills || []).filter((s) => !s.embedding);
+  const skills = allSkills.filter((s) => !s.embedding);
   const total = skills.length;
 
   if (total === 0) {
