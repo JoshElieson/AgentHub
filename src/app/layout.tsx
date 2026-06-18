@@ -33,7 +33,7 @@ const wordmark = Alumni_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nuclexa.dev"),
+  metadataBase: new URL("https://www.nuclexa.io"),
   title: {
     default: "Nuclexa",
     template: "%s · Nuclexa",
