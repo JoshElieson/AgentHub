@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   PACKAGE_TYPES,
@@ -90,7 +90,7 @@ const EMPTY_PERMISSIONS: Permissions = PERMISSION_KEYS.reduce((acc, k) => {
 }, {} as Permissions);
 
 const INITIAL_FORM: PublishForm = {
-  type: "skill",
+  type: "claude-skill",
   source: null,
   githubUrl: "",
   name: "",
