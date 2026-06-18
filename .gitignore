@@ -33,3 +33,8 @@ next-env.d.ts
 # prisma / local db
 /prisma/dev.db
 /prisma/dev.db-journal
+
+# tools and outputs
+.playwright-mcp/
+/public/downloads/
+

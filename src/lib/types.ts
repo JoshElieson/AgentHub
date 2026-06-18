@@ -320,3 +320,177 @@ export interface InstalledAgent {
   installedAt: string;
   hasUpdate: boolean;
 }
+
+// ---------------------------------------------------------------------------
+// Agents as a Service (AaaS) — Agent Builder types
+// ---------------------------------------------------------------------------
+
+export type AgentStatus = "draft" | "active" | "suspended";
+export type AgentVisibility = "public" | "unlisted" | "private";
+export type InteractionMode = "chat" | "form" | "hybrid";
+export type OutputFormat = "markdown" | "json" | "csv" | "plain";
+export type OutputDestinationType =
+  | "in-app"
+  | "download"
+  | "webhook";
+
+export type ModelPreference =
+  | "auto"
+  | "gemini-pro"
+  | "gemini-flash";
+
+/** Reference to a tool the agent can invoke. */
+export interface AgentToolRef {
+  type: "builtin" | "skill" | "mcp";
+  id: string; // builtin name, skill UUID, or MCP server UUID
+  /** For MCP servers: which tools to enable (empty = all). */
+  tools?: string[];
+  label?: string;
+}
+
+/** A widget in the agent's input schema. */
+export type InputWidgetType =
+  | "text"
+  | "textarea"
+  | "code"
+  | "file"
+  | "select"
+  | "slider"
+  | "toggle"
+  | "json"
+  | "image";
+
+export interface InputWidget {
+  id: string;
+  type: InputWidgetType;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+  /** For `select` type: available options. */
+  options?: string[];
+  /** Default value. */
+  default?: string | number | boolean;
+  /** For `code` type: language hint. */
+  language?: string;
+  /** For `slider` type: min/max/step. */
+  min?: number;
+  max?: number;
+  step?: number;
+}
+
+export interface AgentInputSchema {
+  mode: InteractionMode;
+  inputs?: InputWidget[];
+  output_format?: OutputFormat;
+  example_request?: Record<string, unknown>;
+  example_response?: string;
+}
+
+/** An agent created through the Agent Builder. */
+export interface AgentService {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  long_description: string;
+  icon: string;
+
+  // Creator
+  creator_id: string;
+  creator_username?: string;
+  creator_name?: string;
+  creator_avatar_color?: string;
+
+  // Brain
+  system_prompt: string;
+  model_preference: ModelPreference;
+  temperature: number;
+  max_tokens: number;
+
+  // Tools
+  enabled_tools: AgentToolRef[];
+  can_search_web: boolean;
+  can_scrape: boolean;
+  can_generate_files: boolean;
+  can_run_code: boolean;
+  can_generate_images: boolean;
+
+  // I/O
+  interaction_mode: InteractionMode;
+  input_schema: AgentInputSchema | null;
+  output_format: OutputFormat;
+  enabled_destinations: OutputDestinationType[];
+
+  // Pricing
+  creator_fee_credits: number;
+  estimated_credits: number;
+
+  // Marketplace
+  visibility: AgentVisibility;
+  category: Category | null;
+  tags: string[];
+
+  // Engagement
+  run_count: number;
+  unique_users: number;
+  avg_rating: number;
+  rating_count: number;
+  star_count: number;
+
+  // Status
+  status: AgentStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export type AgentRunStatus = "running" | "completed" | "failed" | "cancelled";
+
+export interface AgentRun {
+  id: string;
+  agent_id: string;
+  user_id: string;
+  input: Record<string, unknown>;
+  output: string | null;
+  output_format: OutputFormat;
+  destinations: OutputDestinationType[];
+  model_used: string;
+  input_tokens: number;
+  output_tokens: number;
+  total_tokens: number;
+  base_cost_credits: number;
+  creator_fee_credits: number;
+  total_credits: number;
+  duration_ms: number | null;
+  status: AgentRunStatus;
+  error: string | null;
+  created_at: string;
+  completed_at: string | null;
+}
+
+export interface CreditBalance {
+  user_id: string;
+  balance: number;
+  lifetime_deposited: number;
+  lifetime_spent: number;
+  updated_at: string;
+}
+
+export type CreditTransactionType =
+  | "deposit"
+  | "agent_run"
+  | "refund"
+  | "creator_payout"
+  | "bonus";
+
+export interface CreditTransaction {
+  id: string;
+  user_id: string;
+  amount: number;
+  type: CreditTransactionType;
+  description: string;
+  agent_id: string | null;
+  stripe_payment_id: string | null;
+  token_count: number | null;
+  balance_after: number;
+  created_at: string;
+}
