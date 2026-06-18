@@ -12,7 +12,7 @@ const SECTIONS: DashboardSection[] = [
   "overview",
   "my-agents",
   "installed",
-  "favorites",
+  "saved",
   "collections",
   "settings",
 ];

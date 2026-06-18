@@ -9,19 +9,23 @@ import {
   type CSSProperties,
   type MouseEvent as ReactMouseEvent,
 } from "react";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { cn, formatCompact } from "@/lib/utils";
 import {
   ArrowRight,
+  Check,
   Code2,
   Download,
   FlaskConical,
   FolderTree,
+  GitBranch,
   Play,
   ShieldCheck,
   Palette,
   Star,
+  ThumbsUp,
   type LucideIcon,
 } from "lucide-react";
 
@@ -117,36 +121,42 @@ const SPOTLIGHTS: Spotlight[] = [
     href: "/explore?q=Impeccable+UI",
   },
   {
-    name: "Placeholder 1",
-    type: "Placeholder",
-    category: "Placeholder",
-    tagline: "Placeholder",
-    description: "Placeholder",
+    name: "Ponytail",
+    type: "Skill",
+    category: "Minimalism",
+    tagline: "He writes one line. It works.",
+    description:
+      "The agent that says nothing and changes everything it needs to — and nothing it doesn't. No essays, no scaffolding, no apology. The smallest correct diff, every time.",
     icon: FlaskConical,
     accent: "green",
-    chips: ["Placeholder"],
-    preview: ["Placeholder"],
-    rating: 0,
-    ratingCount: 0,
-    stars: 0,
-    exports: 0,
-    href: "/explore",
+    chips: ["minimal diffs", "terse", "no over-engineering"],
+    preview: ["// ponytail: this exists"],
+    rating: 4.9,
+    ratingCount: 146,
+    stars: 3200,
+    exports: 11000,
+    href: "/explore?q=Ponytail",
   },
   {
-    name: "Placeholder 2",
-    type: "Placeholder",
-    category: "Placeholder",
-    tagline: "Placeholder",
-    description: "Placeholder",
+    name: "skill-creator",
+    type: "Skill",
+    category: "Authoring",
+    tagline: "The skill that makes skills.",
+    description:
+      "Draft a skill, run it against real prompts, and benchmark it with hard pass rates — then iterate until the numbers move. Don't guess whether your skill works. Measure it.",
     icon: Code2,
     accent: "blue",
-    chips: ["Placeholder"],
-    preview: ["Placeholder"],
-    rating: 0,
-    ratingCount: 0,
-    stars: 0,
-    exports: 0,
-    href: "/explore",
+    chips: ["draft → eval → improve", "benchmarks", "pass rates", "iteration"],
+    preview: [
+      "→ draft SKILL.md",
+      "→ eval vs. baseline",
+      "→ benchmark + iterate",
+    ],
+    rating: 4.9,
+    ratingCount: 173,
+    stars: 2400,
+    exports: 8700,
+    href: "/explore?q=skill-creator",
   },
   {
     name: "Placeholder 3",
@@ -188,6 +198,27 @@ const IMPECCABLE_FONT: CSSProperties = {
     '"Avenir Next", "SF Pro Display", var(--font-display), sans-serif',
   fontWeight: 200,
   letterSpacing: "-0.03em",
+};
+
+// Ponytail spotlight — the deliberate opposite of Impeccable. Palette is sampled
+// straight from the portrait so the cropped face bleeds into the canvas with no
+// visible seam: near-black GitHub canvas, bone-white ink, one terminal green.
+const PONYTAIL_CANVAS = "#0d1116";
+const PONYTAIL_INK = "#f3f5fb";
+const PONYTAIL_MUTE = "#9ca0a6";
+const PONYTAIL_GREEN = "#7ee787";
+
+// Heavy grotesque for the wordmark — the counterweight to Impeccable's hairline
+// Raleway. Inter is already loaded with its full variable weight axis.
+const PONYTAIL_TITLE: CSSProperties = {
+  fontFamily: 'var(--font-sans), "Inter", system-ui, sans-serif',
+  fontWeight: 800,
+  letterSpacing: "-0.035em",
+};
+const PONYTAIL_TAGLINE: CSSProperties = {
+  fontFamily: 'var(--font-sans), system-ui, sans-serif',
+  fontStyle: "italic",
+  fontWeight: 400,
 };
 
 const AUTOPLAY_MS = 6500;
@@ -387,6 +418,30 @@ function SpotlightPanel({
   const accent = ACCENTS[item.accent];
   const isImpeccable = item.name === "Impeccable UI";
 
+  // Ponytail gets its own bespoke, monochrome terminal treatment.
+  if (item.name === "Ponytail") {
+    return (
+      <PonytailPanel
+        item={item}
+        position={position}
+        total={total}
+        active={active}
+      />
+    );
+  }
+
+  // skill-creator gets its own bespoke cyanotype-blueprint treatment.
+  if (item.name === "skill-creator") {
+    return (
+      <SkillCreatorPanel
+        item={item}
+        position={position}
+        total={total}
+        active={active}
+      />
+    );
+  }
+
   // Placeholder slides show only their name — no badge, copy, stats, buttons,
   // or video placeholder.
   if (!isImpeccable) {
@@ -496,7 +551,7 @@ function SpotlightPanel({
           />
           <span className="h-3 w-px bg-line" />
           <span className="flex items-center gap-1 text-xs text-subtle">
-            <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+            <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
             <span className="font-medium tabular-nums">
               {formatCompact(item.stars)}
             </span>
@@ -614,6 +669,549 @@ function SpotlightPanel({
             </>
           )}
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Ponytail — a bespoke spotlight themed as a code editor, because the skill it
+// sells writes code. A window title bar tops it and an editor status bar floors
+// it (both full-bleed, so there is no idle vertical space); the centre holds the
+// signature: a one-line diff where a wall of careful abstraction collapses to a
+// single green line that works. The hand-drawn portrait is the author, bled in
+// from the right and dissolved into the canvas via an edge mask. Everything is
+// monochrome but one terminal green — restraint, like the skill itself.
+// ---------------------------------------------------------------------------
+
+const PONYTAIL_CHROME = "#12161c"; // title / status bar fill
+const PONYTAIL_BORDER = "#1c2128"; // hairline rules
+const PONYTAIL_DIM = "#6b7280"; // de-emphasised code
+const PONYTAIL_RED = "#f08a8a"; // removed-line marker
+
+function PonytailPanel({
+  item,
+  position,
+  total,
+  active,
+}: {
+  item: Spotlight;
+  position: number;
+  total: number;
+  active: boolean;
+}) {
+  return (
+    <div
+      className="relative flex min-h-[34rem] w-full shrink-0 flex-col overflow-hidden sm:min-h-[40rem] lg:min-h-[52rem]"
+      style={{ backgroundColor: PONYTAIL_CANVAS }}
+      aria-hidden={!active}
+      aria-roledescription="slide"
+      aria-label={`${position} of ${total}`}
+    >
+      {/* Window title bar — a single open file, no chrome buttons */}
+      <div
+        className="relative z-20 flex items-center justify-between gap-3 border-b px-5 py-3 sm:px-6"
+        style={{ borderColor: PONYTAIL_BORDER, backgroundColor: PONYTAIL_CHROME }}
+      >
+        <div
+          className="flex items-center gap-2 font-mono text-xs"
+          style={{ color: PONYTAIL_MUTE }}
+        >
+          <span
+            className="h-1.5 w-1.5 rounded-full"
+            style={{ backgroundColor: PONYTAIL_GREEN }}
+            title="unsaved"
+          />
+          <span style={{ color: PONYTAIL_INK }}>ponytail</span>
+          <span className="opacity-50">.skill</span>
+        </div>
+        <span
+          className="font-mono text-2xs uppercase tracking-[0.2em]"
+          style={{ color: PONYTAIL_MUTE }}
+        >
+          minimalism
+        </span>
+      </div>
+
+      {/* Editor body */}
+      <div className="relative flex flex-1 items-center">
+        {/* Portrait — the author, bled in from the right, edges dissolved. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/ponytail-face.webp"
+          alt=""
+          aria-hidden
+          draggable={false}
+          className="pointer-events-none absolute right-0 top-1/2 h-[78%] max-w-none -translate-y-1/2 select-none opacity-80 sm:h-[88%] sm:opacity-90 lg:right-[-1%] lg:h-[100%] lg:opacity-100"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, #000 42%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%)",
+            WebkitMaskComposite: "source-in",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, #000 42%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%)",
+            maskComposite: "intersect",
+          }}
+        />
+
+        {/* Left-anchored scrim — keeps the type legible over the portrait. */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `linear-gradient(to right, ${PONYTAIL_CANVAS} 0%, ${PONYTAIL_CANVAS} 48%, rgba(13,17,22,0.55) 68%, rgba(13,17,22,0) 84%)`,
+          }}
+          aria-hidden
+        />
+
+        {/* Content */}
+        <div className="relative z-10 w-full px-6 py-10 sm:px-12 sm:py-12 lg:px-16">
+          <div className="max-w-[38rem]">
+            {/* Wordmark — heavy, tight, bone-white */}
+            <h2
+              className="text-6xl leading-[0.9] sm:text-7xl lg:text-8xl"
+              style={{ ...PONYTAIL_TITLE, color: PONYTAIL_INK }}
+            >
+              Ponytail
+            </h2>
+
+            {/* Docstring — the product in its own terse voice */}
+            <p
+              className="mt-5 text-2xl leading-snug sm:text-[1.7rem]"
+              style={{ ...PONYTAIL_TAGLINE, color: PONYTAIL_MUTE }}
+            >
+              He says nothing.
+              <br />
+              He writes one line. It works.
+            </p>
+
+            {/* Signature — the one-line diff. The deadpan green comment lifted
+                from the art is the file header; the body shows a wall of effort
+                collapsing to a single line that ships. */}
+            <div
+              className="mt-7 max-w-[27rem] overflow-hidden rounded-lg border shadow-elevated"
+              style={{
+                borderColor: PONYTAIL_BORDER,
+                backgroundColor: "#11161d",
+              }}
+            >
+              <div
+                className="flex items-center justify-between gap-3 border-b px-3 py-1.5 font-mono text-2xs"
+                style={{ borderColor: PONYTAIL_BORDER }}
+              >
+                <span className="truncate">
+                  <span style={{ color: PONYTAIL_GREEN, opacity: 0.5 }}>
+                    {"// "}
+                  </span>
+                  <span style={{ color: PONYTAIL_GREEN }}>
+                    ponytail: this exists
+                  </span>
+                </span>
+                <span
+                  className="flex shrink-0 items-center gap-1"
+                  style={{ color: PONYTAIL_GREEN }}
+                >
+                  <Check className="h-3 w-3" />
+                  it works
+                </span>
+              </div>
+              <div className="overflow-hidden whitespace-nowrap px-3 py-2 font-mono text-2xs leading-relaxed sm:text-xs">
+                <div
+                  className="-mx-3 px-3"
+                  style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
+                >
+                  <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
+                  <span style={{ color: PONYTAIL_MUTE }}>
+                    return reconcile(pipeline(opts), base)
+                  </span>
+                </div>
+                <div
+                  className="-mx-3 px-3"
+                  style={{ backgroundColor: "rgba(240,138,138,0.08)" }}
+                >
+                  <span style={{ color: PONYTAIL_RED, opacity: 0.7 }}>{"- "}</span>
+                  <span style={{ color: PONYTAIL_DIM }}>
+                    {"/* …and the 38 lines you didn’t need */"}
+                  </span>
+                </div>
+                <div
+                  className="-mx-3 px-3"
+                  style={{ backgroundColor: "rgba(126,231,135,0.10)" }}
+                >
+                  <span style={{ color: PONYTAIL_GREEN }}>{"+ "}</span>
+                  <span style={{ color: PONYTAIL_INK }}>return user ?? guest</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats — terminal output */}
+            <div
+              className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs"
+              style={{ color: PONYTAIL_MUTE }}
+            >
+              <span
+                className="flex items-center gap-1.5"
+                style={{ color: PONYTAIL_INK }}
+              >
+                <Star
+                  className="h-3.5 w-3.5"
+                  style={{ fill: PONYTAIL_GREEN, color: PONYTAIL_GREEN }}
+                />
+                {item.rating.toFixed(1)}
+              </span>
+              <span className="opacity-30">·</span>
+              <span>{formatCompact(item.stars)} likes</span>
+              <span className="opacity-30">·</span>
+              <span>{formatCompact(item.exports)} installs</span>
+            </div>
+
+            {/* One bold action; everything else stays quiet */}
+            <div className="relative z-20 mt-5 flex flex-wrap items-center gap-3">
+              <Link
+                href={item.href}
+                tabIndex={active ? 0 : -1}
+                className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-mono text-sm font-semibold transition-transform duration-200 hover:-translate-y-px"
+                style={{ backgroundColor: PONYTAIL_GREEN, color: PONYTAIL_CANVAS }}
+              >
+                Get
+                <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/explore"
+                tabIndex={active ? 0 : -1}
+                className="inline-flex items-center rounded-md border border-white/15 px-5 py-2.5 font-mono text-sm text-[#9ca0a6] transition-colors hover:border-white/30 hover:text-white"
+              >
+                Browse all
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Editor status bar */}
+      <div
+        className="relative z-20 flex items-center gap-4 border-t px-5 py-2 font-mono text-2xs sm:px-6"
+        style={{
+          borderColor: PONYTAIL_BORDER,
+          backgroundColor: PONYTAIL_CHROME,
+          color: PONYTAIL_MUTE,
+        }}
+      >
+        <span className="flex items-center gap-1.5">
+          <GitBranch className="h-3 w-3" />
+          main
+        </span>
+        <span
+          className="flex items-center gap-1.5"
+          style={{ color: PONYTAIL_GREEN }}
+        >
+          <Check className="h-3 w-3" />0 problems
+        </span>
+        <span className="ml-auto hidden sm:inline">markdown</span>
+        <span className="hidden opacity-60 sm:inline">UTF-8</span>
+        <span>Ln 1, Col 1</span>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// skill-creator — a bespoke "cyanotype blueprint" spotlight. The skill that
+// makes skills earns a draughtsman's treatment: a deep blueprint-blue field, a
+// fine graph-paper grid, and a hand-built technical drawing of its own value
+// proposition — the draft → eval → review → improve loop, plus a pass-rate
+// readout that climbs across iterations (the thing that actually sets this
+// skill apart: it measures, it doesn't guess). Mint is the single accent, used
+// only where something is "measured" or "improved".
+// ---------------------------------------------------------------------------
+
+const BP_CANVAS = "#0e3a61"; // blueprint-blue field
+const BP_DEEP = "#0a2c49"; // vignette + node fill
+const BP_INK = "#eef4fb"; // near-white ink
+const BP_LINE = "#84b4da"; // pale-cyan linework / muted strokes
+const BP_MUTE = "#a6c5e0"; // muted text
+const BP_PASS = "#8be3b4"; // mint — the measured-improvement accent
+const BP_GRID = "rgba(238,244,251,0.06)";
+
+function SkillCreatorPanel({
+  item,
+  position,
+  total,
+  active,
+}: {
+  item: Spotlight;
+  position: number;
+  total: number;
+  active: boolean;
+}) {
+  const Icon = item.icon;
+  const mono = 'ui-monospace, "JetBrains Mono", "SF Mono", "Menlo", monospace';
+
+  return (
+    <div
+      className="relative grid min-h-[34rem] w-full shrink-0 grid-cols-1 items-center gap-10 overflow-hidden px-6 pb-16 pt-12 sm:min-h-[40rem] sm:px-12 sm:pb-20 sm:pt-16 lg:min-h-[52rem] lg:grid-cols-[1fr_1fr] lg:gap-14"
+      style={{ backgroundColor: BP_CANVAS }}
+      aria-hidden={!active}
+      aria-roledescription="slide"
+      aria-label={`${position} of ${total}`}
+    >
+      {/* Fine graph-paper grid */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `linear-gradient(${BP_GRID} 1px, transparent 1px), linear-gradient(90deg, ${BP_GRID} 1px, transparent 1px)`,
+          backgroundSize: "30px 30px",
+        }}
+        aria-hidden
+      />
+      {/* Coarser major grid */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(238,244,251,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(238,244,251,0.05) 1px, transparent 1px)",
+          backgroundSize: "150px 150px",
+        }}
+        aria-hidden
+      />
+      {/* Edge vignette */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(130% 100% at 50% 28%, transparent 42%, ${BP_DEEP} 100%)`,
+        }}
+        aria-hidden
+      />
+      {/* Cyan glow behind the drawing */}
+      <div
+        className="pointer-events-none absolute right-0 top-1/2 h-[36rem] w-[36rem] -translate-y-1/2 translate-x-1/4 rounded-full blur-2xl"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(132,180,218,0.16), transparent 65%)",
+        }}
+        aria-hidden
+      />
+
+      {/* Type column */}
+      <div className="relative z-10 min-w-0">
+        {/* Eyebrow */}
+        <div
+          className="flex items-center gap-2 font-mono text-2xs uppercase tracking-[0.22em]"
+          style={{ fontFamily: mono, color: BP_MUTE }}
+        >
+          <Icon className="h-3.5 w-3.5" style={{ color: BP_PASS }} />
+          <span style={{ color: BP_PASS }}>Skill</span>
+          <span className="opacity-60">— {item.category}</span>
+        </div>
+
+        {/* Wordmark — set as its own kebab-case skill id, mono, with a caret */}
+        <h2
+          className="mt-5 text-4xl leading-[0.95] sm:text-5xl lg:text-[3.75rem]"
+          style={{
+            fontFamily: mono,
+            fontWeight: 700,
+            letterSpacing: "-0.03em",
+            color: BP_INK,
+          }}
+        >
+          skill-creator
+          <span
+            className="ml-1 inline-block animate-pulse"
+            style={{ color: BP_PASS }}
+            aria-hidden
+          >
+            ▍
+          </span>
+        </h2>
+
+        {/* Tagline */}
+        <p
+          className="mt-6 text-2xl leading-snug sm:text-3xl"
+          style={{ color: BP_INK, fontWeight: 300 }}
+        >
+          The skill that makes skills.
+        </p>
+
+        {/* Body */}
+        <p
+          className="mt-4 max-w-prose text-sm leading-relaxed sm:text-base"
+          style={{ color: BP_MUTE }}
+        >
+          Draft a skill, run it against real prompts, and benchmark it with hard
+          pass rates — then iterate until the numbers move. Don&apos;t guess
+          whether your skill works.{" "}
+          <span style={{ color: BP_INK }}>Measure it.</span>
+        </p>
+
+        {/* Loop strip */}
+        <div
+          className="mt-6 inline-flex items-center gap-2 rounded-md border px-3 py-2 font-mono text-xs sm:text-sm"
+          style={{
+            fontFamily: mono,
+            borderColor: "rgba(132,180,218,0.3)",
+            color: BP_MUTE,
+          }}
+        >
+          <span style={{ color: BP_PASS }}>↺</span>
+          <span style={{ color: BP_INK }}>draft</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BP_INK }}>eval</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BP_INK }}>improve</span>
+          <span className="opacity-50">→</span>
+          <span style={{ color: BP_INK }}>repeat</span>
+        </div>
+
+        {/* Stats — blueprint annotation */}
+        <div
+          className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs sm:text-sm"
+          style={{ fontFamily: mono, color: BP_MUTE }}
+        >
+          <span className="flex items-center gap-1.5" style={{ color: BP_INK }}>
+            <Star
+              className="h-3.5 w-3.5"
+              style={{ fill: BP_PASS, color: BP_PASS }}
+            />
+            {item.rating.toFixed(1)}
+          </span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.stars)} likes</span>
+          <span className="opacity-40">·</span>
+          <span>{formatCompact(item.exports)} installs</span>
+        </div>
+
+        {/* CTAs */}
+        <div className="relative z-20 mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href={item.href}
+            tabIndex={active ? 0 : -1}
+            className="group/get inline-flex items-center gap-2 rounded-md px-5 py-2.5 font-mono text-sm font-semibold transition-transform duration-200 hover:-translate-y-px"
+            style={{ fontFamily: mono, backgroundColor: BP_PASS, color: BP_DEEP }}
+          >
+            Get
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/get:translate-x-0.5" />
+          </Link>
+          <Link
+            href="/explore"
+            tabIndex={active ? 0 : -1}
+            className="inline-flex items-center rounded-md border px-5 py-2.5 font-mono text-sm transition-colors hover:text-white"
+            style={{
+              fontFamily: mono,
+              borderColor: "rgba(132,180,218,0.35)",
+              color: BP_MUTE,
+            }}
+          >
+            Browse all
+          </Link>
+        </div>
+      </div>
+
+      {/* Blueprint drawing — the custom centrepiece: the iteration loop and a
+          pass-rate readout that climbs across iterations. */}
+      <div className="relative z-10 mx-auto w-full max-w-[26rem]">
+        <svg
+          viewBox="0 0 460 620"
+          className="h-auto w-full"
+          fill="none"
+          role="img"
+          aria-label="Blueprint of the skill-creator iteration loop and a pass rate climbing from 38 to 94 percent across three iterations"
+        >
+          <defs>
+            <marker
+              id="bp-arrow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="7"
+              markerHeight="7"
+              orient="auto-start-reverse"
+            >
+              <path d="M0,0 L10,5 L0,10 z" fill={BP_LINE} />
+            </marker>
+          </defs>
+
+          {/* Sheet frame */}
+          <rect
+            x="12"
+            y="12"
+            width="436"
+            height="596"
+            rx="12"
+            stroke={BP_LINE}
+            strokeOpacity="0.5"
+            strokeWidth="1.25"
+          />
+
+          {/* Header / title block */}
+          <text x="30" y="40" fill={BP_MUTE} fontFamily={mono} fontSize="12" letterSpacing="1.5">
+            FIG. 1 — ITERATION LOOP
+          </text>
+          <text x="430" y="34" textAnchor="end" fill={BP_INK} fontFamily={mono} fontSize="12" fontWeight="700" letterSpacing="1">
+            SKILL-CREATOR
+          </text>
+          <text x="430" y="50" textAnchor="end" fill={BP_MUTE} fontFamily={mono} fontSize="10" letterSpacing="1">
+            REV 4.8 · SHEET 1/1
+          </text>
+          <line x1="30" y1="60" x2="430" y2="60" stroke={BP_LINE} strokeOpacity="0.25" />
+
+          {/* Loop arrows — clockwise diamond */}
+          <g stroke={BP_LINE} strokeWidth="1.5">
+            <line x1="252" y1="117" x2="326" y2="191" markerEnd="url(#bp-arrow)" />
+            <line x1="330" y1="235" x2="252" y2="313" markerEnd="url(#bp-arrow)" />
+            <line x1="208" y1="313" x2="132" y2="237" markerEnd="url(#bp-arrow)" />
+            <line x1="130" y1="193" x2="206" y2="117" markerEnd="url(#bp-arrow)" />
+          </g>
+
+          {/* Loop nodes */}
+          <g>
+            <rect x="170" y="75" width="120" height="40" rx="8" fill={BP_DEEP} fillOpacity="0.55" stroke={BP_LINE} strokeWidth="1.25" />
+            <text x="230" y="100" textAnchor="middle" fill={BP_INK} fontFamily={mono} fontSize="14" letterSpacing="2">DRAFT</text>
+
+            <rect x="290" y="195" width="120" height="40" rx="8" fill={BP_DEEP} fillOpacity="0.55" stroke={BP_LINE} strokeWidth="1.25" />
+            <text x="350" y="220" textAnchor="middle" fill={BP_INK} fontFamily={mono} fontSize="14" letterSpacing="2">EVAL</text>
+
+            <rect x="170" y="315" width="120" height="40" rx="8" fill={BP_DEEP} fillOpacity="0.55" stroke={BP_LINE} strokeWidth="1.25" />
+            <text x="230" y="340" textAnchor="middle" fill={BP_INK} fontFamily={mono} fontSize="14" letterSpacing="2">REVIEW</text>
+
+            <rect x="50" y="195" width="120" height="40" rx="8" fill={BP_DEEP} fillOpacity="0.55" stroke={BP_LINE} strokeWidth="1.25" />
+            <text x="110" y="220" textAnchor="middle" fill={BP_INK} fontFamily={mono} fontSize="14" letterSpacing="2">IMPROVE</text>
+          </g>
+
+          {/* Loop hub */}
+          <text x="230" y="212" textAnchor="middle" fill={BP_PASS} fontFamily={mono} fontSize="30">↺</text>
+          <text x="230" y="232" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="9" letterSpacing="2">ITERATE</text>
+
+          {/* Section divider */}
+          <line x1="30" y1="384" x2="430" y2="384" stroke={BP_LINE} strokeOpacity="0.25" />
+          <text x="30" y="408" fill={BP_MUTE} fontFamily={mono} fontSize="12" letterSpacing="1.5">
+            FIG. 2 — PASS RATE / ITERATION
+          </text>
+          <text x="430" y="408" textAnchor="end" fill={BP_PASS} fontFamily={mono} fontSize="12" fontWeight="700">
+            ▲ +56 pts
+          </text>
+
+          {/* Benchmark guide lines */}
+          <line x1="70" y1="430" x2="410" y2="430" stroke={BP_LINE} strokeOpacity="0.16" strokeDasharray="2 4" />
+          <text x="62" y="434" textAnchor="end" fill={BP_MUTE} fontFamily={mono} fontSize="9" opacity="0.7">100</text>
+          <line x1="70" y1="495" x2="410" y2="495" stroke={BP_LINE} strokeOpacity="0.16" strokeDasharray="2 4" />
+          <text x="62" y="499" textAnchor="end" fill={BP_MUTE} fontFamily={mono} fontSize="9" opacity="0.7">50</text>
+
+          {/* Baseline */}
+          <line x1="70" y1="560" x2="410" y2="560" stroke={BP_LINE} strokeOpacity="0.5" strokeWidth="1.25" />
+
+          {/* Bars — pass rate rising 38 → 71 → 94 */}
+          <g>
+            <rect x="112" y="511" width="56" height="49" rx="3" fill={BP_PASS} fillOpacity="0.14" stroke={BP_LINE} strokeWidth="1" />
+            <text x="140" y="503" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="12">38</text>
+            <text x="140" y="576" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="9" letterSpacing="1">iter 1</text>
+
+            <rect x="212" y="468" width="56" height="92" rx="3" fill={BP_PASS} fillOpacity="0.5" />
+            <text x="240" y="460" textAnchor="middle" fill={BP_INK} fontFamily={mono} fontSize="12">71</text>
+            <text x="240" y="576" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="9" letterSpacing="1">iter 2</text>
+
+            <rect x="312" y="438" width="56" height="122" rx="3" fill={BP_PASS} fillOpacity="0.95" />
+            <text x="340" y="430" textAnchor="middle" fill={BP_PASS} fontFamily={mono} fontSize="13" fontWeight="700">94</text>
+            <text x="340" y="576" textAnchor="middle" fill={BP_MUTE} fontFamily={mono} fontSize="9" letterSpacing="1">iter 3</text>
+          </g>
+        </svg>
       </div>
     </div>
   );

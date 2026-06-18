@@ -378,7 +378,7 @@ function ProfileHeader({
               )}
               {s.label === "Installs" && (
                 <span className="text-2xs text-faint tabular-nums">
-                  {formatCompact(totalStars)} stars
+                  {formatCompact(totalStars)} likes
                 </span>
               )}
               {s.ownerInstalled && (

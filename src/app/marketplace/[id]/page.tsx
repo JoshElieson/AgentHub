@@ -6,7 +6,8 @@ import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { MarkdownPanel } from "@/components/markdown-panel";
 import { RatingStars } from "@/components/ui/rating-stars";
-import { FavoriteButton } from "@/components/favorite-button";
+import { LikeButton } from "@/components/like-button";
+import { SaveButton } from "@/components/save-button";
 import { InstalledBadge } from "@/components/installed-badge";
 import { supabase, type SkillRow } from "@/lib/supabase";
 import { compileSkill } from "@/lib/skills-compiler";
@@ -30,7 +31,7 @@ import {
   Zap,
   Link2,
   Info,
-  Star,
+  ThumbsUp,
   BarChart3,
 } from "lucide-react";
 
@@ -433,16 +434,19 @@ export default function SkillDetailPage() {
                   </p>
                 </div>
 
-                {/* Star (favorite) button */}
-                <FavoriteButton
-                  skillId={skill.id}
-                  count={skill.star_count}
-                  size="md"
-                  showCount
-                  onToggle={(starred, newCount) => {
-                    setSkill({ ...skill, star_count: newCount });
-                  }}
-                />
+                {/* Like (thumbs up) + Save (bookmark) actions */}
+                <div className="flex items-center gap-2">
+                  <LikeButton
+                    skillId={skill.id}
+                    count={skill.star_count}
+                    size="md"
+                    showCount
+                    onToggle={(liked, newCount) => {
+                      setSkill({ ...skill, star_count: newCount });
+                    }}
+                  />
+                  <SaveButton skillId={skill.id} size="md" />
+                </div>
               </div>
 
               {/* ── Stats Row ──────────────────────────────────────── */}
@@ -474,11 +478,11 @@ export default function SkillDetailPage() {
 
                 <span className="h-4 w-px bg-line" />
 
-                {/* Star count */}
+                {/* Like count */}
                 <span className="flex items-center gap-1.5 text-xs text-muted">
-                  <Star className="h-3.5 w-3.5 text-warning fill-warning" />
+                  <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
                   <span className="font-medium tabular-nums">{formatCompact(skill.star_count)}</span>
-                  <span>stars</span>
+                  <span>likes</span>
                 </span>
               </div>
 

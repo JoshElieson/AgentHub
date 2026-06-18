@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { RatingStars } from "@/components/ui/rating-stars";
-import { FavoriteButton } from "@/components/favorite-button";
+import { LikeButton } from "@/components/like-button";
+import { SaveButton } from "@/components/save-button";
 import { InstalledBadge } from "@/components/installed-badge";
 import { supabase, type McpServerRow } from "@/lib/supabase";
 import { getAnonId } from "@/lib/anon-id";
@@ -24,7 +25,7 @@ import {
   Download,
   ChevronRight,
   Link2,
-  Star,
+  ThumbsUp,
   Settings,
   Code2
 } from "lucide-react";
@@ -233,16 +234,19 @@ export default function McpDetailPage() {
                   </p>
                 </div>
 
-                {/* Star (favorite) button */}
-                <FavoriteButton
-                  mcpServerId={server.id}
-                  count={server.star_count}
-                  size="md"
-                  showCount
-                  onToggle={(starred, newCount) => {
-                    setServer({ ...server, star_count: newCount });
-                  }}
-                />
+                {/* Like (thumbs up) + Save (bookmark) actions */}
+                <div className="flex items-center gap-2">
+                  <LikeButton
+                    mcpServerId={server.id}
+                    count={server.star_count}
+                    size="md"
+                    showCount
+                    onToggle={(liked, newCount) => {
+                      setServer({ ...server, star_count: newCount });
+                    }}
+                  />
+                  <SaveButton mcpServerId={server.id} size="md" />
+                </div>
               </div>
 
               {/* ── Stats Row ──────────────────────────────────────── */}
@@ -256,11 +260,11 @@ export default function McpDetailPage() {
 
                 <span className="h-4 w-px bg-line" />
 
-                {/* Star count */}
+                {/* Like count */}
                 <span className="flex items-center gap-1.5 text-xs text-muted">
-                  <Star className="h-3.5 w-3.5 text-warning fill-warning" />
+                  <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
                   <span className="font-medium tabular-nums">{formatCompact(server.star_count)}</span>
-                  <span>stars</span>
+                  <span>likes</span>
                 </span>
               </div>
 

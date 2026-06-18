@@ -4,10 +4,10 @@ import { useState, useEffect, useMemo } from "react";
 import { useMarketplaceData, type SkillRow, type McpServerRow } from "@/lib/marketplace-data";
 import { cn, formatCompact } from "@/lib/utils";
 import { RatingStars } from "@/components/ui/rating-stars";
-import { Search, Star, Download, Package, Plug, X, Check } from "lucide-react";
+import { Search, Bookmark, ThumbsUp, Download, Package, Plug, X, Check } from "lucide-react";
 
 // ---------------------------------------------------------------------------
-// Item picker — two tabs: Favorites + Browse
+// Item picker — two tabs: Saved + Browse
 // ---------------------------------------------------------------------------
 
 export type PickerItemKind = "skill" | "mcp";
@@ -38,7 +38,7 @@ export function CollectionItemPicker({
   selected,
   onToggle,
 }: CollectionItemPickerProps) {
-  const [tab, setTab] = useState<"browse" | "favorites">("browse");
+  const [tab, setTab] = useState<"browse" | "saved">("browse");
   const [query, setQuery] = useState("");
   const { skills, mcpServers, loading } = useMarketplaceData();
 
@@ -52,7 +52,7 @@ export function CollectionItemPicker({
       try {
         const { getAnonId } = await import("@/lib/anon-id");
         const anonId = getAnonId();
-        const res = await fetch(`/api/skills/starred?anonId=${anonId}`);
+        const res = await fetch(`/api/skills/saved?anonId=${anonId}`);
         if (res.ok) {
           const data = await res.json();
           setFavSkills(
@@ -137,11 +137,11 @@ export function CollectionItemPicker({
     );
   }, [browseItems, query]);
 
-  const favoriteItems =
+  const savedItems =
     filterKind === "skills" ? favSkills : favMcps;
 
-  const displayItems = tab === "favorites" ? favoriteItems : filteredBrowse;
-  const isLoading = tab === "favorites" ? favLoading : loading;
+  const displayItems = tab === "saved" ? savedItems : filteredBrowse;
+  const isLoading = tab === "saved" ? favLoading : loading;
 
   return (
     <div className="flex flex-col gap-4">
@@ -159,19 +159,19 @@ export function CollectionItemPicker({
           Browse
         </button>
         <button
-          onClick={() => setTab("favorites")}
+          onClick={() => setTab("saved")}
           className={cn(
             "relative flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors",
-            tab === "favorites"
+            tab === "saved"
               ? "text-content after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-brand"
               : "text-muted hover:text-content"
           )}
         >
-          <Star className="h-3.5 w-3.5" />
-          Favorites
-          {favoriteItems.length > 0 && (
+          <Bookmark className="h-3.5 w-3.5" />
+          Saved
+          {savedItems.length > 0 && (
             <span className="rounded-sm bg-surface-2 px-1.5 py-0.5 text-2xs font-semibold tabular-nums text-subtle">
-              {favoriteItems.length}
+              {savedItems.length}
             </span>
           )}
         </button>
@@ -221,8 +221,8 @@ export function CollectionItemPicker({
               )}
             </div>
             <p className="mt-3 text-sm text-muted">
-              {tab === "favorites"
-                ? "No favorites yet — star items from the marketplace first."
+              {tab === "saved"
+                ? "No saved items yet — save items from the marketplace first."
                 : "No results found."}
             </p>
           </div>
@@ -280,7 +280,7 @@ export function CollectionItemPicker({
                 {/* Stats */}
                 <div className="hidden shrink-0 items-center gap-3 sm:flex">
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
-                    <Star className="h-3 w-3 fill-warning text-warning" />
+                    <ThumbsUp className="h-3 w-3 text-brand-muted" />
                     {formatCompact(item.star_count)}
                   </span>
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">

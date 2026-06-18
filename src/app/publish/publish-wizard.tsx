@@ -55,7 +55,7 @@ import {
   PartyPopper,
   ExternalLink,
   Download,
-  Star,
+  ThumbsUp,
   X,
 } from "lucide-react";
 
@@ -1230,8 +1230,8 @@ function PreviewCard({
           <Download className="h-3.5 w-3.5" />
           {formatCompact(0)}
         </span>
-        <span className="flex items-center gap-1 tabular-nums" title="Stars">
-          <Star className="h-3.5 w-3.5" />
+        <span className="flex items-center gap-1 tabular-nums" title="Likes">
+          <ThumbsUp className="h-3.5 w-3.5" />
           {formatCompact(0)}
         </span>
         <span className="ml-auto whitespace-nowrap">just now</span>

@@ -9,7 +9,7 @@ import {
 } from "./ui/badge";
 import { RatingStars } from "./ui/rating-stars";
 import { InstallButton } from "./install-modal";
-import { Download, Star } from "lucide-react";
+import { Download, ThumbsUp } from "lucide-react";
 
 export function AgentCard({
   agent,
@@ -82,8 +82,8 @@ export function AgentCard({
           <Download className="h-3.5 w-3.5" />
           {formatCompact(agent.installCount)}
         </span>
-        <span className="flex items-center gap-1 tabular-nums" title="Stars">
-          <Star className="h-3.5 w-3.5" />
+        <span className="flex items-center gap-1 tabular-nums" title="Likes">
+          <ThumbsUp className="h-3.5 w-3.5" />
           {formatCompact(agent.stars)}
         </span>
         <span className="ml-auto hidden whitespace-nowrap sm:block">

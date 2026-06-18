@@ -14,7 +14,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { RatingStars } from "@/components/ui/rating-stars";
 import { InstallButton } from "@/components/install-modal";
-import { FavoriteButton } from "@/components/favorite-button";
+import { LikeButton } from "@/components/like-button";
+import { SaveButton } from "@/components/save-button";
 import { PackageTree } from "@/components/package-tree";
 import { VersionList } from "@/components/version-list";
 import { ReviewCard, RatingBreakdown } from "@/components/review-card";
@@ -46,6 +47,7 @@ import {
   Package,
   Star,
   Tag,
+  ThumbsUp,
 } from "lucide-react";
 
 import { OverviewTab } from "./overview-tab";
@@ -365,9 +367,9 @@ export default async function AgentDetailPage({
                 <Download className="h-3.5 w-3.5" />
                 {formatCompact(agent.installCount)} installs
               </span>
-              <span className="flex items-center gap-1 tabular-nums" title="Stars">
-                <Star className="h-3.5 w-3.5" />
-                {formatCompact(agent.stars)} stars
+              <span className="flex items-center gap-1 tabular-nums" title="Likes">
+                <ThumbsUp className="h-3.5 w-3.5" />
+                {formatCompact(agent.stars)} likes
               </span>
               <span className="hidden sm:inline">
                 Updated {timeAgo(agent.updatedAt)}
@@ -391,7 +393,8 @@ export default async function AgentDetailPage({
         {/* Actions */}
         <div className="flex shrink-0 items-center gap-2 lg:flex-col lg:items-stretch">
           <InstallButton agent={agent} size="lg" className="lg:w-44" />
-          <FavoriteButton count={agent.stars} initial className="lg:h-11" />
+          <LikeButton count={agent.stars} initial className="lg:h-11" />
+          <SaveButton className="lg:h-11" />
         </div>
       </header>
 

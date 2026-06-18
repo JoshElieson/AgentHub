@@ -8,11 +8,11 @@ import {
   GitCommitVertical,
   Package,
   Rocket,
-  Star,
+  ThumbsUp,
   TrendingUp,
 } from "lucide-react";
 
-type TimelineKind = "publish" | "update" | "milestone" | "stars";
+type TimelineKind = "publish" | "update" | "milestone" | "likes";
 
 interface TimelineItem {
   id: string;
@@ -42,10 +42,10 @@ const KIND_META: Record<
     ring: "border-success/30 bg-success-dim",
     tint: "text-success",
   },
-  stars: {
-    icon: <Star className="h-3.5 w-3.5" />,
-    ring: "border-warning/30 bg-warning-dim",
-    tint: "text-warning",
+  likes: {
+    icon: <ThumbsUp className="h-3.5 w-3.5" />,
+    ring: "border-brand-line bg-brand-dim",
+    tint: "text-brand-muted",
   },
 };
 
@@ -133,11 +133,11 @@ function buildTimeline(agents: AgentPackage[]): TimelineItem[] {
       });
     }
 
-    // Stars milestone for the most-loved packages.
+    // Likes milestone for the most-loved packages.
     if (agent.stars >= 500) {
       items.push({
-        id: `${agent.slug}-stars`,
-        kind: "stars",
+        id: `${agent.slug}-likes`,
+        kind: "likes",
         agent,
         title: (
           <>
@@ -147,7 +147,7 @@ function buildTimeline(agents: AgentPackage[]): TimelineItem[] {
             >
               {agent.name}
             </Link>{" "}
-            passed {formatCompact(agent.stars)} stars
+            passed {formatCompact(agent.stars)} likes
           </>
         ),
         date: agent.updatedAt,

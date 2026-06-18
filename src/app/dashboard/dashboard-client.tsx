@@ -36,6 +36,7 @@ import {
   Activity,
   ArrowRight,
   ArrowUpCircle,
+  Bookmark,
   CheckCircle2,
   Download,
   ExternalLink,
@@ -47,6 +48,7 @@ import {
   Package,
   RotateCw,
   Star,
+  ThumbsUp,
   Trash2,
   UserPlus,
 } from "lucide-react";
@@ -71,13 +73,13 @@ const SECTION_META: Record<
     title: "Installed",
     description: "Packages installed across your AI tools.",
   },
-  favorites: {
-    title: "Favorites",
-    description: "Packages you've starred to install later.",
+  saved: {
+    title: "Saved",
+    description: "Packages you've saved to install later.",
   },
   collections: {
-    title: "Collections",
-    description: "Collections you curate and follow.",
+    title: "Bundles",
+    description: "Bundles you curate and follow.",
   },
   settings: {
     title: "Settings",
@@ -89,7 +91,7 @@ const ACTIVITY_ICON: Record<ActivityItem["kind"], React.ReactNode> = {
   install: <Download className="h-4 w-4" />,
   review: <Star className="h-4 w-4" />,
   version: <GitBranch className="h-4 w-4" />,
-  star: <Star className="h-4 w-4" />,
+  star: <ThumbsUp className="h-4 w-4" />,
   follow: <UserPlus className="h-4 w-4" />,
 };
 
@@ -97,7 +99,7 @@ const ACTIVITY_TONE: Record<ActivityItem["kind"], string> = {
   install: "text-info bg-info-dim border-info/30",
   review: "text-warning bg-warning-dim border-warning/30",
   version: "text-brand-muted bg-brand-dim border-brand-line",
-  star: "text-warning bg-warning-dim border-warning/30",
+  star: "text-brand-muted bg-brand-dim border-brand-line",
   follow: "text-success bg-success-dim border-success/30",
 };
 
@@ -122,7 +124,7 @@ export function DashboardClient({
   // Dashboard content is scoped to the signed-in user. Published agents and
   // curated collections come from the seeded marketplace data only when the
   // user is the demo "seed" creator; a brand-new account simply has none yet
-  // (the sections render their empty states). Installed / favorites / activity
+  // (the sections render their empty states). Installed / saved / activity
   // aren't creator-keyed in the mock data, so they show for the seed user only.
   const username = user.username;
   const isSeedCreator = username === CURRENT_USERNAME;
@@ -230,8 +232,8 @@ export function DashboardClient({
                 />
               )}
               {active === "installed" && <InstalledSection />}
-              {active === "favorites" && (
-                <FavoritesSection isSeedCreator={isSeedCreator} />
+              {active === "saved" && (
+                <SavedSection isSeedCreator={isSeedCreator} />
               )}
               {active === "collections" && (
                 <CollectionsSection
@@ -302,7 +304,7 @@ function OverviewSection({
           icon={<Star className="h-4 w-4" />}
           hint={
             stats.totalStars > 0
-              ? `${formatCompact(stats.totalStars)} stars`
+              ? `${formatCompact(stats.totalStars)} likes`
               : "No ratings yet"
           }
         />
@@ -907,10 +909,10 @@ function InstalledCard({
 }
 
 // ---------------------------------------------------------------------------
-// Favorites
+// Saved
 // ---------------------------------------------------------------------------
 
-function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
+function SavedSection({ isSeedCreator }: { isSeedCreator: boolean }) {
   const [skills, setSkills] = useState<
     {
       id: string;
@@ -935,13 +937,13 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
   >([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch starred items from API
+  // Fetch saved items from API
   useEffect(() => {
     async function load() {
       try {
         const { getAnonId } = await import("@/lib/anon-id");
         const anonId = getAnonId();
-        const res = await fetch(`/api/skills/starred?anonId=${anonId}`);
+        const res = await fetch(`/api/skills/saved?anonId=${anonId}`);
         if (res.ok) {
           const data = await res.json();
           setSkills(data.skills ?? []);
@@ -956,14 +958,14 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     load();
   }, []);
 
-  // Unstar handlers
-  const handleUnstarSkill = async (skillId: string) => {
+  // Unsave handlers
+  const handleUnsaveSkill = async (skillId: string) => {
     const { getAnonId } = await import("@/lib/anon-id");
     const anonId = getAnonId();
     // Optimistic remove
     setSkills((prev) => prev.filter((s) => s.id !== skillId));
     try {
-      await fetch("/api/skills/star", {
+      await fetch("/api/skills/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ skillId, anonId }),
@@ -973,13 +975,13 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
     }
   };
 
-  const handleUnstarMcp = async (serverId: string) => {
+  const handleUnsaveMcp = async (serverId: string) => {
     const { getAnonId } = await import("@/lib/anon-id");
     const anonId = getAnonId();
     // Optimistic remove
     setMcpServers((prev) => prev.filter((s) => s.id !== serverId));
     try {
-      await fetch("/api/mcp/star", {
+      await fetch("/api/mcp/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ serverId, anonId }),
@@ -1015,9 +1017,9 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
   if (totalCount === 0) {
     return (
       <EmptyState
-        icon={<Star className="h-5 w-5" />}
-        title="No favorites yet"
-        description="Star packages from the marketplace to keep them here."
+        icon={<Bookmark className="h-5 w-5" />}
+        title="No saved items yet"
+        description="Save packages from the marketplace to keep them here."
         action={
           <ButtonLink href="/explore" variant="primary" size="md">
             Explore marketplace
@@ -1055,7 +1057,7 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                 </Link>
                 <div className="hidden items-center gap-3 sm:flex">
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
-                    <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+                    <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
                     {formatCompact(skill.star_count)}
                   </span>
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
@@ -1065,11 +1067,11 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                 </div>
                 <button
                   type="button"
-                  onClick={() => handleUnstarSkill(skill.id)}
+                  onClick={() => handleUnsaveSkill(skill.id)}
                   className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
-                  title="Remove from favorites"
+                  title="Remove from saved"
                 >
-                  <Star className="h-4 w-4 fill-current" />
+                  <Bookmark className="h-4 w-4 fill-current" />
                 </button>
               </div>
             ))}
@@ -1077,7 +1079,7 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
         </section>
       )}
 
-      {/* Starred MCP Servers */}
+      {/* Saved MCP Servers */}
       {mcpServers.length > 0 && (
         <section>
           <div className="card divide-y divide-line">
@@ -1104,7 +1106,7 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                 </Link>
                 <div className="hidden items-center gap-3 sm:flex">
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
-                    <Star className="h-3.5 w-3.5 fill-warning text-warning" />
+                    <ThumbsUp className="h-3.5 w-3.5 text-brand-muted" />
                     {formatCompact(server.star_count)}
                   </span>
                   <span className="flex items-center gap-1 text-xs tabular-nums text-subtle">
@@ -1114,11 +1116,11 @@ function FavoritesSection({ isSeedCreator }: { isSeedCreator: boolean }) {
                 </div>
                 <button
                   type="button"
-                  onClick={() => handleUnstarMcp(server.id)}
+                  onClick={() => handleUnsaveMcp(server.id)}
                   className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-faint transition-colors hover:border-warning/40 hover:bg-warning/10 hover:text-warning"
-                  title="Remove from favorites"
+                  title="Remove from saved"
                 >
-                  <Star className="h-4 w-4 fill-current" />
+                  <Bookmark className="h-4 w-4 fill-current" />
                 </button>
               </div>
             ))}

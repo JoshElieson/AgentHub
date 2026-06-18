@@ -20,6 +20,7 @@ export interface Classification {
 // Filled from the verified classification workflow. See
 // scripts/classify-marketplace-catalog (workflow) for how these were derived.
 export const SKILL_CLASSIFICATIONS: Record<string, Classification> = {
+  "ponytail": { category: "development", model: ["universal"] },
   "mcp-builder": { category: "development", model: ["anthropic"] },
   "prompt-engineering": { category: "research", model: ["universal"] },
   "rag-architecture": { category: "research", model: ["universal"] },

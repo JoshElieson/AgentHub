@@ -6,7 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
-  Star,
+  ThumbsUp,
   Download,
   Layers,
   Package,
@@ -33,8 +33,8 @@ import type { Category } from "@/lib/types";
 
 // ---------------------------------------------------------------------------
 // Layout — exactly PER_PAGE items per page, PAGES total → TOTAL cards in the
-// track. Trending Now uses 4 pages (1 skills + 3 collections = 20 cards).
-// Newly Uploaded uses the original 3 pages of placeholder blocks (15 cards).
+// track. Trending Bundles uses 3 pages (15 collections).
+// Newly Uploaded uses 3 pages of recent skills/MCPs (15 cards).
 // ---------------------------------------------------------------------------
 
 const PER_PAGE = 5;
@@ -78,14 +78,13 @@ type TrendingItem =
   | { type: "collection"; data: TrendingCollection };
 
 // ---------------------------------------------------------------------------
-// Trending Now — page 1 = 5 curated skills, pages 2-4 = 15 top collections
+// Trending Bundles — 15 top collections across 3 pages
 // ---------------------------------------------------------------------------
 
-const PINNED_SKILLS_COUNT = 4; // slots 1-4 on page 1
-const PINNED_COLLECTION_NAME = "Anthropic Skills"; // slot 5 on page 1
-const REMAINING_COLLECTIONS = PER_PAGE * 3; // 15, pages 2-4
-const TRENDING_TOTAL = PINNED_SKILLS_COUNT + 1 + REMAINING_COLLECTIONS; // 20
-const TRENDING_PAGES = TRENDING_TOTAL / PER_PAGE; // 4
+const PINNED_COLLECTION_NAME = "Anthropic Skills";
+const REMAINING_COLLECTIONS = 14; // 15 total minus 1 pinned
+const TRENDING_TOTAL = 15; // 3 pages × 5
+const TRENDING_PAGES = 3;
 
 export function TrendingNow() {
   const [items, setItems] = useState<TrendingItem[]>([]);
@@ -94,40 +93,17 @@ export function TrendingNow() {
   useEffect(() => {
     (async () => {
       try {
-        // Fetch pinned skills and top collections in parallel
-        const [skillsRes, collectionsRes] = await Promise.all([
-          fetch("/api/skills/trending"),
-          fetch("/api/collections?public=true"),
-        ]);
-
+        const collectionsRes = await fetch("/api/collections?public=true");
         const combined: TrendingItem[] = [];
 
-        // 1) Slots 1-4: curated brand skills
-        if (skillsRes.ok) {
-          const { skills } = await skillsRes.json();
-          const classified = (skills ?? [])
-            .slice(0, PINNED_SKILLS_COUNT)
-            .map((s: any) => {
-              const { category, model } = classifySkill({
-                name: s.name,
-                description: s.description,
-                tags: s.tags,
-              });
-              return { ...s, category, model };
-            });
-          for (const s of classified) {
-            combined.push({ type: "skill", data: s });
-          }
-        }
-
-        // 2) Slot 5: pinned "Anthropic Skills" collection, then pages 2-4
         if (collectionsRes.ok) {
           const { collections } = await collectionsRes.json();
+          // Sort descending by item_count so worst (fewest items) falls off the end
           const allCollections = (collections ?? []).sort(
             (a: any, b: any) => (b.item_count ?? 0) - (a.item_count ?? 0)
           );
 
-          // Find the pinned collection and pull it out
+          // Pin "Anthropic Skills" first
           const pinnedIdx = allCollections.findIndex(
             (c: any) =>
               c.name?.toLowerCase() === PINNED_COLLECTION_NAME.toLowerCase()
@@ -137,7 +113,7 @@ export function TrendingNow() {
             combined.push({ type: "collection", data: pinned });
           }
 
-          // Fill remaining 15 slots (pages 2-4)
+          // Fill remaining 14 slots from the top by item_count
           const rest = allCollections.slice(0, REMAINING_COLLECTIONS);
           for (const c of rest) {
             combined.push({ type: "collection", data: c });
@@ -158,7 +134,7 @@ export function TrendingNow() {
       <section className="py-6">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold tracking-tight text-content sm:text-2xl">
-            Trending Now
+            Trending Bundles
           </h2>
         </div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
@@ -185,7 +161,7 @@ export function TrendingNow() {
 
   return (
     <TrendingScrollRow
-      title="Trending Now"
+      title="Trending Bundles"
       items={track}
       pages={TRENDING_PAGES}
       seeAllHref="/explore"
@@ -563,7 +539,7 @@ function SkillCard({ skill }: { skill: TrendingSkill }) {
         <div className="mt-auto flex items-center justify-between pt-2 text-2xs text-subtle">
           <span className="flex items-center gap-1.5">
             <span className="flex items-center gap-0.5">
-              <Star className="h-3 w-3 fill-warning text-warning" />
+              <ThumbsUp className="h-3 w-3 text-brand-muted" />
               <span className="font-medium tabular-nums">
                 {formatCompact(skill.star_count)}
               </span>
@@ -706,7 +682,7 @@ function McpCard({ item }: { item: RecentItem }) {
         <div className="mt-auto flex items-center justify-between pt-2 text-2xs text-subtle">
           <span className="flex items-center gap-1.5">
             <span className="flex items-center gap-0.5">
-              <Star className="h-3 w-3 fill-warning text-warning" />
+              <ThumbsUp className="h-3 w-3 text-brand-muted" />
               <span className="font-medium tabular-nums">
                 {formatCompact(item.star_count)}
               </span>

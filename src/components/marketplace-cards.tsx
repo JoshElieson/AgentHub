@@ -5,7 +5,7 @@ import { cn, formatCompact } from "@/lib/utils";
 import { isOfficial, type SkillRow, type McpServerRow } from "@/lib/marketplace-data";
 import { CardInstalledBadge } from "@/components/card-installed-badge";
 import { ClassificationBadges } from "@/components/classification-badges";
-import { BadgeCheck, FolderGit, Download, Star, Terminal } from "lucide-react";
+import { BadgeCheck, FolderGit, Download, ThumbsUp, Terminal } from "lucide-react";
 
 /** Blue verified checkmark shown on first-party / official packages. */
 export function OfficialBadge({ className }: { className?: string }) {
@@ -91,8 +91,8 @@ export const SkillCard = memo(function SkillCard({
           count={skill.rating_count}
         />
         <span className="h-3 w-px bg-line" />
-        <span className="flex items-center gap-1 text-2xs text-subtle">
-          <Star className="h-3 w-3 fill-warning text-warning" />
+        <span className="flex items-center gap-1 text-2xs text-subtle" title="Likes">
+          <ThumbsUp className="h-3 w-3 text-brand-muted" />
           <span className="font-medium tabular-nums">{formatCompact(skill.star_count)}</span>
         </span>
         <span className="flex items-center gap-1 text-2xs text-subtle">
@@ -173,8 +173,8 @@ export const McpServerCard = memo(function McpServerCard({
           <Download className="h-3.5 w-3.5" />
           {formatCompact(server.export_count)}
         </span>
-        <span className="flex items-center gap-1" title="Stars">
-          <Star className="h-3.5 w-3.5" />
+        <span className="flex items-center gap-1" title="Likes">
+          <ThumbsUp className="h-3.5 w-3.5" />
           {formatCompact(server.star_count)}
         </span>
       </div>

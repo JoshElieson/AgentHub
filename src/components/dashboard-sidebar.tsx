@@ -6,7 +6,7 @@ import {
   LayoutDashboard,
   Package,
   Download,
-  Star,
+  Bookmark,
   FolderHeart,
   Settings,
 } from "lucide-react";
@@ -15,7 +15,7 @@ export type DashboardSection =
   | "overview"
   | "my-agents"
   | "installed"
-  | "favorites"
+  | "saved"
   | "collections"
   | "settings";
 
@@ -27,8 +27,8 @@ export const DASHBOARD_SECTIONS: {
   { id: "overview", label: "Overview", icon: <LayoutDashboard className="h-4 w-4" /> },
   { id: "my-agents", label: "My Agents", icon: <Package className="h-4 w-4" /> },
   { id: "installed", label: "Installed", icon: <Download className="h-4 w-4" /> },
-  { id: "favorites", label: "Favorites", icon: <Star className="h-4 w-4" /> },
-  { id: "collections", label: "Collections", icon: <FolderHeart className="h-4 w-4" /> },
+  { id: "saved", label: "Saved", icon: <Bookmark className="h-4 w-4" /> },
+  { id: "collections", label: "Bundles", icon: <FolderHeart className="h-4 w-4" /> },
   { id: "settings", label: "Settings", icon: <Settings className="h-4 w-4" /> },
 ];
 
