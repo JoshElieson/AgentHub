@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import type { UserCollection, UserCollectionItem } from "@/lib/types";
 import Link from "next/link";
@@ -15,18 +15,23 @@ import {
   removeCollectionItem,
   addCollectionItem,
 } from "@/lib/collections-data";
-import { formatCompact, pluralize } from "@/lib/utils";
+import { EXPORT_PLATFORMS, getPlatform } from "@/lib/export-platforms";
+import { cn, formatCompact, pluralize } from "@/lib/utils";
 import {
   ArrowLeft,
   Check,
+  Code,
   Copy,
+  Cpu,
   Download,
   ExternalLink,
+  FolderOpen,
   Layers,
   Loader2,
   Package,
   Plug,
   Plus,
+  Sparkles,
   Terminal,
   Trash2,
   X,
@@ -79,7 +84,7 @@ function UserCollectionView({ id }: { id: string }) {
             href="/collections"
             className="mt-3 text-sm font-medium text-brand-muted hover:text-brand"
           >
-            â† All collections
+            <ArrowLeft className="h-3.5 w-3.5" /> All collections
           </Link>
         </div>
       </AppShell>
@@ -380,10 +385,8 @@ function CollectionItemCard({
 }
 
 // ---------------------------------------------------------------------------
-// Install All Skills button â€” real File System Access API export
+// Install All Skills button — real File System Access API export
 // ---------------------------------------------------------------------------
-
-type ExportTarget = "antigravity" | "claude";
 
 function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
   const [showPicker, setShowPicker] = useState(false);
@@ -414,7 +417,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
     return () => document.removeEventListener("click", handler, true);
   }, [showPicker]);
 
-  const handleExport = async (target: ExportTarget) => {
+  const handleExport = async (platformId: string) => {
     if (typeof window === "undefined" || !("showDirectoryPicker" in window)) {
       setResult({
         type: "error",
@@ -425,6 +428,8 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       return;
     }
 
+    const isCustom = platformId === "custom";
+    const platform = isCustom ? null : getPlatform(platformId);
     setShowPicker(false);
     setExporting(true);
     setProgress({ done: 0, total: skillItems.length });
@@ -436,25 +441,24 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       });
 
       // 2) Resolve skills subfolder
-      const pathSegments =
-        target === "antigravity"
-          ? [".agents", "skills"]
-          : [".claude", "skills"];
-
-      const pickedDirName = directoryHandle.name;
-      let startIndex = 0;
-      for (let i = 0; i < pathSegments.length; i++) {
-        if (pickedDirName === pathSegments[i]) {
-          startIndex = i + 1;
-          break;
-        }
-      }
-
       let skillsDir = directoryHandle;
-      for (let i = startIndex; i < pathSegments.length; i++) {
-        skillsDir = await skillsDir.getDirectoryHandle(pathSegments[i], {
-          create: true,
-        });
+
+      if (!isCustom && platform) {
+        const { pathSegments } = platform;
+        const pickedDirName = directoryHandle.name;
+        let startIndex = 0;
+        for (let i = 0; i < pathSegments.length; i++) {
+          if (pickedDirName === pathSegments[i]) {
+            startIndex = i + 1;
+            break;
+          }
+        }
+
+        for (let i = startIndex; i < pathSegments.length; i++) {
+          skillsDir = await skillsDir.getDirectoryHandle(pathSegments[i], {
+            create: true,
+          });
+        }
       }
 
       // 3) Fetch full data, compile, and write each skill
@@ -521,7 +525,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
             create: true,
           });
           const writable = await fileHandle.createWritable();
-          const compiledContent = compileSkill(skill, target);
+          const compiledContent = compileSkill(skill, isCustom ? "custom" : platform!.id);
           await writable.write(compiledContent);
           await writable.close();
 
@@ -538,7 +542,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
             body: JSON.stringify({
               skillId: skill.id,
               anonId,
-              target,
+              target: isCustom ? "custom" : platform!.id,
             }),
           }).catch(() => {});
 
@@ -553,8 +557,9 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
         });
       }
 
-      const targetLabel =
-        target === "antigravity" ? ".agents/skills" : ".claude/skills";
+      const targetLabel = isCustom
+        ? directoryHandle.name
+        : platform!.pathSegments.join("/");
 
       setResult({
         type: "success",
@@ -590,7 +595,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
         {exporting ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" />
-            Exportingâ€¦
+            Exporting...
           </>
         ) : result?.type === "success" ? (
           <>
@@ -605,7 +610,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
         )}
       </Button>
 
-      {/* â”€â”€ Export target dropdown â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ——— Export target dropdown ———————————————————————————————————————— */}
       {showPicker && !exporting && (
         <div
           className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
@@ -622,39 +627,61 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
             </span>
           </div>
 
-          {/* Antigravity option */}
-          <button
-            className="group flex w-full items-center gap-3.5 px-4 py-4 text-left transition-colors hover:bg-surface-2 border-b border-line"
-            onClick={() => handleExport("antigravity")}
-          >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-brand-line bg-brand-dim text-brand transition-all group-hover:border-brand/40 group-hover:bg-brand/10">
-              <Download className="h-4.5 w-4.5" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="text-sm font-semibold text-content">
-                Export for Antigravity
-              </div>
-              <div className="mt-0.5 truncate font-mono text-2xs text-muted">
-                â†’ .agents/skills/
-              </div>
-            </div>
-            <ExternalLink className="h-3.5 w-3.5 shrink-0 text-faint opacity-0 transition-opacity group-hover:opacity-100" />
-          </button>
+          {EXPORT_PLATFORMS.map((platform, idx) => {
+            /** Platform icon helper */
+            const getIcon = (hint: string, className: string) => {
+              switch (hint) {
+                case "terminal": return <Terminal className={className} />;
+                case "code": return <Code className={className} />;
+                case "sparkles": return <Sparkles className={className} />;
+                case "cpu": return <Cpu className={className} />;
+                default: return <Download className={className} />;
+              }
+            };
 
-          {/* Claude Code option */}
+            return (
+              <button
+                key={platform.id}
+                className="group flex w-full items-center gap-3.5 px-4 py-4 text-left transition-colors hover:bg-surface-2 border-b border-line"
+                onClick={() => handleExport(platform.id)}
+              >
+                <span
+                  className={cn(
+                    "grid h-10 w-10 shrink-0 place-items-center rounded-lg border transition-all",
+                    platform.variant === "brand"
+                      ? "border-brand-line bg-brand-dim text-brand group-hover:border-brand/40 group-hover:bg-brand/10"
+                      : "border-line-strong bg-surface-2 text-content group-hover:border-line-strong group-hover:bg-surface"
+                  )}
+                >
+                  {getIcon(platform.iconHint, "h-4.5 w-4.5")}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-sm font-semibold text-content">
+                    {platform.label}
+                  </div>
+                  <div className="mt-0.5 truncate font-mono text-2xs text-muted">
+                    {platform.pathHint}
+                  </div>
+                </div>
+                <ExternalLink className="h-3.5 w-3.5 shrink-0 text-faint opacity-0 transition-opacity group-hover:opacity-100" />
+              </button>
+            );
+          })}
+
+          {/* Custom directory option */}
           <button
             className="group flex w-full items-center gap-3.5 px-4 py-4 text-left transition-colors hover:bg-surface-2"
-            onClick={() => handleExport("claude")}
+            onClick={() => handleExport("custom")}
           >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-line-strong bg-surface-2 text-content transition-all group-hover:border-line-strong group-hover:bg-surface">
-              <Terminal className="h-4.5 w-4.5" />
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-dashed border-line-strong bg-surface text-subtle transition-all group-hover:border-muted group-hover:bg-surface-2 group-hover:text-content">
+              <FolderOpen className="h-4.5 w-4.5" />
             </span>
             <div className="min-w-0 flex-1">
               <div className="text-sm font-semibold text-content">
-                Export for Claude Code
+                Other
               </div>
-              <div className="mt-0.5 truncate font-mono text-2xs text-muted">
-                â†’ .claude/skills/
+              <div className="mt-0.5 truncate text-2xs text-muted">
+                Choose any directory
               </div>
             </div>
             <ExternalLink className="h-3.5 w-3.5 shrink-0 text-faint opacity-0 transition-opacity group-hover:opacity-100" />
@@ -663,14 +690,13 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
           {/* Footer hint */}
           <div className="border-t border-line-strong bg-surface-2 px-4 py-2.5">
             <p className="text-2xs leading-relaxed text-subtle">
-              Select your project root â€” skill subfolders will be created
-              automatically.
+              Select your project root — skill subfolders will be created automatically.
             </p>
           </div>
         </div>
       )}
 
-      {/* â”€â”€ Progress overlay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* --- Progress overlay -------------------------------------------- */}
       {exporting && progress && (
         <div
           className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
@@ -682,7 +708,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
           <div className="px-4 pt-4 pb-3.5">
             <div className="flex items-center justify-between text-xs">
               <span className="font-semibold text-content">
-                Exporting skillsâ€¦
+                Exporting skills...
               </span>
               <span className="tabular-nums font-medium text-brand">
                 {progress.done}/{progress.total}
@@ -712,7 +738,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
         </div>
       )}
 
-      {/* â”€â”€ Success toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* --- Success toast --------------------------------------------- */}
       {result?.type === "success" && !exporting && (
         <div
           className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-success/30 bg-surface-3 shadow-overlay animate-fade-in-up"
@@ -737,7 +763,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
         </div>
       )}
 
-      {/* â”€â”€ Error toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* --- Error toast ----------------------------------------------- */}
       {result?.type === "error" && !exporting && (
         <div
           className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-danger/30 bg-surface-3 shadow-overlay animate-fade-in-up"

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { compileSkill } from "@/lib/skills-compiler";
+import { getPlatform } from "@/lib/export-platforms";
 import type { SkillRow } from "@/lib/supabase";
 
 export async function POST(req: Request) {
@@ -15,20 +16,15 @@ export async function POST(req: Request) {
       );
     }
 
+    // Resolve platform from registry — unknown IDs fall back to the default
+    const platform = getPlatform(target);
+
     // Sanitize name for folder name
     const folderName = name.toLowerCase().replace(/[^a-z0-9-_]/g, "-");
 
-    // Determine target path
+    // Build target path from platform's path segments
     const rootDir = process.cwd();
-    let targetDir = "";
-
-    if (target === "antigravity") {
-      targetDir = path.join(rootDir, ".agents", "skills", folderName);
-    } else if (target === "claude") {
-      targetDir = path.join(rootDir, ".claude", "skills", folderName);
-    } else {
-      return NextResponse.json({ error: "Invalid target" }, { status: 400 });
-    }
+    const targetDir = path.join(rootDir, ...platform.pathSegments, folderName);
 
     // Ensure the directory exists
     fs.mkdirSync(targetDir, { recursive: true });
@@ -51,7 +47,7 @@ export async function POST(req: Request) {
     };
 
     // Use unified compiler
-    const fileContent = compileSkill(mockSkill, target);
+    const fileContent = compileSkill(mockSkill, platform.id);
     const filePath = path.join(targetDir, "SKILL.md");
     fs.writeFileSync(filePath, fileContent, "utf-8");
 

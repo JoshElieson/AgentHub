@@ -13,6 +13,7 @@ import { supabase, type SkillRow } from "@/lib/supabase";
 import { compileSkill } from "@/lib/skills-compiler";
 import { getAnonId } from "@/lib/anon-id";
 import { useInstalled } from "@/lib/installed-context";
+import { EXPORT_PLATFORMS, getPlatform } from "@/lib/export-platforms";
 import { Button } from "@/components/ui/button";
 import { cn, formatCompact, timeAgo } from "@/lib/utils";
 import {
@@ -27,12 +28,17 @@ import {
   Check,
   Download,
   ChevronRight,
+  ChevronDown,
   BookOpen,
   Zap,
   Link2,
   Info,
   ThumbsUp,
   BarChart3,
+  Code,
+  Sparkles,
+  Cpu,
+  FolderOpen,
 } from "lucide-react";
 
 export default function SkillDetailPage() {
@@ -58,11 +64,13 @@ export default function SkillDetailPage() {
   }>({ installed: false, installedAt: null, target: null });
 
   // Export states
-  const [exportStatuses, setExportStatuses] = useState<
-    Record<string, { type: "success" | "error"; message: string }>
-  >({});
+  const [exportStatus, setExportStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
   const [isFileSystemAccessSupported, setIsFileSystemAccessSupported] = useState(false);
   const [exportingTarget, setExportingTarget] = useState<string | null>(null);
+  const [showExportPicker, setShowExportPicker] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -220,7 +228,7 @@ export default function SkillDetailPage() {
   // Record a durable per-user install (separate from the global export count)
   // so we can show "you've installed this before" everywhere.
   const recordInstall = useCallback(
-    async (target: "antigravity" | "claude") => {
+    async (target: string) => {
       if (!skillId) return;
       const installedAt = new Date().toISOString();
       // Optimistic — update local + shared state immediately.
@@ -240,124 +248,122 @@ export default function SkillDetailPage() {
     [skillId, markInstalled]
   );
 
+  // Close export picker when clicking outside
+  useEffect(() => {
+    if (!showExportPicker) return;
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-export-picker]")) {
+        setShowExportPicker(false);
+      }
+    };
+    document.addEventListener("click", handler, true);
+    return () => document.removeEventListener("click", handler, true);
+  }, [showExportPicker]);
+
+  /** Platform icon helper */
+  const getPlatformIcon = (iconHint: string, className: string) => {
+    switch (iconHint) {
+      case "terminal": return <Terminal className={className} />;
+      case "code": return <Code className={className} />;
+      case "sparkles": return <Sparkles className={className} />;
+      case "cpu": return <Cpu className={className} />;
+      default: return <Download className={className} />;
+    }
+  };
+
   /**
-   * File System Access API export — no alert() dialogs
+   * File System Access API export — registry-driven, no alert() dialogs.
+   * Pass platformId = "custom" to write directly into the user-picked folder.
    */
-  const handleFileSystemExport = async (target: "antigravity" | "claude") => {
+  const handleFileSystemExport = async (platformId: string) => {
     if (!skill || typeof window === "undefined") return;
 
-    const statusKey = `${skill.id}-${target}`;
+    const isCustom = platformId === "custom";
+    const platform = isCustom ? null : getPlatform(platformId);
+    setShowExportPicker(false);
 
     if (!("showDirectoryPicker" in window)) {
-      setExportStatuses((prev) => ({
-        ...prev,
-        [statusKey]: {
-          type: "error",
-          message: "Your browser doesn't support direct file export. Use Chrome, Edge, or Opera.",
-        },
-      }));
-      setTimeout(() => {
-        setExportStatuses((prev) => {
-          const next = { ...prev };
-          delete next[statusKey];
-          return next;
-        });
-      }, 5000);
+      setExportStatus({
+        type: "error",
+        message: "Your browser doesn't support direct file export. Use Chrome, Edge, or Opera.",
+      });
+      setTimeout(() => setExportStatus(null), 5000);
       return;
     }
 
-    setExportingTarget(statusKey);
-    setExportStatuses((prev) => ({
-      ...prev,
-      [statusKey]: { type: "success", message: "Select your project folder…" },
-    }));
+    setExportingTarget(platformId);
+    setExportStatus({ type: "success", message: "Select your target folder\u2026" });
 
     try {
-      const targetFolderDesc = target === "antigravity" ? ".agents/skills" : ".claude/skills";
-
       const directoryHandle = await (window as any).showDirectoryPicker({
         mode: "readwrite",
       });
 
-      setExportStatuses((prev) => ({
-        ...prev,
-        [statusKey]: { type: "success", message: "Writing files…" },
-      }));
+      setExportStatus({ type: "success", message: "Writing files\u2026" });
 
-      // Smart path resolution
-      const pathSegments = target === "antigravity"
-        ? [".agents", "skills"]
-        : [".claude", "skills"];
+      let targetHandle = directoryHandle;
 
-      const pickedDirName = directoryHandle.name;
-      let startIndex = 0;
-      for (let i = 0; i < pathSegments.length; i++) {
-        if (pickedDirName === pathSegments[i]) {
-          startIndex = i + 1;
-          break;
+      if (!isCustom && platform) {
+        // Smart path resolution using platform's pathSegments
+        const { pathSegments } = platform;
+        const pickedDirName = directoryHandle.name;
+        let startIndex = 0;
+        for (let i = 0; i < pathSegments.length; i++) {
+          if (pickedDirName === pathSegments[i]) {
+            startIndex = i + 1;
+            break;
+          }
+        }
+
+        for (let i = startIndex; i < pathSegments.length; i++) {
+          targetHandle = await targetHandle.getDirectoryHandle(pathSegments[i], {
+            create: true,
+          });
         }
       }
-
-      let currentHandle = directoryHandle;
-      for (let i = startIndex; i < pathSegments.length; i++) {
-        currentHandle = await currentHandle.getDirectoryHandle(pathSegments[i], {
-          create: true,
-        });
-      }
+      // For custom: targetHandle stays as the user-picked directory
 
       const folderName = skill.name.toLowerCase().replace(/[^a-z0-9-_]/g, "-");
-      const subDirHandle = await currentHandle.getDirectoryHandle(folderName, {
+      const subDirHandle = await targetHandle.getDirectoryHandle(folderName, {
         create: true,
       });
 
       const fileHandle = await subDirHandle.getFileHandle("SKILL.md", { create: true });
       const writable = await fileHandle.createWritable();
-      const compiledContent = compileSkill(skill, target);
+      const compiledContent = compileSkill(skill, isCustom ? "custom" : platform!.id);
       await writable.write(compiledContent);
       await writable.close();
 
       // Track the export (global counter) + record the per-user install.
       trackExport();
-      recordInstall(target);
+      recordInstall(isCustom ? "custom" : platform!.id);
 
-      setExportStatuses((prev) => ({
-        ...prev,
-        [statusKey]: {
-          type: "success",
-          message: `Exported to ${targetFolderDesc}/${folderName}/SKILL.md`,
-        },
-      }));
+      const pathDesc = isCustom
+        ? `${directoryHandle.name}/${folderName}`
+        : `${platform!.pathSegments.join("/")}/${folderName}`;
+      setExportStatus({
+        type: "success",
+        message: `Exported to ${pathDesc}/SKILL.md`,
+      });
 
       setTimeout(() => {
-        setExportStatuses((prev) => {
-          const next = { ...prev };
-          delete next[statusKey];
-          return next;
-        });
+        setExportStatus(null);
         setExportingTarget(null);
       }, 4000);
     } catch (err: any) {
       if (err.name === "AbortError") {
-        setExportStatuses((prev) => {
-          const next = { ...prev };
-          delete next[statusKey];
-          return next;
-        });
+        setExportStatus(null);
         setExportingTarget(null);
         return;
       }
-      setExportStatuses((prev) => ({
-        ...prev,
-        [statusKey]: { type: "error", message: err.message || "Export failed" },
-      }));
+      setExportStatus({ type: "error", message: err.message || "Export failed" });
       setTimeout(() => {
+        setExportStatus(null);
         setExportingTarget(null);
       }, 4000);
     }
   };
-
-  const antiStatus = exportStatuses[`${skillId}-antigravity`];
-  const claudeStatus = exportStatuses[`${skillId}-claude`];
 
   return (
     <AppShell>
@@ -543,70 +549,113 @@ export default function SkillDetailPage() {
                     </span>
                   )}
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* Antigravity */}
-                  <div className="flex flex-col gap-1.5">
-                    <Button
-                      variant="primary"
-                      size="md"
-                      className="w-full gap-2"
-                      disabled={exportingTarget === `${skillId}-antigravity`}
-                      onClick={() => handleFileSystemExport("antigravity")}
-                    >
-                      {exportingTarget === `${skillId}-antigravity` ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <Download className="h-4 w-4" />
-                      )}
-                      {installInfo.installed && installInfo.target === "antigravity"
-                        ? "Re-export for Antigravity"
-                        : "Export for Antigravity"}
-                    </Button>
-                    {antiStatus && (
-                      <span
-                        className={cn(
-                          "text-center font-mono text-2xs font-medium px-1",
-                          antiStatus.type === "success" ? "text-emerald-400" : "text-danger"
-                        )}
-                      >
-                        {antiStatus.message}
-                      </span>
-                    )}
-                  </div>
 
-                  {/* Claude */}
-                  <div className="flex flex-col gap-1.5">
-                    <Button
-                      variant="outline"
-                      size="md"
-                      className="w-full gap-2 text-content hover:bg-surface-3 border border-line-strong"
-                      disabled={exportingTarget === `${skillId}-claude`}
-                      onClick={() => handleFileSystemExport("claude")}
-                    >
-                      {exportingTarget === `${skillId}-claude` ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        <Download className="h-4 w-4" />
-                      )}
-                      {installInfo.installed && installInfo.target === "claude"
-                        ? "Re-export for Claude Code"
-                        : "Export for Claude Code"}
-                    </Button>
-                    {claudeStatus && (
-                      <span
-                        className={cn(
-                          "text-center font-mono text-2xs font-medium px-1",
-                          claudeStatus.type === "success" ? "text-emerald-400" : "text-danger"
-                        )}
-                      >
-                        {claudeStatus.message}
-                      </span>
+                {/* Single export button + platform dropdown */}
+                <div className="relative" data-export-picker>
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="w-full gap-2"
+                    disabled={!!exportingTarget}
+                    onClick={() => setShowExportPicker(!showExportPicker)}
+                  >
+                    {exportingTarget ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Download className="h-4 w-4" />
                     )}
-                  </div>
+                    {installInfo.installed
+                      ? "Re-export to Workspace"
+                      : "Export to Workspace"}
+                    {!exportingTarget && <ChevronDown className="h-3.5 w-3.5 ml-auto opacity-60" />}
+                  </Button>
+
+                  {/* Platform picker dropdown */}
+                  {showExportPicker && !exportingTarget && (
+                    <div
+                      className="absolute left-0 right-0 top-full z-30 mt-2 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
+                      style={{
+                        boxShadow:
+                          "0 18px 48px -16px rgba(0,0,0,0.8), 0 4px 12px -6px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <div className="flex items-center gap-2 border-b border-line-strong px-4 py-3 bg-surface-2">
+                        <Download className="h-3.5 w-3.5 text-brand" />
+                        <span className="text-xs font-semibold uppercase tracking-wider text-muted">
+                          Choose your editor
+                        </span>
+                      </div>
+
+                      {EXPORT_PLATFORMS.map((platform, idx) => (
+                        <button
+                          key={platform.id}
+                          className="group flex w-full items-center gap-3.5 px-4 py-4 text-left transition-colors hover:bg-surface-2 border-b border-line"
+                          onClick={() => handleFileSystemExport(platform.id)}
+                        >
+                          <span
+                            className={cn(
+                              "grid h-10 w-10 shrink-0 place-items-center rounded-lg border transition-all",
+                              platform.variant === "brand"
+                                ? "border-brand-line bg-brand-dim text-brand group-hover:border-brand/40 group-hover:bg-brand/10"
+                                : "border-line-strong bg-surface-2 text-content group-hover:border-line-strong group-hover:bg-surface"
+                            )}
+                          >
+                            {getPlatformIcon(platform.iconHint, "h-4.5 w-4.5")}
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <div className="text-sm font-semibold text-content">
+                              {platform.label}
+                              {installInfo.installed && installInfo.target === platform.id && (
+                                <span className="ml-2 text-2xs font-medium text-success">previously installed</span>
+                              )}
+                            </div>
+                            <div className="mt-0.5 truncate font-mono text-2xs text-muted">
+                              {platform.pathHint}
+                            </div>
+                          </div>
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0 text-faint opacity-0 transition-opacity group-hover:opacity-100" />
+                        </button>
+                      ))}
+
+                      {/* Custom directory option */}
+                      <button
+                        className="group flex w-full items-center gap-3.5 px-4 py-4 text-left transition-colors hover:bg-surface-2"
+                        onClick={() => handleFileSystemExport("custom")}
+                      >
+                        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-dashed border-line-strong bg-surface text-subtle transition-all group-hover:border-muted group-hover:bg-surface-2 group-hover:text-content">
+                          <FolderOpen className="h-4.5 w-4.5" />
+                        </span>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-semibold text-content">
+                            Other
+                          </div>
+                          <div className="mt-0.5 truncate text-2xs text-muted">
+                            Choose any directory
+                          </div>
+                        </div>
+                        <ExternalLink className="h-3.5 w-3.5 shrink-0 text-faint opacity-0 transition-opacity group-hover:opacity-100" />
+                      </button>
+
+                      <div className="border-t border-line-strong bg-surface-2 px-4 py-2.5">
+                        <p className="text-2xs leading-relaxed text-subtle">
+                          Select your project root — skill subfolders will be created automatically.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <p className="text-2xs text-faint leading-relaxed mt-2">
-                  Select your project root. We'll create the skill folder automatically.
-                </p>
+
+                {/* Status message */}
+                {exportStatus && (
+                  <p
+                    className={cn(
+                      "text-center font-mono text-2xs font-medium px-1 mt-2",
+                      exportStatus.type === "success" ? "text-emerald-400" : "text-danger"
+                    )}
+                  >
+                    {exportStatus.message}
+                  </p>
+                )}
               </div>
             </div>
 

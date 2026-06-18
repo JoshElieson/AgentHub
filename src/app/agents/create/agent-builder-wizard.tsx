@@ -33,7 +33,7 @@ import {
   MessageSquare,
   Minus,
   Plus,
-  Rocket,
+
   Settings2,
   Sparkles,
   ToggleLeft,
@@ -151,7 +151,7 @@ const STEPS = [
     n: 5,
     label: "Publish",
     hint: "Pricing & visibility",
-    icon: <Rocket className="h-4 w-4" />,
+    icon: <Sparkles className="h-4 w-4" />,
   },
 ];
 
@@ -1603,7 +1603,10 @@ function StepPublish({
             Publishing…
           </>
         ) : (
-          "Publish Agent"
+          <>
+            <Sparkles className="h-4 w-4" />
+            Publish Agent
+          </>
         )}
       </Button>
     </div>
