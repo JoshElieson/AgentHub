@@ -35,7 +35,7 @@ const wordmark = Alumni_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://nuclexa.dev"),
   title: {
-    default: "Nuclexa — The package registry for AI agents",
+    default: "Nuclexa",
     template: "%s · Nuclexa",
   },
   description:
