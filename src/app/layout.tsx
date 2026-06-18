@@ -53,6 +53,21 @@ export const metadata: Metadata = {
     description:
       "The open registry for AI agents, skills, MCP servers, workflows, and prompt packs.",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Nuclexa Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nuclexa — The package registry for AI agents",
+    description:
+      "The open registry for AI agents, skills, MCP servers, workflows, and prompt packs.",
+    images: ["/logo.png"],
   },
 };
 
