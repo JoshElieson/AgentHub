@@ -36,4 +36,18 @@ UPDATE public.mcp_servers m
        WHERE mi.server_id = m.id AND mi.anon_id = 'seed-fake-installs'), 0));
 DELETE FROM public.mcp_installs WHERE anon_id LIKE 'seed-fake-%';
 
+-- ── RATINGS ─────────────────────────────────────────────────────────────────
+-- Skill ratings are row-backed: delete fake rows (tagged seed-fake-r-…), then
+-- recompute avg_rating/rating_count from the surviving REAL ratings.
+DELETE FROM public.skill_ratings WHERE anon_id LIKE 'seed-fake-%';
+UPDATE public.skills s SET
+  avg_rating = COALESCE(
+    (SELECT round(avg(rating)::numeric, 2) FROM public.skill_ratings sr WHERE sr.skill_id = s.id), 0),
+  rating_count = COALESCE(
+    (SELECT count(*) FROM public.skill_ratings sr WHERE sr.skill_id = s.id), 0);
+
+-- MCP ratings have NO ledger table and no rate route (no real MCP ratings ever
+-- exist), so the fake column values are simply reset to zero.
+UPDATE public.mcp_servers SET avg_rating = 0, rating_count = 0;
+
 NOTIFY pgrst, 'reload schema';

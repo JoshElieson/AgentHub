@@ -1603,10 +1603,7 @@ function StepPublish({
             Publishing…
           </>
         ) : (
-          <>
-            <Rocket className="h-4 w-4" />
-            Publish Agent
-          </>
+          "Publish Agent"
         )}
       </Button>
     </div>

@@ -13,7 +13,6 @@ import {
   Search,
   Star,
   Play,
-  Sparkles,
   Filter,
   ChevronDown,
   Zap,
@@ -242,9 +241,6 @@ export function AgentsBrowseClient() {
       <div className="py-10">
         {/* ── Hero ──────────────────────────────────────────────── */}
         <div className="mb-10 text-center animate-fade-in-up">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-line bg-brand-dim shadow-glow/10">
-            <Sparkles className="h-7 w-7 text-brand" />
-          </div>
           <h1 className="text-3xl font-bold tracking-tight text-content sm:text-4xl">
             AI Agents
           </h1>
