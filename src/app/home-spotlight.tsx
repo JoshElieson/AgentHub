@@ -677,10 +677,12 @@ function SpotlightPanel({
 // ---------------------------------------------------------------------------
 // Ponytail — a bespoke spotlight themed as a code editor, because the skill it
 // sells writes code. A window title bar tops it and an editor status bar floors
-// it (both full-bleed, so there is no idle vertical space); the centre holds the
-// signature: a one-line diff where a wall of careful abstraction collapses to a
-// single green line that works. The hand-drawn portrait is the author, bled in
-// from the right and dissolved into the canvas via an edge mask. Everything is
+// it (both full-bleed, so there is no idle vertical space). The custom canvas is
+// a *ghost file*: the sprawling, over-engineered function — line-numbered and
+// greyed almost to nothing on the left — that Ponytail collapses into the single
+// green line shown in the diff. A low green pool and a depth vignette give the
+// near-black its dimension. The hand-drawn portrait is the author, bled in from
+// the right and dissolved into the canvas via an edge mask. Everything is
 // monochrome but one terminal green — restraint, like the skill itself.
 // ---------------------------------------------------------------------------
 
@@ -688,6 +690,35 @@ const PONYTAIL_CHROME = "#12161c"; // title / status bar fill
 const PONYTAIL_BORDER = "#1c2128"; // hairline rules
 const PONYTAIL_DIM = "#6b7280"; // de-emphasised code
 const PONYTAIL_RED = "#f08a8a"; // removed-line marker
+const PONYTAIL_GHOST = "#283341"; // faint background "ghost file" code
+const PONYTAIL_GUTTER = "#1b222c"; // line-number gutter ink
+const PONYTAIL_VOID = "#07090d"; // vignette floor, a hair below the canvas
+
+// The wall of abstraction the diff collapses to one line. Kept syntactically
+// plausible so it reads as a real file at a glance, then dissolves.
+const PONYTAIL_GHOST_LINES = [
+  "export function resolveCurrentUser(ctx: Context): User {",
+  "  const session = ctx.session ?? loadSession(ctx.request)",
+  "  if (!session) return buildGuest(ctx.locale, ctx.flags)",
+  "  const cached = userCache.get(session.id)",
+  "  if (cached && !cached.isStale(ctx.now)) return cached.value",
+  "  const record = reconcile(",
+  "    pipeline(session, ctx.options),",
+  "    fetchProfile(session.id),",
+  "    ctx.overrides,",
+  "  )",
+  "  if (record.kind === 'partial') {",
+  "    return hydrate(record, defaults(ctx)) ?? buildGuest(ctx)",
+  "  }",
+  "  userCache.set(session.id, new Entry(record, ctx.now))",
+  "  return normalize(record, ctx.policy)",
+  "}",
+];
+
+// The ghost file fades out to the right (before the portrait) and softly at top
+// and bottom, so it never competes with the face or the chrome bars.
+const PONYTAIL_FILE_MASK =
+  "linear-gradient(to right, #000 0%, #000 42%, transparent 60%), linear-gradient(to bottom, transparent 0%, #000 12%, #000 82%, transparent 100%)";
 
 function PonytailPanel({
   item,
@@ -735,6 +766,59 @@ function PonytailPanel({
 
       {/* Editor body */}
       <div className="relative flex flex-1 items-center">
+        {/* Ghost file — the wall of abstraction, line-numbered and greyed almost
+            to nothing, that the diff collapses to a single line. Masked to the
+            left so it never reaches the portrait. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 select-none overflow-hidden font-mono text-xs leading-[1.7] sm:text-[0.8rem]"
+          style={{
+            WebkitMaskImage: PONYTAIL_FILE_MASK,
+            WebkitMaskComposite: "source-in",
+            maskImage: PONYTAIL_FILE_MASK,
+            maskComposite: "intersect",
+          }}
+        >
+          <div className="py-9 sm:py-12 lg:py-14">
+            {PONYTAIL_GHOST_LINES.map((code, i) => (
+              <div key={i} className="flex whitespace-pre">
+                <span
+                  className="w-14 shrink-0 pr-3 text-right tabular-nums"
+                  style={{
+                    color: PONYTAIL_GUTTER,
+                    borderRight: `1px solid ${PONYTAIL_BORDER}`,
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <span className="pl-4" style={{ color: PONYTAIL_GHOST }}>
+                  {code}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Green ambient pool — light gathers low-left, where the diff and the
+            one green action live. */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(58% 50% at 20% 86%, rgba(126,231,135,0.10), transparent 70%)",
+          }}
+          aria-hidden
+        />
+
+        {/* Depth vignette — keeps the flat near-black from reading as empty. */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `radial-gradient(125% 100% at 50% 28%, transparent 46%, ${PONYTAIL_VOID} 100%)`,
+          }}
+          aria-hidden
+        />
+
         {/* Portrait — the author, bled in from the right, edges dissolved. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -753,11 +837,14 @@ function PonytailPanel({
           }}
         />
 
-        {/* Left-anchored scrim — keeps the type legible over the portrait. */}
+        {/* Centre scrim — the far left stays clear so the ghost file reads; a
+            band of canvas protects the type where it meets the portrait, then
+            clears again so the face shows. */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
-            background: `linear-gradient(to right, ${PONYTAIL_CANVAS} 0%, ${PONYTAIL_CANVAS} 48%, rgba(13,17,22,0.55) 68%, rgba(13,17,22,0) 84%)`,
+            background:
+              "linear-gradient(to right, rgba(13,17,22,0) 0%, rgba(13,17,22,0) 34%, rgba(13,17,22,0.92) 56%, rgba(13,17,22,0.5) 72%, rgba(13,17,22,0) 88%)",
           }}
           aria-hidden
         />
