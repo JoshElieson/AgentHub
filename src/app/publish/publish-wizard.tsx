@@ -63,14 +63,12 @@ import {
 // Form model
 // ---------------------------------------------------------------------------
 
-type SourcePath = "upload" | "github" | "manifest" | "template";
+type SourcePath = "github" | "manual";
 
 interface PublishForm {
   type: PackageType | null;
   source: SourcePath | null;
   githubUrl: string;
-  manifest: string;
-  template: string | null;
   name: string;
   slug: string;
   slugTouched: boolean;
@@ -92,11 +90,9 @@ const EMPTY_PERMISSIONS: Permissions = PERMISSION_KEYS.reduce((acc, k) => {
 }, {} as Permissions);
 
 const INITIAL_FORM: PublishForm = {
-  type: null,
+  type: "skill",
   source: null,
   githubUrl: "",
-  manifest: "",
-  template: null,
   name: "",
   slug: "",
   slugTouched: false,
@@ -122,11 +118,9 @@ const STEPS: {
   hint: string;
   icon: React.ReactNode;
 }[] = [
-  { n: 1, label: "Package type", hint: "What are you shipping?", icon: <Boxes className="h-4 w-4" /> },
-  { n: 2, label: "Source", hint: "Upload or import", icon: <UploadCloud className="h-4 w-4" /> },
-  { n: 3, label: "Metadata", hint: "Name, tags, platforms", icon: <FileText className="h-4 w-4" /> },
-  { n: 4, label: "Permissions", hint: "Declare access scope", icon: <Shield className="h-4 w-4" /> },
-  { n: 5, label: "Preview", hint: "Review & publish", icon: <Eye className="h-4 w-4" /> },
+  { n: 1, label: "Source", hint: "Import or manual", icon: <UploadCloud className="h-4 w-4" /> },
+  { n: 2, label: "Metadata", hint: "Name, tags, platforms", icon: <FileText className="h-4 w-4" /> },
+  { n: 3, label: "Preview", hint: "Review & publish", icon: <Eye className="h-4 w-4" /> },
 ];
 
 const SOURCE_OPTIONS: {
@@ -136,39 +130,19 @@ const SOURCE_OPTIONS: {
   icon: React.ReactNode;
 }[] = [
   {
-    value: "upload",
-    label: "Upload files",
-    description: "Drag a folder or zip of your package files.",
-    icon: <UploadCloud className="h-5 w-5" />,
-  },
-  {
     value: "github",
     label: "Import from GitHub",
     description: "Point Nuclexa at a public repository.",
     icon: <Github className="h-5 w-5" />,
   },
   {
-    value: "manifest",
-    label: "Paste manifest",
-    description: "Paste an nuclexa.json manifest directly.",
+    value: "manual",
+    label: "Manual Entry",
+    description: "Manually fill out all package fields.",
     icon: <ClipboardPaste className="h-5 w-5" />,
-  },
-  {
-    value: "template",
-    label: "Start from template",
-    description: "Scaffold from a verified starter.",
-    icon: <LayoutTemplate className="h-5 w-5" />,
   },
 ];
 
-const TEMPLATES = [
-  "Minimal Agent",
-  "MCP Server (TypeScript)",
-  "Claude Skill",
-  "Cursor Rule",
-  "Multi-step Workflow",
-  "Prompt Pack",
-];
 
 const RISK_PILL: Record<RiskLevel, { dot: string; cls: string }> = {
   low: { dot: "bg-success", cls: "bg-success-dim text-success border-success/30" },
@@ -184,6 +158,8 @@ export function PublishWizard() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<PublishForm>(INITIAL_FORM);
   const [published, setPublished] = useState(false);
+  const [checkingSlug, setCheckingSlug] = useState(false);
+  const [slugTaken, setSlugTaken] = useState(false);
 
   const update = <K extends keyof PublishForm>(key: K, value: PublishForm[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
@@ -226,28 +202,52 @@ export function PublishWizard() {
   const removeTag = (t: string) =>
     setForm((f) => ({ ...f, tags: f.tags.filter((x) => x !== t) }));
 
+  // --- Slug availability check ----------------------------------------------
+  useEffect(() => {
+    if (!form.slug || step !== 2) {
+      setSlugTaken(false);
+      setCheckingSlug(false);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setCheckingSlug(true);
+      try {
+        const res = await fetch(`/api/agents/${encodeURIComponent(form.slug)}`);
+        if (res.ok) {
+          setSlugTaken(true);
+        } else {
+          setSlugTaken(false);
+        }
+      } catch (e) {
+        // Fallback to allowing if the request fails
+        setSlugTaken(false);
+      } finally {
+        setCheckingSlug(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [form.slug, step]);
+
   // --- Per-step validation --------------------------------------------------
 
   const stepValid = useMemo(() => {
     switch (step) {
       case 1:
-        return form.type !== null;
-      case 2:
         if (!form.source) return false;
         if (form.source === "github") return form.githubUrl.trim().length > 3;
-        if (form.source === "manifest") return form.manifest.trim().length > 0;
-        if (form.source === "template") return form.template !== null;
-        return true; // upload is mock/non-functional
-      case 3:
+        return true;
+      case 2:
         return (
           form.name.trim().length > 0 &&
           form.slug.trim().length > 0 &&
+          !slugTaken &&
+          !checkingSlug &&
           form.tagline.trim().length > 0 &&
           form.platforms.length > 0
         );
-      case 4:
-        return true; // permissions optional but acknowledged
-      case 5:
+      case 3:
         return true;
       default:
         return false;
@@ -256,7 +256,7 @@ export function PublishWizard() {
 
   const goNext = () => {
     if (!stepValid) return;
-    setStep((s) => Math.min(5, s + 1));
+    setStep((s) => Math.min(3, s + 1));
   };
   const goBack = () => setStep((s) => Math.max(1, s - 1));
 
@@ -298,9 +298,8 @@ export function PublishWizard() {
             <SuccessPanel form={form} packageId={packageId} />
           ) : (
             <div className="animate-fade-in">
-              {step === 1 && <StepType form={form} update={update} />}
-              {step === 2 && <StepSource form={form} update={update} />}
-              {step === 3 && (
+              {step === 1 && <StepSource form={form} update={update} />}
+              {step === 2 && (
                 <StepMetadata
                   form={form}
                   setName={setName}
@@ -309,16 +308,11 @@ export function PublishWizard() {
                   togglePlatform={togglePlatform}
                   commitTags={commitTags}
                   removeTag={removeTag}
+                  checkingSlug={checkingSlug}
+                  slugTaken={slugTaken}
                 />
               )}
-              {step === 4 && (
-                <StepPermissions
-                  form={form}
-                  toggle={togglePermission}
-                  risk={risk}
-                />
-              )}
-              {step === 5 && (
+              {step === 3 && (
                 <StepPreview form={form} user={user} packageId={packageId} risk={risk} />
               )}
 
@@ -334,7 +328,7 @@ export function PublishWizard() {
                   Back
                 </Button>
 
-                {step < 5 ? (
+                {step < 3 ? (
                   <div className="flex items-center gap-3">
                     {!stepValid && (
                       <span className="hidden text-xs text-subtle sm:inline">
@@ -387,14 +381,14 @@ function Stepper({
       {/* Mobile: compact progress */}
       <div className="mb-2 flex items-center justify-between lg:hidden">
         <span className="text-sm font-medium text-content">
-          Step {published ? 5 : step} of 5
+          Step {published ? 3 : step} of 3
         </span>
-        <span className="text-xs text-subtle">{STEPS[Math.min(step, 5) - 1].label}</span>
+        <span className="text-xs text-subtle">{STEPS[Math.min(step, 3) - 1].label}</span>
       </div>
       <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-surface-2 lg:hidden">
         <div
           className="h-full rounded-full bg-brand transition-all duration-300"
-          style={{ width: `${((published ? 5 : step) / 5) * 100}%` }}
+          style={{ width: `${((published ? 3 : step) / 3) * 100}%` }}
         />
       </div>
 
@@ -467,7 +461,7 @@ function StepHeading({
   return (
     <div className="mb-6">
       <div className="text-2xs font-semibold uppercase tracking-wider text-brand-muted">
-        Step {step} of 5
+        Step {step} of 3
       </div>
       <h2 className="mt-1 text-xl font-semibold tracking-tight text-content">
         {title}
@@ -503,66 +497,6 @@ function Field({
 const inputCls =
   "w-full rounded-lg border border-line bg-surface-2 px-3 py-2 text-sm text-content placeholder:text-faint transition-colors focus:border-brand-line focus:outline-none focus:ring-2 focus:ring-brand/20";
 
-// ---------------------------------------------------------------------------
-// Step 1 — Package type
-// ---------------------------------------------------------------------------
-
-function StepType({
-  form,
-  update,
-}: {
-  form: PublishForm;
-  update: <K extends keyof PublishForm>(k: K, v: PublishForm[K]) => void;
-}) {
-  return (
-    <div>
-      <StepHeading
-        step={1}
-        title="What are you publishing?"
-        description="Choose the package type. This controls how it installs and where it runs."
-      />
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {PACKAGE_TYPES.map((t) => {
-          const selected = form.type === t.value;
-          return (
-            <button
-              key={t.value}
-              type="button"
-              onClick={() => update("type", t.value)}
-              aria-pressed={selected}
-              className={cn(
-                "group relative flex flex-col items-start rounded-card border p-4 text-left transition-colors duration-150",
-                selected
-                  ? "border-brand bg-brand-dim"
-                  : "border-line bg-surface hover:border-line-strong hover:bg-surface-2"
-              )}
-            >
-              <div className="flex w-full items-start justify-between gap-2">
-                <TypeBadge type={t.value} />
-                <span
-                  className={cn(
-                    "grid h-5 w-5 place-items-center rounded-full border transition-colors",
-                    selected
-                      ? "border-brand bg-brand text-brand-fg"
-                      : "border-line bg-surface-2"
-                  )}
-                >
-                  {selected && <Check className="h-3 w-3" />}
-                </span>
-              </div>
-              <span className="mt-3 text-sm font-semibold text-content">
-                {t.label}
-              </span>
-              <span className="mt-1 text-xs leading-relaxed text-muted">
-                {t.description}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Step 2 — Source
@@ -578,7 +512,7 @@ function StepSource({
   return (
     <div>
       <StepHeading
-        step={2}
+        step={1}
         title="Add your package source"
         description="Pick how you want to bring your files in. You can change this later."
       />
@@ -625,23 +559,6 @@ function StepSource({
       {/* Path-specific panel */}
       {form.source && (
         <div className="mt-5 animate-slide-up">
-          {form.source === "upload" && (
-            <div className="grid place-items-center rounded-card border-2 border-dashed border-line bg-surface-2/40 px-6 py-12 text-center transition-colors hover:border-line-strong">
-              <span className="grid h-12 w-12 place-items-center rounded-xl border border-line bg-surface-2 text-brand-muted">
-                <UploadCloud className="h-6 w-6" />
-              </span>
-              <p className="mt-4 text-sm font-medium text-content">
-                Drag &amp; drop your package folder
-              </p>
-              <p className="mt-1 text-xs text-subtle">
-                or click to browse · .zip, SKILL.md, nuclexa.json — up to 25 MB
-              </p>
-              <Button variant="secondary" size="sm" className="mt-4" type="button">
-                Browse files
-              </Button>
-            </div>
-          )}
-
           {form.source === "github" && (
             <div className="card p-4">
               <Field
@@ -669,46 +586,11 @@ function StepSource({
             </div>
           )}
 
-          {form.source === "manifest" && (
+          {form.source === "manual" && (
             <div className="card p-4">
-              <Field label="nuclexa.json" required>
-                <textarea
-                  value={form.manifest}
-                  onChange={(e) => update("manifest", e.target.value)}
-                  rows={8}
-                  placeholder={'{\n  "name": "my-agent",\n  "type": "agent",\n  "version": "0.1.0"\n}'}
-                  className={cn(inputCls, "font-mono text-xs leading-relaxed")}
-                />
-              </Field>
-            </div>
-          )}
-
-          {form.source === "template" && (
-            <div className="card p-4">
-              <div className="text-sm font-medium text-content">
-                Choose a starter
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {TEMPLATES.map((t) => {
-                  const selected = form.template === t;
-                  return (
-                    <button
-                      key={t}
-                      type="button"
-                      onClick={() => update("template", t)}
-                      aria-pressed={selected}
-                      className={cn(
-                        "rounded-md border px-3 py-1.5 text-xs font-medium transition-colors",
-                        selected
-                          ? "border-brand-line bg-brand-dim text-brand-muted"
-                          : "border-line bg-surface-2 text-muted hover:border-line-strong hover:text-content"
-                      )}
-                    >
-                      {t}
-                    </button>
-                  );
-                })}
-              </div>
+              <p className="text-sm text-subtle">
+                You can manually fill out all of the fields in the following steps.
+              </p>
             </div>
           )}
         </div>
@@ -729,19 +611,23 @@ function StepMetadata({
   togglePlatform,
   commitTags,
   removeTag,
+  checkingSlug,
+  slugTaken,
 }: {
   form: PublishForm;
   setName: (v: string) => void;
   setSlug: (v: string) => void;
   update: <K extends keyof PublishForm>(k: K, v: PublishForm[K]) => void;
   togglePlatform: (p: Platform) => void;
-  commitTags: (raw: string) => void;
-  removeTag: (t: string) => void;
+  commitTags: (v: string) => void;
+  removeTag: (v: string) => void;
+  checkingSlug?: boolean;
+  slugTaken?: boolean;
 }) {
   return (
     <div>
       <StepHeading
-        step={3}
+        step={2}
         title="Describe your package"
         description="This is what people see on your listing and in search results."
       />
@@ -757,19 +643,33 @@ function StepMetadata({
               className={inputCls}
             />
           </Field>
-          <Field label="Slug" required hint="url & install id">
-            <div className="flex items-center rounded-lg border border-line bg-surface-2 focus-within:border-brand-line focus-within:ring-2 focus-within:ring-brand/20">
-              <span className="pl-3 font-mono text-xs text-faint">
-                nuclexa/
-              </span>
+          <Field label="Slug" required hint="unique identifier">
+            <div className={cn(
+              "flex items-center rounded-lg border bg-surface-2 focus-within:border-brand-line focus-within:ring-2 focus-within:ring-brand/20",
+              slugTaken ? "border-danger text-danger" : "border-line"
+            )}>
               <input
                 type="text"
                 value={form.slug}
                 onChange={(e) => setSlug(e.target.value)}
                 placeholder="security-review"
-                className="w-full bg-transparent py-2 pr-3 font-mono text-sm text-content placeholder:text-faint focus:outline-none"
+                className="w-full bg-transparent px-3 py-2 font-mono text-sm text-content placeholder:text-faint focus:outline-none"
               />
+              {form.slug.trim().length > 0 && (
+                <div className="pr-3 flex items-center">
+                  {checkingSlug ? (
+                    <span className="h-4 w-4 animate-spin rounded-full border-2 border-brand border-r-transparent" />
+                  ) : slugTaken ? (
+                    <X className="h-4 w-4 text-danger" />
+                  ) : (
+                    <Check className="h-4 w-4 text-success" />
+                  )}
+                </div>
+              )}
             </div>
+            {slugTaken && (
+              <p className="mt-1.5 text-xs font-medium text-danger">This slug is already taken.</p>
+            )}
           </Field>
         </div>
 
@@ -930,104 +830,6 @@ function StepMetadata({
   );
 }
 
-// ---------------------------------------------------------------------------
-// Step 4 — Permissions
-// ---------------------------------------------------------------------------
-
-function StepPermissions({
-  form,
-  toggle,
-  risk,
-}: {
-  form: PublishForm;
-  toggle: (k: PermissionKey) => void;
-  risk: RiskLevel;
-}) {
-  const hasHigh = PERMISSION_KEYS.some(
-    (k) => form.permissions[k] && PERMISSION_META[k].risk === "high"
-  );
-
-  return (
-    <div>
-      <StepHeading
-        step={4}
-        title="Declare required permissions"
-        description="Be honest about what your package needs. Users see this scope before they install."
-      />
-
-      {/* Live aggregate */}
-      <div className="mb-5 flex items-center justify-between rounded-card border border-line bg-surface-2 px-4 py-3">
-        <div className="flex items-center gap-2 text-sm text-muted">
-          <ShieldCheck className="h-4 w-4 text-brand-muted" />
-          Aggregated risk level
-        </div>
-        <RiskBadge risk={risk} />
-      </div>
-
-      <div className="card divide-y divide-line overflow-hidden">
-        {PERMISSION_KEYS.map((k) => {
-          const m = PERMISSION_META[k];
-          const checked = form.permissions[k];
-          const pill = RISK_PILL[m.risk];
-          return (
-            <label
-              key={k}
-              className={cn(
-                "flex cursor-pointer items-start gap-3 px-4 py-3 transition-colors hover:bg-surface-2",
-                checked && "bg-surface-2/60"
-              )}
-            >
-              <span
-                className={cn(
-                  "mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md border transition-colors",
-                  checked
-                    ? "border-brand bg-brand text-brand-fg"
-                    : "border-line-strong bg-surface-2"
-                )}
-              >
-                {checked && <Check className="h-3.5 w-3.5" />}
-              </span>
-              <input
-                type="checkbox"
-                checked={checked}
-                onChange={() => toggle(k)}
-                className="sr-only"
-              />
-              <span className="min-w-0 flex-1">
-                <span className="flex items-center gap-2 text-sm font-medium text-content">
-                  {m.label}
-                  <span
-                    className={cn(
-                      "inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-2xs font-medium capitalize leading-none",
-                      pill.cls
-                    )}
-                  >
-                    <span className={cn("h-1.5 w-1.5 rounded-full", pill.dot)} />
-                    {RISK_LABELS[m.risk]}
-                  </span>
-                </span>
-                <span className="mt-0.5 block text-xs text-subtle">
-                  {m.description}
-                </span>
-              </span>
-            </label>
-          );
-        })}
-      </div>
-
-      {hasHigh && (
-        <div className="mt-4 flex items-start gap-2 rounded-card border border-danger/30 bg-danger-dim/50 px-4 py-3 text-xs text-danger animate-fade-in">
-          <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-          <span>
-            You&apos;ve requested <strong>high-risk</strong> permissions. These
-            packages get extra scrutiny in review, and users are warned before
-            installing. Only request what you genuinely need.
-          </span>
-        </div>
-      )}
-    </div>
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Step 5 — Preview & publish
@@ -1047,7 +849,7 @@ function StepPreview({
   return (
     <div>
       <StepHeading
-        step={5}
+        step={3}
         title="Preview & publish"
         description="Here's how your listing will appear. Publishing creates v0.1.0."
       />
