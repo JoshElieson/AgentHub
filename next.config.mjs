@@ -16,6 +16,17 @@ const nextConfig = {
   // Keep builds resilient for the MVP skeleton — lint/types are run via dedicated scripts.
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: false },
+  experimental: {
+    outputFileTracingExcludes: {
+      "**/*": [
+        ".next/cache/**/*",
+        ".git/**/*",
+        ".agents/**/*",
+        ".claude/**/*",
+        "scripts/**/*",
+      ],
+    },
+  },
 };
 
 export default nextConfig;
