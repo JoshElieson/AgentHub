@@ -337,7 +337,7 @@ export function AgentBuilderWizard() {
               <span className="text-base font-medium text-muted">credits</span>
             </p>
           </div>
-          <div className="mt-8 flex items-center justify-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Button
               variant="primary"
               size="lg"
@@ -1197,7 +1197,7 @@ function StepIO({
       {/* Interaction mode */}
       <div>
         <Label>Interaction mode</Label>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {(
             [
               { value: "chat", label: "Chat", desc: "Natural language conversation", icon: <MessageSquare className="h-4 w-4" /> },
@@ -1266,7 +1266,7 @@ function StepIO({
                   key={widget.id}
                   className="flex items-start gap-2 rounded-xl border border-line bg-surface p-3"
                 >
-                  <div className="grid flex-1 grid-cols-3 gap-2">
+                  <div className="grid flex-1 min-w-0 grid-cols-1 sm:grid-cols-3 gap-2">
                     <TextInput
                       value={widget.label}
                       onChange={(v) => updateWidget(idx, { label: v })}

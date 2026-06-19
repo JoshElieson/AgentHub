@@ -117,7 +117,7 @@ export function CreateCollectionModal({
       {/* Panel */}
       <div
         className={cn(
-          "relative z-10 mx-4 flex w-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-overlay animate-scale-in",
+          "relative z-10 mx-4 flex max-h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-overlay animate-scale-in",
           step === 1 ? "max-w-lg" : "max-w-2xl"
         )}
       >

@@ -85,7 +85,7 @@ export default async function HomePage() {
   return (
     <AppShell fullWidth>
       {/* Typewriter hero — headline types itself in above everything else */}
-      <section className="mx-auto w-full max-w-site px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-32 lg:pt-36">
+      <section className="mx-auto w-full max-w-site px-4 pb-10 pt-16 sm:px-6 sm:pb-14 sm:pt-32 lg:pt-36">
         <TypewriterHero />
       </section>
 

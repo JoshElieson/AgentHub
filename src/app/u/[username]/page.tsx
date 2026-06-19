@@ -241,9 +241,9 @@ function ProfileHeader({
                 href={creator.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-brand-muted transition-colors hover:text-brand"
+                className="inline-flex max-w-full items-center gap-1.5 break-all text-brand-muted transition-colors hover:text-brand"
               >
-                <Globe className="h-3.5 w-3.5" />
+                <Globe className="h-3.5 w-3.5 shrink-0" />
                 {creator.website.replace(/^https?:\/\//, "")}
               </a>
             )}

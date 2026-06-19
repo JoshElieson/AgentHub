@@ -43,7 +43,7 @@ export function compatFromPlatforms(platforms: Platform[]): CompatibilityRow[] {
 
 export function CompatibilityTable({ rows }: { rows: CompatibilityRow[] }) {
   return (
-    <div className="card overflow-hidden">
+    <div className="card overflow-x-auto sm:overflow-hidden">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-line bg-surface-2 text-left">

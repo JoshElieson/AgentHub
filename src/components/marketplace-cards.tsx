@@ -34,7 +34,7 @@ export const SkillCard = memo(function SkillCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
+        "group relative flex flex-col rounded-card border border-line bg-surface p-4 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5 sm:p-5",
         className
       )}
     >
@@ -88,7 +88,7 @@ export const SkillCard = memo(function SkillCard({
         </div>
       )}
 
-      <div className="mt-auto flex items-center gap-3 border-t border-line/60 pt-3">
+      <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-line/60 pt-3 sm:gap-3">
         <RatingStars
           rating={skill.avg_rating}
           size="sm"
@@ -125,7 +125,7 @@ export const McpServerCard = memo(function McpServerCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col rounded-card border border-line bg-surface p-5 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5",
+        "group relative flex flex-col rounded-card border border-line bg-surface p-4 transition-all duration-300 hover:border-brand-line hover:shadow-glow/5 sm:p-5",
         className
       )}
     >
@@ -180,7 +180,7 @@ export const McpServerCard = memo(function McpServerCard({
         </div>
       )}
 
-      <div className="mt-5 flex items-center gap-3 border-t border-line pt-4 text-xs text-faint">
+      <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-line pt-4 text-xs text-faint sm:gap-3">
         <span className="flex items-center gap-1" title="Exports">
           <Download className="h-3.5 w-3.5" />
           {formatCompact(server.export_count)}

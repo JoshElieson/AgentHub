@@ -5,7 +5,7 @@ import { SearchX } from "lucide-react";
 export default function NotFound() {
   return (
     <AppShell>
-      <div className="flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
+      <div className="flex min-h-[60vh] flex-col items-center justify-center py-12 text-center sm:py-20">
         <div className="grid h-14 w-14 place-items-center rounded-2xl border border-line bg-surface-2 text-muted">
           <SearchX className="h-7 w-7" />
         </div>
@@ -17,7 +17,7 @@ export default function NotFound() {
           The agent, page, or resource you&apos;re looking for doesn&apos;t exist
           or may have been moved.
         </p>
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/explore" variant="primary">
             Explore the marketplace
           </ButtonLink>

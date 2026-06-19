@@ -299,12 +299,12 @@ export default async function AgentDetailPage({
   return (
     <AppShell>
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-1.5 pt-6 text-xs text-subtle">
-        <Link href="/explore" className="hover:text-content">
+      <nav className="flex min-w-0 items-center gap-1.5 pt-6 text-xs text-subtle">
+        <Link href="/explore" className="shrink-0 hover:text-content">
           Explore
         </Link>
-        <span className="text-faint">/</span>
-        <span className="font-mono text-muted">{agent.packageId}</span>
+        <span className="shrink-0 text-faint">/</span>
+        <span className="truncate font-mono text-muted">{agent.packageId}</span>
       </nav>
 
       {/* ---- Header ---------------------------------------------------- */}

@@ -791,7 +791,7 @@ function PonytailPanel({
 
         {/* Wordmark — heavy, tight, bone-white */}
         <h2
-          className="mt-5 text-6xl leading-[0.9] sm:text-7xl lg:text-8xl"
+          className="mt-5 text-5xl leading-[0.9] sm:text-7xl lg:text-8xl"
           style={{ ...PONYTAIL_TITLE, color: PONYTAIL_INK }}
         >
           Ponytail
@@ -1445,7 +1445,7 @@ function CloudflarePanel({
         </div>
 
         {/* Wordmark — "Cloudflare" in the brand orange gradient, "Skills" in ink */}
-        <h2 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+        <h2 className="mt-5 text-4xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
           <span
             style={{
               backgroundImage: `linear-gradient(135deg, ${CF_ORANGE_LT}, ${CF_ORANGE} 55%, ${CF_ORANGE_DK})`,
@@ -1788,7 +1788,7 @@ function BrainstormPanel({
 
         {/* Wordmark — editorial serif */}
         <h2
-          className="mt-5 text-5xl leading-[0.95] sm:text-6xl lg:text-[4.25rem]"
+          className="mt-5 text-4xl leading-[0.95] sm:text-6xl lg:text-[4.25rem]"
           style={{
             fontFamily: BS_SERIF,
             fontWeight: 600,

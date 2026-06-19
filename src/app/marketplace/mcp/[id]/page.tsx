@@ -154,7 +154,7 @@ export default function McpDetailPage() {
 
   return (
     <AppShell>
-      <div className="mx-auto max-w-5xl px-6 py-10">
+      <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
         {/* ── Breadcrumb ──────────────────────────────────────────── */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-faint animate-fade-in">
           <Link
@@ -218,7 +218,7 @@ export default function McpDetailPage() {
             {/* ── Header Card (elevated) ─────────────────────────── */}
             <div className="rounded-2xl border border-line bg-surface-2 p-6 sm:p-8 border-t-2 border-t-brand/50">
               {/* Title Row */}
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-3">
                     <h1 className="text-2xl font-bold tracking-tight text-content sm:text-3xl">
@@ -373,7 +373,7 @@ export default function McpDetailPage() {
                       {Object.entries(server.env_vars).map(([key, value]) => (
                         <div key={key} className="flex flex-col gap-1 rounded-lg border border-line bg-surface-2 p-3">
                           <code className="text-xs font-bold text-brand-muted">{key}</code>
-                          <span className="text-xs text-muted font-mono bg-surface-3 px-2 py-1 rounded inline-block max-w-max border border-line">
+                          <span className="text-xs text-muted font-mono bg-surface-3 px-2 py-1 rounded inline-block max-w-full break-all sm:max-w-max sm:break-normal border border-line">
                             {String(value)}
                           </span>
                         </div>

@@ -27,7 +27,7 @@ export default function Error({
       <p className="mt-2 max-w-md text-muted">
         An unexpected error occurred while rendering this page.
       </p>
-      <div className="mt-6 flex gap-3">
+      <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Button variant="primary" onClick={reset}>
           Try again
         </Button>

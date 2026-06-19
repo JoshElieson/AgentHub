@@ -236,7 +236,7 @@ export function NewlyUploaded() {
             Newly Uploaded
           </h2>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
           {Array.from({ length: PER_PAGE }, (_, i) => (
             <div
               key={i}
@@ -328,7 +328,22 @@ function TrendingScrollRow({
         )}
       </div>
 
-      <div className="relative">
+      {/* Mobile (<sm): a native, swipeable snap-scrolling strip — one-and-a-bit
+          cards in view at a phone width, instead of five crammed across ~375px.
+          The paged transform carousel below is desktop/tablet only. */}
+      <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 no-scrollbar sm:hidden">
+        {items.map((item, i) => (
+          <div key={i} className="w-[82%] shrink-0 snap-start">
+            {item.type === "skill" ? (
+              <SkillCard skill={item.data} />
+            ) : (
+              <CollectionCard collection={item.data} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="relative hidden sm:block">
         <div className="overflow-hidden">
           <div
             className={
@@ -377,7 +392,7 @@ function TrendingScrollRow({
       </div>
 
       {/* Dot indicators */}
-      <div className="mt-4 flex items-center justify-center gap-2">
+      <div className="mt-4 hidden items-center justify-center gap-2 sm:flex">
         {Array.from({ length: pages }, (_, i) => {
           const isActive = i === activePage;
           return (
@@ -769,7 +784,21 @@ function NewlyUploadedScrollRow({
         </h2>
       </div>
 
-      <div className="relative">
+      {/* Mobile (<sm): native swipeable snap-scrolling strip. The paged
+          transform carousel below is desktop/tablet only. */}
+      <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 no-scrollbar sm:hidden">
+        {items.map((item, i) => (
+          <div key={`m-${item.id}-${i}`} className="w-[82%] shrink-0 snap-start">
+            {item.kind === "mcp" ? (
+              <McpCard item={item} />
+            ) : (
+              <SkillCard skill={item as unknown as TrendingSkill} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="relative hidden sm:block">
         <div className="overflow-hidden">
           <div
             className={
@@ -822,7 +851,7 @@ function NewlyUploadedScrollRow({
       </div>
 
       {/* Dot indicators */}
-      <div className="mt-4 flex items-center justify-center gap-2">
+      <div className="mt-4 hidden items-center justify-center gap-2 sm:flex">
         {Array.from({ length: pages }, (_, i) => {
           const isActive = i === activePage;
           return (

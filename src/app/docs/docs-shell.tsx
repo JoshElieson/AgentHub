@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { BookOpen } from "lucide-react";
+import { BookOpen, ChevronDown } from "lucide-react";
 import { DOCS } from "./_content";
 
 /**
@@ -34,10 +34,12 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
             </Link>
 
             <nav aria-label="Docs navigation">
-              <p className="px-3 pb-2 pt-3 text-2xs font-semibold uppercase tracking-wide text-faint">
-                Guides
-              </p>
-              <ul className="space-y-0.5">
+              <details open className="[&[open]>summary_.docs-nav-chevron]:rotate-180">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-3 pb-2 pt-3 text-2xs font-semibold uppercase tracking-wide text-faint lg:pointer-events-none [&::-webkit-details-marker]:hidden lg:[&>.docs-nav-chevron]:hidden">
+                  Guides
+                  <ChevronDown className="docs-nav-chevron h-3.5 w-3.5 transition-transform lg:hidden" />
+                </summary>
+                <ul className="space-y-0.5">
                 {DOCS.map((doc, i) => {
                   const href = `/docs/${doc.slug}`;
                   const active = pathname === href;
@@ -68,7 +70,8 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                     </li>
                   );
                 })}
-              </ul>
+                </ul>
+              </details>
             </nav>
           </div>
         </aside>

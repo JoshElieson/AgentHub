@@ -124,7 +124,7 @@ function AgentCard({ agent }: { agent: BrowseAgent }) {
       )}
 
       {/* Footer stats */}
-      <div className="mt-4 flex items-center gap-3 border-t border-line/60 pt-3">
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-line/60 pt-3 sm:flex-nowrap">
         {/* Rating */}
         <span className="flex items-center gap-1 text-2xs text-subtle">
           <Star className="h-3 w-3 fill-warning text-warning" />
@@ -248,7 +248,7 @@ export function AgentsBrowseClient() {
             Build your own agents or run community-created ones instantly.
             Pay only for what you use with credits.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <ButtonLink href="/agents/create" variant="primary" size="lg" className="gap-2">
               <Plus className="h-4 w-4" />
               Create Agent

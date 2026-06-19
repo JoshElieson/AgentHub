@@ -613,7 +613,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       {/* ——— Export target dropdown ———————————————————————————————————————— */}
       {showPicker && !exporting && (
         <div
-          className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
+          className="absolute left-0 top-full z-30 mt-2 w-[min(20rem,calc(100vw-2rem))] sm:w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
           style={{
             boxShadow:
               "0 18px 48px -16px rgba(0,0,0,0.8), 0 4px 12px -6px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
@@ -699,7 +699,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       {/* --- Progress overlay -------------------------------------------- */}
       {exporting && progress && (
         <div
-          className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
+          className="absolute left-0 top-full z-30 mt-2 w-[min(20rem,calc(100vw-2rem))] sm:w-80 overflow-hidden rounded-lg border border-line-strong bg-surface-3 shadow-overlay animate-fade-in-up"
           style={{
             boxShadow:
               "0 18px 48px -16px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05)",
@@ -741,7 +741,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       {/* --- Success toast --------------------------------------------- */}
       {result?.type === "success" && !exporting && (
         <div
-          className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-success/30 bg-surface-3 shadow-overlay animate-fade-in-up"
+          className="absolute left-0 top-full z-30 mt-2 w-[min(20rem,calc(100vw-2rem))] sm:w-80 overflow-hidden rounded-lg border border-success/30 bg-surface-3 shadow-overlay animate-fade-in-up"
           style={{
             boxShadow:
               "0 18px 48px -16px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(34,197,94,0.08)",
@@ -766,7 +766,7 @@ function InstallAllSkills({ items }: { items: UserCollectionItem[] }) {
       {/* --- Error toast ----------------------------------------------- */}
       {result?.type === "error" && !exporting && (
         <div
-          className="absolute left-0 top-full z-30 mt-2 w-80 overflow-hidden rounded-lg border border-danger/30 bg-surface-3 shadow-overlay animate-fade-in-up"
+          className="absolute left-0 top-full z-30 mt-2 w-[min(20rem,calc(100vw-2rem))] sm:w-80 overflow-hidden rounded-lg border border-danger/30 bg-surface-3 shadow-overlay animate-fade-in-up"
           style={{
             boxShadow:
               "0 18px 48px -16px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(239,68,68,0.08)",
@@ -889,7 +889,7 @@ function AddItemsSection({
   };
 
   return (
-    <div className="mb-8 rounded-xl border border-brand-line bg-brand-dim/10 p-6">
+    <div className="mb-8 rounded-xl border border-brand-line bg-brand-dim/10 p-4 sm:p-6">
       <div className="mb-4 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-content">
           Add {collection.kind === "skills" ? "skills" : "MCP servers"}

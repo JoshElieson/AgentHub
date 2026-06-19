@@ -69,7 +69,7 @@ export function PackageTree({ files }: { files: AgentFile[] }) {
       </div>
 
       {/* Preview */}
-      <div className="card flex min-h-[420px] flex-col overflow-hidden">
+      <div className="card flex min-h-[260px] flex-col overflow-hidden sm:min-h-[420px]">
         <div className="flex items-center justify-between border-b border-line bg-surface-2 px-3.5 py-2">
           <div className="flex items-center gap-2">
             {current && fileIcon(current)}
