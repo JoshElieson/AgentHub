@@ -48,6 +48,8 @@ interface AgentMeta {
   avgRating: number;
   ratingCount: number;
   starCount: number;
+  enabledDestinations?: string[];
+  googleDriveFolderName?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -87,6 +89,7 @@ export function AgentPlayground() {
   const [loadingMeta, setLoadingMeta] = useState(true);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
+  const [runnerDriveFolder, setRunnerDriveFolder] = useState("");
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -100,6 +103,9 @@ export function AgentPlayground() {
           setAgent(null);
         } else {
           setAgent(data);
+          if (data.googleDriveFolderName) {
+            setRunnerDriveFolder(data.googleDriveFolderName);
+          }
         }
       })
       .catch(() => setAgent(null))
@@ -109,8 +115,8 @@ export function AgentPlayground() {
   // Vercel AI SDK v6 useChat — DefaultChatTransport for proper
   // UIMessage serialization and SSE parsing
   const transport = useMemo(
-    () => new DefaultChatTransport({ api: "/api/agents/run", body: { slug } }),
-    [slug]
+    () => new DefaultChatTransport({ api: "/api/agents/run", body: { slug, runnerDriveFolder } }),
+    [slug, runnerDriveFolder]
   );
 
   const {
@@ -409,6 +415,18 @@ export function AgentPlayground() {
 
         {/* ── Input bar ────────────────────────────────────────────── */}
         <div className="shrink-0 border-t border-line bg-surface-2/60 px-4 py-3 sm:px-6">
+          {agent.enabledDestinations?.includes("google-drive") && (
+            <div className="mx-auto max-w-4xl mb-3 flex items-center gap-2">
+              <span className="text-xs font-medium text-muted whitespace-nowrap">Drive Output Path:</span>
+              <input
+                type="text"
+                value={runnerDriveFolder}
+                onChange={(e) => setRunnerDriveFolder(e.target.value)}
+                placeholder="e.g. AgentHub/Reports"
+                className="w-full max-w-sm rounded border border-line bg-surface px-2 py-1 text-xs text-content placeholder:text-faint focus:border-brand-line focus:outline-none"
+              />
+            </div>
+          )}
           <div className="mx-auto flex max-w-4xl items-end gap-2">
             <div className="relative flex-1">
               <textarea

@@ -81,8 +81,13 @@ type TrendingItem =
 // Trending Bundles — 15 top collections across 3 pages
 // ---------------------------------------------------------------------------
 
-const PINNED_COLLECTION_NAME = "Anthropic Skills";
-const REMAINING_COLLECTIONS = 14; // 15 total minus 1 pinned
+// Pinned collections in priority order (first = first card on the page).
+const PINNED_COLLECTION_NAMES = [
+  "Scientific Research Skills",
+  "Anthropic Skills",
+];
+// Collections to exclude entirely from the trending carousel.
+const EXCLUDED_COLLECTION_NAMES = ["Expo Skills"];
 const TRENDING_TOTAL = 15; // 3 pages × 5
 const TRENDING_PAGES = 3;
 
@@ -98,23 +103,36 @@ export function TrendingNow() {
 
         if (collectionsRes.ok) {
           const { collections } = await collectionsRes.json();
+
+          // Remove excluded collections
+          const excludedLower = EXCLUDED_COLLECTION_NAMES.map((n) =>
+            n.toLowerCase()
+          );
+          const filtered = (collections ?? []).filter(
+            (c: any) =>
+              !excludedLower.includes((c.name ?? "").toLowerCase())
+          );
+
           // Sort descending by item_count so worst (fewest items) falls off the end
-          const allCollections = (collections ?? []).sort(
+          const allCollections = filtered.sort(
             (a: any, b: any) => (b.item_count ?? 0) - (a.item_count ?? 0)
           );
 
-          // Pin "Anthropic Skills" first
-          const pinnedIdx = allCollections.findIndex(
-            (c: any) =>
-              c.name?.toLowerCase() === PINNED_COLLECTION_NAME.toLowerCase()
-          );
-          if (pinnedIdx >= 0) {
-            const [pinned] = allCollections.splice(pinnedIdx, 1);
-            combined.push({ type: "collection", data: pinned });
+          // Pin priority collections first (in order)
+          for (const pinnedName of PINNED_COLLECTION_NAMES) {
+            const idx = allCollections.findIndex(
+              (c: any) =>
+                c.name?.toLowerCase() === pinnedName.toLowerCase()
+            );
+            if (idx >= 0) {
+              const [pinned] = allCollections.splice(idx, 1);
+              combined.push({ type: "collection", data: pinned });
+            }
           }
 
-          // Fill remaining 14 slots from the top by item_count
-          const rest = allCollections.slice(0, REMAINING_COLLECTIONS);
+          // Fill remaining slots from the top by item_count
+          const remaining = TRENDING_TOTAL - combined.length;
+          const rest = allCollections.slice(0, remaining);
           for (const c of rest) {
             combined.push({ type: "collection", data: c });
           }

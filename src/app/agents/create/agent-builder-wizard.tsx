@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
@@ -39,6 +40,7 @@ import {
   ToggleLeft,
   Trash2,
   Globe,
+  HardDrive,
   Webhook,
   Wrench,
   Zap,
@@ -80,6 +82,7 @@ interface AgentForm {
   outputFormat: OutputFormat;
   enabledDestinations: OutputDestinationType[];
   webhookUrl: string;
+  googleDriveFolderName: string;
 
   // Step 5
   creatorFeeCredits: number;
@@ -113,6 +116,7 @@ const INITIAL: AgentForm = {
   outputFormat: "markdown",
   enabledDestinations: ["in-app", "download"],
   webhookUrl: "",
+  googleDriveFolderName: "",
 
   creatorFeeCredits: 0,
   visibility: "public",
@@ -220,6 +224,7 @@ const DESTINATION_OPTIONS: {
   { value: "in-app", label: "Show in app", icon: <Eye className="h-4 w-4" />, always: true },
   { value: "download", label: "Download as file", icon: <Download className="h-4 w-4" /> },
   { value: "webhook", label: "Webhook", icon: <Webhook className="h-4 w-4" /> },
+  { value: "google-drive", label: "Google Drive", icon: <HardDrive className="h-4 w-4" /> },
 ];
 
 const WIDGET_TYPE_OPTIONS: { value: InputWidgetType; label: string }[] = [
@@ -265,6 +270,26 @@ function estimateCredits(form: AgentForm): number {
 export function AgentBuilderWizard() {
   const router = useRouter();
   const [step, setStep] = useState(1);
+  const [hasDriveAccess, setHasDriveAccess] = useState(false);
+  const [isCheckingDrive, setIsCheckingDrive] = useState(false);
+
+  useEffect(() => {
+    const checkDriveStatus = async () => {
+      setIsCheckingDrive(true);
+      try {
+        const res = await fetch("/api/auth/drive-status");
+        if (res.ok) {
+          const data = await res.json();
+          setHasDriveAccess(data.hasDriveAccess);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setIsCheckingDrive(false);
+      }
+    };
+    checkDriveStatus();
+  }, []);
   const [form, setForm] = useState<AgentForm>({ ...INITIAL });
   const [publishing, setPublishing] = useState(false);
   const [published, setPublished] = useState(false);
@@ -1410,6 +1435,45 @@ function StepIO({
               onChange={(e) => update({ webhookUrl: e.target.value })}
               className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-content placeholder:text-faint focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
             />
+          </div>
+        )}
+        {form.enabledDestinations.includes("google-drive") && (
+          <div className="mt-3 space-y-1.5">
+            {!hasDriveAccess ? (
+              <div className="rounded-lg border border-warning/30 bg-warning/10 p-4 flex flex-col gap-3">
+                <div className="flex items-start gap-3">
+                  <div className="text-warning mt-0.5"><HardDrive className="h-5 w-5" /></div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-warning">Google Drive Access Required</h4>
+                    <p className="text-xs text-warning/80 mt-1">
+                      You must connect your Google account with Drive permissions to save agent outputs here.
+                    </p>
+                  </div>
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full bg-white text-black hover:bg-gray-100 dark:bg-white dark:text-black dark:hover:bg-gray-200 border-line"
+                  onClick={() => signIn("google", { callbackUrl: window.location.href }, { scope: "openid email profile https://www.googleapis.com/auth/drive.file", prompt: "consent", access_type: "offline" })}
+                >
+                  Connect Google Drive
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Label>Google Drive Folder Name</Label>
+                <HintText>
+                  Leave blank to save to your root Google Drive directory. If the folder doesn't exist, we'll create it for you!
+                </HintText>
+                <input
+                  type="text"
+                  placeholder="e.g. Nuclexa or Output Files"
+                  value={form.googleDriveFolderName}
+                  onChange={(e) => update({ googleDriveFolderName: e.target.value })}
+                  className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-content placeholder:text-faint focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand"
+                />
+              </>
+            )}
           </div>
         )}
       </div>

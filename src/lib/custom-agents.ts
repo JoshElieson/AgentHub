@@ -28,6 +28,7 @@ export interface CustomAgent {
   outputFormat: OutputFormat;
   enabledDestinations: OutputDestinationType[];
   webhookUrl?: string;
+  googleDriveFolderName?: string;
   creatorFeeCredits: number;
   visibility: string;
   // Metadata for browsing
@@ -66,6 +67,7 @@ interface CustomAgentRow {
   output_format: string;
   enabled_destinations: string[];
   webhook_url: string | null;
+  google_drive_folder_name: string | null;
   creator_fee_credits: number;
   visibility: string;
   creator_name: string;
@@ -102,6 +104,7 @@ function rowToAgent(row: CustomAgentRow): CustomAgent {
     outputFormat: row.output_format as OutputFormat,
     enabledDestinations: (row.enabled_destinations ?? []) as OutputDestinationType[],
     webhookUrl: row.webhook_url ?? undefined,
+    googleDriveFolderName: row.google_drive_folder_name ?? undefined,
     creatorFeeCredits: row.creator_fee_credits,
     visibility: row.visibility,
     creatorName: row.creator_name,
@@ -187,6 +190,7 @@ export async function saveCustomAgent(
         output_format: agent.outputFormat || "markdown",
         enabled_destinations: agent.enabledDestinations || ["in-app", "download"],
         webhook_url: agent.webhookUrl || null,
+        google_drive_folder_name: agent.googleDriveFolderName || null,
         creator_fee_credits: agent.creatorFeeCredits ?? 0,
         visibility: agent.visibility || "public",
         creator_name: "You",

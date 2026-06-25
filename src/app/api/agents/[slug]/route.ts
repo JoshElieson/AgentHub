@@ -34,6 +34,8 @@ export async function GET(
         avgRating: custom.avgRating,
         ratingCount: custom.ratingCount,
         starCount: custom.starCount,
+        enabledDestinations: custom.enabledDestinations,
+        googleDriveFolderName: custom.googleDriveFolderName,
       } as any;
     }
   }
@@ -63,5 +65,7 @@ export async function GET(
     avgRating: agent.avgRating,
     ratingCount: agent.ratingCount,
     starCount: agent.starCount,
+    enabledDestinations: agent.enabledDestinations,
+    googleDriveFolderName: agent.googleDriveFolderName,
   });
 }

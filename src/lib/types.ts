@@ -332,7 +332,8 @@ export type OutputFormat = "markdown" | "json" | "csv" | "plain";
 export type OutputDestinationType =
   | "in-app"
   | "download"
-  | "webhook";
+  | "webhook"
+  | "google-drive";
 
 export type ModelPreference =
   | "auto"

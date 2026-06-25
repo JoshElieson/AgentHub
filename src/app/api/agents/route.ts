@@ -63,6 +63,7 @@ export async function POST(req: Request) {
       outputFormat,
       enabledDestinations,
       webhookUrl,
+      googleDriveFolderName,
       creatorFeeCredits,
       visibility,
     } = body;
@@ -96,6 +97,7 @@ export async function POST(req: Request) {
       outputFormat: outputFormat || "markdown",
       enabledDestinations: enabledDestinations || ["in-app", "download"],
       webhookUrl: webhookUrl || undefined,
+      googleDriveFolderName: googleDriveFolderName || undefined,
       creatorFeeCredits: typeof creatorFeeCredits === "number" ? creatorFeeCredits : 0,
       visibility: visibility || "public",
     });

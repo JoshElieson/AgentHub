@@ -3,6 +3,8 @@ import { streamText, convertToModelMessages, type UIMessage, tool, stepCountIs }
 import { SEED_AGENTS } from "@/lib/agents-data";
 import { readCustomAgents } from "@/lib/custom-agents";
 import { z } from "zod";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export const maxDuration = 60;
 
@@ -18,10 +20,12 @@ export const maxDuration = 60;
 
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession(authOptions);
     const body = await req.json();
-    const { slug, messages: rawMessages } = body as {
+    const { slug, messages: rawMessages, runnerDriveFolder } = body as {
       slug: string;
       messages: any[];
+      runnerDriveFolder?: string;
     };
 
     if (!slug) {
@@ -316,6 +320,96 @@ export async function POST(req: Request) {
         // Fire webhook delivery if configured
         const destinations: string[] = (agent as any).enabledDestinations || [];
         const webhookUrl: string | undefined = (agent as any).webhookUrl;
+        const defaultDriveFolder: string | undefined = (agent as any).googleDriveFolderName;
+        const finalDriveFolder = runnerDriveFolder !== undefined ? runnerDriveFolder : defaultDriveFolder;
+
+        if (destinations.includes("google-drive") && session?.user?.id) {
+          try {
+            const { google } = require("googleapis");
+            const { prisma } = require("@/lib/prisma");
+            
+            const account = await prisma.account.findFirst({
+              where: { userId: session.user.id, provider: "google" }
+            });
+            
+            if (account && account.access_token) {
+              const oauth2Client = new google.auth.OAuth2(
+                process.env.GOOGLE_CLIENT_ID,
+                process.env.GOOGLE_CLIENT_SECRET
+              );
+              oauth2Client.setCredentials({
+                access_token: account.access_token,
+                refresh_token: account.refresh_token,
+              });
+              
+              const drive = google.drive({ version: 'v3', auth: oauth2Client });
+              
+              let targetFolderId = undefined;
+
+              if (finalDriveFolder) {
+                const segments = finalDriveFolder.split('/').map((s: string) => s.trim()).filter(Boolean);
+                if (segments.length > 0) {
+                  let currentParentId = 'root';
+                  for (const segment of segments) {
+                    const query = `mimeType = 'application/vnd.google-apps.folder' and name = '${segment.replace(/'/g, "\\'")}' and '${currentParentId}' in parents and trashed = false`;
+                    const searchRes = await drive.files.list({
+                      q: query,
+                      fields: 'files(id, name)',
+                      spaces: 'drive',
+                    });
+                    
+                    if (searchRes.data.files && searchRes.data.files.length > 0) {
+                      currentParentId = searchRes.data.files[0].id;
+                    } else {
+                      const folderMetadata: any = {
+                        name: segment,
+                        mimeType: 'application/vnd.google-apps.folder',
+                      };
+                      if (currentParentId !== 'root') {
+                        folderMetadata.parents = [currentParentId];
+                      }
+                      const folderRes = await drive.files.create({
+                        requestBody: folderMetadata,
+                        fields: 'id',
+                      });
+                      currentParentId = folderRes.data.id;
+                    }
+                  }
+                  if (currentParentId !== 'root') {
+                    targetFolderId = currentParentId;
+                    console.log(`[google-drive] Resolved nested path '${finalDriveFolder}' to ID: ${targetFolderId}`);
+                  }
+                }
+              }
+
+              const fileMetadata: any = {
+                name: `${agent.name} Output - ${new Date().toISOString()}.md`,
+                mimeType: 'text/markdown',
+              };
+              if (targetFolderId) {
+                fileMetadata.parents = [targetFolderId];
+              }
+              
+              const media = {
+                mimeType: 'text/markdown',
+                body: text,
+              };
+              
+              console.log(`[google-drive] Uploading output to Drive for user ${session.user.id}`);
+              const file = await drive.files.create({
+                requestBody: fileMetadata,
+                media: media,
+                fields: 'id',
+              });
+              console.log(`[google-drive] File Id: ${file.data.id}`);
+            } else {
+              console.warn(`[google-drive] No Google account linked for user ${session.user.id}`);
+            }
+          } catch (gdErr: any) {
+            console.error(`[google-drive] Upload failed:`, gdErr.message);
+          }
+        }
+
         if (destinations.includes("webhook") && webhookUrl) {
           try {
             const payload = {

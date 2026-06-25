@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS public.agents (
     input_schema JSONB DEFAULT NULL,
     output_format TEXT DEFAULT 'markdown',
     enabled_destinations JSONB NOT NULL DEFAULT '["in-app", "download"]'::jsonb,
+    webhook_url TEXT DEFAULT NULL,
+    google_drive_folder_name TEXT DEFAULT NULL,
 
     -- Pricing
     creator_fee_credits INT DEFAULT 0,
