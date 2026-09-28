@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-28T01:47:09.774Z",
+  "before": {
+    "skills": 1738,
+    "mcps": 62
+  },
+  "after": {
+    "skills": 15327,
+    "mcps": 13534,
+    "total": 28861
+  },
+  "net_new": {
+    "skills": 13589,
+    "mcps": 13472
+  },
+  "sources": [
+    "thedixitjain/the-mega-skill-library (skills, deny-listed offensive repos)",
+    "registry.modelcontextprotocol.io (npm+pypi installable only)"
+  ],
+  "safety": {
+    "skill_rejects_notable": [
+      "jailbreak",
+      "exfiltrate",
+      "unsafe-install",
+      "offensive-tooling",
+      "csam",
+      "ransomware"
+    ],
+    "purged_post_insert": [
+      "skill-remote-code-execution"
+    ],
+    "mcp_skipped_remote_http": 19858,
+    "mcp_smoke_package_checks": 9319
+  }
+}

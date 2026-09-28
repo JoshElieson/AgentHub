@@ -223,7 +223,16 @@ export function NewlyUploaded() {
         if (!res.ok) throw new Error("fetch failed");
         const { items: raw } = await res.json();
 
+        // API already applies homepage quality gate (≥10 likes, ≥50 installs,
+        // has rating). Keep a client-side belt-and-suspenders filter.
         const classified: RecentItem[] = (raw ?? [])
+          .filter(
+            (item: any) =>
+              (item.rating_count ?? 0) >= 1 &&
+              (item.avg_rating ?? 0) > 0 &&
+              (item.star_count ?? 0) >= 10 &&
+              (item.export_count ?? 0) >= 50
+          )
           .slice(0, RECENT_TOTAL)
           .map((item: any) => {
             if (item.kind === "skill") {
@@ -231,6 +240,8 @@ export function NewlyUploaded() {
                 name: item.name,
                 description: item.description,
                 tags: item.tags,
+                category: item.category,
+                model: item.model,
               });
               return { ...item, category, model };
             }

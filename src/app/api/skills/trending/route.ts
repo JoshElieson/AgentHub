@@ -9,6 +9,24 @@ const supabase =
       )
     : null;
 
+/** Homepage gate: rating + ≥10 likes + ≥50 installs. */
+const MIN_LIKES = 10;
+const MIN_INSTALLS = 50;
+
+function passesHomepageGate(row: {
+  star_count?: number | null;
+  export_count?: number | null;
+  avg_rating?: number | null;
+  rating_count?: number | null;
+}) {
+  return (
+    (row.rating_count ?? 0) >= 1 &&
+    (row.avg_rating ?? 0) > 0 &&
+    (row.star_count ?? 0) >= MIN_LIKES &&
+    (row.export_count ?? 0) >= MIN_INSTALLS
+  );
+}
+
 // ---------------------------------------------------------------------------
 // The first page of "Trending Now" is hand-curated for recognisability.
 // Skills are matched case-insensitively against the name column. Order
@@ -27,6 +45,7 @@ const PINNED_NAMES = [
  * Returns skills ordered for the home-page "Trending Now" carousel.
  * The first page contains the curated recognisable-brand skills (pinned);
  * remaining pages are filled by star_count descending.
+ * All rows must pass the homepage quality gate.
  */
 export async function GET() {
   if (!supabase) {
@@ -48,14 +67,16 @@ export async function GET() {
       return NextResponse.json({ skills: [] });
     }
 
+    const gated = data.filter(passesHomepageGate);
+
     // Partition into pinned (order-preserving) and the rest
     const pinnedMap = new Map<string, number>();
     PINNED_NAMES.forEach((n, i) => pinnedMap.set(n.toLowerCase(), i));
 
-    const pinned: (typeof data)[number][] = new Array(PINNED_NAMES.length);
-    const rest: (typeof data)[number][] = [];
+    const pinned: (typeof gated)[number][] = new Array(PINNED_NAMES.length);
+    const rest: (typeof gated)[number][] = [];
 
-    for (const skill of data) {
+    for (const skill of gated) {
       const idx = pinnedMap.get(skill.name?.toLowerCase());
       if (idx !== undefined && !pinned[idx]) {
         pinned[idx] = skill;
@@ -64,7 +85,7 @@ export async function GET() {
       }
     }
 
-    // Remove any unfilled slots (skill not in DB yet)
+    // Remove any unfilled slots (skill not in DB yet / failed gate)
     const ordered = [...pinned.filter(Boolean), ...rest];
 
     return NextResponse.json({ skills: ordered });

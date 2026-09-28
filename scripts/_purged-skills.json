@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-28T01:46:24.346Z",
+  "doomed": [
+    {
+      "id": "76ace23b-f2b8-4e3f-9590-38757a4d77e8",
+      "name": "skill-remote-code-execution",
+      "reason": "offensive-name"
+    }
+  ]
+}

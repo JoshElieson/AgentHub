@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-28T02:00:22.413Z",
+  "homepage_names": [
+    "skill-creator",
+    "brainstorming",
+    "ponytail",
+    "impeccable",
+    "impeccable-ui",
+    "frontend-design",
+    "mcp-builder",
+    "pdf",
+    "pptx",
+    "docx",
+    "xlsx",
+    "claude-api",
+    "webapp-testing",
+    "security-audit",
+    "nextjs-best-practices",
+    "postgres-best-practices",
+    "stripe-best-practices",
+    "cloudflare-workers-best-practices",
+    "firebase-basics",
+    "github",
+    "filesystem",
+    "memory",
+    "fetch",
+    "puppeteer",
+    "brave-search",
+    "postgres",
+    "sqlite",
+    "slack",
+    "notion",
+    "stripe",
+    "supabase",
+    "docker",
+    "kubernetes"
+  ],
+  "floors": {
+    "high_reputation": {
+      "avg_rating": 4,
+      "likes": 10,
+      "installs": 10
+    },
+    "homepage": {
+      "avg_rating": 4,
+      "likes": 10,
+      "installs": 50
+    }
+  }
+}

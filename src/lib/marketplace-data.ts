@@ -76,32 +76,30 @@ function normalizeMcp(row: any): McpServerRow {
 // Fetchers — same real sources the /marketplace views use, with mock fallback.
 // ---------------------------------------------------------------------------
 
+const SKILL_LIST_COLS =
+  "id, name, description, tags, trigger_phrases, source_url, script_urls, created_at, star_count, export_count, avg_rating, rating_count, category, model";
+
 /**
- * Load every skill from the marketplace. Uses the same `/api/skills/search`
- * listing endpoint the Marketplace page relies on; when Supabase isn't
- * configured (API returns 503) we fall back to the mock catalogue.
+ * Load every skill from the marketplace. Pages through Supabase (PostgREST
+ * caps a single response at 1000 rows) so Explore sees the full catalogue,
+ * not just the first page. Falls back to mock when Supabase isn't configured.
  */
 export async function fetchSkills(): Promise<SkillRow[]> {
-  try {
-    const res = await fetch(`/api/skills/search?limit=1000`);
-    if (res.ok) {
-      const { results } = await res.json();
-      // When the API answers, it is the source of truth — even if empty.
-      return (results ?? []).map(normalizeSkill);
-    }
-  } catch {
-    // network error — fall through to direct query / mock
-  }
-
   if (supabase) {
     try {
-      const { data } = await supabase
-        .from("skills")
-        .select(
-          "id, name, description, tags, trigger_phrases, source_url, script_urls, created_at, star_count, export_count, avg_rating, rating_count"
-        )
-        .order("name", { ascending: true });
-      if (data && data.length > 0) return data.map(normalizeSkill);
+      const rows: any[] = [];
+      const PAGE = 1000;
+      for (let from = 0; ; from += PAGE) {
+        const { data, error } = await supabase
+          .from("skills")
+          .select(SKILL_LIST_COLS)
+          .order("name", { ascending: true })
+          .range(from, from + PAGE - 1);
+        if (error) break;
+        rows.push(...(data ?? []));
+        if (!data || data.length < PAGE) break;
+      }
+      if (rows.length > 0) return rows.map(normalizeSkill);
     } catch {
       // ignore — fall through to mock
     }
@@ -117,11 +115,22 @@ export async function fetchSkills(): Promise<SkillRow[]> {
 export async function fetchMcpServers(): Promise<McpServerRow[]> {
   if (supabase) {
     try {
-      const { data } = await supabase
-        .from("mcp_servers")
-        .select("*")
-        .order("name", { ascending: true });
-      if (data && data.length > 0) return data.map(normalizeMcp);
+      // Soft-trimmed long-tail rows are tagged catalog-trimmed (anon RLS
+      // blocks hard DELETE on mcp_servers). Exclude them from browse.
+      const rows: any[] = [];
+      const PAGE = 1000;
+      for (let from = 0; ; from += PAGE) {
+        const { data, error } = await supabase
+          .from("mcp_servers")
+          .select("*")
+          .not("tags", "cs", "{catalog-trimmed}")
+          .order("name", { ascending: true })
+          .range(from, from + PAGE - 1);
+        if (error) break;
+        rows.push(...(data ?? []));
+        if (!data || data.length < PAGE) break;
+      }
+      if (rows.length > 0) return rows.map(normalizeMcp);
     } catch {
       // ignore — fall through to mock
     }

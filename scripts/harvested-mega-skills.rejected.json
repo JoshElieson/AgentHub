@@ -1,0 +1,6642 @@
+{
+  "rejected": [
+    {
+      "name": "adk-framework-adapters",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "adversarial-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-browser",
+      "reason": "already-in-db",
+      "source_repo": "code-yeongyu/oh-my-openagent"
+    },
+    {
+      "name": "agent-context-isolation",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "agent-debug-fixer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-dev-workshop",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-drift-auditor",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-framework-azure-ai-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "agent-harness",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "agent-hierarchical-coordinator",
+      "reason": "deny-substring:command and control",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "agent-learning-coach",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-newbie-guide",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-only-skill",
+      "reason": "thin-body",
+      "source_repo": "EveryInc/compound-engineering-plugin"
+    },
+    {
+      "name": "agent-patterns-catalog",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-phase-closeout",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-project-master",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "agent-reach",
+      "reason": "non-english",
+      "source_repo": "Panniantong/Agent-Reach"
+    },
+    {
+      "name": "agent-workflow-designer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "agentic-actions-auditor",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "agentmail",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "agenttrace-session-audit",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "amq-cli",
+      "reason": "unsafe-install",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "anth-advanced-troubleshooting",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "automation-builder",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "autonomous-project-orchestrator",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "autoresearch-agent",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "azure-ai-agents-persistent-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-agents-persistent-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "background-agent-pings",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "boardroom",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "brain-ops",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "brief",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "c-level-agents",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "caio-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "caio-review-alirezarezvani",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "caveman",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "cco-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cdo-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "chief-ai-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "chief-ai-officer-advisor-alirezarezvani",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "claude-api",
+      "reason": "already-in-db",
+      "source_repo": "asgeirtj/system_prompts_leaks"
+    },
+    {
+      "name": "claude-code-hashgraph-online",
+      "reason": "unsafe-install",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "claude-mem-openclaw-plugin-setup-guide",
+      "reason": "unsafe-install",
+      "source_repo": "thedotmack/claude-mem"
+    },
+    {
+      "name": "content-research-writer",
+      "reason": "already-in-db",
+      "source_repo": "google/adk-samples"
+    },
+    {
+      "name": "context-degradation",
+      "reason": "already-in-db",
+      "source_repo": "muratcankoylan/Agent-Skills-for-Context-Engineering"
+    },
+    {
+      "name": "context-fundamentals",
+      "reason": "already-in-db",
+      "source_repo": "muratcankoylan/Agent-Skills-for-Context-Engineering"
+    },
+    {
+      "name": "context-mode",
+      "reason": "already-in-db",
+      "source_repo": "mksglu/context-mode"
+    },
+    {
+      "name": "context-now",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "continual-learning",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "continuous-learning-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "control-flow",
+      "reason": "offensive-tooling",
+      "source_repo": "slopus/happy"
+    },
+    {
+      "name": "copilot-sdk",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "cpo-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cross-eval",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "daily",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "data-visualization",
+      "reason": "already-in-db",
+      "source_repo": "asgeirtj/system_prompts_leaks"
+    },
+    {
+      "name": "datadog-logs",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "decide",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "delegation",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "deploy-operator",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-10",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-11",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-15",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-16",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-17",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-18",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-21",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-22",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-24",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-25",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-29",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-31",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-32",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-5",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-6",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "deploying-scalable-agents-microsoft-8",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "devcontainer-setup",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "dispatching-parallel-agents",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "entra-agent-id",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "eval-harness-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "evolution-core",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "execute",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "extract",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "feature-review-impl",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "feature-review-plan",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "find-skills",
+      "reason": "already-in-db",
+      "source_repo": "vercel-labs/skills"
+    },
+    {
+      "name": "founder-mode",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "freeze",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "gc-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "github-project-management-ruvnet-2",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "graphify",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "grok",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "gsdset-profile",
+      "reason": "thin-body",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "handoff",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "harness-audit",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "help-hashgraph-online",
+      "reason": "unsafe-install",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "hermes-agent",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "hooks",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "improve-animations",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "emilkowalski/skills"
+    },
+    {
+      "name": "lark-approval",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-attendance",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-base",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-contact",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-doc",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-im",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-mail",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-markdown",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-minutes",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-note",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-openapi-explorer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-sheets",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-skill-maker",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-slides",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-task",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-vc",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-vc-agent",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-whiteboard",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-workflow-meeting-summary",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lark-workflow-standup-report",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "leader",
+      "reason": "non-english",
+      "source_repo": "KKKKhazix/khazix-skills"
+    },
+    {
+      "name": "llm-council",
+      "reason": "already-in-db",
+      "source_repo": "am-will/codex-skills"
+    },
+    {
+      "name": "local-ai-agents-microsoft",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-10",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-11",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-13",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-14",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-16",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-18",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-21",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-22",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-23",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-24",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-27",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-28",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-32",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-34",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-35",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-4",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-5",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-7",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "local-ai-agents-microsoft-9",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "loop",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "m365-agents-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "m365-agents-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "m365-agents-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "markdown-html-orchestrator",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "office-hours",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "onboard-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "plan-preview",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "planning-with-files",
+      "reason": "already-in-db",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "project-discovery",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "promote",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "pua-p9",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "query",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "quit-sponsor-jeremylongshore",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "receipts",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "anthropics/claude-plugins-official"
+    },
+    {
+      "name": "remember",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "review-team",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "river-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "river-review-code",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "self-improving-agent",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "sentry-triage",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "session-management",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "setup-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "setup-tips-tricks-scheduled-sentry-triage-with-vault-env-var-credentia",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "anthropics/claude-cookbooks"
+    },
+    {
+      "name": "signal-detector-garrytan",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "skill-creator",
+      "reason": "already-in-db",
+      "source_repo": "openai/skills"
+    },
+    {
+      "name": "skill-improver",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "skill-installer",
+      "reason": "already-in-db",
+      "source_repo": "openai/skills"
+    },
+    {
+      "name": "skill-router",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "skills-chief-ai-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-eu-ai-act-specialist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-status-2",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "solution-architect",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "spend",
+      "reason": "thin-body",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "status",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "subagent-driven-development",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "subagent-driven-development-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "superset",
+      "reason": "unsafe-install",
+      "source_repo": "superset-sh/superset"
+    },
+    {
+      "name": "travel-agent-skill",
+      "reason": "non-english",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "visual-html-renderer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "vpe-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "write-a-skill",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "airflow-dag-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "amocrm-api-control",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "api-contract-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "architectdata-api-design",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "azure-postgres-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-mysql-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-postgresql-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-redis-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-sql-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "backend-builder",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "backend-engineer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "backendapi-development",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "chief-data-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "claude-api",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "coderabbit-sdk-patterns",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "cqrs-implementation",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "create-plugin",
+      "reason": "already-in-db",
+      "source_repo": "different-ai/openwork"
+    },
+    {
+      "name": "data-quality-auditor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "database-designer-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "database-schema-designer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "dbt-transformation-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "ddd-best-practices",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "event-store-design",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "fastapi-router-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "fastapi-templates",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "fathom-local-dev-loop",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "fathom-sdk-patterns",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "gemini-interactions-api",
+      "reason": "already-in-db",
+      "source_repo": "google/skills"
+    },
+    {
+      "name": "grammarly-data-handling",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hex-webhooks-events",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "init",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "just-scrape",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lsp-setup",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "microservices-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "perplexity-policy-guardrails",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "postgresql-optimization",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "projection-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "pydantic-models-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "roistat-reports-api",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "senior-data-engineer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "senior-data-scientist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-chief-data-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "snowflake-development-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "sql-optimization",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "stripe-integration-expert",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "tweetclaw",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "yandex-wordstat",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "backtesting-frameworks",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "board-prep",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "business-investment-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "business-operations-skills",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cfe-abstract",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cfe-literature-review",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cfe-mechanism",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cfo-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "challenge",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "china-accounting-review",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ciso-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cmo-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "competitive-landscape",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "contemporary-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "contract-and-proposal-writer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cte-abstract",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cto-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "employment-contract-templates",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "exa-policy-guardrails",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "executive-assistant",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "executive-mentor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "finance-and-trade-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "hard-call",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "internal-comms",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "investor-update-ingest",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "journal-of-central-university-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-guangdong-university-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-jiangxi-university-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-shanghai-university-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-shanxi-university-of-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "kpi-dashboard-design",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "market-sizing-analysis",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "modern-finance-and-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "multi-perspective-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "planning-with-files",
+      "reason": "already-in-db",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "procurement-optimizer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "resume",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "risk-metrics-calculation",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "session-continuity",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "startup-metrics-framework",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "upwork-application-session",
+      "reason": "offensive-tooling",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "vendor-management",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "aas-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "agentdb-learning-plugins",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "azure-ai-ml-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "cjc-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "eval",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ieeesp-artifact-evaluation",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "inference-sh-cli",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "jcadcg-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jupyter-notebook-microsoft",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-11",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-13",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-14",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-15",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-20",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-23",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-26",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-29",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-35",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-36",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-37",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-38",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-41",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-46",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-49",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-50",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-52",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-53",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-54",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-55",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-6",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-7",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "jupyter-notebook-microsoft-9",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "ndss-artifact-evaluation",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "pytorch-lightning",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "senior-data-scientist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "senior-ml-engineer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "setup",
+      "reason": "already-in-db",
+      "source_repo": "athola/claude-night-market"
+    },
+    {
+      "name": "ssi-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "statistical-analyst",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "aws-solution-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "azure-ai",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-anomalydetector-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-contentsafety-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-contentsafety-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-contentsafety-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-contentunderstanding-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-document-intelligence-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-document-intelligence-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-formrecognizer-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-openai-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-projects-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-projects-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-projects-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-projects-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-textanalytics-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-transcription-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-translation-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-vision-imageanalysis-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-vision-imageanalysis-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-voicelive-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-voicelive-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-voicelive-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-voicelive-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-aigateway",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-appconfiguration-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-appconfiguration-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-appconfiguration-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cloud-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "azure-cloud-migrate",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-communication-callautomation-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-communication-callingserver-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-communication-chat-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-communication-common-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-communication-sms-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-compute",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-compute-batch-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-containerregistry-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cosmos-db-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cosmos-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cosmos-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cosmos-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-cosmos-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-data-tables-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-data-tables-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-enterprise-infra-planner",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventgrid-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventgrid-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventgrid-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventhub-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventhub-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventhub-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventhub-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-eventhub-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-identity-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-identity-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-identity-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-identity-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-identity-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-keyvault-certificates-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-keyvault-keys-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-keyvault-keys-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-keyvault-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-kubernetes",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-maps-search-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-messaging-webpubsub-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-messaging-webpubsubservice-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-apicenter-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-apicenter-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-apimanagement-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-apimanagement-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-applicationinsights-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-arizeaiobservabilityeval-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-botservice-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-botservice-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-fabric-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-fabric-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-mongodbatlas-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-mgmt-weightsandbiases-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-ingestion-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-ingestion-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-opentelemetry-exporter-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-opentelemetry-exporter-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-opentelemetry-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-opentelemetry-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-query-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-monitor-query-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-10",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-12",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-14",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-15",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-16",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-20",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-21",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-24",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-27",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-3",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-31",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-36",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-37",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-38",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-39",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-42",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-47",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-48",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-50",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-51",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-53",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-54",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-55",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-56",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-6",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-7",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-openai-to-responses-microsoft-8",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "azure-quotas",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-cosmosdb-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-durabletask-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-search-documents-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-search-documents-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-search-documents-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-servicebus-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-servicebus-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-servicebus-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-smart-city-iot-solution-builder",
+      "reason": "deny-substring:command and control",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "azure-storage-blob-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-blob-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-blob-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-blob-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-file-datalake-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-file-share-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-file-share-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-queue-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-storage-queue-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-upgrade",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-web-pubsub-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "ci-cd-pipelines",
+      "reason": "already-in-db",
+      "source_repo": "rohitg00/awesome-claude-code-toolkit"
+    },
+    {
+      "name": "clari-ci-integration",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "cloud-solution-architect",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "cost-aware-llm-pipeline-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "cost-optimization",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "deploy",
+      "reason": "already-in-db",
+      "source_repo": "andrewyng/context-hub"
+    },
+    {
+      "name": "deploy-pipeline",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "devops-engineer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "devopsdeployment-process",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "devopsmonitoring-alerting",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "docker-best-practices",
+      "reason": "already-in-db",
+      "source_repo": "rohitg00/awesome-claude-code-toolkit"
+    },
+    {
+      "name": "docker-development",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "firebase-basics",
+      "reason": "already-in-db",
+      "source_repo": "google/skills"
+    },
+    {
+      "name": "gcp-cloud-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "github-automation",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "github-workflow-automation",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "helm-chart-builder",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "hugging-face-cli",
+      "reason": "already-in-db",
+      "source_repo": "patchy631/ai-engineering-hub"
+    },
+    {
+      "name": "hugging-face-jobs",
+      "reason": "already-in-db",
+      "source_repo": "patchy631/ai-engineering-hub"
+    },
+    {
+      "name": "iot-firmware",
+      "reason": "thin-body",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "istio-traffic-management",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "k8s-security-policies",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "kubernetes-operations",
+      "reason": "already-in-db",
+      "source_repo": "rohitg00/awesome-claude-code-toolkit"
+    },
+    {
+      "name": "linkerd-patterns",
+      "reason": "unsafe-install",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "microsoft-foundry",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "mtls-configuration",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "netlify-deploy",
+      "reason": "already-in-db",
+      "source_repo": "openai/skills"
+    },
+    {
+      "name": "offensive-shellcode",
+      "reason": "deny-substring:reverse shell",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "ollama-setup",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "sdd-pipeline-references",
+      "reason": "non-english",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "sentry-observability",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "skill-advanced-redteam-ops",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-endpoint-detection-and-response",
+      "reason": "deny-substring:c2 server",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-modern-initial-access",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-novel-research",
+      "reason": "deny-substring:keylogger",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skills-kubernetes-operator",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-slo-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "terraform-patterns",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "vscode-sftp-config",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "libukai/awesome-agent-skills"
+    },
+    {
+      "name": "workflow",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "yandex-cloud-search-cost-control",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "yapi-skill",
+      "reason": "offensive-tooling",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "zustand-store-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "dev-grill-docs",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "doc-coauthoring",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "document",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "grill-with-docs",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "grill-with-docs-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "lark-wiki",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "llm-wiki",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "microsoft-docs-microsoft",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-10",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-11",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-12",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-13",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-14",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-15",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-20",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-23",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-26",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-29",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-35",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-36",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-38",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-41",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-46",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-49",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-50",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-52",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-53",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-54",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-55",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-6",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-7",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "microsoft-docs-microsoft-9",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "obsidian-to-x",
+      "reason": "non-english",
+      "source_repo": "libukai/awesome-agent-skills"
+    },
+    {
+      "name": "quality-documentation-manager",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "release-notes-generator",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "river-review-docs",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "skill-builder",
+      "reason": "already-in-db",
+      "source_repo": "yusufkaraaslan/Skill_Seekers"
+    },
+    {
+      "name": "wiki-architect",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "wiki-page-writer",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "wiki-researcher",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "wiki-vitepress",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "adopt",
+      "reason": "already-in-db",
+      "source_repo": "Donchitos/Claude-Code-Game-Studios"
+    },
+    {
+      "name": "anima-debug-bundle",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "app-store-optimization",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "architectarchitecture-design",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "binary-analysis-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "browser-automation",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "capture",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "caveman",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "code-review",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "code-review-josstei",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "codebase-migrate",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "codeql",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "coderabbit-install-auth",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "coderabbit-local-dev-loop",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "compile-basic",
+      "reason": "thin-body",
+      "source_repo": "sno-ai/mda"
+    },
+    {
+      "name": "context-driven-development",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "context-engineering-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "context-mode",
+      "reason": "already-in-db",
+      "source_repo": "mksglu/context-mode"
+    },
+    {
+      "name": "debug-buttercup",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "devopschangelog-generation",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "doc-architecture",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "doctor",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "domain-modeling",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "dwarf-expert",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "engineering-advanced-skills",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "engineering-skills",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "eval",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "execution",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "flyio-upgrade-migration",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "git-commit-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "git-commits",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "git-merge-request",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "git-worktree-isolation",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "grammarly-performance-tuning",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "grammarly-sdk-patterns",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "grill-me",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "hex-performance-tuning",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hex-sdk-patterns",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hex-upgrade-migration",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hootsuite-performance-tuning",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hootsuite-upgrade-migration",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "implement",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "incident-commander",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "incident-response",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "init",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "init-hashgraph-online",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "loki-mode",
+      "reason": "already-in-db",
+      "source_repo": "asklokesh/loki-mode"
+    },
+    {
+      "name": "modern-javascript-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "onboard",
+      "reason": "already-in-db",
+      "source_repo": "Donchitos/Claude-Code-Game-Studios"
+    },
+    {
+      "name": "openrouter-upgrade-migration",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "parallel-execution",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ponytail",
+      "reason": "already-in-db",
+      "source_repo": "DietrichGebert/ponytail"
+    },
+    {
+      "name": "post-mortem",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "postmortem",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "postmortem-writing",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "pr-review-ci-fix",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "receiving-code-review",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "requesting-code-review",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "review",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gstack"
+    },
+    {
+      "name": "reviewer-sync-codebase",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "river-review-architecture",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "river-review-performance",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "rtk-token-optimization",
+      "reason": "unsafe-install",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "run",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "semgrep-rule-creator",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "simplify-code",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "skill-creator",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "skill-optimizer",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "skillopt-sleep",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/SkillOpt"
+    },
+    {
+      "name": "skills-chaos-engineering",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "sql-optimization-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "start",
+      "reason": "already-in-db",
+      "source_repo": "Donchitos/Claude-Code-Game-Studios"
+    },
+    {
+      "name": "systematic-debugging",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "systematic-debugging-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "tdd",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "tech-leadcode-review",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "test-driven-development",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "triage",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "typescript-advanced-types",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "v3-core-implementation",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "verification-before-completion",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "verification-quality-assurance",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "wiki-changelog",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "wiki-onboarding",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "windsurf-install-auth",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "windsurf-policy-guardrails",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "worker-benchmarks",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "worktree",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "yandex-performance-ops",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "yara-rule-authoring",
+      "reason": "deny-substring:keylogger",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "angular-migration",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "archive",
+      "reason": "already-in-db",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "artifacts-builder",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "book-status",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "boss",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "canvas-design",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "closure-implied-shapes",
+      "reason": "offensive-tooling",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "design-dialogue",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "design-director",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "design-md",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "design-taste-frontend",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "find-animation-opportunities",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "emilkowalski/skills"
+    },
+    {
+      "name": "frontend-builder",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "frontend-design",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "frontend-design-review",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "frontend-engineer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "frontend-engineering",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "frontend-ui-dark-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "frontend-ui-ux-system",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "frontendcomponent-development",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "gpt-taste",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "huashu-design",
+      "reason": "non-english",
+      "source_repo": "alchaincyf/huashu-design"
+    },
+    {
+      "name": "impeccable",
+      "reason": "already-in-db",
+      "source_repo": "bergside/awesome-design-skills"
+    },
+    {
+      "name": "industrial-brutalist-ui",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "issue-triage",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "lark-apps",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "minimalist-ui",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "prototype",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "react-flow-node-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "redesign-existing-projects",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "reviewable-design-doc",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "river-review-frontend",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "stitch-design-taste",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "theme-factory",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "ui-designercomponent-specification",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ui-designerdesign-system",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ui-designerdesign-variants",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ui-designerinteraction-specification",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "reason": "already-in-db",
+      "source_repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+    },
+    {
+      "name": "ui-ux-promax",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ux-researcher-designer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "vercel-react-best-practices",
+      "reason": "already-in-db",
+      "source_repo": "am-will/codex-skills"
+    },
+    {
+      "name": "web-artifacts-builder",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "web-typography",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "aas-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aas-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "adversarial-reviewer",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "aes-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "algorithmic-art",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "apple-hig-expert",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "architect",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "arquiteto-de-empresa",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "async-repl-protocol",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "baoyu-infographic",
+      "reason": "non-english",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "billing-automation",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "brainstorm",
+      "reason": "already-in-db",
+      "source_repo": "Donchitos/Claude-Code-Game-Studios"
+    },
+    {
+      "name": "capacity-planner",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "caveman",
+      "reason": "already-in-db",
+      "source_repo": "JuliusBrussee/caveman"
+    },
+    {
+      "name": "chief-customer-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "claude-coach",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "collab-proof",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "command",
+      "reason": "short-desc",
+      "source_repo": "jaywcjlove/linux-command"
+    },
+    {
+      "name": "context-lifecycle",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "context-map",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "contract-compare",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "cre-abstract",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cross-model-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "discover",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "discuss-phase",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ecta-referee-strategy",
+      "reason": "offensive-tooling",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "email-template-builder",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "environment-triage",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "error-experience-library",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "example-skill",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "executing-plans",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "exploits-search",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "feature-flags-architect",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "file-organizer",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "flow-nexus-neural",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "full-output-enforcement",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "general-counsel-advisor",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "github-issue-creator",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "google-workspace-cli",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "gsdnext",
+      "reason": "deny-substring:bypass safety",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "help",
+      "reason": "already-in-db",
+      "source_repo": "Donchitos/Claude-Code-Game-Studios"
+    },
+    {
+      "name": "high-end-visual-design",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "huggingface-hub",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "idempotent-redundancy",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "implement",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "implementation-planning",
+      "reason": "thin-body",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "incident-commander",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "index-at-creation",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "installing-julia",
+      "reason": "unsafe-install",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "internal-comms",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "interview-system-designer",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "iot-fleet",
+      "reason": "thin-body",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "karpathy-coder",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "karpathy-guidelines",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "landing-page-generator",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "langfuse-coding-trace",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "learn",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gstack"
+    },
+    {
+      "name": "llm-cost-optimizer",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "llm-tuning-patterns",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "meeting-analyzer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "minimal-skill",
+      "reason": "thin-body",
+      "source_repo": "tailcallhq/forgecode"
+    },
+    {
+      "name": "morning-ai",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ms365-tenant-manager",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "no-task-output",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "nw-fp-haskell",
+      "reason": "unsafe-install",
+      "source_repo": "nWave-ai/nWave"
+    },
+    {
+      "name": "obliteratus",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "openevidence-cost-tuning",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "org-health-diagnostic",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "plan",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "plan-hashgraph-online",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "planning-with-files-ar",
+      "reason": "non-english",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "planning-with-files-de",
+      "reason": "non-english",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "planning-with-files-es",
+      "reason": "non-english",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "planning-with-files-zh",
+      "reason": "non-english",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "planning-with-files-zht",
+      "reason": "non-english",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "prai-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "prai-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "premortem",
+      "reason": "already-in-db",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "project-manager",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua-loop",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua-mama",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua-p10",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua-p7",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pua-yes",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "publish",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "qlty-during-development",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "quality-manager-qms-iso13485",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "quick-execution",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "release",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "retro",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gstack"
+    },
+    {
+      "name": "risk-management-specialist",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "rust-review",
+      "reason": "already-in-db",
+      "source_repo": "athola/claude-night-market"
+    },
+    {
+      "name": "sample-skill",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "search-hierarchy",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "search-tools",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "senior-computer-vision",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "setup",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "sharedtech-stack-detection",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "ship",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "skill-creator",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "skill-development",
+      "reason": "already-in-db",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "skillopt-sleep",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-arquiteto-de-empresa",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-chief-customer-officer-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-feature-flags-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-general-counsel-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skills-vpe-advisor",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "ssi-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "ssi-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "standup",
+      "reason": "already-in-db",
+      "source_repo": "thedotmack/claude-mem"
+    },
+    {
+      "name": "strategic-alignment",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "strategic-compact-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "style-modeler",
+      "reason": "non-english",
+      "source_repo": "dongbeixiaohuo/writing-agent"
+    },
+    {
+      "name": "team-communications",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "tech-lead",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "tech-leadtechnical-standards",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "tech-stack-evaluator",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "template-skill",
+      "reason": "thin-body",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "universal-scraping-architect",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "using-superpowers",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "uv-package-manager-wshobson",
+      "reason": "unsafe-install",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "validate",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "verification-before-completion",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "version-bumper",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "wave-execution",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "what-the",
+      "reason": "thin-body",
+      "source_repo": "thedotmack/claude-mem"
+    },
+    {
+      "name": "windsurf-enterprise-rbac",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "wiring",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "workflow-builder",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "workflow-producer",
+      "reason": "non-english",
+      "source_repo": "dongbeixiaohuo/writing-agent"
+    },
+    {
+      "name": "workflow-producer-dongbeixiaohuo",
+      "reason": "non-english",
+      "source_repo": "dongbeixiaohuo/writing-agent"
+    },
+    {
+      "name": "write-a-skill",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "yandex-direct-client-lifecycle",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "yandex-direct-unified",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "zero-hallucination-coder",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "analytics-tracking",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "app-store-optimization",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "brand-guidelines",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "business-growth-skills",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "check",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "competitor-alternatives",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "content-strategy",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cro-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "customer-success-manager",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "design",
+      "reason": "already-in-db",
+      "source_repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+    },
+    {
+      "name": "help",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "last30days",
+      "reason": "already-in-db",
+      "source_repo": "mvanhorn/last30days-skill"
+    },
+    {
+      "name": "launch-strategy",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "learn",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "marketing-demand-acquisition",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "marketing-psychology-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "marketing-strategy-pmm",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "onboarding-cro",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "paywall-upgrade-cro-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "schema-markup",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "scorecard-marketing",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "site-architecture",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "sketch",
+      "reason": "already-in-db",
+      "source_repo": "bergside/awesome-design-skills"
+    },
+    {
+      "name": "smj-literature-positioning",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "status",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "x-twitter-scraper",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "access",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "aihot",
+      "reason": "non-english",
+      "source_repo": "KKKKhazix/khazix-skills"
+    },
+    {
+      "name": "anthropic-administrator-automation",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "atlassian-templates",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "chrome-devtools",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "codegraph",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "configure",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "confluence-expert",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "connect",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "connect-composio-community",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "connect-apps-composio-community",
+      "reason": "unsafe-install",
+      "source_repo": "composio-community/awesome-codex-skills"
+    },
+    {
+      "name": "copilot-sdk",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "github-issues",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "gitnexus",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "hex-deploy-integration",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "init-project",
+      "reason": "thin-body",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "klingai-storage-integration",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "langfuse",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "lokalise-ci-integration",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "loki-mode",
+      "reason": "already-in-db",
+      "source_repo": "asklokesh/loki-mode"
+    },
+    {
+      "name": "mcp-builder",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "mcp-scripts",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "mcp-security-audit",
+      "reason": "deny-substring:reverse shell",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "new-relic-automation",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "nft-standards",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "notion",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "peer-review",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "plugin-creator",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "release",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "sentry-deploy-integration",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "setup",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "slack-gif-creator",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "tool-design",
+      "reason": "already-in-db",
+      "source_repo": "muratcankoylan/Agent-Skills-for-Context-Engineering"
+    },
+    {
+      "name": "zoho-books-automation",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "zoho-desk-automation",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "azure-speech-to-text-rest-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "brandkit",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "generate-image",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "image-to-code",
+      "reason": "already-in-db",
+      "source_repo": "Leonxlnx/taste-skill"
+    },
+    {
+      "name": "klingai-batch-processing",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "klingai-usage-analytics",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "mmx-cli",
+      "reason": "already-in-db",
+      "source_repo": "MiniMax-AI/skills"
+    },
+    {
+      "name": "podcast-generation",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "pptx",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "social-media-analyzer",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "social-media-manager",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "video-content-strategist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "xurl",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "android-cli",
+      "reason": "already-in-db",
+      "source_repo": "android/skills"
+    },
+    {
+      "name": "apple-design",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "constant-time-analysis",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "docx",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "firebase-apk-scanner",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "khazix-writer",
+      "reason": "non-english",
+      "source_repo": "KKKKhazix/khazix-skills"
+    },
+    {
+      "name": "lark-drive",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "minimax-docx",
+      "reason": "deny-substring:csam",
+      "source_repo": "MiniMax-AI/skills"
+    },
+    {
+      "name": "offensive-mobile",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "pdf",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "ssi-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "storage-analyzer",
+      "reason": "non-english",
+      "source_repo": "KKKKhazix/khazix-skills"
+    },
+    {
+      "name": "xlsx",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "agile-product-owner",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "ask-questions-if-underspecified",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "brainstorm",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "code-to-prd",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "cohort-analysis",
+      "reason": "already-in-db",
+      "source_repo": "phuryn/pm-skills"
+    },
+    {
+      "name": "create-plan",
+      "reason": "already-in-db",
+      "source_repo": "tailcallhq/forgecode"
+    },
+    {
+      "name": "feature-prioritization",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "lark-okr",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pmcompetitive-analysis",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pmprd-writing",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pmrequirement-penetration",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pmstrategic-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "product-manager",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "product-manager-toolkit-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "requirements-analysis-plus-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "retro",
+      "reason": "already-in-db",
+      "source_repo": "phuryn/pm-skills"
+    },
+    {
+      "name": "scrum-masterrisk-assessment",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "scrum-mastertask-breakdown",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "spec",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "strategy-red-team",
+      "reason": "offensive-tooling",
+      "source_repo": "phuryn/pm-skills"
+    },
+    {
+      "name": "brainstorming",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "brainstorming-hashgraph-online",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "brainstorming-hashgraph-online-2",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "calendar-prep",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "capture",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "grill-me",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "lark-calendar",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "meeting-prep",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "plan",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "reflect",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skill-cross-site-scripting-xss",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-fast-testing-checklist",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-file-upload-vulnerabilities",
+      "reason": "deny-substring:reverse shell",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-http-parameter-pollution-hpp",
+      "reason": "deny-substring:bypass filter",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-waf-bypass-techniques",
+      "reason": "deny-substring:bypass filter",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-xml-external-entity-xxe-injection",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skyvern",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "triage",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "v3-cli-modernization",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "validate-skillmd",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "weekly-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "xlsx",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "clade-policy-guardrails",
+      "reason": "deny-substring:csam",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "diagnose",
+      "reason": "already-in-db",
+      "source_repo": "github/awesome-copilot"
+    },
+    {
+      "name": "langchain-middleware-patterns",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "langfuse-webhooks-events",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "named-persona-adversarial-review",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "prompt-engineer-toolkit",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "prompt-governance",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "safety-scan",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "senior-prompt-engineer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "capture",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "check",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "context-recall",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "create-skill",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "init",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "memory-review",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "memory-status",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "reasoningbank-with-agentdb",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "recall",
+      "reason": "already-in-db",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "aas-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "accounting-and-economics-research",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "architecttech-research",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "auditing-research",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "best-practices",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "brain",
+      "reason": "already-in-db",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "bulletin-of-chinese-academy-of-sciences",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "china-rural-economy",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "china-rural-survey",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "china-soft-science",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "china-sport-science",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "chinese-journal-of-management-science",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cjc-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "commercial-demand-research",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "comparative-economic-and-social-systems",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "competitors",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "contemporary-economy-of-japan",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "content-research-writer",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    },
+    {
+      "name": "csj-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "csj-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "darwinian-evolver",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "deep-research-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "economic-aspects",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "er-rebuttal",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "fda-consultant-specialist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "frontiers-of-engineering-management-science-and-technology",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "governance-studies",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "hv-analysis",
+      "reason": "non-english",
+      "source_repo": "KKKKhazix/khazix-skills"
+    },
+    {
+      "name": "inquiry-into-economic-issues",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "international-economic-review-cn",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "issues-in-agricultural-economy",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcadcg-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-artifact-evaluation",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jcrd-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-author-response",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-camera-ready",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-experiments",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-related-work",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-review-process",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-supplementary",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-topic-selection",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-workflow",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-agrotechnical-economics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-industrial-engineering-and-engineering-management",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-international-trade",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-management",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-public-management",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "journal-of-zhongnan-university-of-economics-and-law",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "macroeconomics",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "management-science-cn",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "modern-economic-research",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "modern-economic-science",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "modern-financial-research",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-literature-review",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-mechanism-heterogeneity",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-policy-implication",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-rebuttal",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-submission",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "mw-tables-figures",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "nankai-economic-studies",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "parallel-cli",
+      "reason": "unsafe-install",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "planning-with-files",
+      "reason": "already-in-db",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "planning-with-files-othmanadi",
+      "reason": "already-in-db",
+      "source_repo": "OthmanAdi/planning-with-files"
+    },
+    {
+      "name": "pmuser-research",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "prai-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "pua-pro",
+      "reason": "thin-body",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "pulse",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "research",
+      "reason": "already-in-db",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "research-on-financial-and-economic-issues",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "research-summarizer",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "review-of-political-economy",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "rural-economy",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "science-of-science-and-management-of-st",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "sentiment-analysis",
+      "reason": "already-in-db",
+      "source_repo": "phuryn/pm-skills"
+    },
+    {
+      "name": "sparc-methodology",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "ssi-reproducibility",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "usenixsec-reproducibility",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "validation",
+      "reason": "already-in-db",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "world-economic-papers",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "world-economic-studies",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "a11y-audit",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "ai-security",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "audit-context-building",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "auditing-cors-policy",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "authentication-patterns",
+      "reason": "already-in-db",
+      "source_repo": "rohitg00/awesome-claude-code-toolkit"
+    },
+    {
+      "name": "azure-keyvault-secrets-rust",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-keyvault-secrets-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-security-keyvault-keys-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-security-keyvault-keys-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-security-keyvault-secrets-java",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "burpsuite-project-parser",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "casefile",
+      "reason": "offensive-tooling",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "clawsec-suite",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "prompt-security/clawsec"
+    },
+    {
+      "name": "context-engine",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "detecting-exposed-secrets-files",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "entry-point-analyzer",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "exploits",
+      "reason": "offensive-tooling",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "find-cybersecurity-firm",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "fix",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "flow-nexus-platform",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "flyio-install-auth",
+      "reason": "unsafe-install",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "godmode",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "groq-security-basics",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "guidewire-security-and-rbac",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "information-security-manager-iso27001",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "insecure-defaults",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "langchain-security-basics",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "maintain",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "microsoft-azure-webjobs-extensions-authentication-events-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "offensive-jwt",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "offensive-osint-elementalsouls",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "elementalsouls/Claude-OSINT"
+    },
+    {
+      "name": "pr-review",
+      "reason": "already-in-db",
+      "source_repo": "athola/claude-night-market"
+    },
+    {
+      "name": "red-team",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "responding-to-security-incidents",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "review",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "river-review-security",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "security-hashgraph-online",
+      "reason": "deny-substring:exfiltrate",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "security-audit",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "security-guidance",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "security-pen-testing",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "sharp-edges",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "skill-ai-pentest",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-exploit-development",
+      "reason": "offensive-tooling",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-exploit-development-snailsploit",
+      "reason": "deny-substring:jailbreak",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-modern-kernel-exploit-mitigations",
+      "reason": "deny-substring:ransomware",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-security-auditor",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "skill-week-1-vulnerability-classes-with-real-world-examples",
+      "reason": "deny-substring:bypass safety",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skills-iso42001-specialist",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "spec-to-code-compliance",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "supply-chain-risk-auditor",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "triage",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "variant-analysis",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "wcag-audit-patterns",
+      "reason": "already-in-db",
+      "source_repo": "wshobson/agents"
+    },
+    {
+      "name": "web-pentest",
+      "reason": "offensive-tooling",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "workflow-forensics",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "zeroize-audit",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "skill-builder",
+      "reason": "already-in-db",
+      "source_repo": "ruvnet/RuView"
+    },
+    {
+      "name": "skill-creator",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "skillify",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "adversary-tracking",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "api-test-bruno-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "api-test-pytest-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "api-test-restassure-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "api-test-supertest-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "azure-microsoft-playwright-testing-ts",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-resource-manager-playwright-dotnet",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "backendtesting-guide",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "book-mirror",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "brain-ops",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "brain-search",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "briefing",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "broken",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "browser-smoke-testing",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "browser-testing-with-devtools",
+      "reason": "deny-substring:ignore previous instructions",
+      "source_repo": "addyosmani/agent-skills"
+    },
+    {
+      "name": "browserstack",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "civic-intelligence",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "claude-only-skill",
+      "reason": "thin-body",
+      "source_repo": "EveryInc/compound-engineering-plugin"
+    },
+    {
+      "name": "complete-skill",
+      "reason": "thin-body",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "content-creation",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "context-mode",
+      "reason": "already-in-db",
+      "source_repo": "mksglu/context-mode"
+    },
+    {
+      "name": "daily-digest",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "differential-review",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "disabled-skill",
+      "reason": "thin-body",
+      "source_repo": "EveryInc/compound-engineering-plugin"
+    },
+    {
+      "name": "discover-testing-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "email-triage",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "enrich",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "finishing-a-development-branch",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "fix",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "flight-tracker",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "frontendtesting-guide",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "generate",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "gift-advisor",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "grammarly-local-dev-loop",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "hex-local-dev-loop",
+      "reason": "thin-body",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "init",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "java-unit-test",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "libafl",
+      "reason": "unsafe-install",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "maven-qa",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "meeting-prep",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "migrate",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "migrate-alirezarezvani",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "missing-brain-first",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "mvp",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "no-external",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "onboard",
+      "reason": "already-in-db",
+      "source_repo": "davepoon/buildwithclaude"
+    },
+    {
+      "name": "pairwise-test-design",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "performance-test-gatling-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "performance-test-k6-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "property-based-testing",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "prove",
+      "reason": "unsafe-install",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "python-best-practices",
+      "reason": "already-in-db",
+      "source_repo": "rohitg00/awesome-claude-code-toolkit"
+    },
+    {
+      "name": "qa-engineer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "qa-reviewer",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "qae2e-playwright",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "qatest-execution",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "qatest-strategy",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "query",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "query-helper",
+      "reason": "thin-body",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "release",
+      "reason": "already-in-db",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "report",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "review",
+      "reason": "already-in-db",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "river-review-testing",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "running-julia-test",
+      "reason": "short-desc",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "semgrep-rule-variant-creator",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "setup",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gbrain"
+    },
+    {
+      "name": "ship",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "skill-bug-identification",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "SnailSploit/Claude-Red"
+    },
+    {
+      "name": "skill-one",
+      "reason": "short-desc",
+      "source_repo": "EveryInc/compound-engineering-plugin"
+    },
+    {
+      "name": "skills-init",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "stress-test",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "test-case-reviewer-plus-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "test-driven-development",
+      "reason": "already-in-db",
+      "source_repo": "addyosmani/agent-skills"
+    },
+    {
+      "name": "test-gaps",
+      "reason": "thin-body",
+      "source_repo": "ruvnet/ruflo"
+    },
+    {
+      "name": "test-skill",
+      "reason": "thin-body",
+      "source_repo": "tailcallhq/forgecode"
+    },
+    {
+      "name": "test-strategy-plus-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "testcase-writer-plus-naodeng",
+      "reason": "non-english",
+      "source_repo": "naodeng/awesome-qa-skills"
+    },
+    {
+      "name": "testcontainers-integration-testing",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "testing-course-samples-microsoft",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-11",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-12",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-13",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-14",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-18",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-19",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-2",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-23",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-24",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-29",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-30",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-31",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-34",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-35",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-39",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-40",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-42",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-43",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-44",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-5",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-6",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-7",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testing-course-samples-microsoft-9",
+      "reason": "non-english",
+      "source_repo": "microsoft/ai-agents-for-beginners"
+    },
+    {
+      "name": "testrail",
+      "reason": "thin-body",
+      "source_repo": "alirezarezvani/claude-skills"
+    },
+    {
+      "name": "unknown-coverage-review",
+      "reason": "non-english",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "webapp-testing",
+      "reason": "already-in-db",
+      "source_repo": "anthropics/skills"
+    },
+    {
+      "name": "wiki-qa",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "aas-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "aes-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "azure-ai-translation-document-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "azure-ai-translation-text-py",
+      "reason": "already-in-db",
+      "source_repo": "microsoft/skills"
+    },
+    {
+      "name": "cjc-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "cold-email",
+      "reason": "already-in-db",
+      "source_repo": "coreyhaines31/marketingskills"
+    },
+    {
+      "name": "csj-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "design-review",
+      "reason": "already-in-db",
+      "source_repo": "garrytan/gstack"
+    },
+    {
+      "name": "humanizer",
+      "reason": "already-in-db",
+      "source_repo": "NousResearch/hermes-agent"
+    },
+    {
+      "name": "humanizer-zh",
+      "reason": "non-english",
+      "source_repo": "Mizoreww/awesome-claude-code-config"
+    },
+    {
+      "name": "integrate",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "andrewyng/context-hub"
+    },
+    {
+      "name": "jcadcg-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jonc-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "jos-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "lead-magnets",
+      "reason": "already-in-db",
+      "source_repo": "coreyhaines31/marketingskills"
+    },
+    {
+      "name": "modern-python",
+      "reason": "already-in-db",
+      "source_repo": "trailofbits/skills"
+    },
+    {
+      "name": "new-project",
+      "reason": "credential-exfil-pattern",
+      "source_repo": "andrewyng/context-hub"
+    },
+    {
+      "name": "observe-before-editing",
+      "reason": "short-desc",
+      "source_repo": "parcadei/Continuous-Claude-v3"
+    },
+    {
+      "name": "plain-english",
+      "reason": "deny-substring:weaponiz",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "prai-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "sentry",
+      "reason": "unsafe-install",
+      "source_repo": "openai/skills"
+    },
+    {
+      "name": "ssi-writing-style",
+      "reason": "non-english",
+      "source_repo": "brycewang-stanford/Awesome-Journal-Skills"
+    },
+    {
+      "name": "status",
+      "reason": "already-in-db",
+      "source_repo": "josstei/maestro-orchestrate"
+    },
+    {
+      "name": "technical-writing",
+      "reason": "already-in-db",
+      "source_repo": "rsmdt/the-startup"
+    },
+    {
+      "name": "unslop-hashgraph-online",
+      "reason": "deny-substring:bypass safety",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "validate",
+      "reason": "already-in-db",
+      "source_repo": "hashgraph-online/awesome-codex-plugins"
+    },
+    {
+      "name": "web-article-extractor",
+      "reason": "non-english",
+      "source_repo": "dongbeixiaohuo/writing-agent"
+    },
+    {
+      "name": "workflow-producer",
+      "reason": "non-english",
+      "source_repo": "dongbeixiaohuo/writing-agent"
+    },
+    {
+      "name": "writer",
+      "reason": "already-in-db",
+      "source_repo": "jeremylongshore/claude-code-plugins-plus-skills"
+    },
+    {
+      "name": "writing-beats",
+      "reason": "offensive-tooling",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "writing-plans",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "writing-shape",
+      "reason": "offensive-tooling",
+      "source_repo": "mattpocock/skills"
+    },
+    {
+      "name": "writing-skills",
+      "reason": "already-in-db",
+      "source_repo": "obra/superpowers"
+    },
+    {
+      "name": "xlsx",
+      "reason": "already-in-db",
+      "source_repo": "ComposioHQ/awesome-claude-skills"
+    }
+  ],
+  "drops": {
+    "already-harvested-source": 2135,
+    "deny-source-repo": 1632,
+    "non-english": 488,
+    "already-in-db": 494,
+    "short-desc": 28,
+    "thin-body": 188,
+    "deny-substring:command and control": 2,
+    "deny-substring:weaponiz": 12,
+    "unsafe-install": 38,
+    "deny-substring:jailbreak": 14,
+    "offensive-tooling": 12,
+    "deny-substring:ignore previous instructions": 11,
+    "deny-substring:exfiltrate": 7,
+    "credential-exfil-pattern": 6,
+    "deny-substring:ransomware": 10,
+    "deny-substring:reverse shell": 3,
+    "deny-substring:c2 server": 1,
+    "deny-substring:keylogger": 2,
+    "deny-substring:bypass safety": 3,
+    "deny-substring:csam": 2,
+    "deny-substring:bypass filter": 2
+  }
+}

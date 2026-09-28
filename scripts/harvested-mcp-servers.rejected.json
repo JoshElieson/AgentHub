@@ -1,0 +1,5799 @@
+{
+  "rejected": [
+    {
+      "name": "app-icemoon-automation-studio",
+      "reason": "deny-substring:jailbreak",
+      "registry": "app.icemoon/automation-studio"
+    },
+    {
+      "name": "app-odyssey365-mcp-server",
+      "reason": "non-english",
+      "registry": "app.odyssey365/mcp-server"
+    },
+    {
+      "name": "br-com-pushinpay-mcp",
+      "reason": "non-english",
+      "registry": "br.com.pushinpay/mcp"
+    },
+    {
+      "name": "com-clicksend-clicksend-mcp-server",
+      "reason": "short-desc",
+      "registry": "com.clicksend/clicksend-mcp-server"
+    },
+    {
+      "name": "com-contadeo-mcp",
+      "reason": "non-english",
+      "registry": "com.contadeo/mcp"
+    },
+    {
+      "name": "com-goldpopcon-openapi-mcp",
+      "reason": "non-english",
+      "registry": "com.goldpopcon/openapi-mcp"
+    },
+    {
+      "name": "com-harucms-haru-cms",
+      "reason": "non-english",
+      "registry": "com.harucms/haru-cms"
+    },
+    {
+      "name": "de-zugferd-validator-validator",
+      "reason": "non-english",
+      "registry": "de.zugferd-validator/validator"
+    },
+    {
+      "name": "dev-safeprompt-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "dev.safeprompt/mcp"
+    },
+    {
+      "name": "icu-steeped-registry-nodejsmcp",
+      "reason": "short-desc",
+      "registry": "icu.steeped.registry/nodejsmcp"
+    },
+    {
+      "name": "io-github-aiomx-hydite-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.Aiomx/hydite-mcp"
+    },
+    {
+      "name": "io-github-alvaroramirezcastillo-greeting-mcp-server",
+      "reason": "short-desc",
+      "registry": "io.github.AlvaroRamirezCastillo/greeting-mcp-server"
+    },
+    {
+      "name": "io-github-avatargaia-canvas-mcp",
+      "reason": "non-english",
+      "registry": "io.github.AvatarGaia/canvas-mcp"
+    },
+    {
+      "name": "io-github-braynexservices-nigeria-un-sdg",
+      "reason": "non-english",
+      "registry": "io.github.Braynexservices/nigeria-un-sdg"
+    },
+    {
+      "name": "io-github-cail726-chinese-text-tools",
+      "reason": "non-english",
+      "registry": "io.github.Cail726/chinese-text-tools"
+    },
+    {
+      "name": "io-github-clocknext-mcp",
+      "reason": "dupe-name"
+    },
+    {
+      "name": "io-github-corallips-gft-mcp",
+      "reason": "non-english",
+      "registry": "io.github.CoralLips/gft-mcp"
+    },
+    {
+      "name": "io-github-davidpivert-ara-rgaa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.DavidPivert/ara-rgaa-mcp"
+    },
+    {
+      "name": "io-github-edubase-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.EduBase/MCP"
+    },
+    {
+      "name": "io-github-f-loat-mtop-devtools",
+      "reason": "non-english",
+      "registry": "io.github.F-loat/mtop-devtools"
+    },
+    {
+      "name": "io-github-frankxmx-dailyhotmcp",
+      "reason": "non-english",
+      "registry": "io.github.FrankXMX/dailyhotmcp"
+    },
+    {
+      "name": "io-github-gonetone-mcp-server-taiwan-weather",
+      "reason": "non-english",
+      "registry": "io.github.GoneTone/mcp-server-taiwan-weather"
+    },
+    {
+      "name": "io-github-johnzhang-ui-shotflow-mcp",
+      "reason": "non-english",
+      "registry": "io.github.JOHNZhang-ui/shotflow-mcp"
+    },
+    {
+      "name": "io-github-jam0k-threatcluster",
+      "reason": "deny-substring:ransomware",
+      "registry": "io.github.Jam0k/threatcluster"
+    },
+    {
+      "name": "io-github-jegoba90-cryptocapi",
+      "reason": "non-english",
+      "registry": "io.github.Jegoba90/cryptocapi"
+    },
+    {
+      "name": "io-github-jing7ao-aihot-mcp",
+      "reason": "non-english",
+      "registry": "io.github.Jing7ao/aihot-mcp"
+    },
+    {
+      "name": "io-github-jing7ao-seedance-mcp",
+      "reason": "non-english",
+      "registry": "io.github.Jing7ao/seedance-mcp"
+    },
+    {
+      "name": "io-github-leonting1010-haplane",
+      "reason": "non-english",
+      "registry": "io.github.LeonTing1010/haplane"
+    },
+    {
+      "name": "io-github-odyssey365-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.Odyssey365/mcp-server"
+    },
+    {
+      "name": "io-github-paulseth-gitee-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.PaulSeth/gitee-mcp-server"
+    },
+    {
+      "name": "io-github-pavelsiba-yandex-direct-mcp-plus",
+      "reason": "non-english",
+      "registry": "io.github.Pavelsiba/yandex-direct-mcp-plus"
+    },
+    {
+      "name": "io-github-portaltocoding-second-brain-mcp",
+      "reason": "non-english",
+      "registry": "io.github.Portaltocoding/second-brain-mcp"
+    },
+    {
+      "name": "io-github-samuelmoraesf-mcp-banco-inter",
+      "reason": "non-english",
+      "registry": "io.github.SamuelMoraesF/mcp-banco-inter"
+    },
+    {
+      "name": "io-github-vanguardiaai-doktor",
+      "reason": "non-english",
+      "registry": "io.github.VanguardiaAI/doktor"
+    },
+    {
+      "name": "io-github-aaglis-intelliboard-mcp",
+      "reason": "non-english",
+      "registry": "io.github.aaglis/intelliboard-mcp"
+    },
+    {
+      "name": "io-github-aaronlou-effect-ts-cn",
+      "reason": "non-english",
+      "registry": "io.github.aaronlou/effect-ts-cn"
+    },
+    {
+      "name": "io-github-aliveranme-stata-mcp",
+      "reason": "non-english",
+      "registry": "io.github.aliveranme/stata-mcp"
+    },
+    {
+      "name": "io-github-artgas1-yandex-metrika-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.artgas1/yandex-metrika-mcp-server"
+    },
+    {
+      "name": "io-github-benliberte-immo",
+      "reason": "non-english",
+      "registry": "io.github.benliberte/immo"
+    },
+    {
+      "name": "io-github-creis-ai-mcp-property-valuation-server",
+      "reason": "short-desc",
+      "registry": "io.github.creis-ai/mcp-property-valuation-server"
+    },
+    {
+      "name": "io-github-dan94k-brazilian-dev-mcp",
+      "reason": "non-english",
+      "registry": "io.github.dan94k/brazilian-dev-mcp"
+    },
+    {
+      "name": "io-github-datoushiwo-wechat-writer-mcp",
+      "reason": "non-english",
+      "registry": "io.github.datoushiwo/wechat-writer-mcp"
+    },
+    {
+      "name": "io-github-debridge-finance-debridge-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.debridge-finance/debridge-mcp"
+    },
+    {
+      "name": "io-github-didrod205-korean-patent-mcp",
+      "reason": "non-english",
+      "registry": "io.github.didrod205/korean-patent-mcp"
+    },
+    {
+      "name": "io-github-dl-eigenart-agentshield-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.dl-eigenart/agentshield-mcp"
+    },
+    {
+      "name": "io-github-ejfkdev-zread-mcp",
+      "reason": "non-english",
+      "registry": "io.github.ejfkdev/zread-mcp"
+    },
+    {
+      "name": "io-github-finalburner-rankfabrik-mcp",
+      "reason": "non-english",
+      "registry": "io.github.finalburner/rankfabrik-mcp"
+    },
+    {
+      "name": "io-github-fkom13-mcp-sftp-orchestrator",
+      "reason": "non-english",
+      "registry": "io.github.fkom13/mcp-sftp-orchestrator"
+    },
+    {
+      "name": "io-github-flight-master-dast-aviation-data-mcp",
+      "reason": "non-english",
+      "registry": "io.github.flight-master-dast/aviation-data-mcp"
+    },
+    {
+      "name": "io-github-gooodbilling-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.gooodbilling/mcp-server"
+    },
+    {
+      "name": "io-github-goreleaser-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.goreleaser/mcp"
+    },
+    {
+      "name": "io-github-guykjfrog-jfrog-dummy-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.guykJfrog/jfrog-dummy-mcp"
+    },
+    {
+      "name": "io-github-hostkey-cloud-ru-mcp-server-ru",
+      "reason": "non-english",
+      "registry": "io.github.hostkey-cloud-ru/mcp-server-ru"
+    },
+    {
+      "name": "io-github-ilopezluna-factura-luz",
+      "reason": "non-english",
+      "registry": "io.github.ilopezluna/factura-luz"
+    },
+    {
+      "name": "io-github-iqingyoung-429-throttle-mcp",
+      "reason": "non-english",
+      "registry": "io.github.iqingyoung/429-throttle-mcp"
+    },
+    {
+      "name": "io-github-iqingyoung-search2chart-mcp",
+      "reason": "non-english",
+      "registry": "io.github.iqingyoung/search2chart-mcp"
+    },
+    {
+      "name": "io-github-jackdark425-aigroup-mdtoword-mcp",
+      "reason": "non-english",
+      "registry": "io.github.jackdark425/aigroup-mdtoword-mcp"
+    },
+    {
+      "name": "io-github-jmshinhwa-arbeitsvertrag-nachwg-lint",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/arbeitsvertrag-nachwg-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-auditor-ibs-cbs-nfe",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/auditor-ibs-cbs-nfe"
+    },
+    {
+      "name": "io-github-jmshinhwa-bestellabschluss-pflichten-de",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/bestellabschluss-pflichten-de"
+    },
+    {
+      "name": "io-github-jmshinhwa-canal-de-denuncias-lint-es",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/canal-de-denuncias-lint-es"
+    },
+    {
+      "name": "io-github-jmshinhwa-datenschutz-auskunft-lint",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/datenschutz-auskunft-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-denchoho-sakuin-check-2026",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/denchoho-sakuin-check-2026"
+    },
+    {
+      "name": "io-github-jmshinhwa-dsfinv-k-export-lint",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/dsfinv-k-export-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-en16931-einvoice-lint",
+      "reason": "offensive-tooling",
+      "registry": "io.github.jmshinhwa/en16931-einvoice-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-facturae-verifactu-lint",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/facturae-verifactu-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-freelance-act-order-lint-jp",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/freelance-act-order-lint-jp"
+    },
+    {
+      "name": "io-github-jmshinhwa-gaibu-soshin-tag-lint-jp",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/gaibu-soshin-tag-lint-jp"
+    },
+    {
+      "name": "io-github-jmshinhwa-impressum-check-ddg-de",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/impressum-check-ddg-de"
+    },
+    {
+      "name": "io-github-jmshinhwa-impressum-lint-de",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/impressum-lint-de"
+    },
+    {
+      "name": "io-github-jmshinhwa-jct-transition-lint-2026",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/jct-transition-lint-2026"
+    },
+    {
+      "name": "io-github-jmshinhwa-lectura-facil-lint-es",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/lectura-facil-lint-es"
+    },
+    {
+      "name": "io-github-jmshinhwa-rechnung-pflichtangaben-lint-de",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/rechnung-pflichtangaben-lint-de"
+    },
+    {
+      "name": "io-github-jmshinhwa-romu-hozon-kikan-lint-jp",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/romu-hozon-kikan-lint-jp"
+    },
+    {
+      "name": "io-github-jmshinhwa-streitbeilegung-hinweis-lint",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/streitbeilegung-hinweis-lint"
+    },
+    {
+      "name": "io-github-jmshinhwa-verfahrensdoku-gobd-check",
+      "reason": "non-english",
+      "registry": "io.github.jmshinhwa/verfahrensdoku-gobd-check"
+    },
+    {
+      "name": "io-github-jonathanhefner-hello-mcp-registry",
+      "reason": "short-desc",
+      "registry": "io.github.jonathanhefner/hello-mcp-registry"
+    },
+    {
+      "name": "io-github-kishida-devil-jp-payroll-mcp",
+      "reason": "non-english",
+      "registry": "io.github.kishida-devil/jp-payroll-mcp"
+    },
+    {
+      "name": "io-github-mcpassure-mcp-anvisa-bulario",
+      "reason": "non-english",
+      "registry": "io.github.mcpassure/mcp-anvisa-bulario"
+    },
+    {
+      "name": "io-github-mcpassure-mcp-cnes",
+      "reason": "non-english",
+      "registry": "io.github.mcpassure/mcp-cnes"
+    },
+    {
+      "name": "io-github-milcho0604-velog",
+      "reason": "non-english",
+      "registry": "io.github.milcho0604/velog"
+    },
+    {
+      "name": "io-github-moon0825-jbnu-lms-student",
+      "reason": "non-english",
+      "registry": "io.github.moon0825/jbnu-lms-student"
+    },
+    {
+      "name": "io-github-mrfentmen-openbrewery-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.mrfentmen/openbrewery-mcp"
+    },
+    {
+      "name": "io-github-olaurendeau-mcp-camptocamp",
+      "reason": "non-english",
+      "registry": "io.github.olaurendeau/mcp-camptocamp"
+    },
+    {
+      "name": "io-github-opendata-kr-narajangteo-bid-mcp",
+      "reason": "non-english",
+      "registry": "io.github.opendata-kr/narajangteo-bid-mcp"
+    },
+    {
+      "name": "io-github-opendata-kr-narajangteo-corpinfo",
+      "reason": "non-english",
+      "registry": "io.github.opendata-kr/narajangteo-corpinfo"
+    },
+    {
+      "name": "io-github-opendata-kr-narajangteo-opening",
+      "reason": "non-english",
+      "registry": "io.github.opendata-kr/narajangteo-opening"
+    },
+    {
+      "name": "io-github-opendata-kr-narajangteo-prespec-mcp",
+      "reason": "non-english",
+      "registry": "io.github.opendata-kr/narajangteo-prespec-mcp"
+    },
+    {
+      "name": "io-github-overstarry-qweather-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.overstarry/qweather-mcp"
+    },
+    {
+      "name": "io-github-pshivapr-selenium-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.pshivapr/selenium-mcp"
+    },
+    {
+      "name": "io-github-qxchuckle-qcqx-project-manage-mcp",
+      "reason": "non-english",
+      "registry": "io.github.qxchuckle/qcqx-project-manage-mcp"
+    },
+    {
+      "name": "io-github-raphysicst-create-korean-secondary-learning-map-mcp",
+      "reason": "non-english",
+      "registry": "io.github.raphysicst-create/korean-secondary-learning-map-mcp"
+    },
+    {
+      "name": "io-github-raphysicst-create-korean-vocational-learning-map-mcp",
+      "reason": "non-english",
+      "registry": "io.github.raphysicst-create/korean-vocational-learning-map-mcp"
+    },
+    {
+      "name": "io-github-revsmoke-promptrejectormcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.revsmoke/promptrejectormcp"
+    },
+    {
+      "name": "io-github-richard-kim-79-popup-mcp",
+      "reason": "non-english",
+      "registry": "io.github.richard-kim-79/popup-mcp"
+    },
+    {
+      "name": "io-github-rishabhmpc-prompt-compass",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.rishabhmpc/prompt-compass"
+    },
+    {
+      "name": "io-github-rje1974-arca-agro",
+      "reason": "non-english",
+      "registry": "io.github.rje1974/arca-agro"
+    },
+    {
+      "name": "io-github-rje1974-interbanking",
+      "reason": "non-english",
+      "registry": "io.github.rje1974/interbanking"
+    },
+    {
+      "name": "io-github-rubtuc-news-server",
+      "reason": "non-english",
+      "registry": "io.github.rubtuc/news-server"
+    },
+    {
+      "name": "io-github-ryudi84-jwt-forge-mcp",
+      "reason": "offensive-tooling",
+      "registry": "io.github.ryudi84/jwt-forge-mcp"
+    },
+    {
+      "name": "io-github-sceneview-mcp",
+      "reason": "dupe-name"
+    },
+    {
+      "name": "io-github-scizuixiangsis-tapd-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.scizuixiangsis/tapd-mcp-server"
+    },
+    {
+      "name": "io-github-sun-jingtao-tapd-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.sun-jingtao/tapd-mcp-server"
+    },
+    {
+      "name": "io-github-supra126-taiwan-payroll",
+      "reason": "non-english",
+      "registry": "io.github.supra126/taiwan-payroll"
+    },
+    {
+      "name": "io-github-swnotmetal-koma-gate-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.swnotmetal/koma-gate-mcp"
+    },
+    {
+      "name": "io-github-taehyeonglim-korean-elementary-learning-map-mcp",
+      "reason": "non-english",
+      "registry": "io.github.taehyeonglim/korean-elementary-learning-map-mcp"
+    },
+    {
+      "name": "io-github-udah1-hilan-mcp",
+      "reason": "non-english",
+      "registry": "io.github.udah1/hilan-mcp"
+    },
+    {
+      "name": "io-github-veriko-mx-labs-veriko",
+      "reason": "non-english",
+      "registry": "io.github.veriko-mx-labs/veriko"
+    },
+    {
+      "name": "io-github-wallettriage-wallettriage-mcp",
+      "reason": "offensive-tooling",
+      "registry": "io.github.wallettriage/wallettriage-mcp"
+    },
+    {
+      "name": "io-github-withinfocus-statbotics",
+      "reason": "short-desc",
+      "registry": "io.github.withinfocus/statbotics"
+    },
+    {
+      "name": "io-github-wujinkim-korea-business-verify",
+      "reason": "non-english",
+      "registry": "io.github.wujinkim/korea-business-verify"
+    },
+    {
+      "name": "io-github-yellow-hammer-mcp-1c-platform-tools",
+      "reason": "non-english",
+      "registry": "io.github.yellow-hammer/mcp-1c-platform-tools"
+    },
+    {
+      "name": "ru-invoicebox-mcp-server",
+      "reason": "non-english",
+      "registry": "ru.invoicebox/mcp-server"
+    },
+    {
+      "name": "com-exploit-intel-eip-mcp",
+      "reason": "offensive-tooling",
+      "registry": "com.exploit-intel/eip-mcp"
+    },
+    {
+      "name": "io-github-akhilucky-ai-firewall-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.Akhilucky/ai-firewall-mcp"
+    },
+    {
+      "name": "io-github-csoai-org-meok-ai-psych-vuln-audit-mcp",
+      "reason": "offensive-tooling",
+      "registry": "io.github.CSOAI-ORG/meok-ai-psych-vuln-audit-mcp"
+    },
+    {
+      "name": "io-github-diegobr4nd-godot-gut-mcp",
+      "reason": "non-english",
+      "registry": "io.github.DiegoBr4nd/godot-gut-mcp"
+    },
+    {
+      "name": "io-github-freyabit-shanghai-library-open-data-mcp",
+      "reason": "non-english",
+      "registry": "io.github.FreyaBit/shanghai-library-open-data-mcp"
+    },
+    {
+      "name": "io-github-gabmj23-nyambot-mcp",
+      "reason": "non-english",
+      "registry": "io.github.GabMJ23/nyambot-mcp"
+    },
+    {
+      "name": "io-github-izyuusya-japan-data-mcp",
+      "reason": "non-english",
+      "registry": "io.github.Izyuusya/japan-data-mcp"
+    },
+    {
+      "name": "io-github-luisebautistar-dropmind-mcp",
+      "reason": "non-english",
+      "registry": "io.github.LuisEBautistaR/dropmind-mcp"
+    },
+    {
+      "name": "io-github-mitdevpro-finanzas-mcp",
+      "reason": "non-english",
+      "registry": "io.github.MITDEVPRO/finanzas-mcp"
+    },
+    {
+      "name": "io-github-samuelmoraesf-mcp-organizze",
+      "reason": "non-english",
+      "registry": "io.github.SamuelMoraesF/mcp-organizze"
+    },
+    {
+      "name": "io-github-tokdar2410621-publiar",
+      "reason": "non-english",
+      "registry": "io.github.TokDar2410621/publiar"
+    },
+    {
+      "name": "io-github-vladimir-human-humanizer-ru",
+      "reason": "non-english",
+      "registry": "io.github.Vladimir-Human/humanizer-ru"
+    },
+    {
+      "name": "io-github-aahl-mcp-okx",
+      "reason": "short-desc",
+      "registry": "io.github.aahl/mcp-okx"
+    },
+    {
+      "name": "io-github-aahl-mcp-vods",
+      "reason": "non-english",
+      "registry": "io.github.aahl/mcp-vods"
+    },
+    {
+      "name": "io-github-aggrete-aggrete",
+      "reason": "dupe-name"
+    },
+    {
+      "name": "io-github-ascript-cn-ascript-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.ascript-cn/ascript-mcp"
+    },
+    {
+      "name": "io-github-aydincan-turk-hukuku-ictihat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.aydincan/turk-hukuku-ictihat-mcp"
+    },
+    {
+      "name": "io-github-aydincan-turk-hukuku-mevzuat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.aydincan/turk-hukuku-mevzuat-mcp"
+    },
+    {
+      "name": "io-github-blitzsicht-falzmarke",
+      "reason": "non-english",
+      "registry": "io.github.blitzsicht/falzmarke"
+    },
+    {
+      "name": "io-github-chenxiaofie-memory-mcp",
+      "reason": "non-english",
+      "registry": "io.github.chenxiaofie/memory-mcp"
+    },
+    {
+      "name": "io-github-daedalus-mcp-pymetasploit3",
+      "reason": "offensive-tooling",
+      "registry": "io.github.daedalus/mcp-pymetasploit3"
+    },
+    {
+      "name": "io-github-dfch-biz-dfch-specmgr",
+      "reason": "dupe-name"
+    },
+    {
+      "name": "io-github-domondi1-inferrail",
+      "reason": "offensive-tooling",
+      "registry": "io.github.domondi1/inferrail"
+    },
+    {
+      "name": "io-github-elpabloultron-open-legal-chile",
+      "reason": "non-english",
+      "registry": "io.github.elpabloultron/open-legal-chile"
+    },
+    {
+      "name": "io-github-gabrielmahia-decision-intelligence-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.gabrielmahia/decision-intelligence-mcp"
+    },
+    {
+      "name": "io-github-gabrielmahia-kenya-health-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.gabrielmahia/kenya-health-mcp"
+    },
+    {
+      "name": "io-github-gabrielmahia-remit-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.gabrielmahia/remit-mcp"
+    },
+    {
+      "name": "io-github-gabrielmahia-swahili-health-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.gabrielmahia/swahili-health-mcp"
+    },
+    {
+      "name": "io-github-ilyautov-avito-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/avito-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-chestny-znak-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/chestny-znak-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-diadoc-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/diadoc-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-hh-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/hh-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-humanizer-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/humanizer-ru"
+    },
+    {
+      "name": "io-github-ilyautov-inn-check-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/inn-check-ru"
+    },
+    {
+      "name": "io-github-ilyautov-ozon-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/ozon-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-sbis-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/sbis-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-vk-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/vk-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-wildberries-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/wildberries-mcp-ru"
+    },
+    {
+      "name": "io-github-ilyautov-yandex-market-mcp-ru",
+      "reason": "non-english",
+      "registry": "io.github.ilyautov/yandex-market-mcp-ru"
+    },
+    {
+      "name": "io-github-juandavidsernav-secop-mcp-server",
+      "reason": "non-english",
+      "registry": "io.github.juandavidsernav/secop-mcp-server"
+    },
+    {
+      "name": "io-github-lovelyquality-korail-mcp",
+      "reason": "non-english",
+      "registry": "io.github.lovelyquality/korail-mcp"
+    },
+    {
+      "name": "io-github-marcelinero-auditoria-skills",
+      "reason": "non-english",
+      "registry": "io.github.marcelinero/auditoria-skills"
+    },
+    {
+      "name": "io-github-mickymultani-crypto-bytes",
+      "reason": "short-desc",
+      "registry": "io.github.mickymultani/crypto-bytes"
+    },
+    {
+      "name": "io-github-mouseart2025-china-context-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mouseart2025/china-context-mcp"
+    },
+    {
+      "name": "io-github-mutonby-aikount-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mutonby/aikount-mcp"
+    },
+    {
+      "name": "io-github-paulo2tab-certidao",
+      "reason": "non-english",
+      "registry": "io.github.paulo2tab/certidao"
+    },
+    {
+      "name": "io-github-seifreed-ensmcp",
+      "reason": "non-english",
+      "registry": "io.github.seifreed/ensmcp"
+    },
+    {
+      "name": "io-github-sergioprats-pitwall-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sergioprats/pitwall-mcp"
+    },
+    {
+      "name": "io-github-shakagold-ticktest-mcp",
+      "reason": "non-english",
+      "registry": "io.github.shakagold/ticktest-mcp"
+    },
+    {
+      "name": "io-github-spyyps-menus-recommender",
+      "reason": "non-english",
+      "registry": "io.github.spyyps/menus-recommender"
+    },
+    {
+      "name": "io-github-tchivs-aktools-pro",
+      "reason": "non-english",
+      "registry": "io.github.tchivs/aktools-pro"
+    },
+    {
+      "name": "io-github-xyzxinlu-max-verbatim-transcribe-mcp",
+      "reason": "non-english",
+      "registry": "io.github.xyzxinlu-max/verbatim-transcribe-mcp"
+    },
+    {
+      "name": "io-github-yatuk-itu-mcp",
+      "reason": "non-english",
+      "registry": "io.github.yatuk/itu-mcp"
+    },
+    {
+      "name": "io-github-zzzz0902zzzz-rgb-daonexus-mcp",
+      "reason": "non-english",
+      "registry": "io.github.zzzz0902zzzz-rgb/daonexus-mcp"
+    },
+    {
+      "name": "ai-anzenna-anzenna",
+      "reason": "short-desc",
+      "registry": "ai.anzenna/anzenna"
+    },
+    {
+      "name": "ai-atdev-supershopping",
+      "reason": "non-english",
+      "registry": "ai.atdev/supershopping"
+    },
+    {
+      "name": "ai-getvda-auth-token-mcp-service",
+      "reason": "short-desc",
+      "registry": "ai.getvda/auth-token-mcp-service"
+    },
+    {
+      "name": "ai-getvda-authenticated-llm-agent",
+      "reason": "short-desc",
+      "registry": "ai.getvda/authenticated-llm-agent"
+    },
+    {
+      "name": "ai-getvda-authenticated-mcp-agent-aed9d5",
+      "reason": "short-desc",
+      "registry": "ai.getvda/authenticated-mcp-agent-aed9d5"
+    },
+    {
+      "name": "ai-getvda-integration-agent",
+      "reason": "short-desc",
+      "registry": "ai.getvda/integration-agent"
+    },
+    {
+      "name": "ai-getvda-llm-orchestration-agent-d0a1a1",
+      "reason": "short-desc",
+      "registry": "ai.getvda/llm-orchestration-agent-d0a1a1"
+    },
+    {
+      "name": "ai-getvda-traced-llm-mcp-proxy",
+      "reason": "short-desc",
+      "registry": "ai.getvda/traced-llm-mcp-proxy"
+    },
+    {
+      "name": "ai-getvda-traced-llm-proxy",
+      "reason": "short-desc",
+      "registry": "ai.getvda/traced-llm-proxy"
+    },
+    {
+      "name": "ai-getvda-traced-multi-llm-proxy",
+      "reason": "short-desc",
+      "registry": "ai.getvda/traced-multi-llm-proxy"
+    },
+    {
+      "name": "ai-gomarble-mcp-api",
+      "reason": "short-desc",
+      "registry": "ai.gomarble/mcp-api"
+    },
+    {
+      "name": "ai-hotker-hotker",
+      "reason": "non-english",
+      "registry": "ai.hotker/hotker"
+    },
+    {
+      "name": "ai-neocapital-neo",
+      "reason": "non-english",
+      "registry": "ai.neocapital/neo"
+    },
+    {
+      "name": "ai-robinlawyer-robinlawyer",
+      "reason": "non-english",
+      "registry": "ai.robinlawyer/robinlawyer"
+    },
+    {
+      "name": "ai-robomart-robomart",
+      "reason": "short-desc",
+      "registry": "ai.robomart/robomart"
+    },
+    {
+      "name": "ai-smithery-airmang-hwpx-mcp",
+      "reason": "non-english",
+      "registry": "ai.smithery/airmang-hwpx-mcp"
+    },
+    {
+      "name": "ai-smithery-blbl147-xhs-mcp",
+      "reason": "non-english",
+      "registry": "ai.smithery/blbl147-xhs-mcp"
+    },
+    {
+      "name": "ai-smithery-isnow890-data4library-mcp",
+      "reason": "non-english",
+      "registry": "ai.smithery/isnow890-data4library-mcp"
+    },
+    {
+      "name": "am-sublime-sublime",
+      "reason": "non-english",
+      "registry": "am.sublime/sublime"
+    },
+    {
+      "name": "app-cooperpetcare-www-cooper",
+      "reason": "non-english",
+      "registry": "app.cooperpetcare.www/cooper"
+    },
+    {
+      "name": "app-hadl-portfolio",
+      "reason": "non-english",
+      "registry": "app.hadl/portfolio"
+    },
+    {
+      "name": "app-tbit-tbit",
+      "reason": "non-english",
+      "registry": "app.tbit/tbit"
+    },
+    {
+      "name": "app-wonbuddhism-scripture",
+      "reason": "non-english",
+      "registry": "app.wonbuddhism/scripture"
+    },
+    {
+      "name": "app-work-handler-work-handler",
+      "reason": "non-english",
+      "registry": "app.work-handler/work-handler"
+    },
+    {
+      "name": "ar-almanac-almanac",
+      "reason": "non-english",
+      "registry": "ar.almanac/almanac"
+    },
+    {
+      "name": "ar-com-consignatarias-cattle-market",
+      "reason": "non-english",
+      "registry": "ar.com.consignatarias/cattle-market"
+    },
+    {
+      "name": "ar-com-escaparate-escaparate",
+      "reason": "non-english",
+      "registry": "ar.com.escaparate/escaparate"
+    },
+    {
+      "name": "ar-indicadores-empresas",
+      "reason": "non-english",
+      "registry": "ar.indicadores/empresas"
+    },
+    {
+      "name": "ar-mueblito-mueblito",
+      "reason": "non-english",
+      "registry": "ar.mueblito/mueblito"
+    },
+    {
+      "name": "br-com-adoteca-adoteca",
+      "reason": "non-english",
+      "registry": "br.com.adoteca/adoteca"
+    },
+    {
+      "name": "br-com-minutaia-pesquisa-juridica",
+      "reason": "non-english",
+      "registry": "br.com.minutaia/pesquisa-juridica"
+    },
+    {
+      "name": "br-com-notaguard-notaguard",
+      "reason": "non-english",
+      "registry": "br.com.notaguard/notaguard"
+    },
+    {
+      "name": "br-com-vpnchebib-meuportal-reservas-demo",
+      "reason": "non-english",
+      "registry": "br.com.vpnchebib/meuportal-reservas-demo"
+    },
+    {
+      "name": "br-com-wikijuridica-acervo-juridico",
+      "reason": "non-english",
+      "registry": "br.com.wikijuridica/acervo-juridico"
+    },
+    {
+      "name": "cat-2022-catalunya-2022",
+      "reason": "non-english",
+      "registry": "cat.2022/catalunya-2022"
+    },
+    {
+      "name": "cl-alfabot-mcp-server",
+      "reason": "non-english",
+      "registry": "cl.alfabot/mcp-server"
+    },
+    {
+      "name": "cl-tuki-travel-mcp",
+      "reason": "non-english",
+      "registry": "cl.tuki/travel-mcp"
+    },
+    {
+      "name": "cn-550wai-550w-ai-media-cn",
+      "reason": "non-english",
+      "registry": "cn.550wai/550w-ai-media-cn"
+    },
+    {
+      "name": "cn-housingsentinel-housing-sentinel",
+      "reason": "non-english",
+      "registry": "cn.housingsentinel/housing-sentinel"
+    },
+    {
+      "name": "cn-savantcat-ai-compliance",
+      "reason": "non-english",
+      "registry": "cn.savantcat/ai-compliance"
+    },
+    {
+      "name": "cn-savantcat-answers",
+      "reason": "non-english",
+      "registry": "cn.savantcat/answers"
+    },
+    {
+      "name": "cn-savantcat-geo-cn",
+      "reason": "non-english",
+      "registry": "cn.savantcat/geo-cn"
+    },
+    {
+      "name": "cn-syln-ai-lingjing-community",
+      "reason": "non-english",
+      "registry": "cn.syln.ai/lingjing-community"
+    },
+    {
+      "name": "cn-whylingxi-insurance",
+      "reason": "non-english",
+      "registry": "cn.whylingxi/insurance"
+    },
+    {
+      "name": "co-com-meteor-meteor",
+      "reason": "non-english",
+      "registry": "co.com.meteor/meteor"
+    },
+    {
+      "name": "co-net-conexcol-mcp-hosting-cloud-colombia",
+      "reason": "non-english",
+      "registry": "co.net.conexcol.mcp/hosting-cloud-colombia"
+    },
+    {
+      "name": "com-24haowan-marketing",
+      "reason": "non-english",
+      "registry": "com.24haowan/marketing"
+    },
+    {
+      "name": "com-24haowan-space",
+      "reason": "non-english",
+      "registry": "com.24haowan/space"
+    },
+    {
+      "name": "com-a2awire-data-cisa-known-exploited-vulnerability-catalog",
+      "reason": "offensive-tooling",
+      "registry": "com.a2awire/data-cisa-known-exploited-vulnerability-catalog"
+    },
+    {
+      "name": "com-a2awire-data-exploit-db-exploit-database-proof-of-concept",
+      "reason": "offensive-tooling",
+      "registry": "com.a2awire/data-exploit-db-exploit-database-proof-of-concept"
+    },
+    {
+      "name": "com-ablakunio-nyilaszaro-mcp",
+      "reason": "non-english",
+      "registry": "com.ablakunio/nyilaszaro-mcp"
+    },
+    {
+      "name": "com-aguassb-artemisia",
+      "reason": "non-english",
+      "registry": "com.aguassb/artemisia"
+    },
+    {
+      "name": "com-ai-for-av-ai-for-av",
+      "reason": "non-english",
+      "registry": "com.ai-for-av/ai-for-av"
+    },
+    {
+      "name": "com-alexandrecaramaschi-public-content",
+      "reason": "non-english",
+      "registry": "com.alexandrecaramaschi/public-content"
+    },
+    {
+      "name": "com-alternativasia-alternativasia",
+      "reason": "non-english",
+      "registry": "com.alternativasia/alternativasia"
+    },
+    {
+      "name": "com-angelmoncada-consulting",
+      "reason": "non-english",
+      "registry": "com.angelmoncada/consulting"
+    },
+    {
+      "name": "com-apprendre-les-echecs-24h-catalogue-echecs-fr",
+      "reason": "non-english",
+      "registry": "com.apprendre-les-echecs-24h/catalogue-echecs-fr"
+    },
+    {
+      "name": "com-arcanika-tarot",
+      "reason": "non-english",
+      "registry": "com.arcanika/tarot"
+    },
+    {
+      "name": "com-autoridaddigital-www-geo",
+      "reason": "non-english",
+      "registry": "com.autoridaddigital.www/geo"
+    },
+    {
+      "name": "com-beaubitw-services",
+      "reason": "non-english",
+      "registry": "com.beaubitw/services"
+    },
+    {
+      "name": "com-bestekitools-bestekitools",
+      "reason": "non-english",
+      "registry": "com.bestekitools/bestekitools"
+    },
+    {
+      "name": "com-blackswancausallabs-dagstudio-mcp",
+      "reason": "offensive-tooling",
+      "registry": "com.blackswancausallabs/dagstudio-mcp"
+    },
+    {
+      "name": "com-boltena-erp",
+      "reason": "non-english",
+      "registry": "com.boltena/erp"
+    },
+    {
+      "name": "com-bustup-monitor-mcp",
+      "reason": "non-english",
+      "registry": "com.bustup-monitor/mcp"
+    },
+    {
+      "name": "com-cloudflare-mcp-mcp",
+      "reason": "short-desc",
+      "registry": "com.cloudflare.mcp/mcp"
+    },
+    {
+      "name": "com-controlargastos-gastos-compartidos",
+      "reason": "non-english",
+      "registry": "com.controlargastos/gastos-compartidos"
+    },
+    {
+      "name": "com-csquaredsystems-mcp-registry-test",
+      "reason": "short-desc",
+      "registry": "com.csquaredsystems/mcp-registry-test"
+    },
+    {
+      "name": "com-desafiocomunicacion-services",
+      "reason": "non-english",
+      "registry": "com.desafiocomunicacion/services"
+    },
+    {
+      "name": "com-emisorasdecolombia-radio",
+      "reason": "non-english",
+      "registry": "com.emisorasdecolombia/radio"
+    },
+    {
+      "name": "com-facturacobra-cobra",
+      "reason": "non-english",
+      "registry": "com.facturacobra/cobra"
+    },
+    {
+      "name": "com-fenetresurciel-mcp-skybridge",
+      "reason": "short-desc",
+      "registry": "com.fenetresurciel.mcp/skybridge"
+    },
+    {
+      "name": "com-freshypenguin-ao-payload-rescue",
+      "reason": "offensive-tooling",
+      "registry": "com.freshypenguin/ao-payload-rescue"
+    },
+    {
+      "name": "com-galleyrender-galley-render",
+      "reason": "offensive-tooling",
+      "registry": "com.galleyrender/galley-render"
+    },
+    {
+      "name": "com-gumballtools-payload-validator",
+      "reason": "offensive-tooling",
+      "registry": "com.gumballtools/payload-validator"
+    },
+    {
+      "name": "com-hakuto-0209-kata",
+      "reason": "non-english",
+      "registry": "com.hakuto-0209/kata"
+    },
+    {
+      "name": "com-iaselecta-iaselecta",
+      "reason": "non-english",
+      "registry": "com.iaselecta/iaselecta"
+    },
+    {
+      "name": "com-immo-spot-mcp",
+      "reason": "non-english",
+      "registry": "com.immo-spot/mcp"
+    },
+    {
+      "name": "com-isoligne-index",
+      "reason": "non-english",
+      "registry": "com.isoligne/index"
+    },
+    {
+      "name": "com-jotform-mcp",
+      "reason": "short-desc",
+      "registry": "com.jotform/mcp"
+    },
+    {
+      "name": "com-ki-alternativen-kialternativen",
+      "reason": "non-english",
+      "registry": "com.ki-alternativen/kialternativen"
+    },
+    {
+      "name": "com-kimnchai-marine-conditions",
+      "reason": "non-english",
+      "registry": "com.kimnchai/marine-conditions"
+    },
+    {
+      "name": "com-kimoun-spip",
+      "reason": "non-english",
+      "registry": "com.kimoun/spip"
+    },
+    {
+      "name": "com-kitoolsheute-kitoolsheute",
+      "reason": "non-english",
+      "registry": "com.kitoolsheute/kitoolsheute"
+    },
+    {
+      "name": "com-lanzamientosia-lanzamientosia",
+      "reason": "non-english",
+      "registry": "com.lanzamientosia/lanzamientosia"
+    },
+    {
+      "name": "com-mathieuberthet-mb-mastering",
+      "reason": "non-english",
+      "registry": "com.mathieuberthet/mb-mastering"
+    },
+    {
+      "name": "com-meuvelmo-velmo",
+      "reason": "non-english",
+      "registry": "com.meuvelmo/velmo"
+    },
+    {
+      "name": "com-milotche-carre-de-sable",
+      "reason": "non-english",
+      "registry": "com.milotche/carre-de-sable"
+    },
+    {
+      "name": "com-multicinesortega-cartelera",
+      "reason": "non-english",
+      "registry": "com.multicinesortega/cartelera"
+    },
+    {
+      "name": "com-normatia-mcp",
+      "reason": "non-english",
+      "registry": "com.normatia/mcp"
+    },
+    {
+      "name": "com-nuevedediciembre-river-plate",
+      "reason": "non-english",
+      "registry": "com.nuevedediciembre/river-plate"
+    },
+    {
+      "name": "com-oneheartesim-mcp-esim",
+      "reason": "non-english",
+      "registry": "com.oneheartesim.mcp/esim"
+    },
+    {
+      "name": "com-prediohq-catastro",
+      "reason": "non-english",
+      "registry": "com.prediohq/catastro"
+    },
+    {
+      "name": "com-prismfact-hub",
+      "reason": "non-english",
+      "registry": "com.prismfact/hub"
+    },
+    {
+      "name": "com-programacionsiemens-blog-cursos",
+      "reason": "non-english",
+      "registry": "com.programacionsiemens/blog-cursos"
+    },
+    {
+      "name": "com-programme-tv-noel-telefilms",
+      "reason": "non-english",
+      "registry": "com.programme-tv-noel/telefilms"
+    },
+    {
+      "name": "com-ranovam-vertical-lead-pack",
+      "reason": "non-english",
+      "registry": "com.ranovam/vertical-lead-pack"
+    },
+    {
+      "name": "com-renacerpsicologico-renacer-psicologico",
+      "reason": "non-english",
+      "registry": "com.renacerpsicologico/renacer-psicologico"
+    },
+    {
+      "name": "com-sanbernardorefugio-refugio-san-bernardo",
+      "reason": "non-english",
+      "registry": "com.sanbernardorefugio/refugio-san-bernardo"
+    },
+    {
+      "name": "com-scoremindset-capital-mental",
+      "reason": "non-english",
+      "registry": "com.scoremindset/capital-mental"
+    },
+    {
+      "name": "com-seishorei-wakarukun-legal-research",
+      "reason": "non-english",
+      "registry": "com.seishorei-wakarukun/legal-research"
+    },
+    {
+      "name": "com-shonanfarm-sukimalabo-tester",
+      "reason": "non-english",
+      "registry": "com.shonanfarm/sukimalabo-tester"
+    },
+    {
+      "name": "com-shonanfarm-zama-bike-kaitori",
+      "reason": "non-english",
+      "registry": "com.shonanfarm/zama-bike-kaitori"
+    },
+    {
+      "name": "com-smartling-smartling-mcp-server",
+      "reason": "short-desc",
+      "registry": "com.smartling/smartling-mcp-server"
+    },
+    {
+      "name": "com-subastech-subastas-judiciales",
+      "reason": "non-english",
+      "registry": "com.subastech/subastas-judiciales"
+    },
+    {
+      "name": "com-thenewengineer-hvac",
+      "reason": "non-english",
+      "registry": "com.thenewengineer/hvac"
+    },
+    {
+      "name": "com-thetempleofdoom-argus-argus",
+      "reason": "offensive-tooling",
+      "registry": "com.thetempleofdoom.argus/argus"
+    },
+    {
+      "name": "com-tulotero-tulotero",
+      "reason": "non-english",
+      "registry": "com.tulotero/tulotero"
+    },
+    {
+      "name": "com-twlawbot-tailexi",
+      "reason": "non-english",
+      "registry": "com.twlawbot/tailexi"
+    },
+    {
+      "name": "com-weekendnodessert-order",
+      "reason": "non-english",
+      "registry": "com.weekendnodessert/order"
+    },
+    {
+      "name": "com-whensport-tour-de-france-2026",
+      "reason": "non-english",
+      "registry": "com.whensport/tour-de-france-2026"
+    },
+    {
+      "name": "com-whooing-whooing",
+      "reason": "non-english",
+      "registry": "com.whooing/whooing"
+    },
+    {
+      "name": "com-wikitolica-mcp",
+      "reason": "non-english",
+      "registry": "com.wikitolica/mcp"
+    },
+    {
+      "name": "com-xn-5ckxa2e4ez471abqo49zn6s-mcp",
+      "reason": "non-english",
+      "registry": "com.xn--5ckxa2e4ez471abqo49zn6s/mcp"
+    },
+    {
+      "name": "cool-payload-api-video-transcript",
+      "reason": "offensive-tooling",
+      "registry": "cool.payload.api/video-transcript"
+    },
+    {
+      "name": "de-choov-mcp",
+      "reason": "non-english",
+      "registry": "de.choov/mcp"
+    },
+    {
+      "name": "de-claimondo-sv-finder",
+      "reason": "non-english",
+      "registry": "de.claimondo/sv-finder"
+    },
+    {
+      "name": "de-dinilu-mcp",
+      "reason": "non-english",
+      "registry": "de.dinilu/mcp"
+    },
+    {
+      "name": "de-fakturai-erechnung",
+      "reason": "non-english",
+      "registry": "de.fakturai/erechnung"
+    },
+    {
+      "name": "de-fewo-bruno-gap-ferienwohnung-bruno",
+      "reason": "non-english",
+      "registry": "de.fewo-bruno-gap/ferienwohnung-bruno"
+    },
+    {
+      "name": "de-meinbodenwert-bodenrichtwert",
+      "reason": "non-english",
+      "registry": "de.meinbodenwert/bodenrichtwert"
+    },
+    {
+      "name": "de-rechnungslotse-e-rechnung",
+      "reason": "non-english",
+      "registry": "de.rechnungslotse/e-rechnung"
+    },
+    {
+      "name": "dev-2ds-2ds",
+      "reason": "non-english",
+      "registry": "dev.2ds/2ds"
+    },
+    {
+      "name": "dev-chaincontext-nlocq",
+      "reason": "short-desc",
+      "registry": "dev.chaincontext/nlocq"
+    },
+    {
+      "name": "dev-ecoa-ecoa",
+      "reason": "non-english",
+      "registry": "dev.ecoa/ecoa"
+    },
+    {
+      "name": "dev-workers-manhliemcn4euwlu-llmrt-companion-llm-red-team-scanner",
+      "reason": "deny-substring:jailbreak",
+      "registry": "dev.workers.manhliemcn4euwlu.llmrt-companion/llm-red-team-scanner"
+    },
+    {
+      "name": "dev-workers-panda198271-agent-hub-tw-agent-hub",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.agent-hub-tw/agent-hub"
+    },
+    {
+      "name": "dev-workers-panda198271-llms-check-llms-check",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.llms-check/llms-check"
+    },
+    {
+      "name": "dev-workers-panda198271-riftbound-guide-riftbound-guide",
+      "reason": "short-desc",
+      "registry": "dev.workers.panda198271.riftbound-guide/riftbound-guide"
+    },
+    {
+      "name": "dev-workers-panda198271-shop-compare-shop-compare",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.shop-compare/shop-compare"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-ai-glossary-ai-glossary",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-ai-glossary/ai-glossary"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-ai-tools-ai-tools",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-ai-tools/ai-tools"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-creator-shop-creator-shop",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-creator-shop/creator-shop"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-crypto-api-crypto-api",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-crypto-api/crypto-api"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-digital-wellness-digital-wellness",
+      "reason": "short-desc",
+      "registry": "dev.workers.panda198271.tw-digital-wellness/digital-wellness"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-game-release-game-release",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-game-release/game-release"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-health-guide-health-guide",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-health-guide/health-guide"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-life-info-life-info",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-life-info/life-info"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-real-voices-real-voices",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-real-voices/real-voices"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-screen-release-screen-release",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-screen-release/screen-release"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-search-seo-search-seo",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-search-seo/search-seo"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-stock-themes-stock-themes",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-stock-themes/stock-themes"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-travel-2027-travel-2027",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-travel-2027/travel-2027"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-trip-guide-trip-guide",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.tw-trip-guide/trip-guide"
+    },
+    {
+      "name": "dev-workers-panda198271-tw-web-motion-web-motion",
+      "reason": "short-desc",
+      "registry": "dev.workers.panda198271.tw-web-motion/web-motion"
+    },
+    {
+      "name": "dev-workers-panda198271-twostroke-db-twostroke-db",
+      "reason": "non-english",
+      "registry": "dev.workers.panda198271.twostroke-db/twostroke-db"
+    },
+    {
+      "name": "es-boletinclaro-mcp",
+      "reason": "non-english",
+      "registry": "es.boletinclaro/mcp"
+    },
+    {
+      "name": "es-carteleracines-cartelera",
+      "reason": "non-english",
+      "registry": "es.carteleracines/cartelera"
+    },
+    {
+      "name": "es-vidadeaqui-vida-de-aqui",
+      "reason": "non-english",
+      "registry": "es.vidadeaqui/vida-de-aqui"
+    },
+    {
+      "name": "eu-propecto-propecto",
+      "reason": "non-english",
+      "registry": "eu.propecto/propecto"
+    },
+    {
+      "name": "fr-boncourant-boncourant",
+      "reason": "non-english",
+      "registry": "fr.boncourant/boncourant"
+    },
+    {
+      "name": "fr-bullionradar-bullionradar-mcp",
+      "reason": "non-english",
+      "registry": "fr.bullionradar/bullionradar-mcp"
+    },
+    {
+      "name": "fr-calculpro-outils-batiment",
+      "reason": "non-english",
+      "registry": "fr.calculpro/outils-batiment"
+    },
+    {
+      "name": "fr-coupure-elec-www-coupures",
+      "reason": "non-english",
+      "registry": "fr.coupure-elec.www/coupures"
+    },
+    {
+      "name": "fr-dinilu-mcp",
+      "reason": "non-english",
+      "registry": "fr.dinilu/mcp"
+    },
+    {
+      "name": "fr-etatdate-etatdate",
+      "reason": "non-english",
+      "registry": "fr.etatdate/etatdate"
+    },
+    {
+      "name": "fr-izifete-prestataires",
+      "reason": "non-english",
+      "registry": "fr.izifete/prestataires"
+    },
+    {
+      "name": "fr-mesfraisnotaire-frais-notaire",
+      "reason": "non-english",
+      "registry": "fr.mesfraisnotaire/frais-notaire"
+    },
+    {
+      "name": "fr-oxadash-oxadash",
+      "reason": "non-english",
+      "registry": "fr.oxadash/oxadash"
+    },
+    {
+      "name": "fr-projet-ariane-ariane-orientation",
+      "reason": "non-english",
+      "registry": "fr.projet-ariane/ariane-orientation"
+    },
+    {
+      "name": "fr-qalimo-qalimo",
+      "reason": "non-english",
+      "registry": "fr.qalimo/qalimo"
+    },
+    {
+      "name": "fr-scoreconso-public",
+      "reason": "non-english",
+      "registry": "fr.scoreconso/public"
+    },
+    {
+      "name": "fr-scoreimmobilier-outils",
+      "reason": "non-english",
+      "registry": "fr.scoreimmobilier/outils"
+    },
+    {
+      "name": "fr-scoreinvest-outils",
+      "reason": "non-english",
+      "registry": "fr.scoreinvest/outils"
+    },
+    {
+      "name": "fr-scorelook-capucine",
+      "reason": "non-english",
+      "registry": "fr.scorelook/capucine"
+    },
+    {
+      "name": "fyi-cred-cred",
+      "reason": "short-desc",
+      "registry": "fyi.cred/cred"
+    },
+    {
+      "name": "group-aicare-aicare-mcp",
+      "reason": "non-english",
+      "registry": "group.aicare/aicare-mcp"
+    },
+    {
+      "name": "hu-ablakarajanlat-nyilaszaro-mcp",
+      "reason": "non-english",
+      "registry": "hu.ablakarajanlat/nyilaszaro-mcp"
+    },
+    {
+      "name": "hu-eumoney-eu-money",
+      "reason": "non-english",
+      "registry": "hu.eumoney/eu-money"
+    },
+    {
+      "name": "ing-conjure-conjure",
+      "reason": "short-desc",
+      "registry": "ing.conjure/conjure"
+    },
+    {
+      "name": "io-github-bearscloud-wildberries-agent-integration",
+      "reason": "non-english",
+      "registry": "io.github.BearsCLOUD/wildberries-agent-integration"
+    },
+    {
+      "name": "io-github-br0ski777-jwt-decoder",
+      "reason": "offensive-tooling",
+      "registry": "io.github.Br0ski777/jwt-decoder"
+    },
+    {
+      "name": "io-github-dawaxwx-extrait-structure",
+      "reason": "non-english",
+      "registry": "io.github.Dawaxwx/extrait-structure"
+    },
+    {
+      "name": "io-github-dawaxwx-ics-evenement",
+      "reason": "offensive-tooling",
+      "registry": "io.github.Dawaxwx/ics-evenement"
+    },
+    {
+      "name": "io-github-doran56-constat-auto",
+      "reason": "non-english",
+      "registry": "io.github.Doran56/constat-auto"
+    },
+    {
+      "name": "io-github-evozim-base64-payload-decoder-mcp",
+      "reason": "offensive-tooling",
+      "registry": "io.github.Evozim/base64-payload-decoder-mcp"
+    },
+    {
+      "name": "io-github-evozim-dan-jailbreak-filter-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.Evozim/dan-jailbreak-filter-mcp"
+    },
+    {
+      "name": "io-github-foundrynet-cyber-intel-mcp",
+      "reason": "offensive-tooling",
+      "registry": "io.github.FoundryNet/cyber-intel-mcp"
+    },
+    {
+      "name": "io-github-heusai-notsy-facturacion",
+      "reason": "non-english",
+      "registry": "io.github.HEUSAI/notsy-facturacion"
+    },
+    {
+      "name": "io-github-kotaro-studio-curanz-sounds",
+      "reason": "non-english",
+      "registry": "io.github.Kotaro-Studio/curanz-sounds"
+    },
+    {
+      "name": "io-github-kotaro-studio-kurashigram",
+      "reason": "non-english",
+      "registry": "io.github.Kotaro-Studio/kurashigram"
+    },
+    {
+      "name": "io-github-maisonchape-maison-chape",
+      "reason": "non-english",
+      "registry": "io.github.MaisonCHAPE/maison-chape"
+    },
+    {
+      "name": "io-github-sockshead-elsa-agent-gateway",
+      "reason": "non-english",
+      "registry": "io.github.Sockshead/elsa-agent-gateway"
+    },
+    {
+      "name": "io-github-termi24-eyeot-erp",
+      "reason": "non-english",
+      "registry": "io.github.Termi24/eyeot-erp"
+    },
+    {
+      "name": "io-github-timluogit-clawriver",
+      "reason": "non-english",
+      "registry": "io.github.Timluogit/clawriver"
+    },
+    {
+      "name": "io-github-vesselltech-cdf-mcp",
+      "reason": "non-english",
+      "registry": "io.github.VessellTech/cdf.mcp"
+    },
+    {
+      "name": "io-github-wxt-ai-approval-group-directory",
+      "reason": "short-desc",
+      "registry": "io.github.Wxt-ai/approval-group-directory"
+    },
+    {
+      "name": "io-github-wxt-ai-lot-allocation-planner",
+      "reason": "short-desc",
+      "registry": "io.github.Wxt-ai/lot-allocation-planner"
+    },
+    {
+      "name": "io-github-wxt-ai-purchase-draft-desk",
+      "reason": "short-desc",
+      "registry": "io.github.Wxt-ai/purchase-draft-desk"
+    },
+    {
+      "name": "io-github-wxt-ai-regional-rollout-planner",
+      "reason": "short-desc",
+      "registry": "io.github.Wxt-ai/regional-rollout-planner"
+    },
+    {
+      "name": "io-github-wxt-ai-release-branch-policy-desk",
+      "reason": "short-desc",
+      "registry": "io.github.Wxt-ai/release-branch-policy-desk"
+    },
+    {
+      "name": "io-github-zuga-luga-zugabot",
+      "reason": "dupe-name"
+    },
+    {
+      "name": "io-github-alessandropeng-arc-flash-platform",
+      "reason": "non-english",
+      "registry": "io.github.alessandropeng/arc-flash-platform"
+    },
+    {
+      "name": "io-github-alexfengrui-gq-readiness-free",
+      "reason": "non-english",
+      "registry": "io.github.alexfengrui/gq-readiness-free"
+    },
+    {
+      "name": "io-github-aminpiano-nara-tour",
+      "reason": "non-english",
+      "registry": "io.github.aminpiano/nara-tour"
+    },
+    {
+      "name": "io-github-andersongadelhaadv-cmyk-juri-verify",
+      "reason": "non-english",
+      "registry": "io.github.andersongadelhaadv-cmyk/juri-verify"
+    },
+    {
+      "name": "io-github-apasztetnik-el-buen-agente-mcp",
+      "reason": "non-english",
+      "registry": "io.github.apasztetnik/el-buen-agente-mcp"
+    },
+    {
+      "name": "io-github-arcar-org-arcar-mcp",
+      "reason": "non-english",
+      "registry": "io.github.arcar-org/arcar-mcp"
+    },
+    {
+      "name": "io-github-arseniigruzdev-index-now-ru",
+      "reason": "non-english",
+      "registry": "io.github.arseniigruzdev/index-now-ru"
+    },
+    {
+      "name": "io-github-atk1-eng-1k-patient-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.atk1-eng/1k-patient-mcp"
+    },
+    {
+      "name": "io-github-atk1-eng-zoo-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.atk1-eng/zoo-mcp"
+    },
+    {
+      "name": "io-github-beco360-alfil",
+      "reason": "non-english",
+      "registry": "io.github.beco360/alfil"
+    },
+    {
+      "name": "io-github-chenlidongorg-whiteboard",
+      "reason": "short-desc",
+      "registry": "io.github.chenlidongorg/whiteboard"
+    },
+    {
+      "name": "io-github-cristianosantana-mcp-despensa-hub",
+      "reason": "non-english",
+      "registry": "io.github.cristianosantana/mcp-despensa-hub"
+    },
+    {
+      "name": "io-github-cristianosantana-mcp-nfe-hub-v1",
+      "reason": "non-english",
+      "registry": "io.github.cristianosantana/mcp-nfe-hub-v1"
+    },
+    {
+      "name": "io-github-donghyeon01-kr-public-mcp",
+      "reason": "non-english",
+      "registry": "io.github.donghyeon01/kr-public-mcp"
+    },
+    {
+      "name": "io-github-edbror-sat69-mcp",
+      "reason": "non-english",
+      "registry": "io.github.edbror/sat69-mcp"
+    },
+    {
+      "name": "io-github-emils-design-saightly",
+      "reason": "non-english",
+      "registry": "io.github.emils-design/saightly"
+    },
+    {
+      "name": "io-github-encodi-regexcronsql-validator",
+      "reason": "non-english",
+      "registry": "io.github.encodi/regexcronsql-validator"
+    },
+    {
+      "name": "io-github-followtz-macd",
+      "reason": "short-desc",
+      "registry": "io.github.followtz/macd"
+    },
+    {
+      "name": "io-github-followtz-openclaw-swe-mcp",
+      "reason": "non-english",
+      "registry": "io.github.followtz/openclaw-swe-mcp"
+    },
+    {
+      "name": "io-github-francofuji-cemis-directorio",
+      "reason": "non-english",
+      "registry": "io.github.francofuji/cemis-directorio"
+    },
+    {
+      "name": "io-github-ghost163-wq-devnors-data",
+      "reason": "non-english",
+      "registry": "io.github.gHost163-wq/devnors-data"
+    },
+    {
+      "name": "io-github-geoxing-kanxueshan",
+      "reason": "non-english",
+      "registry": "io.github.geoxing/kanxueshan"
+    },
+    {
+      "name": "io-github-git-acet-smsenmasse",
+      "reason": "non-english",
+      "registry": "io.github.git-acet/smsenmasse"
+    },
+    {
+      "name": "io-github-herve-coulon-tax-retirement",
+      "reason": "non-english",
+      "registry": "io.github.herve-coulon/tax-retirement"
+    },
+    {
+      "name": "io-github-hungledatatyk-hyperai-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.hungledatatyk/hyperai-mcp"
+    },
+    {
+      "name": "io-github-iquesta-mcp-iquesta",
+      "reason": "non-english",
+      "registry": "io.github.iQuesta/MCP-iQuesta"
+    },
+    {
+      "name": "io-github-imoldyoung-e-invoice",
+      "reason": "non-english",
+      "registry": "io.github.imoldyoung/e-invoice"
+    },
+    {
+      "name": "io-github-j-doi-domain-bannin",
+      "reason": "non-english",
+      "registry": "io.github.j-doi/domain-bannin"
+    },
+    {
+      "name": "io-github-junoventures-belavista-sampa-br",
+      "reason": "short-desc",
+      "registry": "io.github.junoventures/belavista-sampa-br"
+    },
+    {
+      "name": "io-github-kewelin-ecpro-mcp",
+      "reason": "non-english",
+      "registry": "io.github.kewelin/ecpro-mcp"
+    },
+    {
+      "name": "io-github-lazymac2x-api-payload-auditor",
+      "reason": "offensive-tooling",
+      "registry": "io.github.lazymac2x/api-payload-auditor"
+    },
+    {
+      "name": "io-github-maixmeduret-pillr",
+      "reason": "non-english",
+      "registry": "io.github.maixmeduret/pillr"
+    },
+    {
+      "name": "io-github-mcp-dir-antt_tric-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/antt_tric-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cfc_cadastro-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cfc_cadastro-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cfm_estabelecimento-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cfm_estabelecimento-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cfmv_cadastro-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cfmv_cadastro-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cidadao_mg_veiculos_trans_prop-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cidadao_mg_veiculos_trans_prop-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cnj_improbidade-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cnj_improbidade-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cnj_mandados_prisao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cnj_mandados_prisao-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cnj_seeu_processos-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cnj_seeu_processos-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cnj_serventias_extrajud_lista-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cnj_serventias_extrajud_lista-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-cnj_serventias_extrajudiciais-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/cnj_serventias_extrajudiciais-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-crcp_certificado-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/crcp_certificado-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-dataprev_fap-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/dataprev_fap-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-der_pr_certidao_debitos-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/der_pr_certidao_debitos-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-der_sp_indicacao_pesquisa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/der_sp_indicacao_pesquisa-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_ce_licenciamento-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_ce_licenciamento-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_ce_multas_antiga-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_ce_multas_antiga-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_es_dua-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_es_dua-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_mg_emissao_dae-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_mg_emissao_dae-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_mg_publicacao_dano-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_mg_publicacao_dano-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_mg_reg_intencao_venda-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_mg_reg_intencao_venda-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_rj_grt-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_rj_grt-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-detran_rj_multas_guias-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/detran_rj_multas_guias-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_docs_dados_cadastrais-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_docs_dados_cadastrais-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_docs_imprimir_baixa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_docs_imprimir_baixa-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_docs_t_municipio-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_docs_t_municipio-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_docs_t_municipio_0-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_docs_t_municipio_0-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_docs_t_proprietario-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_docs_t_proprietario-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-ecrvsp_restricoes_renajud-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/ecrvsp_restricoes_renajud-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-inpi_marcas_processo-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/inpi_marcas_processo-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-inpi_marcas_processo_resumida-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/inpi_marcas_processo_resumida-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-laudos_veiculares_dekra_lcd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/laudos_veiculares_dekra_lcd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-mda_caf_ufpa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/mda_caf_ufpa-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-mda_sead_dap-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/mda_sead_dap-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pf_regularidade_empresa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pf_regularidade_empresa-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-portal_transparencia_bpc-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/portal_transparencia_bpc-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-portal_transparencia_ceis-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/portal_transparencia_ceis-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-portal_transparencia_cepim-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/portal_transparencia_cepim-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-portal_transparencia_cnep-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/portal_transparencia_cnep-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-portal_transparencia_leniencia-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/portal_transparencia_leniencia-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_ba_salvador_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_ba_salvador_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_ma_sao_luis_cnd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_ma_sao_luis_cnd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_mg_contagem_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_mg_contagem_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_mg_itaguara_cne-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_mg_itaguara_cne-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_mg_para_minas_cnd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_mg_para_minas_cnd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_ms_campo_grande_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_ms_campo_grande_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_mt_cuiaba_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_mt_cuiaba_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_pe_recife_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_pe_recife_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rj_duque_de_caxias_cnd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rj_duque_de_caxias_cnd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rj_rio_janeiro_cert_cad-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rj_rio_janeiro_cert_cad-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rj_rio_janeiro_cert_trib-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rj_rio_janeiro_cert_trib-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rj_rio_janeiro_iptu-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rj_rio_janeiro_iptu-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rj_rio_janeiro_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rj_rio_janeiro_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_rs_farroupilha_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_rs_farroupilha_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sc_balneario_cnd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sc_balneario_cnd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_aracariguama_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_aracariguama_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_jundiai_cert_trib_iptu-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_jundiai_cert_trib_iptu-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_osasco_cert_imov-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_osasco_cert_imov-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_osasco_cert_nao_insc-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_osasco_cert_nao_insc-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_osasco_cert_trib-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_osasco_cert_trib-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_osasco_iptu-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_osasco_iptu-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_ait_listagem-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_ait_listagem-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_ctm-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_ctm-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_iptu-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_iptu-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_iptu2via-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_iptu2via-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_tx_elevador-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_tx_elevador-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sao_paulo_valor_ref-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sao_paulo_valor_ref-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-pref_sp_sumare_nfs-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/pref_sp_sumare_nfs-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_listar_das-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_listar_das-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_radar-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_radar-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_sal_cadastro-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_sal_cadastro-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_simei_mei_eg-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_simei_mei_eg-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_simples_das-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_simples_das-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-receita_federal_simples_mei_eg-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/receita_federal_simples_mei_eg-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registradores_info_conta-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registradores_info_conta-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registradores_matric_download-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registradores_matric_download-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registradores_matric_lista-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registradores_matric_lista-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registradores_matric_pedido-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registradores_matric_pedido-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registradores_matric_recibo-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registradores_matric_recibo-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-registro_civil_val_cert_eletr-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/registro_civil_val_cert_eletr-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-sefaz_mt_reimpressao_cnd-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/sefaz_mt_reimpressao_cnd-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-sefaz_pe_crf_movel-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/sefaz_pe_crf_movel-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-sefaz_spu_certidao_imoveis-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/sefaz_spu_certidao_imoveis-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-sefaz_spu_dados_imoveis-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/sefaz_spu_dados_imoveis-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-senatran_advertencia_escrito-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/senatran_advertencia_escrito-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tjms_pedido_cert-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tjms_pedido_cert-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tjrj_pedido_cert-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tjrj_pedido_cert-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tjsp_colegio_recursal-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tjsp_colegio_recursal-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tjsp_pedido_certidao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tjsp_pedido_certidao-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tjsp_pedido_criminal-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tjsp_pedido_criminal-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trf3_obter_certidao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trf3_obter_certidao-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt10_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt10_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt10_ceat_digital-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt10_ceat_digital-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt11_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt11_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt12_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt12_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt13_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt13_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt14_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt14_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt15_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt15_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt16_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt16_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt17_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt17_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt18_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt18_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt19_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt19_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt1_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt1_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt20_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt20_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt21_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt21_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt23_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt23_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt24_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt24_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt2_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt2_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt2_ceat_digital-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt2_ceat_digital-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt3_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt3_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt4_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt4_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt5_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt5_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt6_certidao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt6_certidao-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt7_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt7_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt7_ceat_digital-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt7_ceat_digital-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt8_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt8_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_trt9_ceat-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_trt9_ceat-mcp"
+    },
+    {
+      "name": "io-github-mcp-dir-tribunal_tse_certidao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.mcp-dir/tribunal_tse_certidao-mcp"
+    },
+    {
+      "name": "io-github-merlhn-ehliyet-digital",
+      "reason": "non-english",
+      "registry": "io.github.merlhn/ehliyet-digital"
+    },
+    {
+      "name": "io-github-minglezhibao-mcp",
+      "reason": "non-english",
+      "registry": "io.github.minglezhibao/mcp"
+    },
+    {
+      "name": "io-github-n-3inc-e-stat",
+      "reason": "non-english",
+      "registry": "io.github.n-3inc/e-stat"
+    },
+    {
+      "name": "io-github-n-3inc-kkj",
+      "reason": "non-english",
+      "registry": "io.github.n-3inc/kkj"
+    },
+    {
+      "name": "io-github-n-3inc-reinfo",
+      "reason": "non-english",
+      "registry": "io.github.n-3inc/reinfo"
+    },
+    {
+      "name": "io-github-odela-pixel-asientouno",
+      "reason": "non-english",
+      "registry": "io.github.odela-pixel/asientouno"
+    },
+    {
+      "name": "io-github-paulovitorti-amazon-brasil-vendedores-cnpj",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/amazon-brasil-vendedores-cnpj"
+    },
+    {
+      "name": "io-github-paulovitorti-ceis-cnep-delta-monitor-br",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/ceis-cnep-delta-monitor-br"
+    },
+    {
+      "name": "io-github-paulovitorti-cnpj-bulk-lookup",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/cnpj-bulk-lookup"
+    },
+    {
+      "name": "io-github-paulovitorti-google-maps-leads-locales",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/google-maps-leads-locales"
+    },
+    {
+      "name": "io-github-paulovitorti-google-maps-monitor-nuevos-negocios",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/google-maps-monitor-nuevos-negocios"
+    },
+    {
+      "name": "io-github-paulovitorti-mercado-libre-monitor-precios",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/mercado-libre-monitor-precios"
+    },
+    {
+      "name": "io-github-paulovitorti-precatorios-tjsp-monitor",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/precatorios-tjsp-monitor"
+    },
+    {
+      "name": "io-github-paulovitorti-reclameaqui-scraper",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/reclameaqui-scraper"
+    },
+    {
+      "name": "io-github-paulovitorti-shopee-brasil-produtos",
+      "reason": "non-english",
+      "registry": "io.github.paulovitorti/shopee-brasil-produtos"
+    },
+    {
+      "name": "io-github-pedro-ortega-ventureira-humanista-digital-mcp",
+      "reason": "non-english",
+      "registry": "io.github.pedro-ortega-ventureira/humanista-digital-mcp"
+    },
+    {
+      "name": "io-github-pipeworx-io-19hz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/19hz"
+    },
+    {
+      "name": "io-github-pipeworx-io-7timer",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/7timer"
+    },
+    {
+      "name": "io-github-pipeworx-io-ai-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ai-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-amplitude",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/amplitude"
+    },
+    {
+      "name": "io-github-pipeworx-io-balldontlie",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/balldontlie"
+    },
+    {
+      "name": "io-github-pipeworx-io-bandsintown",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/bandsintown"
+    },
+    {
+      "name": "io-github-pipeworx-io-barcelona-events",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/barcelona-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-bcrp-pe",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/bcrp-pe"
+    },
+    {
+      "name": "io-github-pipeworx-io-bioregistry",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/bioregistry"
+    },
+    {
+      "name": "io-github-pipeworx-io-biorxiv",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/biorxiv"
+    },
+    {
+      "name": "io-github-pipeworx-io-biosamples",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/biosamples"
+    },
+    {
+      "name": "io-github-pipeworx-io-biostudies",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/biostudies"
+    },
+    {
+      "name": "io-github-pipeworx-io-bitfinex",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/bitfinex"
+    },
+    {
+      "name": "io-github-pipeworx-io-brawl-stars",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/brawl-stars"
+    },
+    {
+      "name": "io-github-pipeworx-io-bundestag-de",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/bundestag-de"
+    },
+    {
+      "name": "io-github-pipeworx-io-business-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/business-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-cbs-il",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/cbs-il"
+    },
+    {
+      "name": "io-github-pipeworx-io-cheapshark",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/cheapshark"
+    },
+    {
+      "name": "io-github-pipeworx-io-cisa-kev",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/cisa-kev"
+    },
+    {
+      "name": "io-github-pipeworx-io-civitai",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/civitai"
+    },
+    {
+      "name": "io-github-pipeworx-io-clash-royale",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/clash-royale"
+    },
+    {
+      "name": "io-github-pipeworx-io-cnb-cz",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/cnb-cz"
+    },
+    {
+      "name": "io-github-pipeworx-io-codewars",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/codewars"
+    },
+    {
+      "name": "io-github-pipeworx-io-color",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/color"
+    },
+    {
+      "name": "io-github-pipeworx-io-comicvine",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/comicvine"
+    },
+    {
+      "name": "io-github-pipeworx-io-complex-portal",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/complex-portal"
+    },
+    {
+      "name": "io-github-pipeworx-io-crontab",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/crontab"
+    },
+    {
+      "name": "io-github-pipeworx-io-crypto-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/crypto-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-csv",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/csv"
+    },
+    {
+      "name": "io-github-pipeworx-io-data-govt-nz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/data-govt-nz"
+    },
+    {
+      "name": "io-github-pipeworx-io-dataverse-harvard",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/dataverse-harvard"
+    },
+    {
+      "name": "io-github-pipeworx-io-datecalc",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/datecalc"
+    },
+    {
+      "name": "io-github-pipeworx-io-datos-cl",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/datos-cl"
+    },
+    {
+      "name": "io-github-pipeworx-io-datos-gob-es",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/datos-gob-es"
+    },
+    {
+      "name": "io-github-pipeworx-io-deepl",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/deepl"
+    },
+    {
+      "name": "io-github-pipeworx-io-design-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/design-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-dev-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/dev-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-devdocs-io",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/devdocs-io"
+    },
+    {
+      "name": "io-github-pipeworx-io-diff",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/diff"
+    },
+    {
+      "name": "io-github-pipeworx-io-digitalnz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/digitalnz"
+    },
+    {
+      "name": "io-github-pipeworx-io-discord",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/discord"
+    },
+    {
+      "name": "io-github-pipeworx-io-dostuff",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/dostuff"
+    },
+    {
+      "name": "io-github-pipeworx-io-dummyjson",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/dummyjson"
+    },
+    {
+      "name": "io-github-pipeworx-io-duration",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/duration"
+    },
+    {
+      "name": "io-github-pipeworx-io-ebid",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ebid"
+    },
+    {
+      "name": "io-github-pipeworx-io-edmtrain",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/edmtrain"
+    },
+    {
+      "name": "io-github-pipeworx-io-education-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/education-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-emoji",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/emoji"
+    },
+    {
+      "name": "io-github-pipeworx-io-endoflife",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/endoflife"
+    },
+    {
+      "name": "io-github-pipeworx-io-ensembl",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ensembl"
+    },
+    {
+      "name": "io-github-pipeworx-io-epa-envirofacts",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/epa-envirofacts"
+    },
+    {
+      "name": "io-github-pipeworx-io-epss",
+      "reason": "offensive-tooling",
+      "registry": "io.github.pipeworx-io/epss"
+    },
+    {
+      "name": "io-github-pipeworx-io-europeana",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/europeana"
+    },
+    {
+      "name": "io-github-pipeworx-io-facebook_ads",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/facebook_ads"
+    },
+    {
+      "name": "io-github-pipeworx-io-fbi-wanted",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/fbi-wanted"
+    },
+    {
+      "name": "io-github-pipeworx-io-fcc-ecfs",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/fcc-ecfs"
+    },
+    {
+      "name": "io-github-pipeworx-io-figma",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/figma"
+    },
+    {
+      "name": "io-github-pipeworx-io-figshare",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/figshare"
+    },
+    {
+      "name": "io-github-pipeworx-io-finance-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/finance-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-food-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/food-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-foodish",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/foodish"
+    },
+    {
+      "name": "io-github-pipeworx-io-gaming-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/gaming-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-geohash",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/geohash"
+    },
+    {
+      "name": "io-github-pipeworx-io-geonet-nz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/geonet-nz"
+    },
+    {
+      "name": "io-github-pipeworx-io-giantbomb",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/giantbomb"
+    },
+    {
+      "name": "io-github-pipeworx-io-gmail",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/gmail"
+    },
+    {
+      "name": "io-github-pipeworx-io-google-books",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/google-books"
+    },
+    {
+      "name": "io-github-pipeworx-io-google_ads",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/google_ads"
+    },
+    {
+      "name": "io-github-pipeworx-io-google_drive",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/google_drive"
+    },
+    {
+      "name": "io-github-pipeworx-io-google_sheets",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/google_sheets"
+    },
+    {
+      "name": "io-github-pipeworx-io-goproxy",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/goproxy"
+    },
+    {
+      "name": "io-github-pipeworx-io-gtex",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/gtex"
+    },
+    {
+      "name": "io-github-pipeworx-io-guild-wars-2",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/guild-wars-2"
+    },
+    {
+      "name": "io-github-pipeworx-io-hackertarget",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/hackertarget"
+    },
+    {
+      "name": "io-github-pipeworx-io-health-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/health-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-helsinki-events",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/helsinki-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-hibp",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/hibp"
+    },
+    {
+      "name": "io-github-pipeworx-io-horizons-nasa",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/horizons-nasa"
+    },
+    {
+      "name": "io-github-pipeworx-io-hpo-api",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/hpo-api"
+    },
+    {
+      "name": "io-github-pipeworx-io-htmlentities",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/htmlentities"
+    },
+    {
+      "name": "io-github-pipeworx-io-htmltext",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/htmltext"
+    },
+    {
+      "name": "io-github-pipeworx-io-httpbin",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/httpbin"
+    },
+    {
+      "name": "io-github-pipeworx-io-hubspot",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/hubspot"
+    },
+    {
+      "name": "io-github-pipeworx-io-ibge-br",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/ibge-br"
+    },
+    {
+      "name": "io-github-pipeworx-io-idf-events",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/idf-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-ietf-datatracker",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ietf-datatracker"
+    },
+    {
+      "name": "io-github-pipeworx-io-imei",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/imei"
+    },
+    {
+      "name": "io-github-pipeworx-io-ine-es",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/ine-es"
+    },
+    {
+      "name": "io-github-pipeworx-io-ip-api",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ip-api"
+    },
+    {
+      "name": "io-github-pipeworx-io-ipify",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ipify"
+    },
+    {
+      "name": "io-github-pipeworx-io-ipquery",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ipquery"
+    },
+    {
+      "name": "io-github-pipeworx-io-iso",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/iso"
+    },
+    {
+      "name": "io-github-pipeworx-io-jira",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/jira"
+    },
+    {
+      "name": "io-github-pipeworx-io-jsdelivr",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/jsdelivr"
+    },
+    {
+      "name": "io-github-pipeworx-io-json",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/json"
+    },
+    {
+      "name": "io-github-pipeworx-io-jwt",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/jwt"
+    },
+    {
+      "name": "io-github-pipeworx-io-landprice",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/landprice"
+    },
+    {
+      "name": "io-github-pipeworx-io-last-fm",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/last-fm"
+    },
+    {
+      "name": "io-github-pipeworx-io-law-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/law-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-leetcode",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/leetcode"
+    },
+    {
+      "name": "io-github-pipeworx-io-librivox",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/librivox"
+    },
+    {
+      "name": "io-github-pipeworx-io-linkedin_ads",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/linkedin_ads"
+    },
+    {
+      "name": "io-github-pipeworx-io-listen-notes",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/listen-notes"
+    },
+    {
+      "name": "io-github-pipeworx-io-listenbrainz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/listenbrainz"
+    },
+    {
+      "name": "io-github-pipeworx-io-macau-stats",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/macau-stats"
+    },
+    {
+      "name": "io-github-pipeworx-io-madrid-events",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/madrid-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-manifold",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/manifold"
+    },
+    {
+      "name": "io-github-pipeworx-io-mapbox",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mapbox"
+    },
+    {
+      "name": "io-github-pipeworx-io-maptiler",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/maptiler"
+    },
+    {
+      "name": "io-github-pipeworx-io-markdown",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/markdown"
+    },
+    {
+      "name": "io-github-pipeworx-io-matomo",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/matomo"
+    },
+    {
+      "name": "io-github-pipeworx-io-mdn-search",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mdn-search"
+    },
+    {
+      "name": "io-github-pipeworx-io-medical-codes",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/medical-codes"
+    },
+    {
+      "name": "io-github-pipeworx-io-mime",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mime"
+    },
+    {
+      "name": "io-github-pipeworx-io-mitre-cwe",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mitre-cwe"
+    },
+    {
+      "name": "io-github-pipeworx-io-mojang",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mojang"
+    },
+    {
+      "name": "io-github-pipeworx-io-montreal-events",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/montreal-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-mychem",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mychem"
+    },
+    {
+      "name": "io-github-pipeworx-io-mydisease",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mydisease"
+    },
+    {
+      "name": "io-github-pipeworx-io-mygene-info",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/mygene-info"
+    },
+    {
+      "name": "io-github-pipeworx-io-myvariant",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/myvariant"
+    },
+    {
+      "name": "io-github-pipeworx-io-newsapi",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/newsapi"
+    },
+    {
+      "name": "io-github-pipeworx-io-nih-supplements",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/nih-supplements"
+    },
+    {
+      "name": "io-github-pipeworx-io-nist-standards",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/nist-standards"
+    },
+    {
+      "name": "io-github-pipeworx-io-noaa-spc",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/noaa-spc"
+    },
+    {
+      "name": "io-github-pipeworx-io-notion_connect",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/notion_connect"
+    },
+    {
+      "name": "io-github-pipeworx-io-npi-registry",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/npi-registry"
+    },
+    {
+      "name": "io-github-pipeworx-io-numbers",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/numbers"
+    },
+    {
+      "name": "io-github-pipeworx-io-nyc-parks",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/nyc-parks"
+    },
+    {
+      "name": "io-github-pipeworx-io-okx",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/okx"
+    },
+    {
+      "name": "io-github-pipeworx-io-openagenda",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/openagenda"
+    },
+    {
+      "name": "io-github-pipeworx-io-opencages",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/opencages"
+    },
+    {
+      "name": "io-github-pipeworx-io-openfoodfacts",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/openfoodfacts"
+    },
+    {
+      "name": "io-github-pipeworx-io-openholidays",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/openholidays"
+    },
+    {
+      "name": "io-github-pipeworx-io-openrouter",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/openrouter"
+    },
+    {
+      "name": "io-github-pipeworx-io-openrouteservice",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/openrouteservice"
+    },
+    {
+      "name": "io-github-pipeworx-io-opentopodata",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/opentopodata"
+    },
+    {
+      "name": "io-github-pipeworx-io-opentopography",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/opentopography"
+    },
+    {
+      "name": "io-github-pipeworx-io-opentreeoflife",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/opentreeoflife"
+    },
+    {
+      "name": "io-github-pipeworx-io-owasp",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/owasp"
+    },
+    {
+      "name": "io-github-pipeworx-io-oyez",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/oyez"
+    },
+    {
+      "name": "io-github-pipeworx-io-paddle",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/paddle"
+    },
+    {
+      "name": "io-github-pipeworx-io-paris-events",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/paris-events"
+    },
+    {
+      "name": "io-github-pipeworx-io-pexels",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/pexels"
+    },
+    {
+      "name": "io-github-pipeworx-io-pirate-weather",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/pirate-weather"
+    },
+    {
+      "name": "io-github-pipeworx-io-pixabay",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/pixabay"
+    },
+    {
+      "name": "io-github-pipeworx-io-poetrydb",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/poetrydb"
+    },
+    {
+      "name": "io-github-pipeworx-io-politics-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/politics-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-postmark",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/postmark"
+    },
+    {
+      "name": "io-github-pipeworx-io-predictit",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/predictit"
+    },
+    {
+      "name": "io-github-pipeworx-io-public-suffix-list",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/public-suffix-list"
+    },
+    {
+      "name": "io-github-pipeworx-io-pypi-stats",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/pypi-stats"
+    },
+    {
+      "name": "io-github-pipeworx-io-rebrickable",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/rebrickable"
+    },
+    {
+      "name": "io-github-pipeworx-io-recurly",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/recurly"
+    },
+    {
+      "name": "io-github-pipeworx-io-replicate",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/replicate"
+    },
+    {
+      "name": "io-github-pipeworx-io-rfc-editor",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/rfc-editor"
+    },
+    {
+      "name": "io-github-pipeworx-io-riot-games",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/riot-games"
+    },
+    {
+      "name": "io-github-pipeworx-io-roblox",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/roblox"
+    },
+    {
+      "name": "io-github-pipeworx-io-rss2json",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/rss2json"
+    },
+    {
+      "name": "io-github-pipeworx-io-salesforce",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/salesforce"
+    },
+    {
+      "name": "io-github-pipeworx-io-schemastore",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/schemastore"
+    },
+    {
+      "name": "io-github-pipeworx-io-science-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/science-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-seatgeek",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/seatgeek"
+    },
+    {
+      "name": "io-github-pipeworx-io-security-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/security-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-setlist-fm",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/setlist-fm"
+    },
+    {
+      "name": "io-github-pipeworx-io-skiddle",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/skiddle"
+    },
+    {
+      "name": "io-github-pipeworx-io-slack_connect",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/slack_connect"
+    },
+    {
+      "name": "io-github-pipeworx-io-softwareheritage",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/softwareheritage"
+    },
+    {
+      "name": "io-github-pipeworx-io-soilgrids",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/soilgrids"
+    },
+    {
+      "name": "io-github-pipeworx-io-solana-rpc",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/solana-rpc"
+    },
+    {
+      "name": "io-github-pipeworx-io-space-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/space-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-spaceflight-news",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/spaceflight-news"
+    },
+    {
+      "name": "io-github-pipeworx-io-spdx-license",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/spdx-license"
+    },
+    {
+      "name": "io-github-pipeworx-io-spoonacular",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/spoonacular"
+    },
+    {
+      "name": "io-github-pipeworx-io-sports-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/sports-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-statec-lu",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/statec-lu"
+    },
+    {
+      "name": "io-github-pipeworx-io-steam",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/steam"
+    },
+    {
+      "name": "io-github-pipeworx-io-stratz",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/stratz"
+    },
+    {
+      "name": "io-github-pipeworx-io-tech-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/tech-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-tenor",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/tenor"
+    },
+    {
+      "name": "io-github-pipeworx-io-timeapi-io",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/timeapi-io"
+    },
+    {
+      "name": "io-github-pipeworx-io-timestamp",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/timestamp"
+    },
+    {
+      "name": "io-github-pipeworx-io-tmdb",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/tmdb"
+    },
+    {
+      "name": "io-github-pipeworx-io-todoist",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/todoist"
+    },
+    {
+      "name": "io-github-pipeworx-io-transport-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/transport-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-travel-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/travel-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-trove",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/trove"
+    },
+    {
+      "name": "io-github-pipeworx-io-twelvedata",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/twelvedata"
+    },
+    {
+      "name": "io-github-pipeworx-io-ulid",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/ulid"
+    },
+    {
+      "name": "io-github-pipeworx-io-un-sdg",
+      "reason": "non-english",
+      "registry": "io.github.pipeworx-io/un-sdg"
+    },
+    {
+      "name": "io-github-pipeworx-io-unicode",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/unicode"
+    },
+    {
+      "name": "io-github-pipeworx-io-unsplash",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/unsplash"
+    },
+    {
+      "name": "io-github-pipeworx-io-urlscan-io",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/urlscan-io"
+    },
+    {
+      "name": "io-github-pipeworx-io-us-news-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/us-news-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-useragent",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/useragent"
+    },
+    {
+      "name": "io-github-pipeworx-io-vimeo",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/vimeo"
+    },
+    {
+      "name": "io-github-pipeworx-io-wakatime",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/wakatime"
+    },
+    {
+      "name": "io-github-pipeworx-io-watchmode",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/watchmode"
+    },
+    {
+      "name": "io-github-pipeworx-io-webflow",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/webflow"
+    },
+    {
+      "name": "io-github-pipeworx-io-whiskyhunter",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/whiskyhunter"
+    },
+    {
+      "name": "io-github-pipeworx-io-wmata",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/wmata"
+    },
+    {
+      "name": "io-github-pipeworx-io-wordnik",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/wordnik"
+    },
+    {
+      "name": "io-github-pipeworx-io-world-news-feeds",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/world-news-feeds"
+    },
+    {
+      "name": "io-github-pipeworx-io-wynncraft",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/wynncraft"
+    },
+    {
+      "name": "io-github-pipeworx-io-zenodo",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/zenodo"
+    },
+    {
+      "name": "io-github-pipeworx-io-zoom",
+      "reason": "short-desc",
+      "registry": "io.github.pipeworx-io/zoom"
+    },
+    {
+      "name": "io-github-pmontp19-surtdecasa-mcp",
+      "reason": "non-english",
+      "registry": "io.github.pmontp19/surtdecasa-mcp"
+    },
+    {
+      "name": "io-github-poojabjacharya-cdgcsearchmetadata",
+      "reason": "placeholder-github",
+      "registry": "io.github.poojaBjAcharya/cdgcsearchmetadata"
+    },
+    {
+      "name": "io-github-rainwald-mph",
+      "reason": "non-english",
+      "registry": "io.github.rainwald/mph"
+    },
+    {
+      "name": "io-github-rezearcher-cve-triage",
+      "reason": "offensive-tooling",
+      "registry": "io.github.rezearcher/cve-triage"
+    },
+    {
+      "name": "io-github-ronybarbosa-alugar-ou-comprar",
+      "reason": "non-english",
+      "registry": "io.github.ronybarbosa/alugar-ou-comprar"
+    },
+    {
+      "name": "io-github-sadri-dridi-accept-json",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/accept-json"
+    },
+    {
+      "name": "io-github-sadri-dridi-acre-to-m2",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/acre-to-m2"
+    },
+    {
+      "name": "io-github-sadri-dridi-bar-to-psi",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/bar-to-psi"
+    },
+    {
+      "name": "io-github-sadri-dridi-buddhist-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/buddhist-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-business-day",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/business-day"
+    },
+    {
+      "name": "io-github-sadri-dridi-bytes-kib",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/bytes-kib"
+    },
+    {
+      "name": "io-github-sadri-dridi-bytes-mib",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/bytes-mib"
+    },
+    {
+      "name": "io-github-sadri-dridi-c-to-f",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/c-to-f"
+    },
+    {
+      "name": "io-github-sadri-dridi-c-to-k",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/c-to-k"
+    },
+    {
+      "name": "io-github-sadri-dridi-cache-fresh",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cache-fresh"
+    },
+    {
+      "name": "io-github-sadri-dridi-catalog-tools",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/catalog-tools"
+    },
+    {
+      "name": "io-github-sadri-dridi-century",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/century"
+    },
+    {
+      "name": "io-github-sadri-dridi-century-n",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/century-n"
+    },
+    {
+      "name": "io-github-sadri-dridi-cm-to-in",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cm-to-in"
+    },
+    {
+      "name": "io-github-sadri-dridi-color-hex-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/color-hex-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-color-rgb-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/color-rgb-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-compat-json",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/compat-json"
+    },
+    {
+      "name": "io-github-sadri-dridi-compat-sse",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/compat-sse"
+    },
+    {
+      "name": "io-github-sadri-dridi-coptic-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/coptic-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-cron-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cron-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-cron-six-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cron-six-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-cuid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cuid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-cup-to-ml",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/cup-to-ml"
+    },
+    {
+      "name": "io-github-sadri-dridi-data-uri-ok",
+      "reason": "offensive-tooling",
+      "registry": "io.github.sadri-dridi/data-uri-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-day-of-year",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/day-of-year"
+    },
+    {
+      "name": "io-github-sadri-dridi-decade",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/decade"
+    },
+    {
+      "name": "io-github-sadri-dridi-decade-n",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/decade-n"
+    },
+    {
+      "name": "io-github-sadri-dridi-der-ok",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/der-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-doi-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/doi-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-domain-labels",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/domain-labels"
+    },
+    {
+      "name": "io-github-sadri-dridi-doy-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/doy-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-doy-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/doy-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-dst-eu2",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/dst-eu2"
+    },
+    {
+      "name": "io-github-sadri-dridi-ean-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ean-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-epoch-ms",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/epoch-ms"
+    },
+    {
+      "name": "io-github-sadri-dridi-etag-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/etag-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-ethiopic-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ethiopic-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-f-to-c",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/f-to-c"
+    },
+    {
+      "name": "io-github-sadri-dridi-fathom-to-m",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fathom-to-m"
+    },
+    {
+      "name": "io-github-sadri-dridi-fiscal-q",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fiscal-q"
+    },
+    {
+      "name": "io-github-sadri-dridi-ft-to-m",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ft-to-m"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-aed",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-aed"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-aud",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-aud"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-brl",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-brl"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-cad",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-cad"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-chf",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-chf"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-clp",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-clp"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-cny",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-cny"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-cop",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-cop"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-czk",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-czk"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-dkk",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-dkk"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-egp",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-egp"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-eur",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-eur"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-gbp",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-gbp"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-hkd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-hkd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-huf",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-huf"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-idr",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-idr"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-ils",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-ils"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-inr",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-inr"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-jpy",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-jpy"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-krw",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-krw"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-mxn",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-mxn"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-myr",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-myr"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-nok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-nok"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-nzd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-nzd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-php",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-php"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-rub",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-rub"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-sar",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-sar"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-sek",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-sek"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-sgd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-sgd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-thb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-thb"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-try",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-try"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-twd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-twd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-usd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-usd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-vnd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-vnd"
+    },
+    {
+      "name": "io-github-sadri-dridi-fx-zar",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fx-zar"
+    },
+    {
+      "name": "io-github-sadri-dridi-fy-au",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fy-au"
+    },
+    {
+      "name": "io-github-sadri-dridi-fy-us",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/fy-us"
+    },
+    {
+      "name": "io-github-sadri-dridi-g-to-oz",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/g-to-oz"
+    },
+    {
+      "name": "io-github-sadri-dridi-gal-to-l",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/gal-to-l"
+    },
+    {
+      "name": "io-github-sadri-dridi-gps-sow",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/gps-sow"
+    },
+    {
+      "name": "io-github-sadri-dridi-header-safe",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/header-safe"
+    },
+    {
+      "name": "io-github-sadri-dridi-heading-level",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/heading-level"
+    },
+    {
+      "name": "io-github-sadri-dridi-heading-n",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/heading-n"
+    },
+    {
+      "name": "io-github-sadri-dridi-hebrew-mo",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hebrew-mo"
+    },
+    {
+      "name": "io-github-sadri-dridi-hebrew-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hebrew-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-hectare-to-acre",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hectare-to-acre"
+    },
+    {
+      "name": "io-github-sadri-dridi-hex-16",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hex-16"
+    },
+    {
+      "name": "io-github-sadri-dridi-hex-32",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hex-32"
+    },
+    {
+      "name": "io-github-sadri-dridi-hex-rgb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hex-rgb"
+    },
+    {
+      "name": "io-github-sadri-dridi-hijri-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hijri-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-host-labels",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/host-labels"
+    },
+    {
+      "name": "io-github-sadri-dridi-hour-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hour-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-hour-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hour-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-hp-to-watt",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hp-to-watt"
+    },
+    {
+      "name": "io-github-sadri-dridi-hr-to-sec",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hr-to-sec"
+    },
+    {
+      "name": "io-github-sadri-dridi-hsl-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/hsl-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-100",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-100"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-101",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-101"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-102",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-102"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-103",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-103"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-200",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-200"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-201",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-201"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-202",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-202"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-204",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-204"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-206",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-206"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-300",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-300"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-301",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-301"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-302",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-302"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-303",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-303"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-304",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-304"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-307",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-307"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-308",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-308"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-400",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-400"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-401",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-401"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-403",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-403"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-404",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-404"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-405",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-405"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-406",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-406"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-408",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-408"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-409",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-409"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-410",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-410"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-412",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-412"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-413",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-413"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-414",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-414"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-415",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-415"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-418",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-418"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-422",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-422"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-425",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-425"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-426",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-426"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-428",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-428"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-429",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-429"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-431",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-431"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-451",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-451"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-500",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-500"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-501",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-501"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-502",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-502"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-503",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-503"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-504",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-504"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-505",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-505"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-507",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-507"
+    },
+    {
+      "name": "io-github-sadri-dridi-http-511",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/http-511"
+    },
+    {
+      "name": "io-github-sadri-dridi-iata-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iata-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-icao-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/icao-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-in-to-cm",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/in-to-cm"
+    },
+    {
+      "name": "io-github-sadri-dridi-isbn-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/isbn-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-date-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-date-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-duration",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-duration"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-ordinal",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-ordinal"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-q",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-q"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-sem",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-sem"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-time-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-time-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-wd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-wd"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-wd-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-wd-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-week",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-week"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-week-date",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-week-date"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-week-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-week-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso-yweek",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso-yweek"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso4217-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso4217-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-iso8601-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/iso8601-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-issn-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/issn-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-japanese-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/japanese-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-jd-n",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/jd-n"
+    },
+    {
+      "name": "io-github-sadri-dridi-jd-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/jd-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-jpn-era",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/jpn-era"
+    },
+    {
+      "name": "io-github-sadri-dridi-json-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/json-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-juche-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/juche-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-juche-yr",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/juche-yr"
+    },
+    {
+      "name": "io-github-sadri-dridi-julian-day",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/julian-day"
+    },
+    {
+      "name": "io-github-sadri-dridi-jwt-hdr",
+      "reason": "offensive-tooling",
+      "registry": "io.github.sadri-dridi/jwt-hdr"
+    },
+    {
+      "name": "io-github-sadri-dridi-jwt-header",
+      "reason": "offensive-tooling",
+      "registry": "io.github.sadri-dridi/jwt-header"
+    },
+    {
+      "name": "io-github-sadri-dridi-k-to-c",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/k-to-c"
+    },
+    {
+      "name": "io-github-sadri-dridi-kb-to-mb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/kb-to-mb"
+    },
+    {
+      "name": "io-github-sadri-dridi-kg-to-lb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/kg-to-lb"
+    },
+    {
+      "name": "io-github-sadri-dridi-kib-to-bytes",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/kib-to-bytes"
+    },
+    {
+      "name": "io-github-sadri-dridi-km-to-mi",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/km-to-mi"
+    },
+    {
+      "name": "io-github-sadri-dridi-knot-to-kmh",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/knot-to-kmh"
+    },
+    {
+      "name": "io-github-sadri-dridi-ksuid-len",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ksuid-len"
+    },
+    {
+      "name": "io-github-sadri-dridi-ksuid-pay",
+      "reason": "offensive-tooling",
+      "registry": "io.github.sadri-dridi/ksuid-pay"
+    },
+    {
+      "name": "io-github-sadri-dridi-ksuid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ksuid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-l-to-gal",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/l-to-gal"
+    },
+    {
+      "name": "io-github-sadri-dridi-lang-de",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/lang-de"
+    },
+    {
+      "name": "io-github-sadri-dridi-lang-el",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/lang-el"
+    },
+    {
+      "name": "io-github-sadri-dridi-lang-en",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/lang-en"
+    },
+    {
+      "name": "io-github-sadri-dridi-lb-to-kg",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/lb-to-kg"
+    },
+    {
+      "name": "io-github-sadri-dridi-leap-year",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/leap-year"
+    },
+    {
+      "name": "io-github-sadri-dridi-leap-year-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/leap-year-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-lux-to-fc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/lux-to-fc"
+    },
+    {
+      "name": "io-github-sadri-dridi-m-to-ft",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/m-to-ft"
+    },
+    {
+      "name": "io-github-sadri-dridi-mb-to-gb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mb-to-gb"
+    },
+    {
+      "name": "io-github-sadri-dridi-method-get",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/method-get"
+    },
+    {
+      "name": "io-github-sadri-dridi-method-post",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/method-post"
+    },
+    {
+      "name": "io-github-sadri-dridi-mi-to-km",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mi-to-km"
+    },
+    {
+      "name": "io-github-sadri-dridi-mime-html",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mime-html"
+    },
+    {
+      "name": "io-github-sadri-dridi-mime-json",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mime-json"
+    },
+    {
+      "name": "io-github-sadri-dridi-mime-md",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mime-md"
+    },
+    {
+      "name": "io-github-sadri-dridi-min-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/min-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-min-to-sec",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/min-to-sec"
+    },
+    {
+      "name": "io-github-sadri-dridi-minguo-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/minguo-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-minute-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/minute-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-month-name",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/month-name"
+    },
+    {
+      "name": "io-github-sadri-dridi-mph-to-kmh",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/mph-to-kmh"
+    },
+    {
+      "name": "io-github-sadri-dridi-nanoid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/nanoid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-objectid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/objectid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-ordinal-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ordinal-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-oz-to-g",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/oz-to-g"
+    },
+    {
+      "name": "io-github-sadri-dridi-pa-to-bar",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/pa-to-bar"
+    },
+    {
+      "name": "io-github-sadri-dridi-percent-plus",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/percent-plus"
+    },
+    {
+      "name": "io-github-sadri-dridi-persian-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/persian-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-plus-ok",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/plus-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-port-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/port-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-psi-to-kpa",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/psi-to-kpa"
+    },
+    {
+      "name": "io-github-sadri-dridi-public-suffix",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/public-suffix"
+    },
+    {
+      "name": "io-github-sadri-dridi-punycode-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/punycode-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-pushid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/pushid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-qtr-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/qtr-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-quarter-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/quarter-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-random-hex16",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/random-hex16"
+    },
+    {
+      "name": "io-github-sadri-dridi-random-hex32",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/random-hex32"
+    },
+    {
+      "name": "io-github-sadri-dridi-random-hex8",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/random-hex8"
+    },
+    {
+      "name": "io-github-sadri-dridi-range-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/range-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-rd-n",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/rd-n"
+    },
+    {
+      "name": "io-github-sadri-dridi-rdn-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/rdn-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-reiwa-yr",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/reiwa-yr"
+    },
+    {
+      "name": "io-github-sadri-dridi-rfc-number-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/rfc-number-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-rfc3339-now",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/rfc3339-now"
+    },
+    {
+      "name": "io-github-sadri-dridi-robots-count",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/robots-count"
+    },
+    {
+      "name": "io-github-sadri-dridi-sec-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/sec-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-sec-to-min",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/sec-to-min"
+    },
+    {
+      "name": "io-github-sadri-dridi-sec-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/sec-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-second-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/second-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-semver-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/semver-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-semver-parse",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/semver-parse"
+    },
+    {
+      "name": "io-github-sadri-dridi-sha1-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/sha1-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-slug-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/slug-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-snowflake-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/snowflake-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-spdx-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/spdx-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ak",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ak"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-al",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-al"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ar",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ar"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-az",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-az"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ca",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ca"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-co",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-co"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ct",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ct"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-dc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-dc"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-de",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-de"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-fl",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-fl"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ga",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ga"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-hi",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-hi"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ia",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ia"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-id",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-id"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-il",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-il"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-in",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-in"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ks",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ks"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ky",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ky"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-la",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-la"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ma",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ma"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-md",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-md"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-me",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-me"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-mi",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-mi"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-mn",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-mn"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-mo",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-mo"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ms",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ms"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-mt",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-mt"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nc"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nd"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ne",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ne"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nh",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nh"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nj",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nj"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nm",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nm"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-nv",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-nv"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ny",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ny"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-oh",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-oh"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-or",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-or"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-pa",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-pa"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ri",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ri"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-sc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-sc"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-sd",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-sd"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-tn",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-tn"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-to-lb",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-to-lb"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-tx",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-tx"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-ut",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-ut"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-va",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-va"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-vt",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-vt"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-wa",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-wa"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-wi",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-wi"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-wv",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-wv"
+    },
+    {
+      "name": "io-github-sadri-dridi-st-wy",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/st-wy"
+    },
+    {
+      "name": "io-github-sadri-dridi-status-short",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/status-short"
+    },
+    {
+      "name": "io-github-sadri-dridi-thai-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/thai-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-typeid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/typeid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-tz-offset-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/tz-offset-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-ulid-crockford",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ulid-crockford"
+    },
+    {
+      "name": "io-github-sadri-dridi-ulid-len",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ulid-len"
+    },
+    {
+      "name": "io-github-sadri-dridi-ulid-now",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ulid-now"
+    },
+    {
+      "name": "io-github-sadri-dridi-ulid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/ulid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-unix-day",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/unix-day"
+    },
+    {
+      "name": "io-github-sadri-dridi-unix-hour",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/unix-hour"
+    },
+    {
+      "name": "io-github-sadri-dridi-unix-now",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/unix-now"
+    },
+    {
+      "name": "io-github-sadri-dridi-unix-week",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/unix-week"
+    },
+    {
+      "name": "io-github-sadri-dridi-unix-year",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/unix-year"
+    },
+    {
+      "name": "io-github-sadri-dridi-url-host",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/url-host"
+    },
+    {
+      "name": "io-github-sadri-dridi-url-origin",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/url-origin"
+    },
+    {
+      "name": "io-github-sadri-dridi-url-path",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/url-path"
+    },
+    {
+      "name": "io-github-sadri-dridi-utf16le-ok",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/utf16le-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-utf32le-ok",
+      "reason": "non-english",
+      "registry": "io.github.sadri-dridi/utf32le-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-max",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-max"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-mint",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-mint"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-nil",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-nil"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-nil-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-nil-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-uuid-v4",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/uuid-v4"
+    },
+    {
+      "name": "io-github-sadri-dridi-watt-to-hp",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/watt-to-hp"
+    },
+    {
+      "name": "io-github-sadri-dridi-week-number",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/week-number"
+    },
+    {
+      "name": "io-github-sadri-dridi-week-year",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/week-year"
+    },
+    {
+      "name": "io-github-sadri-dridi-weekdate-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/weekdate-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-weekday-number",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/weekday-number"
+    },
+    {
+      "name": "io-github-sadri-dridi-weekday-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/weekday-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-woy-ok",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/woy-ok"
+    },
+    {
+      "name": "io-github-sadri-dridi-xid-shape",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/xid-shape"
+    },
+    {
+      "name": "io-github-sadri-dridi-yd-to-m",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/yd-to-m"
+    },
+    {
+      "name": "io-github-sadri-dridi-year-utc",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/year-utc"
+    },
+    {
+      "name": "io-github-sadri-dridi-zone-count",
+      "reason": "short-desc",
+      "registry": "io.github.sadri-dridi/zone-count"
+    },
+    {
+      "name": "io-github-sepehrkeyhani00-bashoor-menu",
+      "reason": "non-english",
+      "registry": "io.github.sepehrkeyhani00/bashoor-menu"
+    },
+    {
+      "name": "io-github-sercanmetalore-automotive-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/automotive-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-bin-lookup-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/bin-lookup-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-clinical-fda-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/clinical-fda-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-ekap-tender-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/ekap-tender-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-sanctions-screening-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/sanctions-screening-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-serp-content-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/serp-content-mcp"
+    },
+    {
+      "name": "io-github-sercanmetalore-visual-edit-mcp",
+      "reason": "non-english",
+      "registry": "io.github.sercanmetalore/visual-edit-mcp"
+    },
+    {
+      "name": "io-github-shadowy-lianban-a-share-review",
+      "reason": "non-english",
+      "registry": "io.github.shadowy/lianban-a-share-review"
+    },
+    {
+      "name": "io-github-smoczynski-b-psi-forum",
+      "reason": "non-english",
+      "registry": "io.github.smoczynski-b/psi-forum"
+    },
+    {
+      "name": "io-github-srotzin-hive-mcp-passport",
+      "reason": "short-desc",
+      "registry": "io.github.srotzin/hive-mcp-passport"
+    },
+    {
+      "name": "io-github-srotzin-hive-mcp-wallet",
+      "reason": "short-desc",
+      "registry": "io.github.srotzin/hive-mcp-wallet"
+    },
+    {
+      "name": "io-github-theluckystrike-work-order",
+      "reason": "offensive-tooling",
+      "registry": "io.github.theluckystrike/work-order"
+    },
+    {
+      "name": "io-github-tmdrb625-wq-mcp-factory",
+      "reason": "non-english",
+      "registry": "io.github.tmdrb625-wq/mcp-factory"
+    },
+    {
+      "name": "io-github-tonymaynard97-blockscholes-mcp-server",
+      "reason": "short-desc",
+      "registry": "io.github.tonymaynard97/blockscholes-mcp-server"
+    },
+    {
+      "name": "io-github-varvararatta-legal_mcp",
+      "reason": "short-desc",
+      "registry": "io.github.varvararatta/legal_mcp"
+    },
+    {
+      "name": "io-github-varvararatta-research_mcp",
+      "reason": "short-desc",
+      "registry": "io.github.varvararatta/research_mcp"
+    },
+    {
+      "name": "io-github-varvararatta-security_mcp",
+      "reason": "short-desc",
+      "registry": "io.github.varvararatta/security_mcp"
+    },
+    {
+      "name": "io-github-waddou-mcp-compteparticulier",
+      "reason": "non-english",
+      "registry": "io.github.waddou/mcp-compteparticulier"
+    },
+    {
+      "name": "io-github-waddou-mcp-moncompte",
+      "reason": "non-english",
+      "registry": "io.github.waddou/mcp-moncompte"
+    },
+    {
+      "name": "io-github-waddou-mcp-noticiel",
+      "reason": "non-english",
+      "registry": "io.github.waddou/mcp-noticiel"
+    },
+    {
+      "name": "io-github-workmagicio-workmagic-mcp",
+      "reason": "short-desc",
+      "registry": "io.github.workmagicio/workmagic-mcp"
+    },
+    {
+      "name": "io-github-wyattbenno777-icme-preflight",
+      "reason": "deny-substring:jailbreak",
+      "registry": "io.github.wyattbenno777/icme-preflight"
+    },
+    {
+      "name": "io-github-yukihamada-tokkyo-maru",
+      "reason": "non-english",
+      "registry": "io.github.yukihamada/tokkyo-maru"
+    },
+    {
+      "name": "io-github-yukkurigen-yukkurigen-mcp",
+      "reason": "non-english",
+      "registry": "io.github.yukkurigen/yukkurigen-mcp"
+    },
+    {
+      "name": "io-github-zhinikefu-zhini-ai-assistant",
+      "reason": "non-english",
+      "registry": "io.github.zhinikefu/zhini-ai-assistant"
+    },
+    {
+      "name": "io-guapu-guapu",
+      "reason": "non-english",
+      "registry": "io.guapu/guapu"
+    },
+    {
+      "name": "io-port-port",
+      "reason": "short-desc",
+      "registry": "io.port/Port"
+    },
+    {
+      "name": "io-toolzy-toolzy",
+      "reason": "non-english",
+      "registry": "io.toolzy/toolzy"
+    },
+    {
+      "name": "jp-addresstozip-address-to-zip",
+      "reason": "non-english",
+      "registry": "jp.addresstozip/address-to-zip"
+    },
+    {
+      "name": "jp-avacast-avacast",
+      "reason": "non-english",
+      "registry": "jp.avacast/avacast"
+    },
+    {
+      "name": "jp-co-contencial-mcp",
+      "reason": "non-english",
+      "registry": "jp.co.contencial/mcp"
+    },
+    {
+      "name": "jp-co-issoh-corporate-site",
+      "reason": "non-english",
+      "registry": "jp.co.issoh/corporate-site"
+    },
+    {
+      "name": "jp-datasetsearch-koekatsu",
+      "reason": "non-english",
+      "registry": "jp.datasetsearch/koekatsu"
+    },
+    {
+      "name": "jp-ekiten-eapi-ekiten-reservation",
+      "reason": "non-english",
+      "registry": "jp.ekiten.eapi/ekiten-reservation"
+    },
+    {
+      "name": "jp-prenica-mcp",
+      "reason": "non-english",
+      "registry": "jp.prenica/mcp"
+    },
+    {
+      "name": "jp-renkeimap-renkeimap-info",
+      "reason": "non-english",
+      "registry": "jp.renkeimap/renkeimap-info"
+    },
+    {
+      "name": "jp-tsuyoshikashiwazaki-mcp",
+      "reason": "non-english",
+      "registry": "jp.tsuyoshikashiwazaki/mcp"
+    },
+    {
+      "name": "jp-yomitasu-earthenware-jp",
+      "reason": "non-english",
+      "registry": "jp.yomitasu/earthenware-jp"
+    },
+    {
+      "name": "jp-yomitasu-prenica-jp",
+      "reason": "non-english",
+      "registry": "jp.yomitasu/prenica-jp"
+    },
+    {
+      "name": "jp-yomitasu-tsuyoshikashiwazaki-jp",
+      "reason": "non-english",
+      "registry": "jp.yomitasu/tsuyoshikashiwazaki-jp"
+    },
+    {
+      "name": "jp-yomitasu-yomitasu-jp",
+      "reason": "non-english",
+      "registry": "jp.yomitasu/yomitasu-jp"
+    },
+    {
+      "name": "jp-yomitasu-zippa-jp",
+      "reason": "non-english",
+      "registry": "jp.yomitasu/zippa-jp"
+    },
+    {
+      "name": "kr-co-softbowl-sbchart2",
+      "reason": "non-english",
+      "registry": "kr.co.softbowl/sbchart2"
+    },
+    {
+      "name": "kr-co-softbowl-sbgrid3",
+      "reason": "non-english",
+      "registry": "kr.co.softbowl/sbgrid3"
+    },
+    {
+      "name": "kr-drafters-drafters",
+      "reason": "non-english",
+      "registry": "kr.drafters/drafters"
+    },
+    {
+      "name": "kr-ibtcc-competition-ratio",
+      "reason": "non-english",
+      "registry": "kr.ibtcc/competition-ratio"
+    },
+    {
+      "name": "lat-oktopus-checkout-cod",
+      "reason": "non-english",
+      "registry": "lat.oktopus/checkout-cod"
+    },
+    {
+      "name": "legal-custodio-mcp",
+      "reason": "non-english",
+      "registry": "legal.custodio/mcp"
+    },
+    {
+      "name": "link-hultra-mcp-registry-uptime",
+      "reason": "non-english",
+      "registry": "link.hultra/mcp-registry-uptime"
+    },
+    {
+      "name": "live-alpic-clouddj-ce0f8cfd-clouddj",
+      "reason": "short-desc",
+      "registry": "live.alpic.clouddj-ce0f8cfd/clouddj"
+    },
+    {
+      "name": "live-alpic-gueguesser-chatgptap-68537aa2-gueguesser-chatgptapp",
+      "reason": "short-desc",
+      "registry": "live.alpic.gueguesser-chatgptap-68537aa2/gueguesser-chatgptapp"
+    },
+    {
+      "name": "live-alpic-qa-test-cli-b955e6a8-qa-test-cli",
+      "reason": "short-desc",
+      "registry": "live.alpic.qa-test-cli-b955e6a8/qa-test-cli"
+    },
+    {
+      "name": "live-alpic-staging-email-mcp-17ee097a-email-mcp",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.email-mcp-17ee097a/email-mcp"
+    },
+    {
+      "name": "live-alpic-staging-email-mcp-3b5a375e-email-mcp",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.email-mcp-3b5a375e/email-mcp"
+    },
+    {
+      "name": "live-alpic-staging-email-mcp-c880a7f7-email-mcp",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.email-mcp-c880a7f7/email-mcp"
+    },
+    {
+      "name": "live-alpic-staging-everything-app-7f22928f-everything-app",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.everything-app-7f22928f/everything-app"
+    },
+    {
+      "name": "live-alpic-staging-everything-app-ce82911c-everything-app",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.everything-app-ce82911c/everything-app"
+    },
+    {
+      "name": "live-alpic-staging-mcp-server-template-7b99436a-mcp-server-template",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.mcp-server-template-7b99436a/mcp-server-template"
+    },
+    {
+      "name": "live-alpic-staging-mcp-server-template-90a89880-mcp-server-template",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.mcp-server-template-90a89880/mcp-server-template"
+    },
+    {
+      "name": "live-alpic-staging-mcp-server-template-99cbcf02-mcp-server-template",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.mcp-server-template-99cbcf02/mcp-server-template"
+    },
+    {
+      "name": "live-alpic-staging-node-email-mcp-25ea0992-node-email-mcp",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.node-email-mcp-25ea0992/node-email-mcp"
+    },
+    {
+      "name": "live-alpic-staging-personal-chef-chatgp-c951fcb6-personal-chef-chatgpt-app",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.personal-chef-chatgp-c951fcb6/personal-chef-chatgpt-app"
+    },
+    {
+      "name": "live-alpic-staging-python-email-mcp-f5c8e0a7-python-email-mcp",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging.python-email-mcp-f5c8e0a7/python-email-mcp"
+    },
+    {
+      "name": "live-alpic-staging-send-email-mcp-01f22b8f",
+      "reason": "short-desc",
+      "registry": "live.alpic.staging/send-email-mcp-01f22b8f"
+    },
+    {
+      "name": "ma-datao-mcp",
+      "reason": "non-english",
+      "registry": "ma.datao/mcp"
+    },
+    {
+      "name": "media-secondbrain-secondbrain",
+      "reason": "non-english",
+      "registry": "media.secondbrain/secondbrain"
+    },
+    {
+      "name": "mx-com-elcheff-portal-ejec2",
+      "reason": "non-english",
+      "registry": "mx.com.elcheff.portal/ejec2"
+    },
+    {
+      "name": "mx-corpusiuris-mexican-law",
+      "reason": "non-english",
+      "registry": "mx.corpusiuris/mexican-law"
+    },
+    {
+      "name": "net-agri-ja-agri-ja",
+      "reason": "non-english",
+      "registry": "net.agri-ja/agri-ja"
+    },
+    {
+      "name": "net-mirondo-mirondo",
+      "reason": "non-english",
+      "registry": "net.mirondo/mirondo"
+    },
+    {
+      "name": "net-nexlab-launch-watch",
+      "reason": "short-desc",
+      "registry": "net.nexlab/launch-watch"
+    },
+    {
+      "name": "net-nexlab-sports-events-results",
+      "reason": "short-desc",
+      "registry": "net.nexlab/sports-events-results"
+    },
+    {
+      "name": "net-nexlab-us-congress-watch",
+      "reason": "short-desc",
+      "registry": "net.nexlab/us-congress-watch"
+    },
+    {
+      "name": "net-nexlab-wikipedia-retrieval",
+      "reason": "short-desc",
+      "registry": "net.nexlab/wikipedia-retrieval"
+    },
+    {
+      "name": "net-sodatsu-mitsumori-estimate-invoice",
+      "reason": "non-english",
+      "registry": "net.sodatsu-mitsumori/estimate-invoice"
+    },
+    {
+      "name": "net-whataplan-api-whataplan-mcp",
+      "reason": "non-english",
+      "registry": "net.whataplan.api/whataplan-mcp"
+    },
+    {
+      "name": "nl-stroomwekker-stroomprijzen",
+      "reason": "non-english",
+      "registry": "nl.stroomwekker/stroomprijzen"
+    },
+    {
+      "name": "org-crossload-crossload",
+      "reason": "non-english",
+      "registry": "org.crossload/crossload"
+    },
+    {
+      "name": "org-lampions-scrutins",
+      "reason": "non-english",
+      "registry": "org.lampions/scrutins"
+    },
+    {
+      "name": "org-umweltsicherheit-digital-simon-ems",
+      "reason": "non-english",
+      "registry": "org.umweltsicherheit/digital-simon-ems"
+    },
+    {
+      "name": "place-clubs-nippo",
+      "reason": "non-english",
+      "registry": "place.clubs/nippo"
+    },
+    {
+      "name": "ru-5dyuymov-shop",
+      "reason": "non-english",
+      "registry": "ru.5dyuymov/shop"
+    },
+    {
+      "name": "ru-activatedai-activated-ai",
+      "reason": "non-english",
+      "registry": "ru.activatedai/activated-ai"
+    },
+    {
+      "name": "ru-dokidepo-public-tools",
+      "reason": "non-english",
+      "registry": "ru.dokidepo/public-tools"
+    },
+    {
+      "name": "ru-iipodpis-iipodpis",
+      "reason": "non-english",
+      "registry": "ru.iipodpis/iipodpis"
+    },
+    {
+      "name": "ru-meetslava-hr",
+      "reason": "non-english",
+      "registry": "ru.meetslava/hr"
+    },
+    {
+      "name": "ru-merfy-merfy",
+      "reason": "non-english",
+      "registry": "ru.merfy/merfy"
+    },
+    {
+      "name": "ru-parsee-parsee",
+      "reason": "non-english",
+      "registry": "ru.parsee/parsee"
+    },
+    {
+      "name": "ru-tutvidnee-portal",
+      "reason": "non-english",
+      "registry": "ru.tutvidnee/portal"
+    },
+    {
+      "name": "ru-value-pro-value-pro-mcp",
+      "reason": "non-english",
+      "registry": "ru.value-pro/value-pro-mcp"
+    },
+    {
+      "name": "ru-vibemarketolog-vibemarketolog",
+      "reason": "non-english",
+      "registry": "ru.vibemarketolog/vibemarketolog"
+    },
+    {
+      "name": "space-promptguardscan-promptguardscan-mcp",
+      "reason": "deny-substring:jailbreak",
+      "registry": "space.promptguardscan/promptguardscan-mcp"
+    },
+    {
+      "name": "studio-lowlevel-normativa-drones-espana",
+      "reason": "non-english",
+      "registry": "studio.lowlevel/normativa-drones-espana"
+    },
+    {
+      "name": "su-mpshop-catalog",
+      "reason": "non-english",
+      "registry": "su.mpshop/catalog"
+    },
+    {
+      "name": "today-utsuroi-uratori",
+      "reason": "non-english",
+      "registry": "today.utsuroi/uratori"
+    },
+    {
+      "name": "top-zheng-he-zhenghe-mcp",
+      "reason": "non-english",
+      "registry": "top.zheng-he/zhenghe-mcp"
+    },
+    {
+      "name": "tw-org-legaltech-taiwan-law",
+      "reason": "non-english",
+      "registry": "tw.org.legaltech/taiwan-law"
+    },
+    {
+      "name": "vote-andre-elections",
+      "reason": "non-english",
+      "registry": "vote.andre/elections"
+    }
+  ],
+  "drops": {
+    "no-install-target": 2231,
+    "deny-substring:jailbreak": 12,
+    "non-english": 525,
+    "short-desc": 587,
+    "dupe-name": 5,
+    "deny-substring:ransomware": 1,
+    "offensive-tooling": 27,
+    "placeholder-github": 1
+  }
+}
