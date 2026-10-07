@@ -4,6 +4,8 @@
  *
  * And homepage-eligible recent items have:
  *   avg_rating ≥ 4.0, rating_count ≥ 1, star_count ≥ 10, export_count ≥ 50
+ * Counts that are still on those floors are lifted into a range above them
+ * (likes 11–42, homepage installs 51–160) so they are not all identical.
  *
  * Uses seed-fake-* anon ids (removable via remove-fake-engagement.sql).
  *
@@ -74,6 +76,16 @@ const INSTALL_ANON = "seed-fake-floor-installs";
 
 const randInt = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
 const round2 = (n) => Math.round(n * 100) / 100;
+
+/**
+ * Counts sitting on a floor (the old seed wrote exactly 10 likes / 50 installs)
+ * get a value in (floor, max]. Anything already above the floor is left alone.
+ */
+function varyAbove(current, floor, max) {
+  const n = current ?? 0;
+  if (n > floor) return n;
+  return randInt(floor + 1, max);
+}
 
 function githubOwner(u) {
   if (!u) return null;
@@ -223,30 +235,30 @@ async function ensureFloors({
   for (const it of targets) {
     const id = it.id;
     const homepage = HOMEPAGE_NAMES.has(String(it.name).toLowerCase());
-    const needStars = homepage ? Math.max(minStars, 10) : minStars;
-    const needExports = homepage ? Math.max(minExports, 50) : minExports;
+    const starFloor = homepage ? Math.max(minStars, 10) : minStars;
+    const exportFloor = homepage ? Math.max(minExports, 50) : minExports;
 
     const currentStars =
       (realStarCount.get(id) ?? 0) + (seedStarCount.get(id) ?? 0);
-    const topUp = Math.max(0, needStars - currentStars);
+    const finalStars = varyAbove(currentStars, starFloor, homepage ? 42 : 36);
+    const topUp = Math.max(0, finalStars - currentStars);
     for (let i = 1; i <= topUp; i++) {
       starInserts.push({ [fkCol]: id, anon_id: `${FLOOR_ANON}${i}` });
     }
-    const finalStars = currentStars + topUp;
 
     const currentExports = it.export_count ?? 0;
-    const exportBump = Math.max(0, needExports - currentExports);
-    if (exportBump > 0 || homepage) {
+    const finalExports = varyAbove(currentExports, exportFloor, homepage ? 160 : 48);
+    const exportBump = Math.max(0, finalExports - currentExports);
+    if (exportBump > 0) {
       installInserts.push({
         [fkCol]: id,
         anon_id: INSTALL_ANON,
         target: "seed",
-        install_count: Math.max(exportBump, needExports),
+        install_count: exportBump,
         first_installed_at: nowIso,
         installed_at: nowIso,
       });
     }
-    const finalExports = Math.max(currentExports, needExports);
 
     let avg = Number(it.avg_rating) || 0;
     let rcount = Number(it.rating_count) || 0;
@@ -345,25 +357,49 @@ async function boostRecentForHomepage() {
     const fk = it.table === "skills" ? "skill_id" : "server_id";
     const ratingTable = it.table === "skills" ? "skill_ratings" : null;
 
-    const needStars = Math.max(0, 10 - (it.star_count ?? 0));
-    const starRows = [];
-    for (let i = 1; i <= needStars; i++) {
-      starRows.push({ [fk]: it.id, anon_id: `${FLOOR_ANON}recent-${i}` });
-    }
-    if (starRows.length) {
-      await sb.from(starTable).delete().like("anon_id", `${FLOOR_ANON}recent-%`).eq(fk, it.id);
-      await insertChunked(starTable, starRows);
+    const targetStars = varyAbove(it.star_count ?? 0, 10, 42);
+    const targetExports = varyAbove(it.export_count ?? 0, 50, 160);
+
+    const { count: ownedStars } = await sb
+      .from(starTable)
+      .select("*", { count: "exact", head: true })
+      .like("anon_id", `${FLOOR_ANON}recent-%`)
+      .eq(fk, it.id);
+    const otherStars = Math.max(0, (it.star_count ?? 0) - (ownedStars ?? 0));
+    const insertStars = Math.max(0, targetStars - otherStars);
+    await sb.from(starTable).delete().like("anon_id", `${FLOOR_ANON}recent-%`).eq(fk, it.id);
+    if (insertStars > 0) {
+      await insertChunked(
+        starTable,
+        Array.from({ length: insertStars }, (_, i) => ({
+          [fk]: it.id,
+          anon_id: `${FLOOR_ANON}recent-${i + 1}`,
+        }))
+      );
     }
 
+    const { data: ownedInstall } = await sb
+      .from(installTable)
+      .select("install_count")
+      .eq("anon_id", `${INSTALL_ANON}-recent`)
+      .eq(fk, it.id)
+      .maybeSingle();
+    const otherExports = Math.max(
+      0,
+      (it.export_count ?? 0) - (ownedInstall?.install_count ?? 0)
+    );
+    const installBump = Math.max(0, targetExports - otherExports);
     await sb.from(installTable).delete().eq("anon_id", `${INSTALL_ANON}-recent`).eq(fk, it.id);
-    await sb.from(installTable).insert({
-      [fk]: it.id,
-      anon_id: `${INSTALL_ANON}-recent`,
-      target: "seed",
-      install_count: 50,
-      first_installed_at: nowIso,
-      installed_at: nowIso,
-    });
+    if (installBump > 0) {
+      await sb.from(installTable).insert({
+        [fk]: it.id,
+        anon_id: `${INSTALL_ANON}-recent`,
+        target: "seed",
+        install_count: installBump,
+        first_installed_at: nowIso,
+        installed_at: nowIso,
+      });
+    }
 
     let avg = Number(it.avg_rating) || 0;
     let rcount = Number(it.rating_count) || 0;
@@ -388,8 +424,8 @@ async function boostRecentForHomepage() {
     await sb
       .from(it.table)
       .update({
-        star_count: Math.max(it.star_count ?? 0, 10),
-        export_count: Math.max(it.export_count ?? 0, 50),
+        star_count: targetStars,
+        export_count: targetExports,
         avg_rating: Math.max(avg, 4.0),
         rating_count: Math.max(rcount, 1),
       })
@@ -449,8 +485,8 @@ async function run() {
     await sb
       .from(table)
       .update({
-        export_count: Math.max(it.export_count ?? 0, 50),
-        star_count: Math.max(it.star_count ?? 0, 10),
+        export_count: varyAbove(it.export_count ?? 0, 50, 160),
+        star_count: varyAbove(it.star_count ?? 0, 10, 42),
         avg_rating: Math.max(Number(it.avg_rating) || 0, 4.0),
         rating_count: Math.max(it.rating_count ?? 0, 1),
       })
