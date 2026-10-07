@@ -31,6 +31,10 @@ export interface SeedAgent {
   canGenerateFiles?: boolean;
   canRunCode?: boolean;
   canGenerateImages?: boolean;
+
+  // Output routing. Seed agents omit these; custom agents set them.
+  enabledDestinations?: ("in-app" | "download" | "webhook" | "google-drive")[];
+  googleDriveFolderName?: string;
 }
 
 export const SEED_AGENTS: Record<string, SeedAgent> = {};

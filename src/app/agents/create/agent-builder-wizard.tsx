@@ -468,7 +468,9 @@ export function AgentBuilderWizard() {
           {step === 1 && <StepIdentity form={form} update={update} />}
           {step === 2 && <StepInstructions form={form} update={update} />}
           {step === 3 && <StepTools form={form} update={update} />}
-          {step === 4 && <StepIO form={form} update={update} />}
+          {step === 4 && (
+            <StepIO form={form} update={update} hasDriveAccess={hasDriveAccess} />
+          )}
           {step === 5 && (
             <StepPublish
               form={form}
@@ -1189,9 +1191,11 @@ function StepTools({
 function StepIO({
   form,
   update,
+  hasDriveAccess,
 }: {
   form: AgentForm;
   update: (p: Partial<AgentForm>) => void;
+  hasDriveAccess: boolean;
 }) {
   const addWidget = () => {
     update({
